@@ -43,13 +43,13 @@
     End Sub
 
 
-    Private Sub line_preview(x_old As Integer, y_old As Integer, x_new As Integer, y_new As Integer)
+    Private Sub line_preview(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
         If Not IsNothing(Me.form) Then
             Me.form.draw_preview(x_old, y_old, x_new, y_new)
         End If
     End Sub
 
-    Public Sub line_live_print(x_old As Integer, y_old As Integer, x_new As Integer, y_new As Integer)
+    Public Sub line_live_print(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
         If Not IsNothing(Me.form) Then
             Me.form.draw_live_print(x_old, y_old, x_new, y_new)
         End If

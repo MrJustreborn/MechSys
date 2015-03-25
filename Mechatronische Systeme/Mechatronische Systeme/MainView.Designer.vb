@@ -24,7 +24,6 @@ Partial Class MainView
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainView))
         Me.Btn_start = New System.Windows.Forms.Button()
-        Me.Btn_stop = New System.Windows.Forms.Button()
         Me.Lbl_progress = New System.Windows.Forms.Label()
         Me.Lbl_filepath = New System.Windows.Forms.Label()
         Me.Progress_1 = New System.Windows.Forms.ProgressBar()
@@ -39,6 +38,7 @@ Partial Class MainView
         Me.Group_1 = New System.Windows.Forms.GroupBox()
         Me.Group_2 = New System.Windows.Forms.GroupBox()
         Me.Btn_pause = New System.Windows.Forms.Button()
+        Me.Btn_stop = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,21 +52,11 @@ Partial Class MainView
         Me.Btn_start.Text = "Start"
         Me.Btn_start.UseVisualStyleBackColor = True
         '
-        'Btn_stop
-        '
-        Me.Btn_stop.ForeColor = System.Drawing.Color.Black
-        Me.Btn_stop.Image = CType(resources.GetObject("Btn_stop.Image"), System.Drawing.Image)
-        Me.Btn_stop.Location = New System.Drawing.Point(496, 368)
-        Me.Btn_stop.Name = "Btn_stop"
-        Me.Btn_stop.Size = New System.Drawing.Size(118, 102)
-        Me.Btn_stop.TabIndex = 1
-        Me.Btn_stop.UseVisualStyleBackColor = True
-        '
         'Lbl_progress
         '
         Me.Lbl_progress.AutoSize = True
         Me.Lbl_progress.ForeColor = System.Drawing.Color.Black
-        Me.Lbl_progress.Location = New System.Drawing.Point(9, 377)
+        Me.Lbl_progress.Location = New System.Drawing.Point(12, 380)
         Me.Lbl_progress.Name = "Lbl_progress"
         Me.Lbl_progress.Size = New System.Drawing.Size(53, 13)
         Me.Lbl_progress.TabIndex = 2
@@ -76,7 +66,7 @@ Partial Class MainView
         '
         Me.Lbl_filepath.AutoSize = True
         Me.Lbl_filepath.ForeColor = System.Drawing.Color.Black
-        Me.Lbl_filepath.Location = New System.Drawing.Point(12, 336)
+        Me.Lbl_filepath.Location = New System.Drawing.Point(15, 339)
         Me.Lbl_filepath.Name = "Lbl_filepath"
         Me.Lbl_filepath.Size = New System.Drawing.Size(270, 13)
         Me.Lbl_filepath.TabIndex = 3
@@ -92,9 +82,9 @@ Partial Class MainView
         'MenuStrip1
         '
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.BearbeitenToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(3, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(614, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(608, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -132,12 +122,12 @@ Partial Class MainView
         '
         'Opn_filepath
         '
-        Me.Opn_filepath.FileName = "OpenFileDialog1"
+        Me.Opn_filepath.Filter = "txt Dateien (*.txt)|*.txt|All files (*.*)|*.*"""
         '
         'Lbl_preview
         '
         Me.Lbl_preview.AutoSize = True
-        Me.Lbl_preview.Location = New System.Drawing.Point(9, 45)
+        Me.Lbl_preview.Location = New System.Drawing.Point(12, 48)
         Me.Lbl_preview.Name = "Lbl_preview"
         Me.Lbl_preview.Size = New System.Drawing.Size(0, 13)
         Me.Lbl_preview.TabIndex = 7
@@ -159,6 +149,7 @@ Partial Class MainView
         Me.Group_2.ForeColor = System.Drawing.Color.White
         Me.Group_2.Location = New System.Drawing.Point(350, 45)
         Me.Group_2.Name = "Group_2"
+        Me.Group_2.Padding = New System.Windows.Forms.Padding(0)
         Me.Group_2.Size = New System.Drawing.Size(243, 263)
         Me.Group_2.TabIndex = 11
         Me.Group_2.TabStop = False
@@ -174,6 +165,16 @@ Partial Class MainView
         Me.Btn_pause.TabIndex = 12
         Me.Btn_pause.Text = "Pause"
         Me.Btn_pause.UseVisualStyleBackColor = True
+        '
+        'Btn_stop
+        '
+        Me.Btn_stop.ForeColor = System.Drawing.Color.Black
+        Me.Btn_stop.Image = CType(resources.GetObject("Btn_stop.Image"), System.Drawing.Image)
+        Me.Btn_stop.Location = New System.Drawing.Point(496, 377)
+        Me.Btn_stop.Name = "Btn_stop"
+        Me.Btn_stop.Size = New System.Drawing.Size(118, 102)
+        Me.Btn_stop.TabIndex = 1
+        Me.Btn_stop.UseVisualStyleBackColor = True
         '
         'MainView
         '
@@ -194,6 +195,7 @@ Partial Class MainView
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MainView"
+        Me.Padding = New System.Windows.Forms.Padding(3)
         Me.Text = "2D Plotter"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()

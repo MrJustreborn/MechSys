@@ -47,11 +47,11 @@
     End Sub
 
 
-    Public Sub draw_preview(x_old As Integer, y_old As Integer, x_new As Integer, y_new As Integer)
+    Public Sub draw_preview(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
         Me.Group_1.CreateGraphics.DrawLine(Pens.White, x_old, y_old, x_new, y_new)
     End Sub
 
-    Public Sub draw_live_print(x_old As Integer, y_old As Integer, x_new As Integer, y_new As Integer)
+    Public Sub draw_live_print(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
         Me.Group_2.CreateGraphics.DrawLine(Pens.White, x_old, y_old, x_new, y_new)
     End Sub
 
