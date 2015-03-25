@@ -45,7 +45,7 @@ Partial Class MainView
         'Btn_start
         '
         Me.Btn_start.ForeColor = System.Drawing.Color.Black
-        Me.Btn_start.Location = New System.Drawing.Point(15, 408)
+        Me.Btn_start.Location = New System.Drawing.Point(12, 433)
         Me.Btn_start.Name = "Btn_start"
         Me.Btn_start.Size = New System.Drawing.Size(164, 34)
         Me.Btn_start.TabIndex = 0
@@ -56,7 +56,7 @@ Partial Class MainView
         '
         Me.Btn_stop.ForeColor = System.Drawing.Color.Black
         Me.Btn_stop.Image = CType(resources.GetObject("Btn_stop.Image"), System.Drawing.Image)
-        Me.Btn_stop.Location = New System.Drawing.Point(483, 27)
+        Me.Btn_stop.Location = New System.Drawing.Point(496, 368)
         Me.Btn_stop.Name = "Btn_stop"
         Me.Btn_stop.Size = New System.Drawing.Size(118, 102)
         Me.Btn_stop.TabIndex = 1
@@ -66,7 +66,7 @@ Partial Class MainView
         '
         Me.Lbl_progress.AutoSize = True
         Me.Lbl_progress.ForeColor = System.Drawing.Color.Black
-        Me.Lbl_progress.Location = New System.Drawing.Point(12, 368)
+        Me.Lbl_progress.Location = New System.Drawing.Point(9, 377)
         Me.Lbl_progress.Name = "Lbl_progress"
         Me.Lbl_progress.Size = New System.Drawing.Size(53, 13)
         Me.Lbl_progress.TabIndex = 2
@@ -84,7 +84,7 @@ Partial Class MainView
         '
         'Progress_1
         '
-        Me.Progress_1.Location = New System.Drawing.Point(15, 384)
+        Me.Progress_1.Location = New System.Drawing.Point(12, 393)
         Me.Progress_1.Name = "Progress_1"
         Me.Progress_1.Size = New System.Drawing.Size(467, 18)
         Me.Progress_1.TabIndex = 4
@@ -94,7 +94,7 @@ Partial Class MainView
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.BearbeitenToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(601, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(614, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -146,9 +146,9 @@ Partial Class MainView
         '
         Me.Group_1.BackColor = System.Drawing.Color.Black
         Me.Group_1.ForeColor = System.Drawing.Color.White
-        Me.Group_1.Location = New System.Drawing.Point(12, 84)
+        Me.Group_1.Location = New System.Drawing.Point(27, 45)
         Me.Group_1.Name = "Group_1"
-        Me.Group_1.Size = New System.Drawing.Size(208, 224)
+        Me.Group_1.Size = New System.Drawing.Size(246, 263)
         Me.Group_1.TabIndex = 10
         Me.Group_1.TabStop = False
         Me.Group_1.Text = "Preview"
@@ -157,9 +157,9 @@ Partial Class MainView
         '
         Me.Group_2.BackColor = System.Drawing.Color.Black
         Me.Group_2.ForeColor = System.Drawing.Color.White
-        Me.Group_2.Location = New System.Drawing.Point(274, 84)
+        Me.Group_2.Location = New System.Drawing.Point(350, 45)
         Me.Group_2.Name = "Group_2"
-        Me.Group_2.Size = New System.Drawing.Size(208, 224)
+        Me.Group_2.Size = New System.Drawing.Size(243, 263)
         Me.Group_2.TabIndex = 11
         Me.Group_2.TabStop = False
         Me.Group_2.Text = "Live Printing"
@@ -168,7 +168,7 @@ Partial Class MainView
         '
         Me.Btn_pause.Enabled = False
         Me.Btn_pause.ForeColor = System.Drawing.Color.Black
-        Me.Btn_pause.Location = New System.Drawing.Point(318, 408)
+        Me.Btn_pause.Location = New System.Drawing.Point(315, 433)
         Me.Btn_pause.Name = "Btn_pause"
         Me.Btn_pause.Size = New System.Drawing.Size(164, 34)
         Me.Btn_pause.TabIndex = 12
@@ -179,7 +179,7 @@ Partial Class MainView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(601, 446)
+        Me.ClientSize = New System.Drawing.Size(614, 482)
         Me.Controls.Add(Me.Btn_pause)
         Me.Controls.Add(Me.Group_2)
         Me.Controls.Add(Me.Group_1)
