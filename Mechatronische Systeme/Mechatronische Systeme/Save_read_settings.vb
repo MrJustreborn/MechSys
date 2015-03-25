@@ -11,8 +11,6 @@ Public Class Save_read_settings
     Private Sub New()
         _Path = Application.StartupPath
         _Path += "\settings.ini"
-
-        createFile()
     End Sub
 
     Private Sub createFile()
@@ -42,32 +40,31 @@ Public Class Save_read_settings
     End Property
 
 
-    Public Function ReadValue(ByVal section As String, ByVal key As String) As String
+    Private Function ReadValue(ByVal section As String, ByVal key As String) As String
         Dim sb As New System.Text.StringBuilder(255)
         Try
             If Not File.Exists(_Path) Then
                 createFile()
-            Else
-                Dim i = GetPrivateProfileString(section, key, "", sb, 255, Path)
-                Return sb.ToString
             End If
-            Return ""
+
+            Dim i = GetPrivateProfileString(section, key, "", sb, 255, Path)
+            Return sb.ToString
+
+
         Catch ex As Exception
             MsgBox("Fehler beim Lesen der Datei")
         End Try
 
-        
+        Return ""
     End Function
 
-    Public Sub WriteValue(ByVal section As String, ByVal key As String, ByVal values As String)
+    Private Sub WriteValue(ByVal section As String, ByVal key As String, ByVal values As String)
         Try
-            If File.Exists(_Path) Then
-                WriteSettings(section, key, values, Path)
-            Else
+            If Not File.Exists(_Path) Then
                 createFile()
-                WriteSettings(section, key, values, Path)
             End If
 
+            WriteSettings(section, key, values, Path)
 
         Catch ex As Exception
             MsgBox("Fehler beim Schreiben in die Datei")
@@ -75,5 +72,27 @@ Public Class Save_read_settings
 
     End Sub
 
+    Public Function getX_motor() As String
+        Return ReadValue("settings", "x_motor")
+    End Function
 
+    Public Function getY_motor() As String
+        Return ReadValue("settings", "y_motor")
+    End Function
+
+    Public Function get_tuning() As String
+        Return ReadValue("settings", "tuning")
+    End Function
+
+    Public Sub writeX_motor(ByVal x_motor As String)
+        WriteValue("settings", "x_motor", x_motor)
+    End Sub
+
+    Public Sub writeY_motor(ByVal y_motor As String)
+        WriteValue("settings", "y_motor", y_motor)
+    End Sub
+
+    Public Sub write_tuning(ByVal tuning As String)
+        WriteValue("settings", "tuning", tuning)
+    End Sub
 End Class

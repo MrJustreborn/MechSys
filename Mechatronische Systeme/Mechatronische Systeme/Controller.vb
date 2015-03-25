@@ -24,21 +24,21 @@
 
     Public Sub load_settings(form As Settings)
         Dim x_motor, y_motor, tuning As String
-        x_motor = Me.settings.ReadValue("settings", "x_motor")
-        y_motor = Me.settings.ReadValue("settings", "y_motor")
-        tuning = Me.settings.ReadValue("settings", "tuning")
+        x_motor = Me.settings.getX_motor()
+        y_motor = Me.settings.getY_motor()
+        tuning = Me.settings.get_tuning()
         form.setTxt_1(x_motor)
         form.setTxt_2(y_motor)
         form.setScrollBar(tuning)
     End Sub
 
     Public Sub save_settings(x_motor As String, y_motor As String, tuning As Integer)
-        settings.WriteValue("settings", "x_motor", x_motor)
-        settings.WriteValue("settings", "y_motor", y_motor)
-        settings.WriteValue("settings", "tuning", tuning)
+        Me.settings.writeX_motor(x_motor)
+        Me.settings.writeY_motor(y_motor)
+        Me.settings.write_tuning(tuning)
     End Sub
 
-    Public Sub set_MainView(form As Form)
+    Public Sub set_MainView(ByRef form As Form)
         Me.form = form
     End Sub
 
