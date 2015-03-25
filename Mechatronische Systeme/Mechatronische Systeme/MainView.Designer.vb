@@ -191,6 +191,7 @@ Partial Class MainView
         Me.Controls.Add(Me.Btn_start)
         Me.Controls.Add(Me.MenuStrip1)
         Me.ForeColor = System.Drawing.Color.White
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MainView"
         Me.Text = "2D Plotter"

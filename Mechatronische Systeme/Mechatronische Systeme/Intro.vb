@@ -12,11 +12,13 @@ Public Class Intro
 
         End If
         timeLeft -= 1
+        'Just for fun ;-)
+        Me.Label2.Text = "Druckersoftware startet in: " + timeLeft.ToString + " s"
     End Sub
 
     Private Sub intro_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Timer1.Start()
-        timeLeft = 3
+        timeLeft = 5
 
     End Sub
 End Class
