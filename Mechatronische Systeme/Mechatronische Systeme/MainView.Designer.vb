@@ -27,7 +27,7 @@ Partial Class MainView
         Me.Btn_stop = New System.Windows.Forms.Button()
         Me.Lbl_progress = New System.Windows.Forms.Label()
         Me.Lbl_filepath = New System.Windows.Forms.Label()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.Progress_1 = New System.Windows.Forms.ProgressBar()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItm_1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -82,12 +82,12 @@ Partial Class MainView
         Me.Lbl_filepath.TabIndex = 3
         Me.Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: Keine ausgewählt"
         '
-        'ProgressBar1
+        'Progress_1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(15, 384)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(467, 18)
-        Me.ProgressBar1.TabIndex = 4
+        Me.Progress_1.Location = New System.Drawing.Point(15, 384)
+        Me.Progress_1.Name = "Progress_1"
+        Me.Progress_1.Size = New System.Drawing.Size(467, 18)
+        Me.Progress_1.TabIndex = 4
         '
         'MenuStrip1
         '
@@ -184,7 +184,7 @@ Partial Class MainView
         Me.Controls.Add(Me.Group_2)
         Me.Controls.Add(Me.Group_1)
         Me.Controls.Add(Me.Lbl_preview)
-        Me.Controls.Add(Me.ProgressBar1)
+        Me.Controls.Add(Me.Progress_1)
         Me.Controls.Add(Me.Lbl_filepath)
         Me.Controls.Add(Me.Lbl_progress)
         Me.Controls.Add(Me.Btn_stop)
@@ -204,7 +204,7 @@ Partial Class MainView
     Friend WithEvents Btn_stop As System.Windows.Forms.Button
     Friend WithEvents Lbl_progress As System.Windows.Forms.Label
     Friend WithEvents Lbl_filepath As System.Windows.Forms.Label
-    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents Progress_1 As System.Windows.Forms.ProgressBar
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents DateiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItm_1 As System.Windows.Forms.ToolStripMenuItem

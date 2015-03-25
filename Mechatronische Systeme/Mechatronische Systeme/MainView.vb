@@ -12,7 +12,7 @@
 
     Private Sub Btn_start_Click(sender As System.Object, e As System.EventArgs) Handles Btn_start.Click
         If Not (filepath Is Nothing) Then
-            ' Me.con = Controller.getInstance
+
             'Me.con.parse(filepath)
             disable_ToolStripItm()
             switch_disable_buttons()
@@ -21,7 +21,8 @@
             MsgBox("Wählen Sie bitte zuerst eine Datei aus, bevor Sie das Drucken anfangen wollen!")
 
         End If
-
+        ' Nur zu Testzwecken 
+        Me.con.progress(10)
 
     End Sub
 
@@ -60,5 +61,18 @@
 
     Private Sub Group_1_Enter(sender As System.Object, e As System.EventArgs) Handles Group_1.Enter
 
+    End Sub
+
+    Public Sub Progress(ByVal value As Integer)
+        If (Progress_1.Value < 101) Then
+            Me.Progress_1.Value += value
+            Me.Lbl_progress.Text = "Fortschritt: " + Me.Progress_1.Value.ToString + "%"
+        End If
+
+    End Sub
+
+    Private Sub MainView_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.con = Controller.getInstance
+        Me.con.set_MainView(Me)
     End Sub
 End Class

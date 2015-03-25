@@ -4,7 +4,7 @@
     Private Shared instance As Controller
 
     Private Sub New()
-
+        settings = Save_read_settings.getInstance
     End Sub
 
     Public Shared ReadOnly Property getInstance() As Controller
@@ -24,10 +24,9 @@
 
     Public Sub load_settings(form As Settings)
         Dim x_motor, y_motor, tuning As String
-        settings = New Save_read_settings()
-        x_motor = settings.ReadValue("settings", "x_motor")
-        y_motor = settings.ReadValue("settings", "y_motor")
-        tuning = settings.ReadValue("settings", "tuning")
+        x_motor = Me.settings.ReadValue("settings", "x_motor")
+        y_motor = Me.settings.ReadValue("settings", "y_motor")
+        tuning = Me.settings.ReadValue("settings", "tuning")
         form.setTxt_1(x_motor)
         form.setTxt_2(y_motor)
         form.setScrollBar(tuning)
@@ -53,6 +52,12 @@
     Public Sub line_live_print(x_old As Integer, y_old As Integer, x_new As Integer, y_new As Integer)
         If Not IsNothing(Me.form) Then
             Me.form.draw_live_print(x_old, y_old, x_new, y_new)
+        End If
+    End Sub
+
+    Public Sub progress(ByVal x As Integer)
+        If Not IsNothing(Me.form) Then
+            Me.form.Progress(x)
         End If
     End Sub
 
