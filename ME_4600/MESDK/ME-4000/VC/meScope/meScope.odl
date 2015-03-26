@@ -1,0 +1,42 @@
+// meScope.odl : type library source for meScope.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (meScope.tlb).
+
+[ uuid(BCC9C616-0F07-4BFE-826D-7B1DED6F318F), version(1.0) ]
+library MeScope
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CMeScopeDoc
+	
+	[ uuid(C119B3EE-05BA-48D7-8845-63C729747697) ]
+	dispinterface IMeScope
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CMeScopeDoc)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CMeScopeDoc)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CMeScopeDoc
+	
+	[ uuid(170A3FC7-DEC0-4C4C-9953-7CA4C4BBEC64) ]
+	coclass Document
+	{
+		[default] dispinterface IMeScope;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

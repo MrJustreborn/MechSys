@@ -1,0 +1,314 @@
+; INF-File for Meilhaus Electronic WIN2000 and WIN98 Device Drivers
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; The WIN2000 tool CHKINF.exe from the DDK displays two errors:
+;  (E1081) Directive: CatalogFile required in section [Version] for WHQL digital signature.
+;  (E1083) Section [ClassInstall] not referenced
+; and one warning:
+;  (W2019) Class MEILHAUS (ClassGUID {357F3B3C-1B6F-11D4-A0A5-0020A90C91B5}) is unrecognized.
+; for this INF-File. These messages can be safely ignored
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   Sections common to Windows 98 & Windows 2000
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Version]
+; A comment containing the word 'Copyright' must exist, otherwise
+; Copyright Meilhaus Electronic 2000
+Signature=$CHICAGO$
+Class=MEILHAUS
+ClassGuid={357F3B3C-1B6F-11d4-A0A5-0020A90C91B5}
+DriverVer=06/28/2005,4.03.0.1
+Provider=%STR_ME_MANU%
+
+[ControlFlags]
+ExcludeFromSelect=PCI\VEN_1402&DEV_4610
+ExcludeFromSelect=PCI\VEN_1402&DEV_4650
+ExcludeFromSelect=PCI\VEN_1402&DEV_4660
+ExcludeFromSelect=PCI\VEN_1402&DEV_4661
+ExcludeFromSelect=PCI\VEN_1402&DEV_4662
+ExcludeFromSelect=PCI\VEN_1402&DEV_4663
+ExcludeFromSelect=PCI\VEN_1402&DEV_4670
+ExcludeFromSelect=PCI\VEN_1402&DEV_4671
+ExcludeFromSelect=PCI\VEN_1402&DEV_4672
+ExcludeFromSelect=PCI\VEN_1402&DEV_4673
+ExcludeFromSelect=PCI\VEN_1402&DEV_4680
+ExcludeFromSelect=PCI\VEN_1402&DEV_4681
+ExcludeFromSelect=PCI\VEN_1402&DEV_4682
+ExcludeFromSelect=PCI\VEN_1402&DEV_4683
+
+ExcludeFromSelect=PCI\VEN_1402&DEV_6004
+ExcludeFromSelect=PCI\VEN_1402&DEV_6008
+ExcludeFromSelect=PCI\VEN_1402&DEV_600F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6014
+ExcludeFromSelect=PCI\VEN_1402&DEV_6018
+ExcludeFromSelect=PCI\VEN_1402&DEV_601F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6034
+ExcludeFromSelect=PCI\VEN_1402&DEV_6038
+ExcludeFromSelect=PCI\VEN_1402&DEV_603F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6104
+ExcludeFromSelect=PCI\VEN_1402&DEV_6108
+ExcludeFromSelect=PCI\VEN_1402&DEV_610F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6114
+ExcludeFromSelect=PCI\VEN_1402&DEV_6118
+ExcludeFromSelect=PCI\VEN_1402&DEV_611F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6134
+ExcludeFromSelect=PCI\VEN_1402&DEV_6138
+ExcludeFromSelect=PCI\VEN_1402&DEV_613F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6044
+ExcludeFromSelect=PCI\VEN_1402&DEV_6048
+ExcludeFromSelect=PCI\VEN_1402&DEV_604F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6054
+ExcludeFromSelect=PCI\VEN_1402&DEV_6058
+ExcludeFromSelect=PCI\VEN_1402&DEV_605F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6074
+ExcludeFromSelect=PCI\VEN_1402&DEV_6078
+ExcludeFromSelect=PCI\VEN_1402&DEV_607F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6144
+ExcludeFromSelect=PCI\VEN_1402&DEV_6148
+ExcludeFromSelect=PCI\VEN_1402&DEV_614F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6154
+ExcludeFromSelect=PCI\VEN_1402&DEV_6158
+ExcludeFromSelect=PCI\VEN_1402&DEV_615F
+ExcludeFromSelect=PCI\VEN_1402&DEV_6174
+ExcludeFromSelect=PCI\VEN_1402&DEV_6178
+ExcludeFromSelect=PCI\VEN_1402&DEV_617F
+
+[ClassInstall32]
+AddReg=ManuClassReg
+
+[ClassInstall]
+AddReg=ManuClassReg
+
+[ManuClassReg]
+HKR,,Icon,,-5
+HKR,,,0,%STR_ME_CLSS%
+
+[SourceDisksNames]
+; IMPORTANT - The three commas in the line below are unimportant for Windows 2000,
+; but ESSENTIAL for Windows 98
+1=%STR_ME_DISK%,,,
+
+[SourceDisksFiles]
+meilhaus.inf =   1
+me4000.sys =     1
+me4000.dll =     1
+me4000Ex.dll =   1
+me4000CM.dll =   1
+me4000.stp =     1
+me4610.stp =     1
+me6000.stp =     1
+
+[DestinationDirs]
+DefaultDestDir =       10,System32\Drivers
+ME4000SYS.copy =       10,System32\Drivers
+ME4000DLL.copy =       10,System
+ME4000DLL.copy.NTx86 = 10,System32
+
+[Manufacturer]
+%STR_ME_MANU%=MEILHAUS
+
+[MEILHAUS]
+%STR_ME_4610% = ME4000.Install, PCI\VEN_1402&DEV_4610
+%STR_ME_4650% = ME4000.Install, PCI\VEN_1402&DEV_4650
+%STR_ME_4660% = ME4000.Install, PCI\VEN_1402&DEV_4660
+%STR_ME_4661% = ME4000.Install, PCI\VEN_1402&DEV_4661
+%STR_ME_4662% = ME4000.Install, PCI\VEN_1402&DEV_4662
+%STR_ME_4663% = ME4000.Install, PCI\VEN_1402&DEV_4663
+%STR_ME_4670% = ME4000.Install, PCI\VEN_1402&DEV_4670
+%STR_ME_4671% = ME4000.Install, PCI\VEN_1402&DEV_4671
+%STR_ME_4672% = ME4000.Install, PCI\VEN_1402&DEV_4672
+%STR_ME_4673% = ME4000.Install, PCI\VEN_1402&DEV_4673
+%STR_ME_4680% = ME4000.Install, PCI\VEN_1402&DEV_4680
+%STR_ME_4681% = ME4000.Install, PCI\VEN_1402&DEV_4681
+%STR_ME_4682% = ME4000.Install, PCI\VEN_1402&DEV_4682
+%STR_ME_4683% = ME4000.Install, PCI\VEN_1402&DEV_4683
+
+%STR_ME_6004% = ME4000.Install, PCI\VEN_1402&DEV_6004
+%STR_ME_6008% = ME4000.Install, PCI\VEN_1402&DEV_6008
+%STR_ME_600F% = ME4000.Install, PCI\VEN_1402&DEV_600F
+%STR_ME_6014% = ME4000.Install, PCI\VEN_1402&DEV_6014
+%STR_ME_6018% = ME4000.Install, PCI\VEN_1402&DEV_6018
+%STR_ME_601F% = ME4000.Install, PCI\VEN_1402&DEV_601F
+%STR_ME_6034% = ME4000.Install, PCI\VEN_1402&DEV_6034
+%STR_ME_6038% = ME4000.Install, PCI\VEN_1402&DEV_6038
+%STR_ME_603F% = ME4000.Install, PCI\VEN_1402&DEV_603F
+%STR_ME_6104% = ME4000.Install, PCI\VEN_1402&DEV_6104
+%STR_ME_6108% = ME4000.Install, PCI\VEN_1402&DEV_6108
+%STR_ME_610F% = ME4000.Install, PCI\VEN_1402&DEV_610F
+%STR_ME_6114% = ME4000.Install, PCI\VEN_1402&DEV_6114
+%STR_ME_6118% = ME4000.Install, PCI\VEN_1402&DEV_6118
+%STR_ME_611F% = ME4000.Install, PCI\VEN_1402&DEV_611F
+%STR_ME_6134% = ME4000.Install, PCI\VEN_1402&DEV_6134
+%STR_ME_6138% = ME4000.Install, PCI\VEN_1402&DEV_6138
+%STR_ME_613F% = ME4000.Install, PCI\VEN_1402&DEV_613F
+
+%STR_ME_6044% = ME4000.Install, PCI\VEN_1402&DEV_6044
+%STR_ME_6048% = ME4000.Install, PCI\VEN_1402&DEV_6048
+%STR_ME_604F% = ME4000.Install, PCI\VEN_1402&DEV_604F
+%STR_ME_6054% = ME4000.Install, PCI\VEN_1402&DEV_6054
+%STR_ME_6058% = ME4000.Install, PCI\VEN_1402&DEV_6058
+%STR_ME_605F% = ME4000.Install, PCI\VEN_1402&DEV_605F
+%STR_ME_6074% = ME4000.Install, PCI\VEN_1402&DEV_6074
+%STR_ME_6078% = ME4000.Install, PCI\VEN_1402&DEV_6078
+%STR_ME_607F% = ME4000.Install, PCI\VEN_1402&DEV_607F
+%STR_ME_6144% = ME4000.Install, PCI\VEN_1402&DEV_6144
+%STR_ME_6148% = ME4000.Install, PCI\VEN_1402&DEV_6148
+%STR_ME_614F% = ME4000.Install, PCI\VEN_1402&DEV_614F
+%STR_ME_6154% = ME4000.Install, PCI\VEN_1402&DEV_6154
+%STR_ME_6158% = ME4000.Install, PCI\VEN_1402&DEV_6158
+%STR_ME_615F% = ME4000.Install, PCI\VEN_1402&DEV_615F
+%STR_ME_6174% = ME4000.Install, PCI\VEN_1402&DEV_6174
+%STR_ME_6178% = ME4000.Install, PCI\VEN_1402&DEV_6178
+%STR_ME_617F% = ME4000.Install, PCI\VEN_1402&DEV_617F
+
+[ME4000SYS.copy]
+me4000.sys
+me4000.stp
+me4610.stp
+me6000.stp
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   Windows 98 sections
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ME4000.Install]
+CopyFiles=ME4000SYS.copy, ME4000DLL.copy
+AddReg=ME4000.AddReg
+
+[ME4000DLL.copy]
+me4000.dll
+me4000Ex.dll
+me4000CM.dll
+
+[ME4000.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,me4000.sys
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   Windows 2000 sections
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ME4000.Install.NTx86]
+CopyFiles=ME4000SYS.copy, ME4000DLL.copy.NTx86
+
+[ME4000DLL.copy.NTx86]
+me4000.dll
+me4000Ex.dll
+me4000CM.dll
+
+[ME4000.Install.NTx86.Services]
+AddService = ME4000, %SPSVCINST_ASSOCSERVICE%, ME4000.Service, ME4000.EventLog
+
+[ME4000.Service]
+DisplayName     = %STR_ME_4000%
+ServiceType     = %SERVICE_KERNEL_DRIVER%
+StartType       = %SERVICE_DEMAND_START%
+ErrorControl    = %SERVICE_ERROR_NORMAL%
+ServiceBinary   = %10%\System32\Drivers\me4000.sys
+
+[ME4000.EventLog]
+
+AddReg = ME4000.EventLog.AddReg
+
+[ME4000.EventLog.AddReg]
+
+HKR, , EventMessageFile, %REG_EXPAND_SZ%, "%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\Drivers\me4000.sys" 
+HKR, , TypesSupported, %REG_DWORD%, 7
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   Strings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Strings]
+STR_ME_DISK="Meilhaus driver disk or CD"
+STR_ME_MANU="Meilhaus Electronic"
+STR_ME_CLSS="Meilhaus DAQ Boards"
+STR_ME_4000="ME-4000 PCI Board"
+
+STR_ME_4610 ="Multi-I/O Board (ME-4610)" 
+STR_ME_4650 ="Multi-I/O Board (ME-4650)"
+STR_ME_4660 ="Multi-I/O Board (ME-4660)" 
+STR_ME_4661 ="Multi-I/O Board (ME-4660i)" 
+STR_ME_4662 ="Multi-I/O Board (ME-4660s)" 
+STR_ME_4663 ="Multi-I/O Board (ME-4660is)" 
+STR_ME_4670 ="Multi-I/O Board (ME-4670)" 
+STR_ME_4671 ="Multi-I/O Board (ME-4670i)" 
+STR_ME_4672 ="Multi-I/O Board (ME-4670s)" 
+STR_ME_4673 ="Multi-I/O Board (ME-4670is)" 
+STR_ME_4680 ="Multi-I/O Board (ME-4680)" 
+STR_ME_4681 ="Multi-I/O Board (ME-4680i)" 
+STR_ME_4682 ="Multi-I/O Board (ME-4680s)" 
+STR_ME_4683 ="Multi-I/O Board (ME-4680is)" 
+
+STR_ME_6004 ="D/A Board (ME-6000/4)"  
+STR_ME_6008 ="D/A Board (ME-6000/8)"  
+STR_ME_600F ="D/A Board (ME-6000/16)" 
+STR_ME_6014 ="D/A Board (ME-6000/4 Opto)" 
+STR_ME_6018 ="D/A Board (ME-6000/8 Opto)" 
+STR_ME_601F ="D/A Board (ME-6000/16 Opto)" 
+STR_ME_6034 ="D/A Board (ME-6000/4 Island)" 
+STR_ME_6038 ="D/A Board (ME-6000/8 Island)" 
+STR_ME_603F ="D/A Board (ME-6000/16 Island)" 
+STR_ME_6104 ="D/A Board (ME-6100/4)"  
+STR_ME_6108 ="D/A Board (ME-6100/8)"  
+STR_ME_610F ="D/A Board (ME-6100/16)" 
+STR_ME_6114 ="D/A Board (ME-6100/4 Opto)" 
+STR_ME_6118 ="D/A Board (ME-6100/8 Opto)" 
+STR_ME_611F ="D/A Board (ME-6100/16 Opto)" 
+STR_ME_6134 ="D/A Board (ME-6100/4 Island)"  
+STR_ME_6138 ="D/A Board (ME-6100/8 Island)"  
+STR_ME_613F ="D/A Board (ME-6100/16 Island)" 
+
+STR_ME_6044 ="D/A Board (ME-6000/4 DIO)"  
+STR_ME_6048 ="D/A Board (ME-6000/8 DIO)"  
+STR_ME_604F ="D/A Board (ME-6000/16 DIO)" 
+STR_ME_6054 ="D/A Board (ME-6000/4 Opto DIO)"  
+STR_ME_6058 ="D/A Board (ME-6000/8 Opto DIO)"  
+STR_ME_605F ="D/A Board (ME-6000/16 Opto DIO)"  
+STR_ME_6074 ="D/A Board (ME-6000/4 Island DIO)"  
+STR_ME_6078 ="D/A Board (ME-6000/8 Island DIO)"  
+STR_ME_607F ="D/A Board (ME-6000/16 Island DIO)" 
+STR_ME_6144 ="D/A Board (ME-6100/4 DIO)"  
+STR_ME_6148 ="D/A Board (ME-6100/8 DIO)"  
+STR_ME_614F ="D/A Board (ME-6100/16 DIO)" 
+STR_ME_6154 ="D/A Board (ME-6100/4 Opto DIO)"  
+STR_ME_6158 ="D/A Board (ME-6100/8 Opto DIO)"  
+STR_ME_615F ="D/A Board (ME-6100/16 Opto DIO)"  
+STR_ME_6174 ="D/A Board (ME-6100/4 Island DIO)"  
+STR_ME_6178 ="D/A Board (ME-6100/8 Island DIO)"  
+STR_ME_617F ="D/A Board (ME-6100/16 Island DIO)" 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   Constants for Windows 2000
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Driver service is associated with device being installed
+SPSVCINST_ASSOCSERVICE=0x00000002
+
+; Kernel device driver
+SERVICE_KERNEL_DRIVER=1
+
+; Driver only started when required
+; PCI device drivers always use this value
+SERVICE_DEMAND_START=3
+
+; Log error and display a warning message if the driver cannot be started
+SERVICE_ERROR_NORMAL=1
+
+; Registry entry is a DWORD 
+
+REG_DWORD=0x00010001
+
+; Registry entry is an expandable null terminated ASCII string 
+; Environment variables such as %SystemRoot% will be interpreted
+
+REG_EXPAND_SZ=0x00020000

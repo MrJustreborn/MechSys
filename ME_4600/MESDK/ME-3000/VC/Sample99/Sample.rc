@@ -1,0 +1,538 @@
+#include "resource.h"
+
+#include "windows.h"
+#include "Sample.h"
+#include "winver.h"
+
+// If you would like to compile this sample
+// you have to comment following line
+//#include <.\..\..\..\_osi\version.h>
+
+//and remove the comment signs (//) in the next lines:
+#define VERSION_MAJOR       9               
+#define VERSION_MINOR       99              
+#define VERSION_BUILD       009             
+#define VERSION_PRODUCT     "9.99.001\0"    
+#define VERSION_LONG        "9.99.001"      
+#define VERSION_SHORT       "9.99"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+WINTEST                 ICON    DISCARDABLE     ".\..\..\..\ME-Tools\meIcon\MEIcon.ICO"
+DIALOGICON              ICON    DISCARDABLE     ".\..\..\..\ME-Tools\meIcon\MEIcon.ICO"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+WINTEST MENU DISCARDABLE
+BEGIN
+    POPUP "Ba&sics"
+    BEGIN
+        MENUITEM "Clear Plot &Area",            IDM_CLEAR_PLOT
+        MENUITEM SEPARATOR
+        MENUITEM "&DLL Version",                IDM_DLL_VERSION
+        MENUITEM "D&river Version",             IDM_DRIVER_VERSION
+        MENUITEM "Driver &Time Stamp",          IDM_DRIVER_TIMESTAMP
+        MENUITEM "DLL T&ime Stamp",             IDM_DLL_TIMESTAMP
+        MENUITEM "Application Time Stamp",      IDM_APP_TIMESTAMP
+        MENUITEM SEPARATOR
+        POPUP "&Board Selection",                       
+        BEGIN
+            MENUITEM "Board &0",                IDM_SELECT_BOARD_1
+            MENUITEM "Board &1",                IDM_SELECT_BOARD_2
+            MENUITEM "Board &2",                IDM_SELECT_BOARD_3
+            MENUITEM "Board &3",                IDM_SELECT_BOARD_4
+            MENUITEM "Board &4",                IDM_SELECT_BOARD_5
+            MENUITEM "Board &5",                IDM_SELECT_BOARD_6
+            MENUITEM "Board &6",                IDM_SELECT_BOARD_7
+            MENUITEM "Board &7",                IDM_SELECT_BOARD_8
+            MENUITEM "Board &8",                IDM_SELECT_BOARD_9
+            MENUITEM "Board &9",                IDM_SELECT_BOARD_10
+            MENUITEM "Board 10",                IDM_SELECT_BOARD_11
+            MENUITEM "Board 11",                IDM_SELECT_BOARD_12
+            MENUITEM "Board 12",                IDM_SELECT_BOARD_13
+            MENUITEM "Board 13",                IDM_SELECT_BOARD_14
+            MENUITEM "Board 14",                IDM_SELECT_BOARD_15
+            MENUITEM "Board 15",                IDM_SELECT_BOARD_16
+            MENUITEM "Board 16",                IDM_SELECT_BOARD_17
+            MENUITEM "Board 17",                IDM_SELECT_BOARD_18
+            MENUITEM "Board 18",                IDM_SELECT_BOARD_19
+            MENUITEM "Board 19",                IDM_SELECT_BOARD_20
+            MENUITEM "Board 20",                IDM_SELECT_BOARD_21
+            MENUITEM "Board 21",                IDM_SELECT_BOARD_22
+            MENUITEM "Board 22",                IDM_SELECT_BOARD_23
+            MENUITEM "Board 23",                IDM_SELECT_BOARD_24
+            MENUITEM "Board 24",                IDM_SELECT_BOARD_25
+            MENUITEM "Board 25",                IDM_SELECT_BOARD_26
+            MENUITEM "Board 26",                IDM_SELECT_BOARD_27
+            MENUITEM "Board 27",                IDM_SELECT_BOARD_28
+            MENUITEM "Board 28",                IDM_SELECT_BOARD_29
+            MENUITEM "Board 29",                IDM_SELECT_BOARD_30
+            MENUITEM "Board 30",                IDM_SELECT_BOARD_31
+            MENUITEM "Board 31",                IDM_SELECT_BOARD_32
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&VEC Model",                  IDM_VEC_MODEL   
+        MENUITEM SEPARATOR
+        MENUITEM "&PCI Configuration",          IDM_PCI_CONFIG
+        MENUITEM SEPARATOR
+        MENUITEM "&Serial Number",              IDM_SERIAL_NO
+        MENUITEM SEPARATOR
+        MENUITEM "D&river Status",              IDM_DRIVER_STATUS
+        MENUITEM SEPARATOR
+        MENUITEM "Interr&upt Counter",          IDM_IRQCOUNT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Board &Info",                 IDM_DBG_BOARD
+        MENUITEM SEPARATOR
+        MENUITEM "Initiali&ze Board",           IDM_INITIALIZE
+        MENUITEM SEPARATOR
+        MENUITEM "&General Reset",              IDM_RESET_BOARD
+        MENUITEM SEPARATOR
+        MENUITEM "Background Pri&ority High",   IDM_BACKGROUND_PRIORITY
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+
+    POPUP "AD&C"
+    BEGIN
+        MENUITEM "Sto&p",                       IDM_ADC_STOP 
+        MENUITEM SEPARATOR
+        POPUP "&Single"
+        BEGIN
+            MENUITEM "&One Shot",               IDM_READ_SINGLE
+            MENUITEM SEPARATOR
+            MENUITEM "&Run Continuously",       IDM_READ_SINGLE_CONTINOUS
+        END
+        POPUP "&Quick"
+        BEGIN
+            MENUITEM "&Polling Mode",           IDM_READ_QUICK_POLL
+            MENUITEM "&Interrupt Mode",         IDM_READ_QUICK_INT
+            MENUITEM SEPARATOR
+            MENUITEM "&Run continuously in polling mode",
+                                                IDM_READ_QUICK_CONTINOUS_POLL
+            MENUITEM "Run &continuously in interrupt mode",
+                                                IDM_READ_QUICK_CONTINOUS_INT
+        END
+        POPUP "&Multiple"
+        BEGIN
+            MENUITEM "&Polling Mode",           IDM_READ_MULTIPLE_POLL
+            MENUITEM "&Interrupt Mode",         IDM_READ_MULTIPLE_INT
+            MENUITEM SEPARATOR
+            MENUITEM "&Run continuously in polling mode",
+                                                IDM_READ_MULTIPLE_CONTINOUS_POLL
+            MENUITEM "Run &continuously in interrupt mode",
+                                                IDM_READ_MULTIPLE_CONTINOUS_INT
+        END
+        POPUP "Sc&an"
+        BEGIN
+            MENUITEM "&Polling Mode",           IDM_READ_SCAN_POLL
+            MENUITEM "&Interrupt Mode",         IDM_READ_SCAN_INT
+            MENUITEM SEPARATOR
+            MENUITEM "&Run continuously in polling mode",
+                                                IDM_READ_SCAN_CONTINOUS_POLL
+            MENUITEM "Run &continuously in interrupt mode",
+                                                IDM_READ_SCAN_CONTINOUS_INT
+            MENUITEM SEPARATOR
+            MENUITEM "&Scan to hard disk",      IDM_READ_SCAN_TO_DISK               
+            MENUITEM "Scan for &ever",          IDM_READ_SCAN_FOR_EVER
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Start by E&xtern Trigger",    IDM_ADC_STARTBYEXTERNTRIGGER
+        MENUITEM SEPARATOR
+        MENUITEM "&Simultaneous sampling",      IDM_ADC_SIMULTANEOUS
+        MENUITEM SEPARATOR
+        POPUP "&Channel"
+        BEGIN
+            MENUITEM " ADC 0",                  IDM_ADC_0, CHECKED
+            MENUITEM " ADC 1",                  IDM_ADC_1
+            MENUITEM " ADC 2",                  IDM_ADC_2
+            MENUITEM " ADC 3",                  IDM_ADC_3
+            MENUITEM " ADC 4",                  IDM_ADC_4
+            MENUITEM " ADC 5",                  IDM_ADC_5
+            MENUITEM " ADC 6",                  IDM_ADC_6
+            MENUITEM " ADC 7",                  IDM_ADC_7
+            MENUITEM " ADC 8",                  IDM_ADC_8
+            MENUITEM " ADC 9",                  IDM_ADC_9
+            MENUITEM " ADC 10",                 IDM_ADC_A
+            MENUITEM " ADC 11",                 IDM_ADC_B
+            MENUITEM " ADC 12",                 IDM_ADC_C
+            MENUITEM " ADC 13",                 IDM_ADC_D
+            MENUITEM " ADC 14",                 IDM_ADC_E
+            MENUITEM " ADC 15",                 IDM_ADC_F
+        END
+        POPUP "&Range"
+        BEGIN
+            MENUITEM " +/- 10 V",               IDM_RANGE_MINUS_10, CHECKED
+            MENUITEM " +/- 5 V",                IDM_RANGE_MINUS_5
+            MENUITEM " +/- 2.5 V",              IDM_RANGE_MINUS_2
+            MENUITEM " +/- 1.25 V",             IDM_RANGE_MINUS_1
+            MENUITEM " 0 - 10 V",               IDM_RANGE_PLUS_10
+            MENUITEM " 0 - 5 V",                IDM_RANGE_PLUS_5
+            MENUITEM " 0 - 2.5 V",              IDM_RANGE_PLUS_2
+            MENUITEM " 0 - 1.25 V",             IDM_RANGE_PLUS_1
+        END
+        POPUP "&Trigger"
+        BEGIN
+            MENUITEM "&Timer",                  IDM_TRIGGER_TIMER, CHECKED
+            MENUITEM "&High",                   IDM_TRIGGER_HIGH
+            MENUITEM "&Low",                    IDM_TRIGGER_LOW
+            MENUITEM "Run &continuosly",        IDM_TRIGGER_CONTI
+        END
+        MENUITEM "D&ifferential Mode",          IDM_SET_SE_DIFF
+        MENUITEM SEPARATOR
+        POPUP "Set&up"
+        BEGIN
+            MENUITEM "&Frequency",              IDM_SETUP_FREQ
+            MENUITEM "&Counter",                IDM_SETUP_COUNT
+            MENUITEM "&Delay",                  IDM_SETUP_DELAY
+            MENUITEM "&Size of chan. list",     IDM_SETUP_SIZE
+            MENUITEM "&Loops",                  IDM_SETUP_LOOPS
+        END
+    END
+
+
+
+    POPUP "DI&O"
+    BEGIN
+        POPUP "&Get Bit form Port A"
+        BEGIN
+            MENUITEM " Get Bit &0",             IDM_PORTA_GET_BIT_0
+            MENUITEM " Get Bit &1",             IDM_PORTA_GET_BIT_1
+            MENUITEM " Get Bit &2",             IDM_PORTA_GET_BIT_2
+            MENUITEM " Get Bit &3",             IDM_PORTA_GET_BIT_3
+            MENUITEM " Get Bit &4",             IDM_PORTA_GET_BIT_4
+            MENUITEM " Get Bit &5",             IDM_PORTA_GET_BIT_5
+            MENUITEM " Get Bit &6",             IDM_PORTA_GET_BIT_6
+            MENUITEM " Get Bit &7",             IDM_PORTA_GET_BIT_7
+            MENUITEM " Get Bit &8",             IDM_PORTA_GET_BIT_8
+            MENUITEM " Get Bit &9",             IDM_PORTA_GET_BIT_9
+            MENUITEM " Get Bit &A",             IDM_PORTA_GET_BIT_A
+            MENUITEM " Get Bit &B",             IDM_PORTA_GET_BIT_B
+            MENUITEM " Get Bit &C",             IDM_PORTA_GET_BIT_C
+            MENUITEM " Get Bit &D",             IDM_PORTA_GET_BIT_D
+            MENUITEM " Get Bit &E",             IDM_PORTA_GET_BIT_E
+            MENUITEM " Get Bit &F",             IDM_PORTA_GET_BIT_F
+        END
+        POPUP "Get B&it form Port B"
+        BEGIN
+            MENUITEM " Get Bit &0",             IDM_PORTB_GET_BIT_0
+            MENUITEM " Get Bit &1",             IDM_PORTB_GET_BIT_1
+            MENUITEM " Get Bit &2",             IDM_PORTB_GET_BIT_2
+            MENUITEM " Get Bit &3",             IDM_PORTB_GET_BIT_3
+            MENUITEM " Get Bit &4",             IDM_PORTB_GET_BIT_4
+            MENUITEM " Get Bit &5",             IDM_PORTB_GET_BIT_5
+            MENUITEM " Get Bit &6",             IDM_PORTB_GET_BIT_6
+            MENUITEM " Get Bit &7",             IDM_PORTB_GET_BIT_7
+            MENUITEM " Get Bit &8",             IDM_PORTB_GET_BIT_8
+            MENUITEM " Get Bit &9",             IDM_PORTB_GET_BIT_9
+            MENUITEM " Get Bit &A",             IDM_PORTB_GET_BIT_A
+            MENUITEM " Get Bit &B",             IDM_PORTB_GET_BIT_B
+            MENUITEM " Get Bit &C",             IDM_PORTB_GET_BIT_C
+            MENUITEM " Get Bit &D",             IDM_PORTB_GET_BIT_D
+            MENUITEM " Get Bit &E",             IDM_PORTB_GET_BIT_E
+            MENUITEM " Get Bit &F",             IDM_PORTB_GET_BIT_F
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Get &Low Byte of Port A",     IDM_PORTA_GET_LOW_BYTE
+        MENUITEM "Get &High Byte of Port A",    IDM_PORTA_GET_HIGH_BYTE
+        MENUITEM "Get Lo&w Byte of Port B",     IDM_PORTB_GET_LOW_BYTE
+        MENUITEM "Get High B&yte of Port B",    IDM_PORTB_GET_HIGH_BYTE
+        MENUITEM SEPARATOR
+        MENUITEM "Get Word of P&ort A",         IDM_PORTA_GET_WORD
+        MENUITEM "Get Word of Po&rt B",         IDM_PORTB_GET_WORD
+        MENUITEM SEPARATOR
+        POPUP "Set Bit at Port &A"
+        BEGIN
+            MENUITEM " Set Bit &0",             IDM_PORTA_SET_BIT_0
+            MENUITEM " Set Bit &1",             IDM_PORTA_SET_BIT_1
+            MENUITEM " Set Bit &2",             IDM_PORTA_SET_BIT_2
+            MENUITEM " Set Bit &3",             IDM_PORTA_SET_BIT_3
+            MENUITEM " Set Bit &4",             IDM_PORTA_SET_BIT_4
+            MENUITEM " Set Bit &5",             IDM_PORTA_SET_BIT_5
+            MENUITEM " Set Bit &6",             IDM_PORTA_SET_BIT_6
+            MENUITEM " Set Bit &7",             IDM_PORTA_SET_BIT_7
+            MENUITEM " Set Bit &8",             IDM_PORTA_SET_BIT_8
+            MENUITEM " Set Bit &9",             IDM_PORTA_SET_BIT_9
+            MENUITEM " Set Bit &A",             IDM_PORTA_SET_BIT_A
+            MENUITEM " Set Bit &B",             IDM_PORTA_SET_BIT_B
+            MENUITEM " Set Bit &C",             IDM_PORTA_SET_BIT_C
+            MENUITEM " Set Bit &D",             IDM_PORTA_SET_BIT_D
+            MENUITEM " Set Bit &E",             IDM_PORTA_SET_BIT_E
+            MENUITEM " Set Bit &F",             IDM_PORTA_SET_BIT_F
+        END
+        POPUP "Set Bit at Port &B"
+        BEGIN
+            MENUITEM " Set Bit &0",             IDM_PORTB_SET_BIT_0
+            MENUITEM " Set Bit &1",             IDM_PORTB_SET_BIT_1
+            MENUITEM " Set Bit &2",             IDM_PORTB_SET_BIT_2
+            MENUITEM " Set Bit &3",             IDM_PORTB_SET_BIT_3
+            MENUITEM " Set Bit &4",             IDM_PORTB_SET_BIT_4
+            MENUITEM " Set Bit &5",             IDM_PORTB_SET_BIT_5
+            MENUITEM " Set Bit &6",             IDM_PORTB_SET_BIT_6
+            MENUITEM " Set Bit &7",             IDM_PORTB_SET_BIT_7
+            MENUITEM " Set Bit &8",             IDM_PORTB_SET_BIT_8
+            MENUITEM " Set Bit &9",             IDM_PORTB_SET_BIT_9
+            MENUITEM " Set Bit &A",             IDM_PORTB_SET_BIT_A
+            MENUITEM " Set Bit &B",             IDM_PORTB_SET_BIT_B
+            MENUITEM " Set Bit &C",             IDM_PORTB_SET_BIT_C
+            MENUITEM " Set Bit &D",             IDM_PORTB_SET_BIT_D
+            MENUITEM " Set Bit &E",             IDM_PORTB_SET_BIT_E
+            MENUITEM " Set Bit &F",             IDM_PORTB_SET_BIT_F
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Set Low Byte of Port A",     IDM_PORTA_SET_LOW_BYTE
+        MENUITEM "S&et High Byte of Port A",    IDM_PORTA_SET_HIGH_BYTE
+        MENUITEM "Set Low By&te of Port B",     IDM_PORTB_SET_LOW_BYTE
+        MENUITEM "Set High Byte &of Port B",    IDM_PORTB_SET_HIGH_BYTE
+        MENUITEM SEPARATOR
+        MENUITEM "Set Wor&d at Port A",         IDM_PORTA_SET_WORD
+        MENUITEM "Set Word at Port B (&x)",     IDM_PORTB_SET_WORD
+        MENUITEM SEPARATOR
+        MENUITEM "&Reset Outputs of Port A",    IDM_RESET_PORTA 
+        MENUITEM "Reset Outp&uts of Port B",    IDM_RESET_PORTB 
+    END
+
+
+    POPUP "&DAC"
+    BEGIN
+        MENUITEM "Sto&p",                       IDM_DAC_STOP 
+        MENUITEM SEPARATOR
+        MENUITEM "&Single",                     IDM_DAC_SINGLE
+        MENUITEM "&WrapAround",                 IDM_DAC_WRAPAROUND
+        POPUP "&Continous"
+        BEGIN
+            MENUITEM "&Polling Mode",           IDM_DAC_CONTINOUS_POLL
+            MENUITEM "&Interrupt Mode",         IDM_DAC_CONTINOUS_INT
+            MENUITEM SEPARATOR
+            MENUITEM "&Run continuously in polling mode",
+                                                IDM_DAC_CONTINOUS_POLL_EX
+            MENUITEM "Run &continuously in interrupt mode",
+                                                IDM_DAC_CONTINOUS_INT_EX
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Channel"
+        BEGIN
+            MENUITEM " DAC &0",                 IDM_DAC_0, CHECKED
+            MENUITEM " DAC &1",                 IDM_DAC_1
+            MENUITEM " DAC &2",                 IDM_DAC_2
+            MENUITEM " DAC &3",                 IDM_DAC_3
+        END
+        POPUP "&Range"
+        BEGIN
+            MENUITEM " +/- 10 V",               IDM_DAC_RANGE_MINUS_10, CHECKED
+            MENUITEM " +/- 5 V",                IDM_DAC_RANGE_MINUS_5
+            MENUITEM " 0 - 10 V",               IDM_DAC_RANGE_PLUS_10
+        END
+        POPUP "&Trigger"
+        BEGIN
+            MENUITEM "&Timer",                  IDM_DAC_TRIGGER_TIMER, CHECKED
+            MENUITEM "&High",                   IDM_DAC_TRIGGER_HIGH
+            MENUITEM "&Low",                    IDM_DAC_TRIGGER_LOW
+        END
+        POPUP "&Mode"
+        BEGIN
+            MENUITEM "&Buffered",               IDM_DAC_MODE_BUFFERED
+            MENUITEM "&Transparent",            IDM_DAC_MODE_TRANSPARENT, CHECKED
+        END
+        MENUITEM SEPARATOR
+        POPUP "Set&up"
+        BEGIN
+            MENUITEM "&Frequency",              IDM_DAC_SETUP_FREQ
+            MENUITEM "&Counter",                IDM_DAC_SETUP_COUNT
+            MENUITEM "&Delay",                  IDM_DAC_SETUP_DELAY
+            MENUITEM "&No. of FIFO entries",    IDM_DAC_SETUP_SIZE
+            MENUITEM "&Loops",                  IDM_DAC_SETUP_LOOPS
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Upd&ate",                     IDM_DAC_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "&Reset",                      IDM_DAC_RESET
+    END
+
+ 
+
+    POPUP "PW&M"
+    BEGIN
+        MENUITEM "&Start",                      IDM_PWM_START
+        MENUITEM "&Frequency",                  IDM_PWM_FREQ
+        MENUITEM "&Duty Cycle",                 IDM_PWM_DUTY
+        MENUITEM "&Inverted",                   IDM_PWM_INVERTED
+    END
+
+
+
+    POPUP "E&xt. Interrupt"
+    BEGIN
+        MENUITEM "&Enable",                     IDM_EXT_INTERRUPT
+    END
+
+    
+    POPUP "Counter &A"
+    BEGIN
+        MENUITEM "Re&ad",                       IDM_CNT_READ_A
+        MENUITEM "&Load",                       IDM_CNT_LOAD_A
+//      MENUITEM "S&tart",                      IDM_CNT_START_A 
+        MENUITEM "&Reset",                      IDM_CNT_RESET_A
+        MENUITEM "Enable &Interrupt",           IDM_CNT_ENABLE_INT_A
+        MENUITEM SEPARATOR
+        MENUITEM "Setup &End Value",            IDM_CNT_EDIT_ENDVAL_A
+        MENUITEM "Setup &Start Value",          IDM_CNT_EDIT_STARTVAL_A
+    END
+
+    
+    POPUP "Counter &B"
+    BEGIN
+        MENUITEM "Re&ad",                       IDM_CNT_READ_B
+        MENUITEM "&Load",                       IDM_CNT_LOAD_B
+//      MENUITEM "S&tart",                      IDM_CNT_START_B 
+        MENUITEM "&Reset",                      IDM_CNT_RESET_B
+        MENUITEM "Enable &Interrupt",           IDM_CNT_ENABLE_INT_B
+        MENUITEM SEPARATOR
+        MENUITEM "Setup &End Value",            IDM_CNT_EDIT_ENDVAL_B
+        MENUITEM "Setup &Start Value",          IDM_CNT_EDIT_STARTVAL_B
+    END
+
+                
+
+
+    POPUP "S&IO"
+    BEGIN
+        MENUITEM "&Show Registers",             IDM_SIO_REGISTERS
+        MENUITEM "&Read Register",              IDM_SIO_READ
+        MENUITEM "&Write Register",             IDM_SIO_WRITE
+        MENUITEM "&LoopBack Test",              IDM_SIO_LOOPBACK
+        MENUITEM SEPARATOR
+        MENUITEM "Read in &polling mode",       IDM_SIO_READ_POLL
+        MENUITEM "Write in p&olling mode",      IDM_SIO_WRITE_POLL
+/*
+        MENUITEM SEPARATOR
+        MENUITEM "Read in &interrupt mode",     IDM_SIO_READ_INT
+        MENUITEM "Write in i&nterrupt mode",    IDM_SIO_WRITE_INT
+*/
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",           IDM_ABOUT
+    END
+END
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+GENERIC ACCELERATORS MOVEABLE PURE
+BEGIN
+    VK_F1,          IDM_HELPCONTENTS,       VIRTKEY
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUTBOX DIALOG DISCARDABLE  22, 17, 167, 74
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,132,2,32,14,WS_GROUP
+    ICON            "DialogIcon",IDC_STATIC,3,2,18,20
+    LTEXT           "CompanyName",IDC_COMPANY,30,2,100,8
+    LTEXT           "FileDescription",IDC_FILEDESC,30,10,71,8
+    RTEXT           "ProductVersion",IDC_PRODVER,106,10,17,8
+    LTEXT           "LegalCopyright",IDC_COPYRIGHT,30,18,137,8
+    LTEXT           "OSVERSION",IDC_OSVERSION,46,34,118,8
+    LTEXT           "LegalTrademarks",IDC_TRADEMARK,3,49,162,18
+    LTEXT           "Running on:",IDC_LABEL,4,34,40,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,2,31,164,1
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,2,44,164,1
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION    VERSION_MAJOR, VERSION_MINOR, 0, VERSION_BUILD
+ PRODUCTVERSION VERSION_MAJOR, VERSION_MINOR, 0, VERSION_BUILD
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0xbL
+#else
+ FILEFLAGS 0xaL
+#endif
+ FILEOS 0x10001L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "Comments", "Meilhaus Electronic GmbH\0"
+            VALUE "CompanyName", "Meilhaus Electronic GmbH\0"
+            VALUE "FileDescription", "Test Application ME3000\0"
+            VALUE "FileVersion", VERSION_PRODUCT
+            VALUE "InternalName", "WinTest.exe\0"
+            VALUE "LegalCopyright", "Copyright (C) Meilhaus Electronic 1999\0"
+            VALUE "LegalTrademarks", " \0"
+            VALUE "OriginalFilename", "\0"
+            VALUE "PrivateBuild", " \0"
+            VALUE "ProductName", "WinTest\0"
+            VALUE "ProductVersion", VERSION_PRODUCT
+            VALUE "SpecialBuild", " \0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 0x04E4, 0x411, 0x04E4
+    END
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Edit Box
+//
+EDITDLG DIALOG DISCARDABLE  500, 0, 150, 40
+STYLE  WS_POPUP | WS_VISIBLE | WS_BORDER | WS_CAPTION
+FONT 8, "Helv"
+BEGIN                                                               
+    EDITTEXT                   , ID_EDITBOX_TEXT1,  10,  5, 130, 15 
+    PUSHBUTTON      "&Okay"    , ID_DLG_OKAY,       35, 25, 30, 10
+    PUSHBUTTON      "&Cancel"  , ID_DLG_CANCEL,     85, 25, 30, 10
+END
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+   IDS_APP_TITLE       "ME3000 Test Application"
+   IDS_DISPLAYCHANGED  "Display Changed"
+   IDS_VER_INFO_LANG   "\\StringFileInfo\\040904E4\\"
+   IDS_VERSION_ERROR   "Error %lu"
+   IDS_NO_HELP         "Unable to activate help"
+END

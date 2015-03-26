@@ -1,0 +1,20 @@
+In this directory are the following simple examples:
+
+NewMacros.bas	General Example	
+
+The projects are written for Office 97 (professional edition).
+It was tested only with MS Word for Windows (German version).
+This is not a complete application but shows the use of the
+Meilhaus card with Visual Basic for Applications.
+
+Example:
+Open 	MS Word for Windows 97
+Press 	Alt+F8
+Write 	a new name (such as me1400)
+Press	"Erstellen" on a German version
+Now the makro editor opens.
+Press	File + Import (Datei + Datei importieren)
+Load the file NewMacros.bas
+
+The example programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.

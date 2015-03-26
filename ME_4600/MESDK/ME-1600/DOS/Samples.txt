@@ -1,0 +1,14 @@
+In this directory is the following simple example:
+
+sample.c		General Example 
+
+
+This is not a full working sample, it should show, 
+how you can access the board under DOS and how
+you can determine the resources.
+
+If you have improvement proposals for the sample,
+please send it to software@meilhaus.de
+
+The example programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.

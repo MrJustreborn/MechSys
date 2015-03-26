@@ -1,0 +1,9 @@
+In this directory are the following simple examples:
+
+VC152C_1 General Example for use with a DOS 
+	operating system. The program uses BIOS calls
+	to determine the hardware address and interrupt 
+	line. It was tested with MS Visual C 1.52C
+
+The example programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.

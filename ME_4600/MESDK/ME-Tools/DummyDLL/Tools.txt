@@ -1,0 +1,6 @@
+You find the dummy DLLs for 
+developing without hardware
+in the VC directory sample90.
+
+The tool programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.
