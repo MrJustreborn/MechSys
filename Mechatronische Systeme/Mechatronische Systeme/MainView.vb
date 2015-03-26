@@ -13,7 +13,7 @@
     Private Sub Btn_start_Click(sender As System.Object, e As System.EventArgs) Handles Btn_start.Click
         If Not (filepath Is Nothing) Then
 
-            'Me.con.parse(filepath)
+            Me.con.parse(filepath)
             disable_ToolStripItm()
             switch_disable_buttons()
 

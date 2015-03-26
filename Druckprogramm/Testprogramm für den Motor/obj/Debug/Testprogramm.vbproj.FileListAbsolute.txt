@@ -17,3 +17,7 @@ C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULD
 C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.Resources.resources
 C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.frmSize.resources
 C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\Testprogramm.vbproj.GenerateResource.Cache
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\Testprogramm für den Motor\bin\ULDO01.exe.config
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.exe
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.xml
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.pdb

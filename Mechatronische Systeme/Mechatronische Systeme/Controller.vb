@@ -2,9 +2,11 @@
     Private form As MainView
     Private settings As Save_read_settings
     Private Shared instance As Controller
+    Private parser As Parser
 
     Private Sub New()
-        settings = Save_read_settings.getInstance
+        Me.settings = Save_read_settings.getInstance
+        Me.parser = parser.getInstance()
     End Sub
 
     Public Shared ReadOnly Property getInstance() As Controller
@@ -17,8 +19,7 @@
     End Property
 
     Public Sub parse(filepath As String)
-        '  parser = New Parser(filepath)
-        ' parser.parseFile()
+        Me.parser.parseFile(filepath)
     End Sub
 
 

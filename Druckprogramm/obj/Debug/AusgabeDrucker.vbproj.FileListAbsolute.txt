@@ -10,3 +10,7 @@ C:\Users\student\Desktop\ULDO01.NET\bin\ULDO01.xml
 C:\Users\student\Desktop\Druckprogramm\obj\Debug\ULDO01.exe
 C:\Users\student\Desktop\Druckprogramm\obj\Debug\ULDO01.xml
 C:\Users\student\Desktop\Druckprogramm\obj\Debug\ULDO01.pdb
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\bin\ULDO01.exe.config
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\obj\Debug\ULDO01.exe
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\obj\Debug\ULDO01.xml
+C:\Users\Philipp\Desktop\Mecha\Druckprogramm\obj\Debug\ULDO01.pdb

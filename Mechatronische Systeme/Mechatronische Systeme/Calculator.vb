@@ -4,7 +4,7 @@
     Private cur_x As Integer
     Private cur_y As Integer
 
-
+   
 
     Private Sub New()
         datas = New List(Of Integer())
@@ -30,7 +30,7 @@
         cur_y = y
     End Sub
 
-    Public Sub addCS(ByVal x As Integer, ByVal y As Integer, ByVal phi As Integer)
+    Public Sub addCS(ByVal x As Integer, ByVal y As Integer, ByVal phi As Integer, ByVal status As Boolean)
         'schleife teilstücke ausrechnen und addPA aufrufen
     End Sub
 
