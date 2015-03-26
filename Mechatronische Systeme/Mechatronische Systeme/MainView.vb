@@ -22,7 +22,11 @@
 
         End If
         ' Nur zu Testzwecken 
-        Me.con.progress(10)
+        ' Me.con.progress(10)
+        Dim test As Boolean = False
+        Dim x As Integer
+        x = test
+        Console.Write(x)
 
     End Sub
 
