@@ -1,0 +1,19 @@
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.exe
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.xml
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.pdb
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\ULDO01.exe
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\ULDO01.xml
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\ULDO01.pdb
+C:\Users\student\Desktop\Testprogramm für den Motor\bin\ULDO01.exe
+C:\Users\student\Desktop\Testprogramm für den Motor\bin\ULDO01.pdb
+C:\Users\student\Desktop\Testprogramm für den Motor\bin\ULDO01.xml
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\ULDO01.Resources.resources
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\ULDO01.frmSetDigOut.resources
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\Testprogramm.vbproj.GenerateResource.Cache
+C:\Users\student\Desktop\Testprogramm für den Motor\obj\Debug\ULDO01.frmSize.resources
+C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.exe
+C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.xml
+C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.pdb
+C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.Resources.resources
+C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\ULDO01.frmSize.resources
+C:\Users\student\Desktop\Druckprogramm\Testprogramm für den Motor\obj\Debug\Testprogramm.vbproj.GenerateResource.Cache

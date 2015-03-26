@@ -1,0 +1,12 @@
+C:\Users\student\Desktop\ULDO01.NET\obj\Debug\ULDO01.Resources.resources
+C:\Users\student\Desktop\ULDO01.NET\obj\Debug\ULDO01.frmSetDigOut.resources
+C:\Users\student\Desktop\ULDO01.NET\obj\Debug\AusgabeDrucker.vbproj.GenerateResource.Cache
+C:\Users\student\Desktop\ULDO01.NET\obj\Debug\ULDO01.exe
+C:\Users\student\Desktop\ULDO01.NET\obj\Debug\ULDO01.xml
+C:\Users\student\Desktop\ULDO01.NET\obj\Debug\ULDO01.pdb
+C:\Users\student\Desktop\ULDO01.NET\bin\ULDO01.exe
+C:\Users\student\Desktop\ULDO01.NET\bin\ULDO01.pdb
+C:\Users\student\Desktop\ULDO01.NET\bin\ULDO01.xml
+C:\Users\student\Desktop\Druckprogramm\obj\Debug\ULDO01.exe
+C:\Users\student\Desktop\Druckprogramm\obj\Debug\ULDO01.xml
+C:\Users\student\Desktop\Druckprogramm\obj\Debug\ULDO01.pdb

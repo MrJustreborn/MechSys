@@ -1,0 +1,9 @@
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\bin\ULDO01.exe
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\bin\ULDO01.pdb
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\bin\ULDO01.xml
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.frmSetDigOut.resources
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.vbproj.GenerateResource.Cache
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.exe
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.xml
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.pdb
+C:\Users\student\Desktop\PlenkUSB\VB.NET\ULDO01.NET\obj\Debug\ULDO01.Resources.resources
