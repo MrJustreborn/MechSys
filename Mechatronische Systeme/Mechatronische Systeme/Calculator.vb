@@ -41,7 +41,7 @@
 	
 	radius = Math.Sqrt((Math.Abs(x - cur_x)) ^ 2 + (Math.Abs(y - cur_y)) ^ 2)
 
-	beta As Integer
+	beta As Single
 	beta = (phi / phi) / tune
 	Do
 		new_x = (Math.Sin(beta) * radius) + x
