@@ -7,13 +7,14 @@
         If (Opn_filepath.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
             filepath = Opn_filepath.FileName
             Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: " + filepath
+            Me.con.showPreview(filepath)
         End If
     End Sub
 
     Private Sub Btn_start_Click(sender As System.Object, e As System.EventArgs) Handles Btn_start.Click
         If Not (filepath Is Nothing) Then
 
-            Me.con.parse(filepath)
+
             disable_ToolStripItm()
             switch_disable_buttons()
 
@@ -21,12 +22,7 @@
             MsgBox("Wählen Sie bitte zuerst eine Datei aus, bevor Sie das Drucken anfangen wollen!")
 
         End If
-        ' Nur zu Testzwecken 
-        ' Me.con.progress(10)
-        Dim test As Boolean = False
-        Dim x As Integer
-        x = test
-        Console.Write(x)
+       
 
     End Sub
 
@@ -63,10 +59,6 @@
         switch_disable_buttons()
     End Sub
 
-    Private Sub Group_1_Enter(sender As System.Object, e As System.EventArgs) Handles Group_1.Enter
-
-    End Sub
-
     Public Sub Progress(ByVal value As Integer)
         If (Progress_1.Value < 101) Then
             Me.Progress_1.Value += value
@@ -79,4 +71,16 @@
         Me.con = Controller.getInstance
         Me.con.set_MainView(Me)
     End Sub
+
+    Private Sub KonstuierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KonstuierenToolStripMenuItem.Click
+        Zeichnung.Show()
+    End Sub
+
+
+    
+    Private Sub Group_1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Group_1.Enter
+
+    End Sub
+
+
 End Class

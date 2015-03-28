@@ -26,7 +26,7 @@ Public Class Parser
     End Property
 
 
-    Public Sub parseFile(ByVal filepath As String)
+    Public Function parseFile(ByVal filepath As String) As List(Of Integer())
         Try
             fileReader = New StreamReader(filepath)
 
@@ -37,9 +37,9 @@ Public Class Parser
         Catch ex As Exception
 
         End Try
-      
 
-    End Sub
+        Return Me.calc.getDatas()
+    End Function
 
     Private Sub read()
         Try

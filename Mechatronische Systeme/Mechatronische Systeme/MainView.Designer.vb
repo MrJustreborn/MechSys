@@ -33,6 +33,8 @@ Partial Class MainView
         Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BearbeitenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItm_2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KonstruierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KonstuierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Opn_filepath = New System.Windows.Forms.OpenFileDialog()
         Me.Lbl_preview = New System.Windows.Forms.Label()
         Me.Group_1 = New System.Windows.Forms.GroupBox()
@@ -81,7 +83,7 @@ Partial Class MainView
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.BearbeitenToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.BearbeitenToolStripMenuItem, Me.KonstruierenToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(3, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(608, 24)
@@ -119,6 +121,19 @@ Partial Class MainView
         Me.ToolStripMenuItm_2.Name = "ToolStripMenuItm_2"
         Me.ToolStripMenuItm_2.Size = New System.Drawing.Size(145, 22)
         Me.ToolStripMenuItm_2.Text = "Einstellungen"
+        '
+        'KonstruierenToolStripMenuItem
+        '
+        Me.KonstruierenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KonstuierenToolStripMenuItem})
+        Me.KonstruierenToolStripMenuItem.Name = "KonstruierenToolStripMenuItem"
+        Me.KonstruierenToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
+        Me.KonstruierenToolStripMenuItem.Text = "Zeichnung"
+        '
+        'KonstuierenToolStripMenuItem
+        '
+        Me.KonstuierenToolStripMenuItem.Name = "KonstuierenToolStripMenuItem"
+        Me.KonstuierenToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.KonstuierenToolStripMenuItem.Text = "Anfertigen"
         '
         'Opn_filepath
         '
@@ -219,5 +234,7 @@ Partial Class MainView
     Friend WithEvents Group_1 As System.Windows.Forms.GroupBox
     Friend WithEvents Group_2 As System.Windows.Forms.GroupBox
     Friend WithEvents Btn_pause As System.Windows.Forms.Button
+    Friend WithEvents KonstruierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents KonstuierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

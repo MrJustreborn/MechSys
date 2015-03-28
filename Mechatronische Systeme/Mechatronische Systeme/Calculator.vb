@@ -21,7 +21,7 @@
     End Property
 
     Public Sub addPA(ByVal x As Integer, ByVal y As Integer, ByVal status As Boolean)
-        Dim arr(3) As Integer
+        Dim arr(2) As Integer
         arr(0) = status
         arr(1) = x - cur_x
         arr(2) = y - cur_y
@@ -32,23 +32,22 @@
 
     Public Sub addCS(ByVal x As Integer, ByVal y As Integer, ByVal phi As Integer, ByVal status As Boolean)
         'schleife teilstücke ausrechnen und addPA aufrufen
-	radius As Integer
-
-	new_x As Integer 'new_x und new_y sind die neuen endpunkte jeweils
-	new_y As Integer
-	tune As Integer 'tuningwert für die feinere Auflösung des Kreises -> GUI
-	tune = 0
+        Dim radius As Integer
+        Dim beta As Single
+        Dim new_x As Integer 'new_x und new_y sind die neuen endpunkte jeweils
+        Dim new_y As Integer
+        Dim tune As Integer 'tuningwert für die feinere Auflösung des Kreises -> GUI
+        tune = 0
 	
-	radius = Math.Sqrt((Math.Abs(x - cur_x)) ^ 2 + (Math.Abs(y - cur_y)) ^ 2)
+        radius = Math.Sqrt((Math.Abs(x - cur_x)) ^ 2 + (Math.Abs(y - cur_y)) ^ 2)
 
-	beta As Single
-	beta = (phi / phi) / tune
-	Do
-		new_x = (Math.Sin(beta) * radius) + x
-		new_y = (Math.Cos(beta) * radius) + y
-		Me.addPA(new_x,new_y,status)
-		beta += beta
-	loop until beta >= phi
+        beta = (phi / phi) / tune
+        Do
+            new_x = (Math.Sin(beta) * radius) + x
+            new_y = (Math.Cos(beta) * radius) + y
+            Me.addPA(new_x, new_y, status)
+            beta += beta
+        Loop Until beta >= phi
     End Sub
 
     Public Function getDatas() As List(Of Integer())
