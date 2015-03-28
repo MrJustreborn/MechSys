@@ -37,7 +37,7 @@
         Dim new_x As Integer 'new_x und new_y sind die neuen endpunkte jeweils
         Dim new_y As Integer
         Dim tune As Integer 'tuningwert für die feinere Auflösung des Kreises -> GUI
-        tune = 0
+        tune = 1
 	
         radius = Math.Sqrt((Math.Abs(x - cur_x)) ^ 2 + (Math.Abs(y - cur_y)) ^ 2)
 
