@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Zeichnung
+Partial Class DrawingView
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
@@ -22,7 +22,7 @@ Partial Class Zeichnung
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Zeichnung))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DrawingView))
         Me.Btn_save = New System.Windows.Forms.Button()
         Me.Btn_cancel = New System.Windows.Forms.Button()
         Me.Btn_back = New System.Windows.Forms.Button()
@@ -56,6 +56,7 @@ Partial Class Zeichnung
         '
         'Btn_back
         '
+        Me.Btn_back.Enabled = False
         Me.Btn_back.Image = CType(resources.GetObject("Btn_back.Image"), System.Drawing.Image)
         Me.Btn_back.Location = New System.Drawing.Point(290, 49)
         Me.Btn_back.Name = "Btn_back"
@@ -136,6 +137,7 @@ Partial Class Zeichnung
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(379, 353)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Lbl_description)
         Me.Controls.Add(Me.Group_1)
         Me.Controls.Add(Me.Label2)

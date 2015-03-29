@@ -47,12 +47,12 @@
     End Sub
 
 
-    Public Sub draw_preview(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
-        Me.Group_1.CreateGraphics.DrawLine(Pens.White, x_old, y_old, x_new, y_new)
+    Public Sub draw_preview(ByVal p_old As Point, ByVal p_new As Point)
+        Me.Group_1.CreateGraphics.DrawLine(Pens.White, p_old.X, p_old.Y, p_new.X, p_new.Y)
     End Sub
 
-    Public Sub draw_live_print(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
-        Me.Group_2.CreateGraphics.DrawLine(Pens.White, x_old, y_old, x_new, y_new)
+    Public Sub draw_live_print(ByVal p_old As Point, ByVal p_new As Point)
+        Me.Group_2.CreateGraphics.DrawLine(Pens.White, p_old.X, p_old.Y, p_new.X, p_new.Y)
     End Sub
 
     Private Sub Btn_pause_Click(sender As System.Object, e As System.EventArgs) Handles Btn_pause.Click
@@ -73,7 +73,7 @@
     End Sub
 
     Private Sub KonstuierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KonstuierenToolStripMenuItem.Click
-        Zeichnung.Show()
+        DrawingView.Show()
     End Sub
 
 

@@ -3,6 +3,7 @@
     Private datas As List(Of Integer())
     Private cur_x As Integer
     Private cur_y As Integer
+    Private radius_circle As Integer 'Radius für den gezeichneten Kreis in der Drawing View 
 
    
 
@@ -51,7 +52,34 @@
     End Sub
 
     Public Function getDatas() As List(Of Integer())
-        Return Me.datas
+        Dim result As List(Of Integer())
+        result = Me.datas
+        Me.datas = Nothing
+        Return result
     End Function
+
+    ' ab hier Berechnung für den Kreis in der Drawing View 
+
+    'Berechnung des Rechtecks für die DrawArc - Funktion in der DrawingView 
+    Public Function calcRectangle(ByVal middle As Point, ByVal point As Point) As Rectangle
+
+        Me.calc_radius_circle(point.X - middle.X, point.Y - middle.Y)
+        Return New Rectangle(middle.X - Me.radius_circle, middle.Y - Me.radius_circle, Me.radius_circle * 2, Me.radius_circle * 2)
+    End Function
+
+    'Berechnung des Radius für den Kreis in der DrawingView 
+    Private Sub calc_radius_circle(ByVal delta_x As Integer, ByVal delta_y As Integer)
+        Me.radius_circle = Math.Sqrt(Math.Pow(delta_x, 2) + Math.Pow(delta_y, 2))
+    End Sub
+
+    Public Function calc_startAngle(ByVal m_x As Integer, ByVal p_x As Integer) As Single
+        Dim calculation As Double
+        calculation = Math.Acos((p_x - m_x) / (Me.radius_circle)) * (180 / Math.PI)
+        Return 360 - calculation
+    End Function
+
+
+
+
 
 End Class

@@ -1,17 +1,18 @@
 ﻿Public Class Controller
     Private main_form As MainView
-    Private drawing_form As Zeichnung
+    Private drawing_form As DrawingView
     Private settings As Save_read_settings
     Private Shared instance As Controller
     Private parser As Parser
     Private drawing_file As Drawing_to_file
+    Private calc As Calculator
     Private list As List(Of Integer())
 
     Private Sub New()
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
         Me.drawing_file = Drawing_to_file.getInstance
-
+        Me.calc = Calculator.getInstance
     End Sub
 
     Public Shared ReadOnly Property getInstance() As Controller
@@ -52,21 +53,21 @@
         Me.drawing_form = form
     End Sub
 
-    Private Sub line_preview(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
+    Private Sub line_preview(ByVal p_old As Point, ByVal p_new As Point)
         If Not IsNothing(Me.main_form) Then
-            Me.main_form.draw_preview(x_old, y_old, x_new, y_new)
+            Me.main_form.draw_preview(p_old, p_new)
         End If
     End Sub
 
-    Private Sub line_drawing(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
+    Private Sub line_drawing(ByVal p_old As Point, ByVal p_new As Point)
         If Not IsNothing(Me.drawing_form) Then
-            Me.drawing_form.draw_line(x_old, y_old, x_new, y_new)
+            Me.drawing_form.draw_line(p_old, p_new)
         End If
     End Sub
 
-    Public Sub line_live_print(ByVal x_old As Integer, ByVal y_old As Integer, ByVal x_new As Integer, ByVal y_new As Integer)
+    Public Sub line_live_print(ByVal p_old As Point, ByVal p_new As Point)
         If Not IsNothing(Me.main_form) Then
-            Me.main_form.draw_live_print(x_old, y_old, x_new, y_new)
+            Me.main_form.draw_live_print(p_old, p_new)
         End If
     End Sub
 
@@ -84,22 +85,27 @@
 
     Public Sub showPreview(ByVal filepath As String)
         Dim factor = 10
-        Dim x_last As Integer
-        Dim y_last As Integer
-        Dim x_start As Integer = 0
-        Dim y_start As Integer = 0
+        Dim p_last As Point
+        Dim p_start As New Point(0, 0)
+        
 
         Me.parse(filepath)
-
+       
         For Each item In Me.list
-            x_last = x_start + item(1)
-            y_last = y_start + item(2)
+            p_last.X = p_start.X + item(1)
+            p_last.Y = p_start.Y + item(2)
 
             If (item(0) = 0) Then
-                Me.line_preview(x_start / factor, y_start / factor, x_last / factor, y_last / factor)
+                Dim p_temp_st As Point = p_start
+                Dim p_temp_last As Point = p_last
+
+                p_temp_st.X /= factor
+                p_temp_st.Y /= factor
+                p_temp_last.X /= factor
+                p_temp_last.Y /= factor
+                Me.line_preview(p_temp_st, p_temp_last)
             End If
-            x_start = x_last
-            y_start = y_last
+            p_start = p_last
         Next
     End Sub
 
@@ -111,32 +117,58 @@
         Me.drawing_file.save_file_to_path(filename)
     End Sub
 
-    Public Sub save_drawing_steps(ByVal x_start As Integer, ByVal y_start As Integer, ByVal x_end As Integer, ByVal y_end As Integer)
-        Me.drawing_file.save_drawing_steps(x_start, y_start, x_end, y_end)
+    Public Sub save_drawing_steps(ByVal p_start As Point, ByVal p_end As Point)
+        Me.drawing_file.save_drawing_steps(p_start, p_end)
     End Sub
 
     Private Sub showDrawing(ByVal filepath As String)
         Dim factor = 10
-        Dim x_last As Integer
-        Dim y_last As Integer
-        Dim x_start As Integer = 0
-        Dim y_start As Integer = 0
+        Dim p_last As Point
+        
+        Dim p_start As New Point(0, 0)
 
         Me.parse(filepath)
+        If Not (Me.list Is Nothing) Then
+            For Each item In Me.list
+                p_last.X = p_start.X + item(1)
+                p_last.Y = p_start.Y + item(2)
 
-        For Each item In Me.list
-            x_last = x_start + item(1)
-            y_last = y_start + item(2)
+                If (item(0) = 0) Then
+                    Dim p_temp_st As Point = p_start
+                    Dim p_temp_last As Point = p_last
 
-            If (item(0) = 0) Then
-                Me.line_drawing(x_start / factor, y_start / factor, x_last / factor, y_last / factor)
-            End If
-            x_start = x_last
-            y_start = y_last
-        Next
+                    p_temp_st.X /= factor
+                    p_temp_st.Y /= factor
+                    p_temp_last.X /= factor
+                    p_temp_last.Y /= factor
+                    Me.line_drawing(p_temp_st, p_temp_last)
+                End If
+                p_start = p_last
+            Next
+        Else
+            Me.drawing_form.Btn_back_Enabled()
+        End If
+        
     End Sub
+
+    
     Public Sub back_drawing()
         Me.drawing_file.back()
         Me.showDrawing(Me.drawing_file.getPath())
+    End Sub
+
+    Public Sub draw_circle_drawingView(ByVal middle As Point, ByVal point As Point, ByVal swapAngle As Integer)
+        Dim rect As Rectangle
+        Dim startAngle As Single
+
+        rect = Me.calc.calcRectangle(middle, point)
+        startAngle = Me.calc.calc_startAngle(middle.X, point.X)
+        Me.drawing_file.save_drawing_steps(middle, point, swapAngle)
+        Me.drawCircle_drawingView(rect, startAngle, swapAngle)
+
+    End Sub
+
+    Private Sub drawCircle_drawingView(ByVal rect As Rectangle, ByVal startAngle As Single, ByVal swapAngle As Single)
+        Me.drawing_form.draw_circle(rect, startAngle, swapAngle)
     End Sub
 End Class
