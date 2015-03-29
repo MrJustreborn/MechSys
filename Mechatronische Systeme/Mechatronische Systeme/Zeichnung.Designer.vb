@@ -22,6 +22,7 @@ Partial Class Zeichnung
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Zeichnung))
         Me.Btn_save = New System.Windows.Forms.Button()
         Me.Btn_cancel = New System.Windows.Forms.Button()
         Me.Btn_back = New System.Windows.Forms.Button()
@@ -32,6 +33,7 @@ Partial Class Zeichnung
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Group_1 = New System.Windows.Forms.GroupBox()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.Lbl_description = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Btn_save
@@ -54,29 +56,29 @@ Partial Class Zeichnung
         '
         'Btn_back
         '
+        Me.Btn_back.Image = CType(resources.GetObject("Btn_back.Image"), System.Drawing.Image)
         Me.Btn_back.Location = New System.Drawing.Point(290, 49)
         Me.Btn_back.Name = "Btn_back"
         Me.Btn_back.Size = New System.Drawing.Size(36, 29)
         Me.Btn_back.TabIndex = 3
-        Me.Btn_back.Text = "Button3"
         Me.Btn_back.UseVisualStyleBackColor = True
         '
         'Btn_line
         '
+        Me.Btn_line.Image = CType(resources.GetObject("Btn_line.Image"), System.Drawing.Image)
         Me.Btn_line.Location = New System.Drawing.Point(290, 94)
         Me.Btn_line.Name = "Btn_line"
         Me.Btn_line.Size = New System.Drawing.Size(36, 29)
         Me.Btn_line.TabIndex = 4
-        Me.Btn_line.Text = "Button4"
         Me.Btn_line.UseVisualStyleBackColor = True
         '
         'Btn_circle
         '
+        Me.Btn_circle.Image = CType(resources.GetObject("Btn_circle.Image"), System.Drawing.Image)
         Me.Btn_circle.Location = New System.Drawing.Point(290, 142)
         Me.Btn_circle.Name = "Btn_circle"
         Me.Btn_circle.Size = New System.Drawing.Size(36, 29)
         Me.Btn_circle.TabIndex = 5
-        Me.Btn_circle.Text = "Button5"
         Me.Btn_circle.UseVisualStyleBackColor = True
         '
         'Btn_import
@@ -121,11 +123,20 @@ Partial Class Zeichnung
         '
         Me.SaveFileDialog.DefaultExt = "txt"
         '
+        'Lbl_description
+        '
+        Me.Lbl_description.AutoSize = True
+        Me.Lbl_description.Location = New System.Drawing.Point(264, 174)
+        Me.Lbl_description.Name = "Lbl_description"
+        Me.Lbl_description.Size = New System.Drawing.Size(0, 13)
+        Me.Lbl_description.TabIndex = 12
+        '
         'Zeichnung
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(355, 352)
+        Me.ClientSize = New System.Drawing.Size(379, 353)
+        Me.Controls.Add(Me.Lbl_description)
         Me.Controls.Add(Me.Group_1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -151,4 +162,5 @@ Partial Class Zeichnung
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Group_1 As System.Windows.Forms.GroupBox
     Friend WithEvents SaveFileDialog As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents Lbl_description As System.Windows.Forms.Label
 End Class

@@ -16,7 +16,8 @@
 
     Private Sub Btn_back_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_back.Click
         Me.btn_selected = 1
-
+        Me.Refresh()
+        Me.con.back_drawing()
     End Sub
 
 
@@ -38,9 +39,7 @@
 
 
     Private Sub Group_1_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Group_1.MouseClick
-        If (Me.btn_selected = 1) Then 'Zurück Button wurde zuvor aktiviert
-          
-        ElseIf (Me.btn_selected = 2) Then ' Line Button wurde zuvor aktiviert
+        If (Me.btn_selected = 2) Then ' Line Button wurde zuvor aktiviert
             If Me.first_point_selected Then
                 Me.draw_line(x_start, y_start, e.X, e.Y)
                 x_end = e.X
@@ -70,6 +69,7 @@
 
     Private Sub Zeichnung_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.con = Controller.getInstance
+        Me.con.set_DrawingView(Me)
     End Sub
 
     Private Sub Btn_save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_save.Click
@@ -83,7 +83,5 @@
         
     End Sub
 
-    Private Sub SaveFileDialog1_FileOk(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog.FileOk
-
-    End Sub
+   
 End Class
