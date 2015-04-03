@@ -43,6 +43,9 @@
         radius = Math.Sqrt((Math.Abs(x - cur_x)) ^ 2 + (Math.Abs(y - cur_y)) ^ 2)
 
         beta = (phi / phi) / tune
+	
+	beta = ((2*3.145)/360)*beta 'grad in rad convertieren
+	phi = ((2*3.145)/360)*phi 'grad in rad convertieren
         Do
             new_x = (Math.Sin(beta) * radius) + x
             new_y = (Math.Cos(beta) * radius) + y
