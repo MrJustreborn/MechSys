@@ -29,9 +29,11 @@
         datas.Add(arr)
         cur_x = x
         cur_y = y
+
     End Sub
 
     Public Sub addCS(ByVal x As Integer, ByVal y As Integer, ByVal phi As Integer, ByVal status As Boolean)
+
         'schleife teilstücke ausrechnen und addPA aufrufen
         Dim radius As Integer
         Dim beta As Single
@@ -39,19 +41,20 @@
         Dim new_y As Integer
         Dim tune As Integer 'tuningwert für die feinere Auflösung des Kreises -> GUI
         tune = 1
-	
-        radius = Math.Sqrt((Math.Abs(x - cur_x)) ^ 2 + (Math.Abs(y - cur_y)) ^ 2)
+
+        radius = Math.Pow(Math.Sqrt(Math.Abs(x - cur_x)), 2) + Math.Pow(Math.Abs(y - cur_y), 2)
 
         beta = (phi / phi) / tune
-	dim pi As Single
-	pi = 3.14159265359
-	beta = ((2*pi)/360)*beta 'grad in rad convertieren
-	phi = ((2*pi)/360)*phi 'grad in rad convertieren
+        Dim pi As Single
+        pi = 3.14159265359
+        beta = ((2 * pi) / 360) * beta 'grad in rad convertieren
+        phi = ((2 * pi) / 360) * phi 'grad in rad convertieren
         Do
             new_x = (Math.Sin(beta) * radius) + x
             new_y = (Math.Cos(beta) * radius) + y
             Me.addPA(new_x, new_y, status)
             beta += beta
+
         Loop Until beta >= phi
     End Sub
 

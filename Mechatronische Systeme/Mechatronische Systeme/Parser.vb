@@ -74,9 +74,11 @@ Public Class Parser
     End Sub
 
     Private Sub cs_parse(ByVal txt_line As String)
-        txt_line.Replace("CS ", "")
+        txt_line = txt_line.Replace("CS ", "")
+        txt_line = txt_line.Replace(" ", "")
         Dim tst As String() = Split(txt_line, ",")
         Dim intList As Integer() = Array.ConvertAll(tst, Function(str) Int32.Parse(str))
+
         Me.calc.addCS(intList(0), intList(1), intList(2),Me.pen_status)
 
     End Sub

@@ -157,6 +157,7 @@
         Me.showDrawing(Me.drawing_file.getPath())
     End Sub
 
+
     Public Sub draw_circle_drawingView(ByVal middle As Point, ByVal point As Point, ByVal swapAngle As Integer)
         Dim rect As Rectangle
         Dim startAngle As Single
@@ -168,6 +169,7 @@
 
     End Sub
 
+    ' Zeichnet einen Kreis in der DrawingView 
     Private Sub drawCircle_drawingView(ByVal rect As Rectangle, ByVal startAngle As Single, ByVal swapAngle As Single)
         Me.drawing_form.draw_circle(rect, startAngle, swapAngle)
     End Sub
