@@ -36,30 +36,34 @@
 
         'schleife teilstücke ausrechnen und addPA aufrufen
         Dim radius As Integer
-        Dim beta As Single
-        Dim phi2 As Single
+        Dim beta As Double
+        Dim phi2 As Double
         Dim new_x As Integer 'new_x und new_y sind die neuen endpunkte jeweils
         Dim new_y As Integer
         Dim tune As Integer 'tuningwert für die feinere Auflösung des Kreises -> GUI
         tune = 1
+        phi2 = phi / 10
 
-        radius = Math.Pow(Math.Sqrt(Math.Abs(x - cur_x)), 2) + Math.Pow(Math.Abs(y - cur_y), 2)
+        radius = Math.Sqrt(Math.Pow(Math.Abs(x - cur_x), 2) + Math.Pow(Math.Abs(y - cur_y), 2))
 
 	Dim offset As Single
-	offset = Math.Atn( (cur_y - y) / (cur_x - x) )
+        offset = Math.Atan((cur_y - y) / (cur_x - x))
 
-        beta = (phi / phi) / tune
+        beta = (phi2 / phi2) / tune
         Dim pi As Single
-        pi = 3.14159265359
+        pi = Math.PI
+
         beta = ((2 * pi) / 360) * beta 'grad in rad convertieren
-        phi2 = ((2 * pi) / 360) * phi 'grad in rad convertieren
+        phi2 = ((2 * pi) / 360) * phi2 'grad in rad convertieren
+        new_x = (Math.Sin(beta - offset) * radius) + x
+        new_y = (Math.Cos(beta - offset) * radius) + y
+        Me.addPA(new_x, new_y, True)
         Do
             new_x = (Math.Sin(beta - offset) * radius) + x
             new_y = (Math.Cos(beta - offset) * radius) + y
             Me.addPA(new_x, new_y, status)
-            beta += beta
-
-        Loop Until beta >= phi2
+            beta += 0.05 'beta
+        Loop Until beta > phi2
     End Sub
 
     Public Function getDatas() As List(Of Integer())
