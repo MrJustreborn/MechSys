@@ -42,3 +42,15 @@ C:\Users\Julia\Documents\Visual Studio 2013\Projects\mechsys\Mechatronische Syst
 C:\Users\Julia\Documents\Visual Studio 2013\Projects\mechsys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.vbproj.GenerateResource.Cache
 C:\Users\Julia\Documents\Visual Studio 2013\Projects\mechsys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
 C:\Users\Julia\Documents\Visual Studio 2013\Projects\mechsys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.xml
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.exe
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.pdb
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.xml
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Intro.resources
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.MainView.resources
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Resources.resources
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Settings.resources
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.DrawingView.resources
+C:\Users\HeimPC\Desktop\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.vbproj.GenerateResource.Cache
