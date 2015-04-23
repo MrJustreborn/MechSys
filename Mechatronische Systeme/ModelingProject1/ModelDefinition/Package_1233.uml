@@ -7397,45 +7397,6 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
-          <association
-            Id="af239f88-a081-4eb4-b237-50d7e3fe6e5c"
-            isDerived="false"
-            sourceEndRoleName="Parser"
-            targetEndRoleName="Parser"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="c5d91c6a-2e75-49e7-95a8-fc98d918325d"
-              LastKnownName="Parser"
-              LastKnownLocation="Package_1233.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="21e3befb-c1bb-426d-95e4-fb738e1de5ab"
-                  name="Parser"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="f1b197ef-c64c-4f07-9916-5768aae70743"
-                  name="Parser"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
