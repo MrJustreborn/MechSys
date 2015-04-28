@@ -1,0 +1,10 @@
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\bin\Debug\Single_Write_Analog.exe
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\bin\Debug\Single_Write_Analog.pdb
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\bin\Debug\Single_Write_Analog.xml
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.AboutBox1.resources
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.frmMain.resources
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.Resources.resources
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.vbproj.GenerateResource.Cache
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.exe
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.xml
+C:\Users\student\Desktop\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.pdb
