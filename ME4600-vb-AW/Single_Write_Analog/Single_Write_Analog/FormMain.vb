@@ -13,12 +13,49 @@
 '              - Close main driver when program is closed
 '==============================================================================
 Imports System.Text  'for using StringBuilder
-
+Imports System.Threading
 
 Public Class frmMain
     Private openErrSuccess As Integer = Constants.ME_IDS_NOTOPENED
     Private lineNumber As Integer
     Private subdeviceList As New List(Of AoSubdevice)
+    Private t1 As Thread
+    Private t2 As Thread
+
+    Private Sub Test(cnt As Integer)
+        If (coBoxSubDevs.SelectedIndex >= 0 And coBoxSubDevs.SelectedIndex < 3) Then
+            t1 = New Thread(AddressOf ThreadTask)
+            t2 = New Thread(AddressOf ThreadTask)
+            t1.IsBackground = True
+            t2.IsBackground = True
+            If (cnt = 1) Then
+                Console.WriteLine("Start 1 Thread")
+                t1.Start()
+            ElseIf (cnt = 2) Then
+                Console.WriteLine("Start 2 Threads")
+                t1.Start()
+                t2.Start()
+            End If
+        End If
+    End Sub
+    Private Sub ThreadTask()
+        Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
+        Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex)
+        Do
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value)
+            Thread.Sleep(TrackBar_WaitTime.Value)
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value * -1)
+        Loop
+    End Sub
+    Private Sub ThreadTask2()
+        Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex + 1)
+        Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex + 1)
+        Do
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value)
+            Thread.Sleep(TrackBar_WaitTime.Value)
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value * -1)
+        Loop
+    End Sub
 
     Private Sub frmMain_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
         OpenMEiDSDriver()
@@ -474,6 +511,14 @@ Public Class frmMain
 
     Private Sub btnAbout_Click(sender As System.Object, e As System.EventArgs) Handles btnAbout.Click
         AboutBox1.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If CheckBox1.Checked Then
+            Test(2)
+        Else
+            Test(1)
+        End If
     End Sub
 End Class
 

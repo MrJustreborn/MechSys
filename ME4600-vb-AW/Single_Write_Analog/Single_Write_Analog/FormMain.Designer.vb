@@ -25,6 +25,8 @@ Partial Class frmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.btnAbout = New System.Windows.Forms.Button()
         Me.groupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.trackbarVal = New System.Windows.Forms.TrackBar()
         Me.txtBoxPhysValue = New System.Windows.Forms.TextBox()
         Me.label6 = New System.Windows.Forms.Label()
@@ -40,8 +42,10 @@ Partial Class frmMain
         Me.label3 = New System.Windows.Forms.Label()
         Me.textBoxInfo = New System.Windows.Forms.TextBox()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.TrackBar_WaitTime = New System.Windows.Forms.TrackBar()
         Me.groupBox1.SuspendLayout()
         CType(Me.trackbarVal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TrackBar_WaitTime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAbout
@@ -58,6 +62,9 @@ Partial Class frmMain
         '
         Me.groupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.groupBox1.Controls.Add(Me.TrackBar_WaitTime)
+        Me.groupBox1.Controls.Add(Me.CheckBox1)
+        Me.groupBox1.Controls.Add(Me.Button1)
         Me.groupBox1.Controls.Add(Me.trackbarVal)
         Me.groupBox1.Controls.Add(Me.txtBoxPhysValue)
         Me.groupBox1.Controls.Add(Me.label6)
@@ -75,6 +82,25 @@ Partial Class frmMain
         Me.groupBox1.TabIndex = 23
         Me.groupBox1.TabStop = False
         Me.groupBox1.Text = " AO Subdevices "
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(445, 111)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(80, 17)
+        Me.CheckBox1.TabIndex = 15
+        Me.CheckBox1.Text = "2Threads? "
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(532, 109)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 14
+        Me.Button1.Text = "Start Test"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'trackbarVal
         '
@@ -225,6 +251,14 @@ Partial Class frmMain
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'TrackBar_WaitTime
+        '
+        Me.TrackBar_WaitTime.Location = New System.Drawing.Point(228, 109)
+        Me.TrackBar_WaitTime.Maximum = 1000
+        Me.TrackBar_WaitTime.Name = "TrackBar_WaitTime"
+        Me.TrackBar_WaitTime.Size = New System.Drawing.Size(211, 45)
+        Me.TrackBar_WaitTime.TabIndex = 16
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -244,6 +278,7 @@ Partial Class frmMain
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
         CType(Me.trackbarVal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TrackBar_WaitTime, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -265,5 +300,8 @@ Partial Class frmMain
     Private WithEvents label3 As System.Windows.Forms.Label
     Private WithEvents textBoxInfo As System.Windows.Forms.TextBox
     Private WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents TrackBar_WaitTime As System.Windows.Forms.TrackBar
 
 End Class
