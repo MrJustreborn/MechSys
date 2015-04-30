@@ -1,8 +1,0 @@
-In this directory are the following simple examples:
-
-sample1		General Example
-
-The projects are tested with MS Visual Basic 6.0 only.
-
-The example programs are shiped as is and Meilhaus 
-Electronic offers no guarantees.

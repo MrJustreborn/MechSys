@@ -1,2 +1,0 @@
-This tool is for internal
-tests only.

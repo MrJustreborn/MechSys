@@ -1,3 +1,0 @@
-After installing the board
-please run the test programm
-in the subfolder "Test".

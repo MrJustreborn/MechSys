@@ -1,9 +1,0 @@
-In this directory are the following simple examples:
-
-sample00	board information
-sample01	set/read byte
-
-The projects are tested with MS Visual Basic 6.0 only.
-
-The example programs are shiped as is and Meilhaus 
-Electronic offers no guarantees.

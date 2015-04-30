@@ -1,9 +1,0 @@
-In this directory is the following simple example:
-
-sample01	General Example
-		for a detailed explanation see the VC samples
-
-The projects is tested in Delphi 4.0 only.
-
-The example programs are shiped as is and Meilhaus 
-Electronic offers no guarantees.

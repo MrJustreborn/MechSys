@@ -1,9 +1,0 @@
-In this directory is the following simple example:
-
-sample01	board parameter and General Example
-sample02	example for interrupt on change		
-
-The projects is tested in Delphi 4.0 only.
-
-The example programs are shiped as is and Meilhaus 
-Electronic offers no guarantees.

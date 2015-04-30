@@ -6,7 +6,20 @@ Single_Write_Analog
 </name>
 </assembly>
 <members>
-<member name="F:Single_Write_Analog.Module1.meIDS.meIOSingle_t.iDevice">
+<member name="P:Single_Write_Analog.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Single_Write_Analog.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Single_Write_Analog.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:Single_Write_Analog.Module1.meIDS.meIOSingle_t.iDevice">
 	<summary>
     Index of the device to be accessed.
  </summary>
@@ -2569,19 +2582,6 @@ Single_Write_Analog
 	<seealso cref="M:Single_Write_Analog.Module1.meIDS.mePropertySetStringA(System.String,System.String)"/>
 	<seealso cref="M:Single_Write_Analog.Module1.meIDS.mePropertyGetStringA(System.String,System.Text.StringBuilder,System.Int32)"/>
 	<seealso cref="M:Single_Write_Analog.Module1.meIDS.mePropertyGetStringW(System.String,System.Text.StringBuilder,System.Int32)"/>
-</member><member name="P:Single_Write_Analog.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:Single_Write_Analog.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:Single_Write_Analog.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
 </member>
 </members>
 </doc>
