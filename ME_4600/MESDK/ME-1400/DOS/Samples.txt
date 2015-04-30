@@ -1,0 +1,13 @@
+In this directory is the following simple example:
+
+BC01	General Example for use with a DOS 
+	operating system. The program uses BIOS calls
+	to determine the hardware address and interrupt 
+	line
+BC99	Is the source code for Init16 program.
+	You can find it under .\..\tool\upward
+	
+The projects are written for Turbo C 3.1 only. 
+
+The example programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.

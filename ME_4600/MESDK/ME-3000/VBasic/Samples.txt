@@ -1,0 +1,104 @@
+In this directory are the following simple examples:
+
+sample01		General Example
+
+sample02		General Example with a better user interface
+			demonstrating the use of a callback-routine 
+			together with the me3000..Ex functions 	
+
+Sample03		Simple 'Data Scope' demonstrating the use of
+			the me4000AIContinuous function
+
+
+
+Callback-functions
+------------------
+
+Please note the following important remarks concerning the use of 
+callback-functions under Visual Basic
+
+1) 	These functions are provided by you, the user and will be called 
+	automatically by the API at the appropriate time.
+
+2)     	Callback-functions MUST be placed in a standard .BAS module (NOT 
+	in a class module or attached to a form).
+
+3) 	The 'AddressOf' keyword should be used to pass the function 
+	pointer to the ME3000 API routine.
+
+The callback-functions must have the following form:
+
+For me3000AIContinuous, me3000AIQuickEx, me3000AIMultipleEx, me3000AIScanEx:
+
+    	Public Sub Callback(ByRef piBuffer() As Integer, ByVal lSize As Long)
+	
+	Where piBuffer is a normal Basic array STARTING At INDEX 0 which contains 
+	the acquired data and lSize is the nunber of elements in this array.
+	The data can then be addresed as follows: 
+	piBuffer(0), piBuffer(1), ... piBuffer(lSize - 1)
+
+For me3000SingleEx
+
+	Public Sub Callback(ByRef piValue As Integer)
+
+	where piValue contains the single data value which has just been acquired
+
+For me3000AOContinuousEx, me3000EnableExternalInt, me3000CNTInterrupt
+
+	Public Sub Callback()
+
+
+Sample02 and Sample03 demonstrate the use of callback-functions		
+	
+
+The projects are written for Visual Basic 5.0/6.0  only.
+
+The example programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.
+
+Following functions are available only on a ME-3000 board
+and does not work with a ME-2x00.
+
+General functions
+	me3000GetVECModel(int, int *);
+
+Analog input functions
+	me3000AISetSimultaneous(int, int);
+
+Analog output functions	(nur für ME-3000 nicht für ME-2000)
+	me3000AOSetTimer(int, int);
+	me3000AOSetTrigger(int, int);
+	me3000AOClearDACFIFO(int);
+	me3000AOAddToDACFIFO(int, int);
+	me3000AOWrapAround(int);
+	me3000AOStop(int);
+	me3000AOContinuous(int, int, int, short*);
+	me3000AOStopEx(int);
+	me3000AOContinuousEx(int, int, int, short*, int, int, PVOID_PROC);
+
+PWM functions
+	me3000PWMSetMode(int, double, int, int);
+	me3000PWMStart(int);
+	me3000PWMStop(int);
+
+SIO functions
+	me3000SIOGetRegisters(int, PME3000_SIO_REGS);
+	me3000SIOLoopBackTest(int);
+	me3000SIOSetup(int, int, int, int, char);
+	me3000SIOWriteRegister(int, char, char);
+	me3000SIOReadRegister(int, char);
+	me3000SIOTransmit(int, int, int, char *);
+	me3000SIOReceive(int, int, int, char *);
+	me3000SIOOpen(int, int, int, int);
+	me3000SIOClose(int);
+	me3000SIOClearBuffer(int);
+	me3000SIOCheckBuffer(int, PME3000_SIO);
+	me3000SIOCheckError(int);
+
+Counter functions:
+	me3000CNTStart(int, int);
+	me3000CNTRead(int, int, short *);
+	me3000CNTInterrupt(int, int, int, PVOID_PROC);
+	me3000CNTReset(int, int);
+	me3000CNTSetRange(int, int, int, int);
+

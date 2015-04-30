@@ -1,0 +1,21 @@
+In this directory are the following simple examples:
+
+sample01		General Example
+
+This test program is by no means intended to provide 
+a full coverage of the WIN32 communications API. The 
+ports on the ME9100 family of boards can be programmed
+in the same way as any other standard COM port under 
+Windows NT/95/98. For more information the user should 
+refer to the information from Microsoft concerning the 
+WIN32 communications API, in particular the article 
+"Serial Communications in Win32" by Allen Denver on 
+the MSDN library, or to one of the many books which 
+cover this aspect of WIN32 programming.
+
+ 
+The projects are tested with Visual C++ 6.0 
+(professional edition) only. 
+
+The example programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.

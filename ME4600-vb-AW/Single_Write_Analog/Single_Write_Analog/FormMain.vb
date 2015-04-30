@@ -22,19 +22,11 @@ Public Class frmMain
 <<<<<<< HEAD
     Private t1 As Thread
     Private t2 As Thread
-    Private aoSubDev_t1 As AoSubdevice
-    Private aoRange_t1 As AnalogRange
-    Private aoSubDev_t2 As AoSubdevice
-    Private aoRange_t2 As AnalogRange
 
     Private Sub Test(cnt As Integer)
         If (coBoxSubDevs.SelectedIndex >= 0 And coBoxSubDevs.SelectedIndex < 3) Then
-            aoSubDev_t1 = subdeviceList(coBoxSubDevs.SelectedIndex)
-            aoRange_t1 = aoSubDev_t1.GetRange(coBoxRange.SelectedIndex)
-            aoSubDev_t2 = subdeviceList(coBoxSubDevs.SelectedIndex + 1)
-            aoRange_t2 = aoSubDev_t2.GetRange(coBoxRange.SelectedIndex)
             t1 = New Thread(AddressOf ThreadTask)
-            t2 = New Thread(AddressOf ThreadTask2)
+            t2 = New Thread(AddressOf ThreadTask)
             t1.IsBackground = True
             t2.IsBackground = True
             If (cnt = 1) Then
@@ -48,59 +40,21 @@ Public Class frmMain
         End If
     End Sub
     Private Sub ThreadTask()
-        'Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
-        'Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex)
-        Dim volt As Integer
-        Dim wait As Integer
-        wait = 1
-        volt = 1
-        WriteSingleValue(aoSubDev_t2, volt)
-        WriteSingleValue(aoSubDev_t1, volt)
+        Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
+        Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex)
         Do
-            'WriteToSubdevice(aoSubDev_t1, aoRange_t1, 10) 'trackbarVal.Value)
-            'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, 5, 5)
-            WriteSingleValue(aoSubDev_t1, -volt)
-            'Console.WriteLine("Thread1-A1: +5")
-            Thread.Sleep(wait)
-            'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, -5, 5)
-            WriteSingleValue(aoSubDev_t2, -volt)
-            'Console.WriteLine("Thread1-A2: -5")
-            Thread.Sleep(wait)
-            WriteSingleValue(aoSubDev_t1, volt)
-            'Console.WriteLine("Thread1-A1: +5")
-            Thread.Sleep(wait)
-            WriteSingleValue(aoSubDev_t2, volt)
-            'Console.WriteLine("Thread1-A2: -5")
-            Thread.Sleep(wait)
-            'WriteToSubdevice(aoSubDev_t1, aoRange_t1, -10) 'trackbarVal.Value * -1)
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value)
+            Thread.Sleep(TrackBar_WaitTime.Value)
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value * -1)
         Loop
     End Sub
     Private Sub ThreadTask2()
-        'Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
-        'Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex)
-        Dim volt As Integer
-        Dim wait As Integer
-        wait = 1
-        volt = 1
-        WriteSingleValue(aoSubDev_t2, volt)
-        WriteSingleValue(aoSubDev_t1, volt)
+        Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex + 1)
+        Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex + 1)
         Do
-            'WriteToSubdevice(aoSubDev_t1, aoRange_t1, 10) 'trackbarVal.Value)
-            'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, 5, 5)
-            WriteSingleValue(aoSubDev_t1, -volt)
-            'Console.WriteLine("Thread1-A1: +5")
-            Thread.Sleep(wait)
-            'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, -5, 5)
-            WriteSingleValue(aoSubDev_t2, -volt)
-            'Console.WriteLine("Thread1-A2: -5")
-            Thread.Sleep(wait)
-            WriteSingleValue(aoSubDev_t1, volt)
-            'Console.WriteLine("Thread1-A1: +5")
-            Thread.Sleep(wait)
-            WriteSingleValue(aoSubDev_t2, volt)
-            'Console.WriteLine("Thread1-A2: -5")
-            Thread.Sleep(wait)
-            'WriteToSubdevice(aoSubDev_t1, aoRange_t1, -10) 'trackbarVal.Value * -1)
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value)
+            Thread.Sleep(TrackBar_WaitTime.Value)
+            WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value * -1)
         Loop
     End Sub
 =======
@@ -405,7 +359,7 @@ Public Class frmMain
 
         io_single(0).iDevice = aoSubDevice.deviceIndex
         io_single(0).iSubdevice = aoSubDevice.subdevIndex
-        io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
+        io_single(0).iChannel = coBoxChannel.SelectedIndex
         io_single(0).iDir = meIDS.ME_DIR_OUTPUT
         io_single(0).iValue = valDigital
         io_single(0).iTimeOut = 0

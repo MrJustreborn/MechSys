@@ -1,0 +1,89 @@
+In this directory are the following simple examples:
+
+sample1     General Example
+sample2     Example for WriteToDisk
+sample3     Example for WrapAround (only in ME-VEC 2 and 3)
+sample4     Example for testing the counter (only in ME-VEC 1 and 3)
+sample5     Example for AIScan
+sample6     Example for AIScan in background mode
+sample7     Example for external triggering
+sample8     Example for external interrupt
+sample98    Development test module
+sample99    Development test module
+TestAppl    Source of the test program
+
+The projects using following files:
+me3000.h            header file for static DLL access
+me3000.lib          library file for static DLL access
+meDefs.h            definitions
+DLLInit.cpp         source file for dynamic DLL access
+DLLInit.h           header file for dynamic DLL access
+meDefs.h            used by DLLInit.cpp
+
+
+The programs uses dynamic function calls
+and Wrappers for all the ME3000 functions
+All Function names can be used exactly as
+they are described in the ME3000 handbook
+
+
+dynamic vs. static binding of a DLL:
+------------------------------------
+
+static binding:
+    - you have to include the me3000.lib file
+      in the project workspace
+    - then you can use every function in the DDL
+      like a locally existing function
+      (with the appropriate prototypes)
+    - in some cases there are problems with
+      different compiler versions !!!
+
+dynamic binding:
+    - you have to open a DLL with
+      "LoadLibrary"
+    - you have to get a function pointer with
+      "GetProcAddress"
+    - then you can use every DLL exported
+      function with its function pointer
+
+In this samples we have done most of the
+steps for you:
+If you would like to use static binding:
+    - include the lib file
+    - use the include file me3000.h
+    - use the compiler MS Visual C 6.00
+If you would like to use dynamic binding:
+      (All the following steps are done in
+      this example:)
+    - use the include file DLLInit.h
+    - use the function meOpen at the
+      start of the program
+    - use the function meClose at the
+      end of the program
+    - include the source code file
+      "DLLInit.cpp" in the project.  This
+      file contains the "meOpen" and
+      "meClose" functions which must be
+      called from the main program.  The
+      "meOpen" function opens the library
+      and gets the address of all the DLL
+      functions.  The "meClose" function
+      simply closes the library at the end of
+      the program.
+    - The source code file "DLLInit" also
+      has all of the "Wrapper" functions.  This
+      allows the user to use the full and proper
+      function names when calling them from the
+      main program.
+
+
+The static projects are tested with Visual
+C++ 6.0 (professional edition) only.
+For other compilers you have to use dynamic
+binding.
+The C sources are for use with Borland C++
+and Visual C++ programs.
+
+The example programs are shiped as is and Meilhaus
+Electronic offers no guarantees.

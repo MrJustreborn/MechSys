@@ -1,0 +1,217 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: DummyDLL - Win32 Release--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP40.tmp" mit Inhalten
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"Release/" /Fp"Release/sample.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"U:\SDK\ME-630\Vc\Sample90\dll_c.cpp"
+"U:\SDK\ME-630\Vc\Sample90\dll_main.cpp"
+"U:\SDK\ME-630\Vc\Sample90\dll_pascal.cpp"
+"U:\SDK\ME-630\Vc\Sample90\dll_services.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP40.tmp" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP41.tmp" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/me630.pdb" /machine:I386 /out:"Release/me630.dll" /implib:"Release/me630.lib" 
+".\Release\dll_c.obj"
+".\Release\dll_main.obj"
+".\Release\dll_pascal.obj"
+".\Release\dll_services.obj"
+]
+Erstellen der Befehlzeile "link.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP41.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+dll_c.cpp
+dll_main.cpp
+dll_pascal.cpp
+dll_services.cpp
+Linker-Vorgang läuft...
+   Bibliothek Release/me630.lib und Objekt Release/me630.exp wird erstellt
+
+
+
+<h3>Ergebnisse</h3>
+me630.dll - 0 Fehler, 0 Warnung(en)
+<h3>
+--------------------Konfiguration: DummyDLL - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP45.tmp" mit Inhalten
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"Debug/" /Fp"Debug/sample.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /c 
+"U:\SDK\ME-630\Vc\Sample90\dll_c.cpp"
+"U:\SDK\ME-630\Vc\Sample90\dll_main.cpp"
+"U:\SDK\ME-630\Vc\Sample90\dll_pascal.cpp"
+"U:\SDK\ME-630\Vc\Sample90\dll_services.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP45.tmp" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP46.tmp" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/me630.pdb" /debug /machine:I386 /out:"Debug/me630.dll" /implib:"Debug/me630.lib" 
+".\Debug\dll_c.obj"
+".\Debug\dll_main.obj"
+".\Debug\dll_pascal.obj"
+".\Debug\dll_services.obj"
+]
+Erstellen der Befehlzeile "link.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP46.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+dll_c.cpp
+dll_main.cpp
+dll_pascal.cpp
+dll_services.cpp
+Linker-Vorgang läuft...
+   Bibliothek Debug/me630.lib und Objekt Debug/me630.exp wird erstellt
+
+
+
+<h3>Ergebnisse</h3>
+me630.dll - 0 Fehler, 0 Warnung(en)
+<h3>
+--------------------Konfiguration: ME630Demo - Win32 Release--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Creating command line "rc.exe /l 0x409 /fo"Release/ME630Demo.res" /d "NDEBUG" /d "_AFXDLL" "U:\SDK\ME-630\Vc\Sample99\ME630Demo.rc"" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4A.tmp" mit Inhalten
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/ME630Demo.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"U:\SDK\ME-630\Vc\Sample99\ME630Demo.cpp"
+"U:\SDK\ME-630\Vc\Sample99\ME630DemoDlg.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4A.tmp" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4B.tmp" mit Inhalten
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/ME630Demo.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"U:\SDK\ME-630\Vc\Sample99\StdAfx.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4B.tmp" 
+Erstellen der Befehlzeile "link.exe /nologo /subsystem:windows /incremental:no /pdb:"Release/ME630Demo.pdb" /machine:I386 /out:"Release/ME630Demo.exe"  ".\Release\ME630Demo.obj" ".\Release\ME630DemoDlg.obj" ".\Release\StdAfx.obj" ".\Release\ME630Demo.res" "..\me630.lib" "
+<h3>Ausgabefenster</h3>
+Ressourcen werden kompiliert...
+Kompilierung läuft...
+StdAfx.cpp
+Kompilierung läuft...
+ME630Demo.cpp
+ME630DemoDlg.cpp
+Generieren von Code...
+Linker-Vorgang läuft...
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4D.bat" mit Inhalten
+[
+@echo off
+CopyR.bat
+]
+Erstellen der Befehlzeile "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4D.bat"
+
+        1 Datei(en) kopiert.
+
+
+
+<h3>Ergebnisse</h3>
+ME630Demo.exe - 0 Fehler, 0 Warnung(en)
+<h3>
+--------------------Konfiguration: ME630Demo - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/ME630Demo.res" /d "_DEBUG" /d "_AFXDLL" "U:\SDK\ME-630\Vc\Sample99\ME630Demo.rc"" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4E.tmp" mit Inhalten
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ME630Demo.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"U:\SDK\ME-630\Vc\Sample99\ME630Demo.cpp"
+"U:\SDK\ME-630\Vc\Sample99\ME630DemoDlg.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4E.tmp" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4F.tmp" mit Inhalten
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ME630Demo.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"U:\SDK\ME-630\Vc\Sample99\StdAfx.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP4F.tmp" 
+Erstellen der Befehlzeile "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ME630Demo.pdb" /debug /machine:I386 /out:"Debug/ME630Demo.exe" /pdbtype:sept  ".\Debug\ME630Demo.obj" ".\Debug\ME630DemoDlg.obj" ".\Debug\StdAfx.obj" ".\Debug\ME630Demo.res" "..\me630.lib" "
+<h3>Ausgabefenster</h3>
+Ressourcen werden kompiliert...
+Kompilierung läuft...
+StdAfx.cpp
+Kompilierung läuft...
+ME630Demo.cpp
+ME630DemoDlg.cpp
+Generieren von Code...
+Linker-Vorgang läuft...
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP51.bat" mit Inhalten
+[
+@echo off
+CopyD.bat
+]
+Erstellen der Befehlzeile "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP51.bat"
+
+###########################################################
+### This is a debug version                             ###
+###########################################################
+
+
+
+<h3>Ergebnisse</h3>
+ME630Demo.exe - 0 Fehler, 0 Warnung(en)
+<h3>
+--------------------Konfiguration: Sample - Win32 Release--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP52.tmp" mit Inhalten
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/Sample.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"U:\SDK\ME-630\Vc\DLLInit.cpp"
+"U:\SDK\ME-630\Vc\Sample98\Sample.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP52.tmp" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP53.tmp" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/Sample.pdb" /machine:I386 /out:"Release/Sample.exe" 
+".\Release\DLLInit.obj"
+".\Release\Sample.obj"
+]
+Erstellen der Befehlzeile "link.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP53.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+DLLInit.cpp
+Sample.cpp
+Linker-Vorgang läuft...
+
+
+
+<h3>Ergebnisse</h3>
+Sample.exe - 0 Fehler, 0 Warnung(en)
+<h3>
+--------------------Konfiguration: Sample - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP55.tmp" mit Inhalten
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/Sample.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"U:\SDK\ME-630\Vc\DLLInit.cpp"
+"U:\SDK\ME-630\Vc\Sample98\Sample.cpp"
+]
+Creating command line "cl.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP55.tmp" 
+Erstellen der temporären Datei  "G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP56.tmp" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/Sample.pdb" /debug /machine:I386 /out:"Debug/Sample.exe" /pdbtype:sept 
+".\Debug\DLLInit.obj"
+".\Debug\Sample.obj"
+]
+Erstellen der Befehlzeile "link.exe @G:\DOKUME~1\abernau\LOKALE~1\Temp\RSP56.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+DLLInit.cpp
+Sample.cpp
+Linker-Vorgang läuft...
+
+
+
+<h3>Ergebnisse</h3>
+Sample.exe - 0 Fehler, 0 Warnung(en)
+</pre>
+</body>
+</html>

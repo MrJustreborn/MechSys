@@ -1,0 +1,6 @@
+In this directory are several tools.
+Please see the readme.txt file in the 
+appropriate directories.
+
+The tool programs are shiped as is and Meilhaus 
+Electronic offers no guarantees.

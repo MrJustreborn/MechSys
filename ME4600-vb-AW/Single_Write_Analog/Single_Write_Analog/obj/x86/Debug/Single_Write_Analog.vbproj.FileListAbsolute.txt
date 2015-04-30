@@ -19,6 +19,7 @@ E:\Dev\FH\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\D
 E:\Dev\FH\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.frmMain.resources
 E:\Dev\FH\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.Resources.resources
 E:\Dev\FH\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.vbproj.GenerateResource.Cache
+<<<<<<< HEAD
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.exe
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.xml
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.pdb
@@ -31,3 +32,5 @@ E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Si
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.vbproj.GenerateResource.Cache
 =======
 >>>>>>> parent of 8eb086d... Thread test
+=======
+>>>>>>> parent of 901c570... Änderungen aus der letzten std
