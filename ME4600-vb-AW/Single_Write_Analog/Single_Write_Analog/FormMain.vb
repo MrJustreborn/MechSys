@@ -13,13 +13,12 @@
 '              - Close main driver when program is closed
 '==============================================================================
 Imports System.Text  'for using StringBuilder
-
+Imports System.Threading
 
 Public Class frmMain
     Private openErrSuccess As Integer = Constants.ME_IDS_NOTOPENED
     Private lineNumber As Integer
     Private subdeviceList As New List(Of AoSubdevice)
-<<<<<<< HEAD
     Private t1 As Thread
     Private t2 As Thread
 
@@ -57,8 +56,6 @@ Public Class frmMain
             WriteToSubdevice(aoSubDev, aoRange, trackbarVal.Value * -1)
         Loop
     End Sub
-=======
->>>>>>> parent of 8eb086d... Thread test
 
     Private Sub frmMain_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
         OpenMEiDSDriver()
@@ -514,6 +511,14 @@ Public Class frmMain
 
     Private Sub btnAbout_Click(sender As System.Object, e As System.EventArgs) Handles btnAbout.Click
         AboutBox1.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If CheckBox1.Checked Then
+            Test(2)
+        Else
+            Test(1)
+        End If
     End Sub
 End Class
 
