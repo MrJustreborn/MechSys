@@ -6,6 +6,8 @@
     Private max_steps_y As Integer
     Private max_x As Integer 'die cm des blattes warscheinlich A4
     Private max_y As Integer
+    Private steps_per_cm_x As Integer
+    Private steps_per_cm_y As Integer
 
     Private xMotor As List(Of Integer())
     Private yMotor As List(Of Integer())
@@ -43,6 +45,19 @@
     Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
         'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
         Me.datasCM = datas
+        Me.calDatas()
+    End Sub
+    Private Sub calDatas()
+        Dim pos As Integer
+        Dim xStep As Integer
+        Dim yStep As Integer
+        pos = 0
+        Do
+            xStep = Me.datasCM.Item(pos)(1) * steps_per_cm_x
+            yStep = Me.datasCM.Item(pos)(2) * steps_per_cm_y
+            Me.datasSteps.Add({Me.datasCM.Item(pos)(0), xStep, yStep})
+            pos += 1
+        Loop Until pos = Me.datasCM.Count
     End Sub
 
     Public Function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
