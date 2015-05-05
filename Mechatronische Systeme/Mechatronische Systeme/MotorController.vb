@@ -9,6 +9,8 @@
     Private steps_per_cm_x As Integer
     Private steps_per_cm_y As Integer
 
+    Private cur_item As Integer
+
     Private xMotor As List(Of Integer())
     Private yMotor As List(Of Integer())
     Private cur_x As Integer
@@ -28,7 +30,7 @@
         yMotor.Add({5, -5})
         yMotor.Add({-5, -5})
         yMotor.Add({-5, 5})
-
+        cur_item = 0
     End Sub
     Public Shared ReadOnly Property getInstance() As MotorController
         Get
@@ -61,7 +63,9 @@
     End Sub
 
     Public Function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
-
+        Me.move(Me.datasSteps.Item(cur_item)(1), Me.datasSteps.Item(cur_item)(2), Me.datasSteps.Item(cur_item)(0))
+        cur_item += 1
+        Return Not (cur_item = Me.datasSteps.Count)
     End Function
 
 
@@ -69,7 +73,7 @@
         'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
     End Sub
 
-    Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer)
+    Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 0
 
         Do Until steps = 0
             steps -= 1
@@ -81,7 +85,7 @@
             cur_x = cur_x Mod xMotor.Count
         Loop
     End Sub
-    Private Sub yMove(ByVal steps As Integer, ByVal speed As Integer)
+    Private Sub yMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 1
 
         Do Until steps = 0
             steps -= 1
