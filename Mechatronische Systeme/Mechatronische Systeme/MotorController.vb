@@ -1,23 +1,81 @@
 ﻿Public Class MotorController
-	Private datas As List(Of Integer())
-	Private max_steps_x As Integer
-	Private max_steps_y As Integer
-	Private max_x As Integer 'die cm des blattes warscheinlich A4
-	Private max_y As Integer
+    Private Shared instance As MotorController
+    Private datasCM As List(Of Integer())
+    Private datasSteps As List(Of Integer())
+    Private max_steps_x As Integer
+    Private max_steps_y As Integer
+    Private max_x As Integer 'die cm des blattes warscheinlich A4
+    Private max_y As Integer
 
-	'konstruktor als singelton
+    Private xMotor As List(Of Integer())
+    Private yMotor As List(Of Integer())
+    Private cur_x As Integer
+    Private cur_y As Integer
 
-	Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
-	End Sub
-	
-	Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
-		'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
-	End Sub
+    'konstruktor als singelton
+    Private Sub New()
+        xMotor = New List(Of Integer())
+        yMotor = New List(Of Integer())
 
-	Public function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
-	End function
-	
-	Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
-		'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
-	End Sub
+        xMotor.Add({5, 5})
+        xMotor.Add({5, -5})
+        xMotor.Add({-5, -5})
+        xMotor.Add({-5, 5})
+
+        yMotor.Add({5, 5})
+        yMotor.Add({5, -5})
+        yMotor.Add({-5, -5})
+        yMotor.Add({-5, 5})
+
+    End Sub
+    Public Shared ReadOnly Property getInstance() As MotorController
+        Get
+            If IsNothing(instance) Then
+                instance = New MotorController()
+            End If
+            Return instance
+        End Get
+    End Property
+
+    Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
+    End Sub
+
+    Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
+        'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
+        Me.datasCM = datas
+    End Sub
+
+    Public Function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
+
+    End Function
+
+
+    Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
+        'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
+    End Sub
+
+    Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer)
+
+        Do Until steps = 0
+            steps -= 1
+            'wait
+            xMotor.Item(cur_x)(0) 'ausgang 1 motorx
+            xMotor.Item(cur_x)(1) 'ausgang 2 motorx
+
+            cur_x += 1
+            cur_x = cur_x Mod xMotor.Count
+        Loop
+    End Sub
+    Private Sub yMove(ByVal steps As Integer, ByVal speed As Integer)
+
+        Do Until steps = 0
+            steps -= 1
+            'wait
+            yMotor.Item(cur_y)(0) 'ausgang 3 motory
+            yMotor.Item(cur_y)(1) 'ausgang 4 motory
+
+            cur_y += 1
+            cur_y = cur_y Mod yMotor.Count
+        Loop
+    End Sub
 End Class
