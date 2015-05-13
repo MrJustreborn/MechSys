@@ -1,6 +1,7 @@
 ﻿Public Class MainView
     Private filepath As String
     Private con As Controller
+    Private moCon As MotorController
 
 
     Private Sub DruckerdateiLadenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItm_1.Click
@@ -82,5 +83,16 @@
 
     End Sub
 
-
+    Private Sub start_plotter()
+        moCon.start()
+    End Sub
+    Private Sub stop_plotter()
+        moCon.break()
+    End Sub
+    Private Sub pause_plotter()
+        moCon.pause()
+    End Sub
+    Private Sub unpause_plotter()
+        moCon.unpause()
+    End Sub
 End Class

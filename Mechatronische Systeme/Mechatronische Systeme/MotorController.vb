@@ -101,7 +101,7 @@ Public Class MotorController
     Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
         'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
     End Sub
-
+    'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
     Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 0
 
         Do Until steps = 0
