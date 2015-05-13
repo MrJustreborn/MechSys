@@ -83,6 +83,10 @@
 
     End Sub
 
+    'Schnittstelle für Motorcontroller
+    Private Sub set_plotter_data(datas As List(Of Integer()))
+        moCon.setDatas(datas)
+    End Sub
     Private Sub start_plotter()
         moCon.start()
     End Sub

@@ -75,6 +75,7 @@ Public Class MotorController
     End Sub
     Public Sub break()
         running = False
+        'motoren resetten etc
     End Sub
     Public Sub pause()
         running_pause = True
