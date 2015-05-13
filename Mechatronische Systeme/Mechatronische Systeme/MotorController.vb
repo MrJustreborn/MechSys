@@ -1,4 +1,6 @@
-﻿Public Class MotorController
+﻿Imports System.Threading
+
+Public Class MotorController
     Private Shared instance As MotorController
     Private datasCM As List(Of Integer())
     Private datasSteps As List(Of Integer())
@@ -62,7 +64,34 @@
         Loop Until pos = Me.datasCM.Count
     End Sub
 
-    Public Function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
+    Private running As Boolean = False
+    Private running_pause As Boolean = False
+    Private main_thread As Thread
+    Public Sub start()
+        running = True
+        main_thread = New Thread(AddressOf main)
+        main_thread.IsBackground = True
+        main_thread.Start()
+    End Sub
+    Public Sub break()
+        running = False
+    End Sub
+    Public Sub pause()
+        running_pause = True
+    End Sub
+    Public Sub unpause()
+        running_pause = False
+    End Sub
+
+    Private Sub main()
+        While running And drawNext()
+            While running_pause
+                Thread.Sleep(1)
+            End While
+        End While
+    End Sub
+
+    Private Function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
         Me.move(Me.datasSteps.Item(cur_item)(1), Me.datasSteps.Item(cur_item)(2), Me.datasSteps.Item(cur_item)(0))
         cur_item += 1
         Return Not (cur_item = Me.datasSteps.Count)
