@@ -68,7 +68,11 @@
 
     Public Function getDatas() As List(Of Integer())
         Dim result As List(Of Integer())
-        result = Me.datas
+        result = New List(Of Integer())
+        'result = Me.datas 'TODO: func für deep-copy
+        For Each item In Me.datas 'temporaly workaround...
+            result.Add(item.Clone())
+        Next
         Me.datas = Nothing
         Return result
     End Function
