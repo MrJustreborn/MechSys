@@ -29,7 +29,7 @@ Public Class Parser
     Public Function parseFile(ByVal filepath As String) As List(Of Integer())
         Try
             fileReader = New StreamReader(filepath)
-
+           
             Do While fileReader.Peek() >= 0
                 read()
             Loop

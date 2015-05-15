@@ -3,6 +3,8 @@
 Public Class Drawing_to_file
     Private p_end As Point
     Private line_insert As Integer = 0
+
+    Private last_drawing_steps As Integer = 0
     Private insert_steps_list As List(Of Integer)
     Private write As Boolean = False
     Private fileWriter As IO.StreamWriter
@@ -33,23 +35,27 @@ Public Class Drawing_to_file
     End Sub
 
     Public Sub save_drawing_steps(ByVal p_start As Point, ByVal p_end As Point)
-
+        Me.last_drawing_steps = Me.line_insert
+        Me.line_insert = 0
         Me.write_no_drawed_line(p_start)
         Me.write_drawed_line(p_end)
+        '       Me.line_insert += 1
         Me.line_insert += 1
-        Me.insert_steps_list.Add(Me.line_insert)
-        Me.line_insert = 0
+        '        Me.insert_steps_list.Add(Me.line_insert)
+        'Me.line_insert = 0
         Me.p_end = p_end
         
     End Sub
 
     Public Sub save_drawing_steps(ByVal middle As Point, ByVal point As Point, ByVal swapAngle As Integer)
-
+        Me.last_drawing_steps = Me.line_insert
+        Me.line_insert = 0
         Me.write_no_drawed_line(point)
         Me.write_drawed_circle(middle, swapAngle)
         Me.line_insert += 1
-        Me.insert_steps_list.Add(Me.line_insert)
-        Me.line_insert = 0
+        '     Me.line_insert += 1
+        '    Me.insert_steps_list.Add(Me.line_insert)
+        ' Me.line_insert = 0
         Me.p_end = point
         
     End Sub
@@ -57,7 +63,7 @@ Public Class Drawing_to_file
     Private Sub write_drawed_circle(ByVal middle As Point, ByVal swapAngle As Integer)
         Dim txt As String
         Me.fileWriter = My.Computer.FileSystem.OpenTextFileWriter(Me._path, True)
-        txt = "CS " + (middle.X * 10).ToString + ", " + (middle.Y * 10).ToString + ", " + swapAngle.ToString
+        txt = "CS " + (middle.X * 10).ToString + ", " + (middle.Y * 10).ToString + ", " + (swapAngle * 10).ToString
         Me.fileWriter.WriteLine(txt)
         Me.fileWriter.Close()
     End Sub
@@ -85,6 +91,7 @@ Public Class Drawing_to_file
 
             Me.p_end = point
             Me.line_insert += 3
+
         End If
 
     End Sub
@@ -103,37 +110,35 @@ Public Class Drawing_to_file
     End Sub
 
     Public Sub back()
-        Dim tmp As Integer 'letzter Wert im insert_steps_array
+        'Dim tmp As Integer 'letzter Wert im insert_steps_array
         Dim insert_lines() As String  'speichert die eingefügten Zeilen aus der temp - Datei
         Dim list As New List(Of String)
         Dim writer As StreamWriter
 
+        Me.last_drawing_steps = Me.line_insert
 
 
-        If Me.insert_steps_list.Count > 0 Then
-            Try
-                tmp = Me.insert_steps_list.Last
-                insert_lines = IO.File.ReadAllLines(Me._path)
-                list = insert_lines.ToList()
+        Try
+            insert_lines = IO.File.ReadAllLines(Me._path)
+            list = insert_lines.ToList()
 
-                For index As Integer = 1 To tmp
-                    list.RemoveAt(list.Count - 1)
-                Next
-
+            Console.WriteLine(Me.last_drawing_steps)
+            Console.WriteLine(list.Count)
+            Console.WriteLine(Me.line_insert)
+            If (Me.last_drawing_steps > 0 And Me.last_drawing_steps <= list.Count) Then
                 Me.delete_file()
                 Me.createFile()
                 writer = New StreamWriter(Me._path)
-
-                For Each item In list
-                    writer.WriteLine(item)
+                For I As Integer = 0 To list.Count - (Me.last_drawing_steps + 1)
+                    writer.WriteLine(list(I))
                 Next
-                writer.Flush()
+                Me.last_drawing_steps = 0
                 writer.Close()
-                Me.insert_steps_list.RemoveAt(insert_steps_list.Count - 1)
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
-        End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
 
 
     End Sub

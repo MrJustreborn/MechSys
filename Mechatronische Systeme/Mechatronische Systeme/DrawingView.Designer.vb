@@ -22,6 +22,7 @@ Partial Class DrawingView
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DrawingView))
         Me.Btn_save = New System.Windows.Forms.Button()
         Me.Btn_cancel = New System.Windows.Forms.Button()
@@ -34,24 +35,31 @@ Partial Class DrawingView
         Me.Group_1 = New System.Windows.Forms.GroupBox()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.Lbl_description = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Lbl_order = New System.Windows.Forms.Label()
+        Me.tip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Btn_save
         '
-        Me.Btn_save.Location = New System.Drawing.Point(11, 315)
+        Me.Btn_save.Location = New System.Drawing.Point(9, 397)
         Me.Btn_save.Name = "Btn_save"
         Me.Btn_save.Size = New System.Drawing.Size(95, 29)
         Me.Btn_save.TabIndex = 0
         Me.Btn_save.Text = "Speichern"
+        Me.tip1.SetToolTip(Me.Btn_save, "Hier koennen Sie Ihr Werk abspeichern")
         Me.Btn_save.UseVisualStyleBackColor = True
         '
         'Btn_cancel
         '
-        Me.Btn_cancel.Location = New System.Drawing.Point(233, 315)
+        Me.Btn_cancel.Location = New System.Drawing.Point(231, 397)
         Me.Btn_cancel.Name = "Btn_cancel"
         Me.Btn_cancel.Size = New System.Drawing.Size(95, 29)
         Me.Btn_cancel.TabIndex = 1
         Me.Btn_cancel.Text = "Abbrechen"
+        Me.tip1.SetToolTip(Me.Btn_cancel, "Hier koennen Sie zum Hauptprogramm zurueckkehren; die Daten werden dabei nicht ge" & _
+        "speichert")
         Me.Btn_cancel.UseVisualStyleBackColor = True
         '
         'Btn_back
@@ -71,6 +79,7 @@ Partial Class DrawingView
         Me.Btn_line.Name = "Btn_line"
         Me.Btn_line.Size = New System.Drawing.Size(36, 29)
         Me.Btn_line.TabIndex = 4
+        Me.tip1.SetToolTip(Me.Btn_line, """Linie""")
         Me.Btn_line.UseVisualStyleBackColor = True
         '
         'Btn_circle
@@ -80,38 +89,42 @@ Partial Class DrawingView
         Me.Btn_circle.Name = "Btn_circle"
         Me.Btn_circle.Size = New System.Drawing.Size(36, 29)
         Me.Btn_circle.TabIndex = 5
+        Me.tip1.SetToolTip(Me.Btn_circle, "Viertelkreis")
         Me.Btn_circle.UseVisualStyleBackColor = True
         '
         'Btn_import
         '
-        Me.Btn_import.Location = New System.Drawing.Point(121, 315)
+        Me.Btn_import.Location = New System.Drawing.Point(119, 397)
         Me.Btn_import.Name = "Btn_import"
         Me.Btn_import.Size = New System.Drawing.Size(104, 29)
         Me.Btn_import.TabIndex = 6
         Me.Btn_import.Text = "Drucken"
+        Me.tip1.SetToolTip(Me.Btn_import, "Hier koennen Sie Ihr Werk ausdrucken lassen, die Datei wird jedoch nicht gespeich" & _
+        "ert")
         Me.Btn_import.UseVisualStyleBackColor = True
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(289, 204)
+        Me.Label1.Location = New System.Drawing.Point(270, 204)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.Size = New System.Drawing.Size(56, 13)
         Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Label1"
+        Me.Label1.Text = "X - Achse:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(289, 267)
+        Me.Label2.Location = New System.Drawing.Point(272, 248)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.Size = New System.Drawing.Size(56, 13)
         Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Label2"
+        Me.Label2.Text = "Y - Achse:"
         '
         'Group_1
         '
         Me.Group_1.BackColor = System.Drawing.Color.Black
+        Me.Group_1.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Group_1.ForeColor = System.Drawing.Color.White
         Me.Group_1.Location = New System.Drawing.Point(12, 17)
         Me.Group_1.Name = "Group_1"
@@ -132,12 +145,32 @@ Partial Class DrawingView
         Me.Lbl_description.Size = New System.Drawing.Size(0, 13)
         Me.Lbl_description.TabIndex = 12
         '
-        'Zeichnung
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Lbl_order)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 298)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(342, 80)
+        Me.GroupBox1.TabIndex = 13
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Anweisung fuer den naechsten Schritt"
+        '
+        'Lbl_order
+        '
+        Me.Lbl_order.AutoSize = True
+        Me.Lbl_order.Location = New System.Drawing.Point(6, 25)
+        Me.Lbl_order.Name = "Lbl_order"
+        Me.Lbl_order.Size = New System.Drawing.Size(290, 13)
+        Me.Lbl_order.TabIndex = 0
+        Me.Lbl_order.Text = "Klicken Sie zum Zeichnen auf die Linie bzw. den Viertelkreis"
+        '
+        'DrawingView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(379, 353)
+        Me.ClientSize = New System.Drawing.Size(356, 438)
         Me.ControlBox = False
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Lbl_description)
         Me.Controls.Add(Me.Group_1)
         Me.Controls.Add(Me.Label2)
@@ -148,8 +181,10 @@ Partial Class DrawingView
         Me.Controls.Add(Me.Btn_back)
         Me.Controls.Add(Me.Btn_cancel)
         Me.Controls.Add(Me.Btn_save)
-        Me.Name = "Zeichnung"
+        Me.Name = "DrawingView"
         Me.Text = "Zeichnung"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -165,4 +200,7 @@ Partial Class DrawingView
     Friend WithEvents Group_1 As System.Windows.Forms.GroupBox
     Friend WithEvents SaveFileDialog As System.Windows.Forms.SaveFileDialog
     Friend WithEvents Lbl_description As System.Windows.Forms.Label
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents Lbl_order As System.Windows.Forms.Label
+    Friend WithEvents tip1 As System.Windows.Forms.ToolTip
 End Class

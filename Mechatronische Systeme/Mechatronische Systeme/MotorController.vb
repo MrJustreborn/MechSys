@@ -108,8 +108,8 @@ Public Class MotorController
         Do Until steps = 0
             steps -= 1
             'wait
-            xMotor.Item(cur_x)(0) 'ausgang 1 motorx
-            xMotor.Item(cur_x)(1) 'ausgang 2 motorx
+            'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
+            'xMotor.Item(cur_x)(1) 'ausgang 2 motorx
 
             cur_x += 1
             cur_x = cur_x Mod xMotor.Count
@@ -120,8 +120,8 @@ Public Class MotorController
         Do Until steps = 0
             steps -= 1
             'wait
-            yMotor.Item(cur_y)(0) 'ausgang 3 motory
-            yMotor.Item(cur_y)(1) 'ausgang 4 motory
+            ' yMotor.Item(cur_y)(0) 'ausgang 3 motory
+            'yMotor.Item(cur_y)(1) 'ausgang 4 motory
 
             cur_y += 1
             cur_y = cur_y Mod yMotor.Count

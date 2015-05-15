@@ -5,7 +5,7 @@
     Private cur_y As Integer
     Private radius_circle As Integer 'Radius für den gezeichneten Kreis in der Drawing View 
 
-   
+
 
     Private Sub New()
         datas = New List(Of Integer())
@@ -23,6 +23,12 @@
 
     Public Sub addPA(ByVal x As Integer, ByVal y As Integer, ByVal status As Boolean)
         Dim arr(2) As Integer
+
+        If (Me.datas Is Nothing) Then
+            Me.datas = New List(Of Integer())
+            cur_x = 0
+            cur_y = 0
+        End If
         arr(0) = status
         arr(1) = x - cur_x
         arr(2) = y - cur_y
@@ -46,7 +52,7 @@
 
         radius = Math.Sqrt(Math.Pow(Math.Abs(x - cur_x), 2) + Math.Pow(Math.Abs(y - cur_y), 2))
 
-	Dim offset As Single
+        Dim offset As Single
         offset = Math.Atan((cur_y - y) / (cur_x - x))
 
         beta = (phi2 / phi2) / tune

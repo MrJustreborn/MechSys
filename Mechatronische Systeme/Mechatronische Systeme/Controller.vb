@@ -6,12 +6,14 @@
     Private parser As Parser
     Private drawing_file As Drawing_to_file
     Private calc As Calculator
+    Private moCon As MotorController
     Private list As List(Of Integer())
 
     Private Sub New()
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
         Me.drawing_file = Drawing_to_file.getInstance
+        Me.moCon = MotorController.getInstance
         Me.calc = Calculator.getInstance
     End Sub
 
@@ -28,7 +30,17 @@
         Me.list = Me.parser.parseFile(filepath)
     End Sub
 
+    Public Sub start_printing_from_drawingView()
+        Dim path As String
+        path = Me.getPath()
+        Me.parse(path)
+        If (Me.list.Count > 0) Then
+            Me.start_plotter()
+        Else
+            MsgBox("Der Printvorgang kann nicht gestartet werden, da Sie nichts gezeichnet haben")
+        End If
 
+    End Sub
     Public Sub load_settings(ByVal form As Settings)
         Dim x_motor, y_motor, tuning As String
         x_motor = Me.settings.getX_motor()
@@ -157,6 +169,10 @@
         Me.showDrawing(Me.drawing_file.getPath())
     End Sub
 
+    Public Function getPath() As String
+        Return Me.drawing_file.getPath()
+    End Function
+
 
     Public Sub draw_circle_drawingView(ByVal middle As Point, ByVal point As Point, ByVal swapAngle As Integer)
         Dim rect As Rectangle
@@ -164,6 +180,9 @@
 
         rect = Me.calc.calcRectangle(middle, point)
         startAngle = Me.calc.calc_startAngle(middle.X, point.X)
+        If (middle.Y < point.Y) Then
+            startAngle += 180
+        End If
         Me.drawing_file.save_drawing_steps(middle, point, swapAngle)
         Me.drawCircle_drawingView(rect, startAngle, swapAngle)
 
@@ -173,4 +192,23 @@
     Private Sub drawCircle_drawingView(ByVal rect As Rectangle, ByVal startAngle As Single, ByVal swapAngle As Single)
         Me.drawing_form.draw_circle(rect, startAngle, swapAngle)
     End Sub
+
+    Public Sub stop_plotter()
+        Me.moCon.break()
+    End Sub
+
+    Public Sub pause_plotter()
+        Me.moCon.pause()
+    End Sub
+
+    Public Sub unpause_plotter()
+        Me.moCon.unpause()
+    End Sub
+
+    Public Sub start_plotter()
+        Me.moCon.setDatas(Me.list)
+        Me.moCon.start()
+    End Sub
 End Class
+
+

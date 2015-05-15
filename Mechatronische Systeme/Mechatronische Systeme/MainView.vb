@@ -2,10 +2,12 @@
     Private filepath As String
     Private con As Controller
     Private moCon As MotorController
+    Private plotterPause As Boolean = True
 
 
     Private Sub DruckerdateiLadenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItm_1.Click
         If (Opn_filepath.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
+            Me.Refresh()
             filepath = Opn_filepath.FileName
             Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: " + filepath
             Me.con.showPreview(filepath)
@@ -13,21 +15,22 @@
     End Sub
 
     Private Sub Btn_start_Click(sender As System.Object, e As System.EventArgs) Handles Btn_start.Click
-        If Not (filepath Is Nothing) Then
+        Me.start_plotter()
+    End Sub
 
+    Public Sub start_plotter()
+        If Not (filepath Is Nothing) Then
 
             disable_ToolStripItm()
             switch_disable_buttons()
+            ' Me.con.start_plotter()
 
         Else
             MsgBox("Wählen Sie bitte zuerst eine Datei aus, bevor Sie das Drucken anfangen wollen!")
 
         End If
-       
-
     End Sub
 
-   
     Private Sub EinstellungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItm_2.Click
         Settings.Show()
     End Sub
@@ -49,6 +52,7 @@
 
 
     Public Sub draw_preview(ByVal p_old As Point, ByVal p_new As Point)
+
         Me.Group_1.CreateGraphics.DrawLine(Pens.White, p_old.X, p_old.Y, p_new.X, p_new.Y)
     End Sub
 
@@ -57,7 +61,14 @@
     End Sub
 
     Private Sub Btn_pause_Click(sender As System.Object, e As System.EventArgs) Handles Btn_pause.Click
-        switch_disable_buttons()
+        If (Me.plotterPause) Then
+            '  Me.con.unpause_plotter()
+            Me.Btn_pause.Text = "Fortfahren"
+        Else
+            ' Me.con.pause_plotter()
+            Me.Btn_pause.Text = "Pause"
+        End If
+        Me.plotterPause = Not Me.plotterPause
     End Sub
 
     Public Sub Progress(ByVal value As Integer)
@@ -78,7 +89,7 @@
     End Sub
 
 
-    
+
     Private Sub Group_1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Group_1.Enter
 
     End Sub
@@ -87,16 +98,13 @@
     Private Sub set_plotter_data(datas As List(Of Integer()))
         moCon.setDatas(datas)
     End Sub
-    Private Sub start_plotter()
-        moCon.start()
+   
+    Public Sub setFilepath(ByVal filepath As String)
+        Me.filepath = filepath
     End Sub
-    Private Sub stop_plotter()
-        moCon.break()
-    End Sub
-    Private Sub pause_plotter()
-        moCon.pause()
-    End Sub
-    Private Sub unpause_plotter()
-        moCon.unpause()
+   
+
+    Private Sub Btn_stop_Click(sender As Object, e As EventArgs) Handles Btn_stop.Click
+        Me.con.stop_plotter()
     End Sub
 End Class
