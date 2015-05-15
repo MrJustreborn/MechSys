@@ -29,7 +29,9 @@
     Private Sub parse(ByVal filepath As String)
         Me.list = Me.parser.parseFile(filepath)
     End Sub
-
+    Public Sub refreshPreview()
+        Me.main_form.Refresh()
+    End Sub
     Public Sub start_printing_from_drawingView()
         Dim path As String
         path = Me.getPath()

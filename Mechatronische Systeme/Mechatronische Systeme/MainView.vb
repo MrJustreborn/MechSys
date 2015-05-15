@@ -39,7 +39,7 @@
         Me.Btn_pause.Enabled = Not (Me.Btn_pause.Enabled)
         Me.Btn_start.Enabled = Not (Me.Btn_start.Enabled)
     End Sub
-
+  
     Private Sub disable_ToolStripItm()
         Me.ToolStripMenuItm_1.Enabled = False
         Me.ToolStripMenuItm_2.Enabled = False
@@ -49,7 +49,7 @@
         Me.ToolStripMenuItm_1.Enabled = True
         Me.ToolStripMenuItm_2.Enabled = True
     End Sub
-
+   
 
     Public Sub draw_preview(ByVal p_old As Point, ByVal p_new As Point)
 

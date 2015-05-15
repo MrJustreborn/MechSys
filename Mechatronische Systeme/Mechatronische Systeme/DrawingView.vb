@@ -95,6 +95,7 @@
         If (SaveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
             filepath = SaveFileDialog.FileName
             Me.con.save_drawing_to_file(filepath)
+            Me.con.refreshPreview()
             Me.con.showPreview(filepath)
             Me.Hide()
         End If
