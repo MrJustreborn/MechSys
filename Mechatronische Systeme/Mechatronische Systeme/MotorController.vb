@@ -108,6 +108,8 @@ Public Class MotorController
         Do Until steps = 0
             steps -= 1
             'wait
+            xmw()
+
             'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
             'xMotor.Item(cur_x)(1) 'ausgang 2 motorx
 
@@ -120,6 +122,8 @@ Public Class MotorController
         Do Until steps = 0
             steps -= 1
             'wait
+            ymw()
+
             ' yMotor.Item(cur_y)(0) 'ausgang 3 motory
             'yMotor.Item(cur_y)(1) 'ausgang 4 motory
 
@@ -127,4 +131,21 @@ Public Class MotorController
             cur_y = cur_y Mod yMotor.Count
         Loop
     End Sub
+
+
+    Private xmw As Integer = 3500000
+    Private ymw As Integer = 3500000
+    Private Sub xMinWait()
+        Dim t As Integer = 0
+        Loop
+	    t+=1
+        Until t>=xmw
+    End Sub
+    Private Sub yMinWait()
+        Dim t As Integer = 0
+        Loop
+	    t+=1
+        Until t>=ymw
+    End Sub
+
 End Class
