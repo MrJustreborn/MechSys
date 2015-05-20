@@ -53,14 +53,21 @@ Public Class frmMain
         Dim wait As Integer
         Dim wait_b As Integer
         Dim wait_a As Integer
-        wait_b = 1000000
+
+        Dim cnt As Integer
+        Dim max As Integer
+        cnt = 800 / 4
+        max = 0
+
+        wait_b = 3500000
         wait_a = 0
 
         wait = 1
-        volt = 1
+        volt = 5
         WriteSingleValue(aoSubDev_t2, volt)
         WriteSingleValue(aoSubDev_t1, volt)
         Do
+            max += 1
             'WriteToSubdevice(aoSubDev_t1, aoRange_t1, 10) 'trackbarVal.Value)
             'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, 5, 5)
             WriteSingleValue(aoSubDev_t1, -volt)
@@ -70,30 +77,30 @@ Public Class frmMain
                 wait_a += 1
             Loop Until wait_a >= wait_b
             wait_a = 0
-        'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, -5, 5)
-        WriteSingleValue(aoSubDev_t2, -volt)
-        'Console.WriteLine("Thread1-A2: -5")
+            'ConvertPhysicalToDigital(aoSubDev_t1, aoRange_t1, -5, 5)
+            WriteSingleValue(aoSubDev_t2, -volt)
+            'Console.WriteLine("Thread1-A2: -5")
             'Thread.Sleep(wait)
             Do
                 wait_a += 1
             Loop Until wait_a >= wait_b
             wait_a = 0
-        WriteSingleValue(aoSubDev_t1, volt)
-        'Console.WriteLine("Thread1-A1: +5")
+            WriteSingleValue(aoSubDev_t1, volt)
+            'Console.WriteLine("Thread1-A1: +5")
             'Thread.Sleep(wait)
             Do
                 wait_a += 1
             Loop Until wait_a >= wait_b
             wait_a = 0
-        WriteSingleValue(aoSubDev_t2, volt)
-        'Console.WriteLine("Thread1-A2: -5")
+            WriteSingleValue(aoSubDev_t2, volt)
+            'Console.WriteLine("Thread1-A2: -5")
             'Thread.Sleep(wait)
             Do
                 wait_a += 1
             Loop Until wait_a >= wait_b
             wait_a = 0
-        'WriteToSubdevice(aoSubDev_t1, aoRange_t1, -10) 'trackbarVal.Value * -1)
-        Loop
+            'WriteToSubdevice(aoSubDev_t1, aoRange_t1, -10) 'trackbarVal.Value * -1)
+        Loop Until max = cnt
     End Sub
     Private Sub ThreadTask2()
         'Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
