@@ -44,4 +44,8 @@
     Private Sub Scroll_1_Scroll(sender As System.Object, e As System.Windows.Forms.ScrollEventArgs) Handles Scroll_1.Scroll
         Me.Lbl_4.Text = "Wert: " + Me.Scroll_1.Value.ToString
     End Sub
+
+    Private Sub Lbl_1_Click(sender As Object, e As EventArgs) Handles Lbl_1.Click
+
+    End Sub
 End Class

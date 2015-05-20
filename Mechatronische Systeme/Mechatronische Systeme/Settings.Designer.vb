@@ -38,9 +38,9 @@ Partial Class Settings
         Me.Lbl_1.AutoSize = True
         Me.Lbl_1.Location = New System.Drawing.Point(12, 35)
         Me.Lbl_1.Name = "Lbl_1"
-        Me.Lbl_1.Size = New System.Drawing.Size(96, 13)
+        Me.Lbl_1.Size = New System.Drawing.Size(147, 13)
         Me.Lbl_1.TabIndex = 0
-        Me.Lbl_1.Text = "Baudrate X - Motor"
+        Me.Lbl_1.Text = "Schritte - Feintuning X - Motor"
         '
         'Btn_save
         '
@@ -53,14 +53,14 @@ Partial Class Settings
         '
         'TxtBox_1
         '
-        Me.TxtBox_1.Location = New System.Drawing.Point(116, 32)
+        Me.TxtBox_1.Location = New System.Drawing.Point(174, 28)
         Me.TxtBox_1.Name = "TxtBox_1"
         Me.TxtBox_1.Size = New System.Drawing.Size(105, 20)
         Me.TxtBox_1.TabIndex = 2
         '
         'TxtBox_2
         '
-        Me.TxtBox_2.Location = New System.Drawing.Point(116, 76)
+        Me.TxtBox_2.Location = New System.Drawing.Point(174, 79)
         Me.TxtBox_2.Name = "TxtBox_2"
         Me.TxtBox_2.Size = New System.Drawing.Size(105, 20)
         Me.TxtBox_2.TabIndex = 3
@@ -70,9 +70,9 @@ Partial Class Settings
         Me.Lbl_2.AutoSize = True
         Me.Lbl_2.Location = New System.Drawing.Point(12, 79)
         Me.Lbl_2.Name = "Lbl_2"
-        Me.Lbl_2.Size = New System.Drawing.Size(96, 13)
+        Me.Lbl_2.Size = New System.Drawing.Size(147, 13)
         Me.Lbl_2.TabIndex = 4
-        Me.Lbl_2.Text = "Baudrate Y - Motor"
+        Me.Lbl_2.Text = "Schritte - Feintuning Y - Motor"
         '
         'Btn_cancel
         '
@@ -112,7 +112,7 @@ Partial Class Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(238, 262)
+        Me.ClientSize = New System.Drawing.Size(293, 262)
         Me.Controls.Add(Me.Lbl_4)
         Me.Controls.Add(Me.Lbl_3)
         Me.Controls.Add(Me.Scroll_1)
