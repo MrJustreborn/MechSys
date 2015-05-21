@@ -86,6 +86,7 @@
     Private Sub Zeichnung_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.con = Controller.getInstance
         Me.con.set_DrawingView(Me)
+        Me.con.delete_drawing_file()
     End Sub
 
     
@@ -130,6 +131,8 @@
 
     Private Sub Btn_import_Click(sender As Object, e As EventArgs) Handles Btn_import.Click
         Me.con.start_printing_from_drawingView()
+        Me.con.refreshPreview()
+        Me.con.showPreview(Me.con.getPath())
         Me.Hide()
     End Sub
 

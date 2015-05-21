@@ -137,7 +137,7 @@ Partial Class MainView
         '
         'Opn_filepath
         '
-        Me.Opn_filepath.Filter = "txt Dateien (*.txt)|*.txt|All files (*.*)|*.*"""
+        Me.Opn_filepath.Filter = "txt Dateien (*.txt)|*.txt;*|All files (*.*)|*.*|obj Datei (*.obj*)|*.obj"""
         '
         'Lbl_preview
         '

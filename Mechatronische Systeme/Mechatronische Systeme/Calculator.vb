@@ -53,7 +53,7 @@
         radius = Math.Sqrt(Math.Pow(Math.Abs(x - cur_x), 2) + Math.Pow(Math.Abs(y - cur_y), 2))
 
         Dim offset As Single
-        offset = Math.Atan((cur_y - y) / (cur_x - x))
+        offset = (Math.Atan((cur_y - y) / (cur_x - x)))
 
         beta = (phi2 / phi2) / tune
         Dim pi As Single

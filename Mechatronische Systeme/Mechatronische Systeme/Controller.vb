@@ -37,7 +37,7 @@
         path = Me.getPath()
         Me.parse(path)
         If (Me.list.Count > 0) Then
-            Me.start_plotter()
+            'Me.start_plotter()
         Else
             MsgBox("Der Printvorgang kann nicht gestartet werden, da Sie nichts gezeichnet haben")
         End If
