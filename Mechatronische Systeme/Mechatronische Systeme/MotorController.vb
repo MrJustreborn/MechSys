@@ -105,26 +105,49 @@ Public Class MotorController
     'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
     Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 0
 
+        Dim dir = steps/steps
         Do Until steps = 0
-            steps -= 1
+            steps -= dir
             'wait
+            xmw()
+
             'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
             'xMotor.Item(cur_x)(1) 'ausgang 2 motorx
 
-            cur_x += 1
+            cur_x += dir
             cur_x = cur_x Mod xMotor.Count
         Loop
     End Sub
     Private Sub yMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 1
 
+        Dim dir = steps/steps
         Do Until steps = 0
-            steps -= 1
+            steps -= dir
             'wait
-            ' yMotor.Item(cur_y)(0) 'ausgang 3 motory
+            ymw()
+
+            'yMotor.Item(cur_y)(0) 'ausgang 3 motory
             'yMotor.Item(cur_y)(1) 'ausgang 4 motory
 
-            cur_y += 1
+            cur_y += dir
             cur_y = cur_y Mod yMotor.Count
         Loop
     End Sub
+
+
+    Private xmw As Integer = 3500000
+    Private ymw As Integer = 3500000
+    Private Sub xMinWait()
+        Dim t As Integer = 0
+        Loop
+	    t+=1
+        Until t>=xmw
+    End Sub
+    Private Sub yMinWait()
+        Dim t As Integer = 0
+        Loop
+	    t+=1
+        Until t>=ymw
+    End Sub
+
 End Class
