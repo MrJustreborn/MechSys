@@ -111,7 +111,7 @@
     End Sub
 
     Public Sub draw_circle(ByVal rect As Rectangle, ByVal startAngle As Single, ByVal swapAngle As Single)
-        Me.Group_1.CreateGraphics.DrawArc(Pens.White, rect, startAngle, swapAngle)
+        Me.Group_1.CreateGraphics.DrawArc(Pens.White, rect, -1 * startAngle, swapAngle)
     End Sub
 
     Private Function show_MsgBox_for_swapAngle() As Integer
@@ -124,7 +124,7 @@
             Me.show_MsgBox_for_swapAngle()
         Else
             angle = Val(angle_string)
-
+            angle = angle * -1
         End If
         Return angle
     End Function
