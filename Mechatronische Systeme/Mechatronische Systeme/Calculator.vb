@@ -97,6 +97,7 @@
         Me.radius_circle = Math.Sqrt(Math.Pow(delta_x, 2) + Math.Pow(delta_y, 2))
     End Sub
 
+    'Berechnung des Winkels, ab dem der Kreis gezeichnet werden soll
     Public Function calc_startAngle(ByVal m_x As Integer, ByVal p_x As Integer) As Single
         Dim calculation As Double
         calculation = Math.Acos((p_x - m_x) / (Me.radius_circle)) * (180 / Math.PI)
