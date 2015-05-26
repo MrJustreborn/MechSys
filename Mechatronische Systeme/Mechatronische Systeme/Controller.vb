@@ -165,17 +165,21 @@
         
     End Sub
 
-    
+    'Diese Funktion wird fuer die Zureckfunktion in der Form "Zeichnung" verwendet; sie fuehrt dazu die Daten fuer die Zeichnung
+    'in der Datei anzupassen, sowie in der Form die Zeichnung neu zuladen 
     Public Sub back_drawing()
         Me.drawing_file.back()
         Me.showDrawing(Me.drawing_file.getPath())
     End Sub
 
+    'Gibt den aktuellen Pfad zurueck, unter dem die Zeichnung in der Form "Zeichnung" abgelegt ist
     Public Function getPath() As String
         Return Me.drawing_file.getPath()
     End Function
 
-
+    'Um einen Kreis in der DrawingView zu zeichnen, wird diese Funktion benoetigt; diese dient dazu die erforderlichen Parameter 
+    'wie Startwinkel ("calc_StartAngle") und Kreiswinkel zu ermitteln, die Daten in der temporaeren Datei abzuspeichern, sowie in der Form
+    '"Zeichnung" den Kreis in der Zeichenebene ("draw_Circle_drawingView") einzuzeichnen 
     Public Sub draw_circle_drawingView(ByVal middle As Point, ByVal point As Point, ByVal swapAngle As Integer)
         Dim rect As Rectangle
         Dim startAngle As Single
@@ -195,18 +199,23 @@
         Me.drawing_form.draw_circle(rect, startAngle, swapAngle)
     End Sub
 
+    'Bricht den Druckvorgang durch Aufruf der Funktion "break" im Motorcontroller "moCon" ab
     Public Sub stop_plotter()
         Me.moCon.break()
     End Sub
 
+    'Pausiert den Druckvorgang durch Aufruf der Funktion "pause" im Motorcontroller "moCon"
     Public Sub pause_plotter()
         Me.moCon.pause()
     End Sub
 
+    'Setzt den Druckvorgang nach einer Pausierung durch Aufruf der Funktion "unpause" im Motorcontroller "moCon" fort 
     Public Sub unpause_plotter()
         Me.moCon.unpause()
     End Sub
 
+    'Startet den Druckvorgang; dazu werden die Daten "list" dem MotorController "moCon" uebergeben ("setDatas")
+    'und der Druckvorgang durch Aufruf der Funktion "start" im MotorController "moCon" gestartet
     Public Sub start_plotter()
         Me.moCon.setDatas(Me.list)
         Me.moCon.start()
