@@ -2,14 +2,14 @@
 
 Public Class MotorController
     Private Shared instance As MotorController
-    Private datasCM As List(Of Integer())
+    Private datasMM As List(Of Integer())
     Private datasSteps As List(Of Integer())
     Private max_steps_x As Integer
     Private max_steps_y As Integer
-    Private max_x As Integer 'die cm des blattes warscheinlich A4
+    Private max_x As Integer 'die mm des blattes warscheinlich A4
     Private max_y As Integer
-    Private steps_per_cm_x As Integer
-    Private steps_per_cm_y As Integer
+    Private steps_per_mm_x As Integer
+    Private steps_per_mm_y As Integer
 
     Private cur_item As Integer
 
@@ -48,7 +48,7 @@ Public Class MotorController
 
     Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
         'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
-        Me.datasCM = datas
+        Me.datasMM = datas
         Me.calDatas()
     End Sub
     Private Sub calDatas()
@@ -57,11 +57,11 @@ Public Class MotorController
         Dim yStep As Integer
         pos = 0
         Do
-            xStep = Me.datasCM.Item(pos)(1) * steps_per_cm_x
-            yStep = Me.datasCM.Item(pos)(2) * steps_per_cm_y
-            Me.datasSteps.Add({Me.datasCM.Item(pos)(0), xStep, yStep})
+            xStep = Me.datasMM.Item(pos)(1) * steps_per_mm_x
+            yStep = Me.datasMM.Item(pos)(2) * steps_per_mm_y
+            Me.datasSteps.Add({Me.datasMM.Item(pos)(0), xStep, yStep})
             pos += 1
-        Loop Until pos = Me.datasCM.Count
+        Loop Until pos = Me.datasMM.Count
     End Sub
 
     Private running As Boolean = False
@@ -98,17 +98,35 @@ Public Class MotorController
         Return Not (cur_item = Me.datasSteps.Count)
     End Function
 
-
+    Private xSteps As Integer
+    Private xSpeed As Integer
+    Private ySteps As Integer
+    Private ySpeed As Integer
+    Private xThread As Thread
+    Private yThread As Thread
     Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
         'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
-    End Sub
-    'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
-    Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 0
+        xThread = New Thread(AddressOf xMove)
+        xThread.IsBackground = True
+        yThread = New Thread(AddressOf yMove)
+        yThread.IsBackground = True
 
-        Dim dir = steps/steps
-        Do Until steps = 0
-            steps -= dir
-            'wait
+        xSteps = x_steps
+        ySteps = y_steps
+        xSpeed = 1 'TODO: calc speed
+        ySpeed = 1 'TODO: calc speed
+        xThread.Start()
+        yThread.Start()
+    End Sub
+
+
+    'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
+    Private Sub xMove() 'Thread 0
+
+        Dim dir = xSteps / xSteps
+        Do Until xSteps = 0
+            xSteps -= dir
+            xMinWait()
 
 
             'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
@@ -118,12 +136,12 @@ Public Class MotorController
             cur_x = cur_x Mod xMotor.Count
         Loop
     End Sub
-    Private Sub yMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 1
+    Private Sub yMove() 'Thread 1
 
-        Dim dir = steps/steps
-        Do Until steps = 0
-            steps -= dir
-            'wait
+        Dim dir = ySteps / ySteps
+        Do Until ySteps = 0
+            ySteps -= dir
+            yMinWait()
 
 
             'yMotor.Item(cur_y)(0) 'ausgang 3 motory
@@ -139,15 +157,15 @@ Public Class MotorController
     Private ymw As Integer = 3500000
     Private Sub xMinWait()
         Dim t As Integer = 0
-        '  Loop 
-        't += 1
-        'Until t >= xmw
+        Do
+            t += 1
+        Loop Until t >= xmw
     End Sub
     Private Sub yMinWait()
         Dim t As Integer = 0
-        ' Loop
-        't+=1
-        'Until t>=ymw
+        Do
+            t += 1
+        Loop Until t >= ymw
     End Sub
 
 End Class
