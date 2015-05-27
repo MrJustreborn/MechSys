@@ -9,6 +9,7 @@
     Private moCon As MotorController
     Private list As List(Of Integer())
 
+    'Privater Konstruktur, der bei dessen Aufruf die einzelnen Variablen initialisiert 
     Private Sub New()
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
@@ -17,6 +18,10 @@
         Me.calc = Calculator.getInstance
     End Sub
 
+    ' Da es sich hier bei dieser Klasse um ein "Singleton - Pattern" handelt, besitzt diese auch keinen
+    ' öffentlich zugänglichen Konstruktur; stattdessen wird durch Aufruf dieser Funktion eine Instanz 
+    ' zurueckgegeben; hierbei wird zunaechst ueberprueft, ob diese bereits existiert; falls nicht wird 
+    ' eine entsprechende angelegt
     Public Shared ReadOnly Property getInstance() As Controller
         Get
             If IsNothing(Instance) Then
@@ -26,12 +31,20 @@
         End Get
     End Property
 
+    'Diese Funktion fuehrt dazu die in dem Parameter "filepath" uebergebene Datei zu parsen und das Ergebnis (Array) 
+    'der Variablen "list" zuzuweisen
     Private Sub parse(ByVal filepath As String)
         Me.list = Me.parser.parseFile(filepath)
     End Sub
+
+    'Diese Funktion dient dem Loeschen der "preview" in der Form "MainView"
     Public Sub refreshPreview()
         Me.main_form.Refresh()
     End Sub
+
+    'Diese Funktion ermoeglicht den Druckvorgang aus der Form "Zeichnung" heraus zu starten; hierfuer muss jedoch 
+    'die temporaere Datei geparst werden, um fuer den Drucker verstaendliche Druckbefehle zu generieren; bei einem
+    'Fehler wird eine entsprechende Meldung ausgegeben
     Public Sub start_printing_from_drawingView()
         Dim path As String
         path = Me.getPath()
@@ -43,6 +56,11 @@
         End If
 
     End Sub
+
+    'Diese Funktion dient dem Laden der Einstellungen, die in der Form "Settings" angezeigt werden;
+    'dazu werden die entsprechenden Funktionen "getX_motor","getY_motor","get_tuning" im Objekt "settings" aufgerufen
+    'die Werte den Variablen "x_motor","y_motor","tuning" zwischengespeichert und zum Abschluß in der 
+    'uebergebenen Form "form" gesetzt
     Public Sub load_settings(ByVal form As Settings)
         Dim x_motor, y_motor, tuning As String
         x_motor = Me.settings.getX_motor()
@@ -53,56 +71,61 @@
         form.setScrollBar(tuning)
     End Sub
 
+    'Diese Funktion dient dem Abspeichern der Einstellungen, die in der Form "Settings" getaetigt wurden; hierzu werden
+    'die entsprechenden Funktionen "writeX_motor","writeY_motor","write_tuning" im Objekt "settings" aufgerufen
     Public Sub save_settings(ByVal x_motor As String, ByVal y_motor As String, ByVal tuning As Integer)
         Me.settings.writeX_motor(x_motor)
         Me.settings.writeY_motor(y_motor)
         Me.settings.write_tuning(tuning)
     End Sub
 
+    'Diese Funktion setzt die Variable "main_form" mittels des uebergebenen Parameters; durch diese Variable wird es ermoeglicht
+    'auf die Form "MainView" zuzugreifen
     Public Sub set_MainView(ByRef form As Form)
         Me.main_form = form
     End Sub
 
+    'Diese Funktion setzt die Variable "drawing_form" mittels des uebergebenen Parameters; durch diese Variable wird es ermoeglicht
+    'auf die Form "Zeichnung" zuzugreifen
     Public Sub set_DrawingView(ByRef form As Form)
         Me.drawing_form = form
     End Sub
 
+    'Diese Funktion, dient dem Einzeichnen von Linien in der Zeichenbene "preview" der Form "MainView"
     Private Sub line_preview(ByVal p_old As Point, ByVal p_new As Point)
         If Not IsNothing(Me.main_form) Then
             Me.main_form.draw_preview(p_old, p_new)
         End If
     End Sub
 
+    'Diese Funktion, dient dem Einzeichnen von Linien in der Zeichenbene  der Form "Zeichnung"
     Private Sub line_drawing(ByVal p_old As Point, ByVal p_new As Point)
         If Not IsNothing(Me.drawing_form) Then
             Me.drawing_form.draw_line(p_old, p_new)
         End If
     End Sub
 
+    'Diese Funktion, dient dem Einzeichnen der Linien in der Zeichenbene "live_print" der Form "MainView" waehrend des Druckvorgangs
     Public Sub line_live_print(ByVal p_old As Point, ByVal p_new As Point)
         If Not IsNothing(Me.main_form) Then
             Me.main_form.draw_live_print(p_old, p_new)
         End If
     End Sub
 
+    'Funktion die der Wertzuweisung der Progressbar "Progress" dient;
     Public Sub progress(ByVal x As Integer)
         If Not IsNothing(Me.main_form) Then
             Me.main_form.Progress(x)
         End If
     End Sub
 
-    Public Sub print()
-        If Not Me.list Is Nothing Then
 
-        End If
-    End Sub
-
+    'Diese Funktion ermoeglicht es, die Druckdatei zu parsen ("parse"),sowie in die Form "MainView" zu laden;
     Public Sub showPreview(ByVal filepath As String)
         Dim factor = 10
         Dim p_last As Point
         Dim p_start As New Point(0, 0)
         
-
         Me.parse(filepath)
        
         For Each item In Me.list
@@ -123,18 +146,23 @@
         Next
     End Sub
 
+    'Funktion, zum Loeschen der temporaeren Datei, welche in der Form "Zeichnung" fuer die Sicherung der zeichnerisch 
+    'getaetigten Schritte dient;
     Public Sub delete_drawing_file()
         Me.drawing_file.delete_file()
     End Sub
 
+    'Funktion, die zur Speicherung der temporaeren Datei in ein von dem Benutzer angegebenes Verzeichnis dient
     Public Sub save_drawing_to_file(ByVal filename As String)
         Me.drawing_file.save_file_to_path(filename)
     End Sub
 
+    'Speichert den Schritt ab, der als Letztes in die Zeichenebene in der Form "Zeichnung" zeichnerisch getaetigt wurde 
     Public Sub save_drawing_steps(ByVal p_start As Point, ByVal p_end As Point)
         Me.drawing_file.save_drawing_steps(p_start, p_end)
     End Sub
 
+    'Diese Funktion ermoeglicht es, die Druckdatei zu parsen ("parse"),sowie in die Form "Zeichnung" zu laden;
     Private Sub showDrawing(ByVal filepath As String)
         Dim factor = 10
         Dim p_last As Point
