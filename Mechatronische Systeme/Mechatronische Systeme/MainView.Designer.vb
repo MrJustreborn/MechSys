@@ -22,6 +22,7 @@ Partial Class MainView
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainView))
         Me.Btn_start = New System.Windows.Forms.Button()
         Me.Lbl_progress = New System.Windows.Forms.Label()
@@ -41,6 +42,7 @@ Partial Class MainView
         Me.Group_2 = New System.Windows.Forms.GroupBox()
         Me.Btn_pause = New System.Windows.Forms.Button()
         Me.Btn_stop = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,6 +54,7 @@ Partial Class MainView
         Me.Btn_start.Size = New System.Drawing.Size(164, 34)
         Me.Btn_start.TabIndex = 0
         Me.Btn_start.Text = "Start"
+        Me.ToolTip1.SetToolTip(Me.Btn_start, "Startet den Druckvorgang")
         Me.Btn_start.UseVisualStyleBackColor = True
         '
         'Lbl_progress
@@ -80,6 +83,7 @@ Partial Class MainView
         Me.Progress_1.Name = "Progress_1"
         Me.Progress_1.Size = New System.Drawing.Size(467, 18)
         Me.Progress_1.TabIndex = 4
+        Me.ToolTip1.SetToolTip(Me.Progress_1, "Zeigt den Fortschritt des Druckvorgangs an")
         '
         'MenuStrip1
         '
@@ -102,6 +106,7 @@ Partial Class MainView
         Me.ToolStripMenuItm_1.Name = "ToolStripMenuItm_1"
         Me.ToolStripMenuItm_1.Size = New System.Drawing.Size(173, 22)
         Me.ToolStripMenuItm_1.Text = "Druckerdatei laden"
+        Me.ToolStripMenuItm_1.ToolTipText = "Druckerdatei laden"
         '
         'BeendenToolStripMenuItem
         '
@@ -119,8 +124,9 @@ Partial Class MainView
         'ToolStripMenuItm_2
         '
         Me.ToolStripMenuItm_2.Name = "ToolStripMenuItm_2"
-        Me.ToolStripMenuItm_2.Size = New System.Drawing.Size(145, 22)
+        Me.ToolStripMenuItm_2.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItm_2.Text = "Einstellungen"
+        Me.ToolStripMenuItm_2.ToolTipText = "Einstellungen anzeigen"
         '
         'KonstruierenToolStripMenuItem
         '
@@ -132,8 +138,9 @@ Partial Class MainView
         'KonstuierenToolStripMenuItem
         '
         Me.KonstuierenToolStripMenuItem.Name = "KonstuierenToolStripMenuItem"
-        Me.KonstuierenToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.KonstuierenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.KonstuierenToolStripMenuItem.Text = "Anfertigen"
+        Me.KonstuierenToolStripMenuItem.ToolTipText = "Eigene Zeichnung anfertigen"
         '
         'Opn_filepath
         '
@@ -179,6 +186,7 @@ Partial Class MainView
         Me.Btn_pause.Size = New System.Drawing.Size(164, 34)
         Me.Btn_pause.TabIndex = 12
         Me.Btn_pause.Text = "Pause"
+        Me.ToolTip1.SetToolTip(Me.Btn_pause, "Pausiert bzw. setzt den Druckvorgang fort")
         Me.Btn_pause.UseVisualStyleBackColor = True
         '
         'Btn_stop
@@ -189,6 +197,7 @@ Partial Class MainView
         Me.Btn_stop.Name = "Btn_stop"
         Me.Btn_stop.Size = New System.Drawing.Size(118, 102)
         Me.Btn_stop.TabIndex = 1
+        Me.ToolTip1.SetToolTip(Me.Btn_stop, "Stoppt den Druckvorgang")
         Me.Btn_stop.UseVisualStyleBackColor = True
         '
         'MainView
@@ -209,6 +218,7 @@ Partial Class MainView
         Me.ForeColor = System.Drawing.Color.White
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.MaximizeBox = False
         Me.Name = "MainView"
         Me.Padding = New System.Windows.Forms.Padding(3)
         Me.Text = "2D Plotter"
@@ -236,5 +246,6 @@ Partial Class MainView
     Friend WithEvents Btn_pause As System.Windows.Forms.Button
     Friend WithEvents KonstruierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KonstuierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 End Class
