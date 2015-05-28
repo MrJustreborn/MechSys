@@ -9,8 +9,8 @@ Public Class MotorController
     Private max_steps_y As Integer
     Private max_x As Integer 'die mm des blattes warscheinlich A4
     Private max_y As Integer
-    Private steps_per_mm_x As Integer
-    Private steps_per_mm_y As Integer
+    Private steps_per_mm_x As Integer = 300
+    Private steps_per_mm_y As Integer = 300
 
     Private cur_item As Integer
 
@@ -21,7 +21,13 @@ Public Class MotorController
 
     'konstruktor als singelton
     Private Sub New()
+        Console.WriteLine("new moCon")
+        datasSteps = New List(Of Integer())
         OpenMEiDSDriver()
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
         xMotor = New List(Of Integer())
         yMotor = New List(Of Integer())
 
@@ -89,9 +95,6 @@ Public Class MotorController
 
     Private Sub main()
         While running And drawNext()
-            While running_pause
-                Thread.Sleep(1)
-            End While
         End While
     End Sub
 
@@ -121,6 +124,8 @@ Public Class MotorController
         ySpeed = 1 'TODO: calc speed
         xThread.Start()
         yThread.Start()
+        xThread.Join()
+        yThread.Join()
     End Sub
 
 
@@ -131,12 +136,15 @@ Public Class MotorController
         Do Until xSteps = 0
             xSteps -= dir
             xMinWait()
+            pause_wait()
 
 
             'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
             'xMotor.Item(cur_x)(1) 'ausgang 2 motorx
-            WriteSingleValue(subdeviceList(0), xMotor.Item(cur_x)(0)) 'ausgang 1 motorx
-            WriteSingleValue(subdeviceList(1), xMotor.Item(cur_x)(1)) 'ausgang 2 motorx
+            'WriteSingleValue(subdeviceList(0), xMotor.Item(cur_x)(0)) 'ausgang 1 motorx
+            'WriteSingleValue(subdeviceList(1), xMotor.Item(cur_x)(1)) 'ausgang 2 motorx
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
 
             cur_x += dir
             cur_x = cur_x Mod xMotor.Count
@@ -148,12 +156,15 @@ Public Class MotorController
         Do Until ySteps = 0
             ySteps -= dir
             yMinWait()
+            pause_wait()
 
 
             'yMotor.Item(cur_y)(0) 'ausgang 3 motory
             'yMotor.Item(cur_y)(1) 'ausgang 4 motory
-            WriteSingleValue(subdeviceList(2), xMotor.Item(cur_y)(0)) 'ausgang 3 motorx
-            WriteSingleValue(subdeviceList(3), xMotor.Item(cur_y)(1)) 'ausgang 4 motorx
+            'WriteSingleValue(subdeviceList(2), xMotor.Item(cur_y)(0)) 'ausgang 3 motorx
+            'WriteSingleValue(subdeviceList(3), xMotor.Item(cur_y)(1)) 'ausgang 4 motorx
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), yMotor.Item(cur_y)(0))
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), yMotor.Item(cur_y)(1))
 
             cur_y += dir
             cur_y = cur_y Mod yMotor.Count
@@ -162,8 +173,14 @@ Public Class MotorController
 
 #Region "Waiting"
     'waits...
-    Private xmw As Integer = 3500000
-    Private ymw As Integer = 3500000
+    Private Sub pause_wait()
+        While running_pause
+            Thread.Sleep(1)
+        End While
+    End Sub
+
+    Private xmw As Integer = 35000000
+    Private ymw As Integer = 35000000
     Private Sub xMinWait()
         Dim t As Integer = 0
         Do
@@ -324,7 +341,7 @@ Public Class MotorController
 
         If (meError = meIDS.ME_ERRNO_SUCCESS) Then
 
-            meError = 1 'ConfigureSubdeviceForOutput(aoSubDevice)
+            meError = ConfigureSubdeviceForOutput(aoSubDevice)
             If (meError = meIDS.ME_ERRNO_SUCCESS) Then
                 meError = WriteSingleValue(aoSubDevice, valDigital)
                 If (meError = meIDS.ME_ERRNO_SUCCESS) Then
@@ -346,19 +363,19 @@ Public Class MotorController
                                                 valDigital)
         Return meError
     End Function
-    'Private Function ConfigureSubdeviceForOutput(aoSubDevice As AoSubdevice) As Integer
-    '  Dim meError As Integer = meIDS.meIOSingleConfig(AoSubdevice.deviceIndex,
-    '                                AoSubdevice.subdevIndex,
-    '                                coBoxChannel.SelectedIndex,
-    '                                coBoxRange.SelectedIndex,
-    '                                meIDS.ME_REF_AO_GROUND,
-    '                                meIDS.ME_TRIG_CHAN_DEFAULT,
-    '                                meIDS.ME_TRIG_TYPE_SW,
-    '                                meIDS.ME_VALUE_NOT_USED,
-    '                                meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
-    '  Return meError
-    'End Function
-    Private Function WriteSingleValue(aoSubDevice As AoSubdevice, valDigital As Integer) As Integer
+    Private Function ConfigureSubdeviceForOutput(ByVal aoSubDevice As AoSubdevice) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(aoSubDevice.deviceIndex,
+                                      aoSubDevice.subdevIndex,
+                                      0,
+                                      0,
+                                      meIDS.ME_REF_AO_GROUND,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        Return meError
+    End Function
+    Private Function WriteSingleValue(ByVal aoSubDevice As AoSubdevice, ByVal valDigital As Integer) As Integer
         Dim io_single(1) As meIDS.meIOSingle_t
 
         io_single(0).iDevice = aoSubDevice.deviceIndex
@@ -373,6 +390,28 @@ Public Class MotorController
         Dim meError As Integer = meIDS.meIOSingle(io_single(0),
                                    1,
                                    meIDS.ME_IO_SINGLE_NO_FLAGS)
+        Return meError
+    End Function
+    Private Function GetDevicePlugged(ByVal idxDevice As Integer, ByRef plugged As Integer) As Integer
+
+        Dim meError As Integer
+        Dim vendorId As Integer
+        Dim deviceId As Integer
+        Dim serialNo As Integer
+        Dim busType As Integer
+        Dim busNo As Integer
+        Dim devNo As Integer
+        Dim funcNo As Integer
+
+        meError = meIDS.meQueryInfoDevice(idxDevice, _
+                                    vendorId, _
+                                    deviceId, _
+                                    serialNo, _
+                                    busType, _
+                                    busNo, _
+                                    devNo, _
+                                    funcNo, _
+                                    plugged)
         Return meError
     End Function
 #End Region

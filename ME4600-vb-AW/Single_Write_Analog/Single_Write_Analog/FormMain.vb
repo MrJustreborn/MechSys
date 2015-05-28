@@ -28,9 +28,9 @@ Public Class frmMain
 
     Private Sub Test(cnt As Integer)
         If (coBoxSubDevs.SelectedIndex >= 0 And coBoxSubDevs.SelectedIndex < 3) Then
-            aoSubDev_t1 = subdeviceList(coBoxSubDevs.SelectedIndex)
+            aoSubDev_t1 = subdeviceList(0)
             aoRange_t1 = aoSubDev_t1.GetRange(coBoxRange.SelectedIndex)
-            aoSubDev_t2 = subdeviceList(coBoxSubDevs.SelectedIndex + 1)
+            aoSubDev_t2 = subdeviceList(1)
             aoRange_t2 = aoSubDev_t2.GetRange(coBoxRange.SelectedIndex)
             t1 = New Thread(AddressOf ThreadTask)
             t2 = New Thread(AddressOf ThreadTask2)
@@ -41,8 +41,14 @@ Public Class frmMain
                 t1.Start()
             ElseIf (cnt = 2) Then
                 Console.WriteLine("Start 2 Threads")
-                t1.Start()
-                t2.Start()
+                't1.Start()
+                't2.Start()
+                Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
+                Dim aoRange As AnalogRange = aoSubDev.GetRange(0)
+                WriteToSubdevice(aoSubDev, aoRange, 7.5)
+
+                meIDS.meIOStreamWrite(1, 10, meIDS.ME_WRITE_MODE_NONBLOCKING, 1, 10000000, meIDS.ME_IO_STREAM_WRITE_NO_FLAGS)
+
             End If
         End If
     End Sub
@@ -59,7 +65,7 @@ Public Class frmMain
         cnt = 800 / 4
         max = 0
 
-        wait_b = 3500000
+        wait_b = 35000000
         wait_a = 0
 
         wait = 1
@@ -415,8 +421,8 @@ Public Class frmMain
     Private Function ConfigureSubdeviceForOutput(aoSubDevice As AoSubdevice) As Integer
         Dim meError As Integer = meIDS.meIOSingleConfig(aoSubDevice.deviceIndex,
                                          aoSubDevice.subdevIndex,
-                                         coBoxChannel.SelectedIndex,
-                                         coBoxRange.SelectedIndex,
+                                         0,
+                                         0,
                                          meIDS.ME_REF_AO_GROUND,
                                          meIDS.ME_TRIG_CHAN_DEFAULT,
                                          meIDS.ME_TRIG_TYPE_SW,

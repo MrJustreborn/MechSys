@@ -31,7 +31,7 @@
 
             disable_ToolStripItm()
             switch_disable_buttons()
-            ' Me.con.start_plotter()
+            Me.con.start_plotter()
 
         Else
             MsgBox("Wählen Sie bitte zuerst eine Datei aus, bevor Sie das Drucken anfangen wollen!")
@@ -77,10 +77,10 @@
     'fuer ein Fortfahren des Vorgang aktiviert und entsprechend beschriftet
     Private Sub Btn_pause_Click(sender As System.Object, e As System.EventArgs) Handles Btn_pause.Click
         If (Me.plotterPause) Then
-            '  Me.con.unpause_plotter()
+            Me.con.pause_plotter()
             Me.Btn_pause.Text = "Fortfahren"
         Else
-            ' Me.con.pause_plotter()
+            Me.con.unpause_plotter()
             Me.Btn_pause.Text = "Pause"
         End If
         Me.plotterPause = Not Me.plotterPause
