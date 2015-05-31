@@ -200,6 +200,7 @@ Public Class MotorController
     Private openErrSuccess As Integer = Constants.ME_IDS_NOTOPENED
     Private lineNumber As Integer
     Private subdeviceList As New List(Of AoSubdevice)
+    Private dsubdeviceList As New List(Of DoSubdevice)
     Private Sub OpenMEiDSDriver()
         Try
             'textBoxInfo.AppendText("Opening Maindriver..." & Environment.NewLine)
@@ -274,11 +275,12 @@ Public Class MotorController
                                                  meIDS.ME_SUBTYPE_ANY, _
                                                  idxMatchedSubdevice)
 
-                If meError = meIDS.ME_ERRNO_SUCCESS Then
+                If meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_AO Then
                     meError = AddAoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
                     idxSubdevice = idxMatchedSubdevice + 1
-                Else
-                    Exit While
+                ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DO Then
+                    meError = AddDoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
+                    idxSubdevice = idxMatchedSubdevice + 1
                 End If
             End While
         End If
@@ -299,6 +301,17 @@ Public Class MotorController
             '                      & ",  Type: " & GetSubDevTypeName(subdeviceType) _
             '                      & ",  Channels: " & numOfChannels.ToString() _
             '                      & ",  Ranges: " & aoSubdev.GetRangeCount().ToString())
+        End If
+        Return meError
+    End Function
+    Private Function AddDoSubdevice(deviceName As String, ByVal idxDevice As Integer, ByVal idxSubdevice As Integer, ByVal subdeviceType As Integer) As Integer
+        Dim meError As Integer
+        Dim numOfChannels As Integer
+
+        meIDS.meQueryNumberChannels(idxDevice, idxSubdevice, numOfChannels)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim doSubdev As DoSubdevice = New DoSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
+            dsubdeviceList.Add(doSubdev)
         End If
         Return meError
     End Function
@@ -375,6 +388,18 @@ Public Class MotorController
                                       meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
         Return meError
     End Function
+    Private Function ConfigureDSubdeviceForOutput(ByVal doSubDevice As DoSubdevice) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(doSubDevice.deviceIndex,
+                                      doSubDevice.subdevIndex,
+                                      0,
+                                      0,
+                                      meIDS.ME_REF_DIO_FIFO_HIGH,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        Return meError
+    End Function
     Private Function WriteSingleValue(ByVal aoSubDevice As AoSubdevice, ByVal valDigital As Integer) As Integer
         Dim io_single(1) As meIDS.meIOSingle_t
 
@@ -416,6 +441,20 @@ Public Class MotorController
     End Function
 #End Region
 
+End Class
+
+Public Class DoSubdevice
+    Public deviceName As String
+    Public deviceIndex As Integer
+    Public subdevIndex As Integer
+    Public numOfChannels As Integer
+
+    Sub New(DevName As String, DeviceIdx As Integer, SubdevIdx As Integer, NumChannels As Integer)
+        deviceName = DevName
+        deviceIndex = DeviceIdx
+        subdevIndex = SubdevIdx
+        numOfChannels = NumChannels
+    End Sub
 End Class
 
 Public Class AoSubdevice
