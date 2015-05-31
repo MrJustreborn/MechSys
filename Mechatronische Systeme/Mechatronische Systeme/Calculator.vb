@@ -63,7 +63,7 @@
         phi2 = ((2 * pi) / 360) * phi2 'grad in rad convertieren
         new_x = (Math.Sin(beta - offset) * radius) + x
         new_y = (Math.Cos(beta - offset) * radius) + y
-        Me.addPA(new_x, new_y, True)
+        Me.addPA(new_x, new_y, Not status)
         Do
             new_x = (Math.Sin(beta - offset) * radius) + x
             new_y = (Math.Cos(beta - offset) * radius) + y
