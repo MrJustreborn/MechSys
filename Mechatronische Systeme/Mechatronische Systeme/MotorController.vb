@@ -281,6 +281,8 @@ Public Class MotorController
                 ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DO Then
                     meError = AddDoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
                     idxSubdevice = idxMatchedSubdevice + 1
+                Else
+                    Exit While
                 End If
             End While
         End If
