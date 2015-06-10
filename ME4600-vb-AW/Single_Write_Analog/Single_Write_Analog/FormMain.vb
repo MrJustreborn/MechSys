@@ -33,7 +33,7 @@ Public Class frmMain
             aoRange_t1 = aoSubDev_t1.GetRange(coBoxRange.SelectedIndex)
             aoSubDev_t2 = subdeviceList(1)
             aoRange_t2 = aoSubDev_t2.GetRange(coBoxRange.SelectedIndex)
-            t1 = New Thread(AddressOf ThreadTask)
+            t1 = New Thread(AddressOf MotorTest)
             t2 = New Thread(AddressOf ThreadTask2)
             t1.IsBackground = True
             t2.IsBackground = True
@@ -41,7 +41,7 @@ Public Class frmMain
                 Console.WriteLine("Start 1 Thread")
                 t1.Start()
             ElseIf (cnt = 2) Then
-                Console.WriteLine("Start 2 Threads")
+                Console.WriteLine("Start digital-Test")
                 Console.WriteLine(dsubdeviceList.Count)
                 Console.WriteLine(dsubdeviceList(0).deviceIndex)
                 Console.WriteLine(dsubdeviceList(0).subdevIndex)
@@ -71,6 +71,40 @@ Public Class frmMain
 
             End If
         End If
+    End Sub
+    Private Sub MotorTest()
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
+        Dim Motor = New List(Of Integer())
+
+        Motor.Add({5, 5})
+        Motor.Add({5, -5})
+        Motor.Add({-5, -5})
+        Motor.Add({-5, 5})
+
+        Dim cur_item = 0
+
+        Dim Steps = 100
+        Dim cur = 0
+
+        Dim wait_b = 12000000
+        Dim wait_a = 0
+
+        Do Until Steps = 0
+            Steps -= 1
+            Do
+                wait_a += 1
+            Loop Until wait_a >= wait_b
+            wait_a = 0
+
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), Motor.Item(cur)(0))
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), Motor.Item(cur)(1))
+
+            cur += 1
+            cur = cur Mod Motor.Count
+        Loop
     End Sub
     Private Sub ThreadTask()
         'Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
