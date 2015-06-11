@@ -59,7 +59,7 @@ Public Class frmMain
                 io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
                 io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
                 io_single(0).iDir = meIDS.ME_DIR_OUTPUT
-                io_single(0).iValue = 158745
+                io_single(0).iValue = 1
                 io_single(0).iTimeOut = 0
                 io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
                 io_single(0).iErrno = 0
@@ -67,7 +67,7 @@ Public Class frmMain
                 Dim meError As Integer = meIDS.meIOSingle(io_single(0),
                                            1,
                                            meIDS.ME_IO_SINGLE_NO_FLAGS)
-                Console.WriteLine(meError)
+                Console.WriteLine("ErrorCode: " + meError.ToString)
 
             End If
         End If
@@ -77,35 +77,88 @@ Public Class frmMain
         WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
-        Dim Motor = New List(Of Integer())
+        Dim Motor = New List(Of Double())
 
-        Motor.Add({5, 5})
-        Motor.Add({5, -5})
-        Motor.Add({-5, -5})
-        Motor.Add({-5, 5})
+        Dim Volt = 6
+
+        Motor.Add({Volt, Volt})
+        Motor.Add({0, Volt})
+        Motor.Add({-Volt, Volt})
+        Motor.Add({-Volt, 0})
+        Motor.Add({-Volt, -Volt})
+        Motor.Add({0, -Volt})
+        Motor.Add({Volt, -Volt})
+        Motor.Add({Volt, 0})
 
         Dim cur_item = 0
 
-        Dim Steps = 100
+        Dim Steps = 1000
+        Dim maxSteps = Steps
         Dim cur = 0
 
-        Dim wait_b = 12000000
+        Dim wait_b = 5000000
         Dim wait_a = 0
 
         Do Until Steps = 0
             Steps -= 1
+            damping(Steps, maxSteps, wait_b)
+
             Do
                 wait_a += 1
             Loop Until wait_a >= wait_b
             wait_a = 0
 
-            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), Motor.Item(cur)(0))
-            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), Motor.Item(cur)(1))
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), Motor.Item(cur)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), Motor.Item(cur)(1))
 
             cur += 1
+            'If cur <= 0 Then
+            '   cur = 6
+            'End If
             cur = cur Mod Motor.Count
         Loop
+
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
     End Sub
+    Private Sub damping(ByVal steps_left As Integer, ByVal max_steps As Integer, ByVal wait As Integer)
+        Dim fac = 0
+        If Not steps_left = 0 Then
+            If max_steps - steps_left >= 1 And max_steps - steps_left <= 10 Then
+                fac = 5
+            End If
+            If max_steps - steps_left >= 10 And max_steps - steps_left <= 20 Then
+                fac = 3
+            End If
+            If max_steps - steps_left >= 20 And max_steps - steps_left <= 25 Then
+                fac = 1
+            End If
+        End If
+
+        Dim _wait = 0
+        Do
+            _wait += 1
+        Loop Until _wait >= wait * fac
+    End Sub
+    Private Function voltFac(ByVal steps_left As Integer, ByVal max_steps As Integer) As Double
+        Dim fac As Double = 1
+        Dim step_cur = max_steps - steps_left
+
+        If step_cur >= 0 And step_cur <= 10 Then
+            fac = 0.5
+        End If
+        If step_cur >= 10 And step_cur <= 20 Then
+            fac = 0.7
+        End If
+        If step_cur >= 20 And step_cur <= 25 Then
+            fac = 0.9
+        End If
+
+
+        Return fac
+    End Function
     Private Sub ThreadTask()
         'Dim aoSubDev As AoSubdevice = subdeviceList(coBoxSubDevs.SelectedIndex)
         'Dim aoRange As AnalogRange = aoSubDev.GetRange(coBoxRange.SelectedIndex)
@@ -471,14 +524,14 @@ Public Class frmMain
             If (meError = meIDS.ME_ERRNO_SUCCESS) Then
                 meError = WriteSingleValue(aoSubDevice, valDigital)
                 If (meError = meIDS.ME_ERRNO_SUCCESS) Then
-                    DisplayValue(aoSubDevice, coBoxChannel.SelectedIndex, valAnalog, valDigital)
+                    'DisplayValue(aoSubDevice, coBoxChannel.SelectedIndex, valAnalog, valDigital)
                 End If
             End If
             If (meError <> meIDS.ME_ERRNO_SUCCESS) Then
-                displayErrorMessage("meIOSingle - Error: ", meError)
+                'displayErrorMessage("meIOSingle - Error: ", meError)
             End If
         Else
-            displayErrorMessage("meUtilityPhysicalToDigital - Error: ", meError)
+            'displayErrorMessage("meUtilityPhysicalToDigital - Error: ", meError)
         End If
     End Sub
 
@@ -495,12 +548,13 @@ Public Class frmMain
         Dim meError As Integer = meIDS.meIOSingleConfig(doSubDevice.deviceIndex,
                                       doSubDevice.subdevIndex,
                                       0,
-                                      0,
-                                      meIDS.ME_REF_DIO_FIFO_LOW,
+                                      meIDS.ME_SINGLE_CONFIG_DIO_OUTPUT,
+                                      meIDS.ME_REF_NONE,
                                       meIDS.ME_TRIG_CHAN_DEFAULT,
                                       meIDS.ME_TRIG_TYPE_SW,
                                       meIDS.ME_VALUE_NOT_USED,
                                       meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        Console.WriteLine("Error-Cofnig: " + meError.ToString)
         Return meError
     End Function
 
