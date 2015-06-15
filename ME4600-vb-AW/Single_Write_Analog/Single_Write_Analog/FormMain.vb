@@ -20,6 +20,7 @@ Public Class frmMain
     Private lineNumber As Integer
     Private subdeviceList As New List(Of AoSubdevice)
     Private dsubdeviceList As New List(Of DoSubdevice)
+    Private disubdeviceList As New List(Of DiSubdevice)
     Private t1 As Thread
     Private t2 As Thread
     Private aoSubDev_t1 As AoSubdevice
@@ -52,13 +53,13 @@ Public Class frmMain
 
                 ' meIDS.meIOStreamWrite(1, 10, meIDS.ME_WRITE_MODE_NONBLOCKING, 1, 10000000, meIDS.ME_IO_STREAM_WRITE_NO_FLAGS)
 
-                ConfigureDSubdeviceForOutput(dsubdeviceList(0))
+                ConfigureDiSubdeviceForOutput(disubdeviceList(0))
                 Dim io_single(1) As meIDS.meIOSingle_t
 
-                io_single(0).iDevice = dsubdeviceList(0).deviceIndex
-                io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
+                io_single(0).iDevice = disubdeviceList(0).deviceIndex
+                io_single(0).iSubdevice = disubdeviceList(0).subdevIndex
                 io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
-                io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+                io_single(0).iDir = meIDS.ME_DIR_INPUT
                 io_single(0).iValue = 1
                 io_single(0).iTimeOut = 0
                 io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
@@ -68,10 +69,28 @@ Public Class frmMain
                                            1,
                                            meIDS.ME_IO_SINGLE_NO_FLAGS)
                 Console.WriteLine("ErrorCode: " + meError.ToString)
+                Console.WriteLine("----->Value: " + io_single(0).iValue.ToString)
+
+                ConfigureDSubdeviceForOutput(dsubdeviceList(0))
+
+                io_single(0).iDevice = dsubdeviceList(0).deviceIndex
+                io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
+                io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
+                io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+                'io_single(0).iValue = 1
+                io_single(0).iTimeOut = 0
+                io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
+                io_single(0).iErrno = 0
+
+                meError = meIDS.meIOSingle(io_single(0),
+                                           1,
+                                           meIDS.ME_IO_SINGLE_NO_FLAGS)
+                Console.WriteLine("ErrorCode: " + meError.ToString)
 
             End If
         End If
     End Sub
+    Dim cur = 0
     Private Sub MotorTest()
         WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
@@ -79,49 +98,61 @@ Public Class frmMain
         WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
         Dim Motor = New List(Of Double())
 
-        Dim Volt = 6
+        Dim Volt = 7
 
         Motor.Add({Volt, Volt})
+        Motor.Add({Volt / 2, Volt})
         Motor.Add({0, Volt})
-        Motor.Add({-Volt, Volt})
-        Motor.Add({-Volt, 0})
-        Motor.Add({-Volt, -Volt})
-        Motor.Add({0, -Volt})
-        Motor.Add({Volt, -Volt})
-        Motor.Add({Volt, 0})
+        Motor.Add({-Volt / 2, Volt})
 
-        Dim cur_item = 0
+        Motor.Add({-Volt, Volt})
+        Motor.Add({-Volt, Volt / 2})
+        Motor.Add({-Volt, 0})
+        Motor.Add({-Volt, -Volt / 2})
+
+        Motor.Add({-Volt, -Volt})
+        Motor.Add({-Volt / 2, -Volt})
+        Motor.Add({0, -Volt})
+        Motor.Add({Volt / 2, -Volt})
+
+        Motor.Add({Volt, -Volt})
+        Motor.Add({Volt, -Volt / 2})
+        Motor.Add({Volt, 0})
+        Motor.Add({Volt, Volt / 2})
 
         Dim Steps = 1000
         Dim maxSteps = Steps
-        Dim cur = 0
 
-        Dim wait_b = 5000000
+        Dim wait_b = 300000
         Dim wait_a = 0
+        Dim dir = 1
 
         Do Until Steps = 0
             Steps -= 1
-            damping(Steps, maxSteps, wait_b)
-
+            'damping(Steps, maxSteps, wait_b)
+            
             Do
                 wait_a += 1
             Loop Until wait_a >= wait_b
             wait_a = 0
-
             WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), Motor.Item(cur)(0))
             WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), Motor.Item(cur)(1))
 
-            cur += 1
-            'If cur <= 0 Then
-            '   cur = 6
-            'End If
-            cur = cur Mod Motor.Count
+            cur += dir
+            If dir < 0 Then
+                If cur <= 0 Then
+                    cur = Motor.Count - 1
+                End If
+            Else
+                cur = cur Mod Motor.Count
+            End If
         Loop
 
         WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
+        Console.WriteLine("ENDE")
     End Sub
     Private Sub damping(ByVal steps_left As Integer, ByVal max_steps As Integer, ByVal wait As Integer)
         Dim fac = 0
@@ -298,6 +329,7 @@ Public Class frmMain
                 If meError = meIDS.ME_ERRNO_SUCCESS AndAlso plugged = meIDS.ME_PLUGGED_IN Then
                     GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_AO)
                     GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DO)
+                    GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DI)
                 Else
                     textBoxInfo.AppendText("Device " & idxDevice.ToString() & " not plugged in" & Environment.NewLine)
                 End If
@@ -330,6 +362,9 @@ Public Class frmMain
                 ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DO Then
                     meError = AddDoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
                     idxSubdevice = idxMatchedSubdevice + 1
+                ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DI Then
+                    meError = AddDiSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
+                    idxSubdevice = idxMatchedSubdevice + 1
                 Else
                     Exit While
                 End If
@@ -345,6 +380,18 @@ Public Class frmMain
         If meError = meIDS.ME_ERRNO_SUCCESS Then
             Dim doSubdev As DoSubdevice = New DoSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
             dsubdeviceList.Add(doSubdev)
+        End If
+        Return meError
+    End Function
+
+    Private Function AddDiSubdevice(ByVal deviceName As String, ByVal idxDevice As Integer, ByVal idxSubdevice As Integer, ByVal subdeviceType As Integer) As Integer
+        Dim meError As Integer
+        Dim numOfChannels As Integer
+
+        meIDS.meQueryNumberChannels(idxDevice, idxSubdevice, numOfChannels)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim diSubdev As DiSubdevice = New DiSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
+            disubdeviceList.Add(diSubdev)
         End If
         Return meError
     End Function
@@ -558,6 +605,20 @@ Public Class frmMain
         Return meError
     End Function
 
+    Private Function ConfigureDiSubdeviceForOutput(ByVal diSubDevice As DiSubdevice) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(diSubDevice.deviceIndex,
+                                      diSubDevice.subdevIndex,
+                                      0,
+                                      meIDS.ME_SINGLE_CONFIG_DIO_INPUT,
+                                      meIDS.ME_REF_NONE,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        Console.WriteLine("Error-Cofnig: " + meError.ToString)
+        Return meError
+    End Function
+
     Private Function ConfigureSubdeviceForOutput(aoSubDevice As AoSubdevice) As Integer
         Dim meError As Integer = meIDS.meIOSingleConfig(aoSubDevice.deviceIndex,
                                          aoSubDevice.subdevIndex,
@@ -743,6 +804,20 @@ Public Class frmMain
 End Class
 
 Public Class DoSubdevice
+    Public deviceName As String
+    Public deviceIndex As Integer
+    Public subdevIndex As Integer
+    Public numOfChannels As Integer
+
+    Sub New(ByVal DevName As String, ByVal DeviceIdx As Integer, ByVal SubdevIdx As Integer, ByVal NumChannels As Integer)
+        deviceName = DevName
+        deviceIndex = DeviceIdx
+        subdevIndex = SubdevIdx
+        numOfChannels = NumChannels
+    End Sub
+End Class
+
+Public Class DiSubdevice
     Public deviceName As String
     Public deviceIndex As Integer
     Public subdevIndex As Integer
