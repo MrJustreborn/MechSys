@@ -33,7 +33,9 @@ Public Class MotorController
         xMotor = New List(Of Integer())
         yMotor = New List(Of Integer())
 
-
+        Console.WriteLine(subdeviceList.Count)
+        Console.WriteLine(dsubdeviceList.Count)
+        Console.WriteLine(disubdeviceList.Count)
 
         xMotor.Add({Volt, Volt})
         xMotor.Add({0, Volt})
@@ -54,6 +56,8 @@ Public Class MotorController
         yMotor.Add({Volt, 0})
 
         cur_item = 0
+
+        reset()
     End Sub
     Public Shared ReadOnly Property getInstance() As MotorController
         Get
@@ -65,6 +69,15 @@ Public Class MotorController
     End Property
 
     Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
+        Do Until GetDigitalValue(disubdeviceList(0), 1) = 1
+            move(1, 0, True)
+        Loop
+        max_steps_x = 0
+        Do Until GetDigitalValue(disubdeviceList(0), 0) = 1
+            move(-1, 0, True)
+            max_steps_x += 1
+        Loop
+        steps_per_mm_x = max_steps_x / max_x
     End Sub
 
     Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
@@ -262,6 +275,7 @@ Public Class MotorController
     Private lineNumber As Integer
     Private subdeviceList As New List(Of AoSubdevice)
     Private dsubdeviceList As New List(Of DoSubdevice)
+    Private disubdeviceList As New List(Of DiSubdevice)
     Private Sub OpenMEiDSDriver()
         Try
             'textBoxInfo.AppendText("Opening Maindriver..." & Environment.NewLine)
@@ -311,6 +325,8 @@ Public Class MotorController
                 meError = GetDevicePlugged(idxDevice, plugged)
                 If meError = meIDS.ME_ERRNO_SUCCESS AndAlso plugged = meIDS.ME_PLUGGED_IN Then
                     GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_AO)
+                    GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DO)
+                    GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DI)
                 Else
                     'textBoxInfo.AppendText("Device " & idxDevice.ToString() & " not plugged in" & Environment.NewLine)
                 End If
@@ -341,6 +357,9 @@ Public Class MotorController
                     idxSubdevice = idxMatchedSubdevice + 1
                 ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DO Then
                     meError = AddDoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
+                    idxSubdevice = idxMatchedSubdevice + 1
+                ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DI Then
+                    meError = AddDiSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
                     idxSubdevice = idxMatchedSubdevice + 1
                 Else
                     Exit While
@@ -375,6 +394,17 @@ Public Class MotorController
         If meError = meIDS.ME_ERRNO_SUCCESS Then
             Dim doSubdev As DoSubdevice = New DoSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
             dsubdeviceList.Add(doSubdev)
+        End If
+        Return meError
+    End Function
+    Private Function AddDiSubdevice(ByVal deviceName As String, ByVal idxDevice As Integer, ByVal idxSubdevice As Integer, ByVal subdeviceType As Integer) As Integer
+        Dim meError As Integer
+        Dim numOfChannels As Integer
+
+        meIDS.meQueryNumberChannels(idxDevice, idxSubdevice, numOfChannels)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim diSubdev As DiSubdevice = New DiSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
+            disubdeviceList.Add(diSubdev)
         End If
         Return meError
     End Function
@@ -463,6 +493,19 @@ Public Class MotorController
                                       meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
         Return meError
     End Function
+    Private Function ConfigureDiSubdeviceForOutput(ByVal diSubDevice As DiSubdevice, ByVal channel As Integer) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(diSubDevice.deviceIndex,
+                                      diSubDevice.subdevIndex,
+                                      channel,
+                                      meIDS.ME_SINGLE_CONFIG_DIO_INPUT,
+                                      meIDS.ME_REF_NONE,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        'Console.WriteLine("Error-Cofnig: " + meError.ToString)
+        Return meError
+    End Function
     Private Function WriteSingleValue(ByVal aoSubDevice As AoSubdevice, ByVal valDigital As Integer) As Integer
         Dim io_single(1) As meIDS.meIOSingle_t
 
@@ -498,6 +541,24 @@ Public Class MotorController
                                    meIDS.ME_IO_SINGLE_NO_FLAGS)
         Return meError
     End Function
+    Private Function GetDigitalValue(ByVal diSubDevice As DiSubdevice, ByVal channel As Integer) As Integer
+        ConfigureDiSubdeviceForOutput(diSubDevice, channel)
+        Dim io_single(1) As meIDS.meIOSingle_t
+
+        io_single(0).iDevice = dsubdeviceList(0).deviceIndex
+        io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
+        io_single(0).iChannel = channel
+        io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+        io_single(0).iValue = 0
+        io_single(0).iTimeOut = 0
+        io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
+        io_single(0).iErrno = 0
+
+        Dim meError As Integer = meIDS.meIOSingle(io_single(0),
+                                   1,
+                                   meIDS.ME_IO_SINGLE_NO_FLAGS)
+        Return io_single(0).iValue
+    End Function
     Private Function GetDevicePlugged(ByVal idxDevice As Integer, ByRef plugged As Integer) As Integer
 
         Dim meError As Integer
@@ -531,6 +592,20 @@ Public Class DoSubdevice
     Public numOfChannels As Integer
 
     Sub New(DevName As String, DeviceIdx As Integer, SubdevIdx As Integer, NumChannels As Integer)
+        deviceName = DevName
+        deviceIndex = DeviceIdx
+        subdevIndex = SubdevIdx
+        numOfChannels = NumChannels
+    End Sub
+End Class
+
+Public Class DiSubdevice
+    Public deviceName As String
+    Public deviceIndex As Integer
+    Public subdevIndex As Integer
+    Public numOfChannels As Integer
+
+    Sub New(ByVal DevName As String, ByVal DeviceIdx As Integer, ByVal SubdevIdx As Integer, ByVal NumChannels As Integer)
         deviceName = DevName
         deviceIndex = DeviceIdx
         subdevIndex = SubdevIdx
