@@ -7,8 +7,8 @@ Public Class MotorController
     Private datasSteps As List(Of Integer())
     Private max_steps_x As Integer
     Private max_steps_y As Integer
-    Private max_x As Integer 'die mm des blattes warscheinlich A4
-    Private max_y As Integer
+    Private max_x As Integer = 2000 'die mm des blattes warscheinlich A4
+    Private max_y As Integer = 2000
     Private steps_per_mm_x As Integer = 5
     Private steps_per_mm_y As Integer = 5
 
@@ -18,7 +18,8 @@ Public Class MotorController
     Private yMotor As List(Of Integer())
     Private cur_x As Integer
     Private cur_y As Integer
-    Dim Volt = 5
+    Dim VoltX = 8
+    Dim VoltY = 7
 
     'konstruktor als singelton
     Private Sub New()
@@ -37,27 +38,64 @@ Public Class MotorController
         Console.WriteLine(dsubdeviceList.Count)
         Console.WriteLine(disubdeviceList.Count)
 
-        xMotor.Add({Volt, Volt})
-        xMotor.Add({0, Volt})
-        xMotor.Add({-Volt, Volt})
-        xMotor.Add({-Volt, 0})
-        xMotor.Add({-Volt, -Volt})
-        xMotor.Add({0, -Volt})
-        xMotor.Add({Volt, -Volt})
-        xMotor.Add({Volt, 0})
+        xMotor.Add({VoltX, VoltX})
+        xMotor.Add({VoltX / 4 * 3, VoltX})
+        xMotor.Add({VoltX / 2, VoltX})
+        xMotor.Add({VoltX / 4, VoltX})
+        xMotor.Add({0, VoltX})
+        xMotor.Add({-VoltX / 4 * 3, VoltX})
+        xMotor.Add({-VoltX / 2, VoltX})
+        xMotor.Add({-VoltX / 4 * 3, VoltX})
 
-        yMotor.Add({Volt, Volt})
-        yMotor.Add({0, Volt})
-        yMotor.Add({-Volt, Volt})
-        yMotor.Add({-Volt, 0})
-        yMotor.Add({-Volt, -Volt})
-        yMotor.Add({0, -Volt})
-        yMotor.Add({Volt, -Volt})
-        yMotor.Add({Volt, 0})
+
+        xMotor.Add({-VoltX, VoltX})
+        xMotor.Add({-VoltX, VoltX / 4 * 3})
+        xMotor.Add({-VoltX, VoltX / 2}) '
+        xMotor.Add({-VoltX, VoltX / 4})
+        xMotor.Add({-VoltX, 0})
+        xMotor.Add({-VoltX, -VoltX / 4})
+        xMotor.Add({-VoltX, -VoltX / 2})
+        xMotor.Add({-VoltX, -VoltX / 4 * 3})
+
+
+        xMotor.Add({-VoltX, -VoltX})
+        xMotor.Add({-VoltX / 4 * 3, -VoltX})
+        xMotor.Add({-VoltX / 2, -VoltX})
+        xMotor.Add({-VoltX / 4, -VoltX})
+        xMotor.Add({0, -VoltX})
+        xMotor.Add({VoltX / 4, -VoltX})
+        xMotor.Add({VoltX / 2, -VoltX})
+        xMotor.Add({VoltX / 4 * 3, -VoltX})
+
+        xMotor.Add({VoltX, -VoltX})
+        xMotor.Add({VoltX, -VoltX / 4 * 3})
+        xMotor.Add({VoltX, -VoltX / 2})
+        xMotor.Add({VoltX, -VoltX / 4})
+        xMotor.Add({VoltX, 0})
+        xMotor.Add({VoltX, VoltX / 4})
+        xMotor.Add({VoltX, VoltX / 2})
+        xMotor.Add({VoltX, VoltX / 4 * 3})
+
+
+
+
+
+        yMotor.Add({VoltY, VoltY})
+        yMotor.Add({0, VoltY})
+        yMotor.Add({-VoltY, VoltY})
+        yMotor.Add({-VoltY, 0})
+        yMotor.Add({-VoltY, -VoltY})
+        yMotor.Add({0, -VoltY})
+        yMotor.Add({VoltY, -VoltY})
+        yMotor.Add({VoltY, 0})
 
         cur_item = 0
 
         reset()
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
     End Sub
     Public Shared ReadOnly Property getInstance() As MotorController
         Get
@@ -69,18 +107,52 @@ Public Class MotorController
     End Property
 
     Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
+        Console.WriteLine("reset motor")
+        move(2000, 2000, True)
+        move(2000, -2000, True)
+        move(-2000, 2000, True)
+        move(-2000, -2000, True)
+
+        Return
+        Dim dir = 1
         Do Until GetDigitalValue(disubdeviceList(0), 1) = 1
-            move(1, 0, True)
-        Loop
-        max_steps_x = 0
-        Do Until GetDigitalValue(disubdeviceList(0), 0) = 1
-            move(-1, 0, True)
+            xMinWait()
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
+
+            cur_x += dir
+            If dir < 0 Then
+                If cur_x <= 0 Then
+                    cur_x = xMotor.Count - 1
+                End If
+            Else
+                cur_x = cur_x Mod xMotor.Count
+            End If
             max_steps_x += 1
         Loop
+
+        max_steps_x = 0
+        dir = -1
+        Do Until GetDigitalValue(disubdeviceList(0), 0) = 1
+            xMinWait()
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
+
+            cur_x += dir
+            If dir < 0 Then
+                If cur_x <= 0 Then
+                    cur_x = xMotor.Count - 1
+                End If
+            Else
+                cur_x = cur_x Mod xMotor.Count
+            End If
+            max_steps_x += 1
+        Loop
+        Console.WriteLine("Steps_x: " + max_steps_x.ToString)
         steps_per_mm_x = max_steps_x / max_x
     End Sub
 
-    Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
+    Public Sub setDatas(ByVal datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
         'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
         Me.datasMM = datas
         Me.calDatas()
@@ -131,52 +203,63 @@ Public Class MotorController
     End Function
 #End Region
 
-    Private xSteps As Integer
-    Private xSpeed As Integer
+    Private xSteps As Single
+    Private xSpeed As Single
     Private ySteps As Integer
     Private ySpeed As Integer
-    Private xThread As Thread = New Thread(AddressOf xMove)
-    Private yThread As Thread = New Thread(AddressOf yMove)
+    Private xThread As Thread ' = New Thread(AddressOf xMove)
+    Private yThread As Thread ' = New Thread(AddressOf yMove)
     Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
+        'Console.WriteLine("x: " + x_steps.ToString + "|y: " + y_steps.ToString + "|" + status.ToString)
         'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
         WriteDigitalValue(dsubdeviceList(0), status, 0)
-        'xThread = New Thread(AddressOf xMove)
+        xThread = New Thread(AddressOf xMove)
         xThread.IsBackground = True
-        'yThread = New Thread(AddressOf yMove)
+        yThread = New Thread(AddressOf yMove)
         yThread.IsBackground = True
 
         xSteps = x_steps
         ySteps = y_steps
-        xSpeed = Math.Abs(x_steps / y_steps)
-        ySpeed = Math.Abs(y_steps / x_steps)
+        'xSpeed = Math.Abs(x_steps / y_steps)
+        'ySpeed = Math.Abs(y_steps / x_steps)
 
         If Not x_steps = 0 Then
             xThread.Start()
         Else
-            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) / Volt)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) / Volt)
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) / VoltX)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) / VoltX)
         End If
         If Not y_steps = 0 Then
             yThread.Start()
         Else
-            WriteToSubdevice(subdeviceList(0), subdeviceList(2).GetRange(0), xMotor.Item(cur_x)(0) / Volt)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(3).GetRange(0), xMotor.Item(cur_x)(1) / Volt)
+            WriteToSubdevice(subdeviceList(0), subdeviceList(2).GetRange(0), xMotor.Item(cur_x)(0) / VoltY)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(3).GetRange(0), xMotor.Item(cur_x)(1) / VoltY)
         End If
 
-        xThread.Join()
-        yThread.Join()
+        If Not x_steps = 0 Then
+            'Console.WriteLine("for join x")
+            xThread.Join()
+            'Console.WriteLine("after join x")
+        End If
+        If Not y_steps = 0 Then
+            yThread.Join()
+        End If
     End Sub
 
 
     'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
     Private Sub xMove() 'Thread 0
 
-        Dim dir = xSteps / xSteps
+        Dim dir = 1
+        If xSteps < 0 Then
+            dir = -1
+        End If
+
         Do Until xSteps = 0
             xSteps -= dir
             xMinWait()
-            xWait()
-            pause_waitX()
+            'xWait()
+            'pause_waitX()
 
 
             'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
@@ -198,12 +281,15 @@ Public Class MotorController
     End Sub
     Private Sub yMove() 'Thread 1
 
-        Dim dir = ySteps / ySteps
+        Dim dir = 1
+        If ySteps < 0 Then
+            dir = -1
+        End If
         Do Until ySteps = 0
             ySteps -= dir
             yMinWait()
-            yWait()
-            pause_waitY()
+            'yWait()
+            'pause_waitY()
 
 
             'yMotor.Item(cur_y)(0) 'ausgang 3 motory
@@ -216,10 +302,10 @@ Public Class MotorController
             cur_y += dir
             If dir < 0 Then
                 If cur_y <= 0 Then
-                    cur_y = xMotor.Count - 1
+                    cur_y = yMotor.Count - 1
                 End If
             Else
-                cur_y = cur_y Mod xMotor.Count
+                cur_y = cur_y Mod yMotor.Count
             End If
         Loop
     End Sub
@@ -228,21 +314,21 @@ Public Class MotorController
     'waits...
     Private Sub pause_waitX()
         While running_pause
-            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) / Volt)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) / Volt)
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) / VoltX)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) / VoltX)
             xMinWait()
         End While
     End Sub
     Private Sub pause_waitY()
         While running_pause
-            WriteToSubdevice(subdeviceList(0), subdeviceList(2).GetRange(0), xMotor.Item(cur_x)(0) / Volt)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(3).GetRange(0), xMotor.Item(cur_x)(1) / Volt)
+            WriteToSubdevice(subdeviceList(0), subdeviceList(2).GetRange(0), xMotor.Item(cur_x)(0) / VoltY)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(3).GetRange(0), xMotor.Item(cur_x)(1) / VoltY)
             yMinWait()
         End While
     End Sub
 
-    Private xmw As Integer = 35000000
-    Private ymw As Integer = 35000000
+    Private xmw As Integer = 65000
+    Private ymw As Integer = 1000000
     Private Sub xMinWait()
         Dim t As Integer = 0
         Do
@@ -438,9 +524,9 @@ Public Class MotorController
             aoSubdev.AddRange(unit, digitalMax, physMin, physMax)
         End If
     End Sub
-
+    Dim lock As New Object
     Private Sub WriteToSubdevice(aoSubDevice As AoSubdevice, aoRange As AnalogRange, valAnalog As Double)
-
+        'SyncLock lock
         Dim meError As Integer
         Dim valDigital As Integer
         meError = ConvertPhysicalToDigital(aoSubDevice, aoRange, valAnalog, valDigital)
@@ -452,6 +538,7 @@ Public Class MotorController
                 meError = WriteSingleValue(aoSubDevice, valDigital)
                 If (meError = meIDS.ME_ERRNO_SUCCESS) Then
                     'DisplayValue(aoSubDevice, coBoxChannel.SelectedIndex, valAnalog, valDigital)
+                    'Console.WriteLine("Write: " + aoSubDevice.subdevIndex.ToString + " ->" + valAnalog.ToString)
                 End If
             End If
             If (meError <> meIDS.ME_ERRNO_SUCCESS) Then
@@ -460,6 +547,7 @@ Public Class MotorController
         Else
             'displayErrorMessage("meUtilityPhysicalToDigital - Error: ", meError)
         End If
+        'End SyncLock
     End Sub
     Private Function ConvertPhysicalToDigital(aoSubDevice As AoSubdevice, aoRange As AnalogRange, valAnalog As Double, ByRef valDigital As Integer) As Integer
         Dim meError As Integer = meIDS.meUtilityPhysicalToDigital(aoRange.physicalMin,
@@ -527,8 +615,8 @@ Public Class MotorController
         ConfigureDSubdeviceForOutput(doSubDevice, channel)
         Dim io_single(1) As meIDS.meIOSingle_t
 
-        io_single(0).iDevice = dsubdeviceList(0).deviceIndex
-        io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
+        io_single(0).iDevice = doSubDevice.deviceIndex
+        io_single(0).iSubdevice = doSubDevice.subdevIndex
         io_single(0).iChannel = channel
         io_single(0).iDir = meIDS.ME_DIR_OUTPUT
         io_single(0).iValue = valDigital
@@ -545,10 +633,10 @@ Public Class MotorController
         ConfigureDiSubdeviceForOutput(diSubDevice, channel)
         Dim io_single(1) As meIDS.meIOSingle_t
 
-        io_single(0).iDevice = dsubdeviceList(0).deviceIndex
-        io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
+        io_single(0).iDevice = diSubDevice.deviceIndex
+        io_single(0).iSubdevice = diSubDevice.subdevIndex
         io_single(0).iChannel = channel
-        io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+        io_single(0).iDir = meIDS.ME_DIR_INPUT
         io_single(0).iValue = 0
         io_single(0).iTimeOut = 0
         io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
@@ -557,6 +645,7 @@ Public Class MotorController
         Dim meError As Integer = meIDS.meIOSingle(io_single(0),
                                    1,
                                    meIDS.ME_IO_SINGLE_NO_FLAGS)
+        'Console.WriteLine(io_single(0).iValue)
         Return io_single(0).iValue
     End Function
     Private Function GetDevicePlugged(ByVal idxDevice As Integer, ByRef plugged As Integer) As Integer

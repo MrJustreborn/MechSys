@@ -90,3 +90,6 @@ E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatron
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.exe
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.pdb
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.xml
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.xml
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb

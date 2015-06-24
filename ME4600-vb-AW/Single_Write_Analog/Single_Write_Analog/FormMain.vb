@@ -42,12 +42,12 @@ Public Class frmMain
                 Console.WriteLine("Start 1 Thread")
                 t1.Start()
             ElseIf (cnt = 2) Then
-                Console.WriteLine("Start digital-Test")
-                Console.WriteLine(dsubdeviceList.Count)
-                Console.WriteLine(dsubdeviceList(0).deviceIndex)
-                Console.WriteLine(dsubdeviceList(0).subdevIndex)
-                Console.WriteLine(dsubdeviceList(0).deviceName)
-                Console.WriteLine(dsubdeviceList(0).numOfChannels)
+                'Console.WriteLine("Start digital-Test")
+                'Console.WriteLine(dsubdeviceList.Count)
+                'Console.WriteLine(dsubdeviceList(0).deviceIndex)
+                'Console.WriteLine(dsubdeviceList(0).subdevIndex)
+                'Console.WriteLine(dsubdeviceList(0).deviceName)
+                'Console.WriteLine(dsubdeviceList(0).numOfChannels)
                 't1.Start()
                 't2.Start()
 
@@ -68,16 +68,14 @@ Public Class frmMain
                 Dim meError As Integer = meIDS.meIOSingle(io_single(0),
                                            1,
                                            meIDS.ME_IO_SINGLE_NO_FLAGS)
-                Console.WriteLine("ErrorCode: " + meError.ToString)
-                Console.WriteLine("----->Value: " + io_single(0).iValue.ToString)
+                'Console.WriteLine("ErrorCode: " + meError.ToString)
+                Console.WriteLine("0----->Value: " + io_single(0).iValue.ToString)
 
-                ConfigureDSubdeviceForOutput(dsubdeviceList(0))
-
-                io_single(0).iDevice = dsubdeviceList(0).deviceIndex
-                io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
-                io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
-                io_single(0).iDir = meIDS.ME_DIR_OUTPUT
-                'io_single(0).iValue = 1
+                io_single(0).iDevice = disubdeviceList(0).deviceIndex
+                io_single(0).iSubdevice = disubdeviceList(0).subdevIndex
+                io_single(0).iChannel = 1 'coBoxChannel.SelectedIndex
+                io_single(0).iDir = meIDS.ME_DIR_INPUT
+                io_single(0).iValue = 1
                 io_single(0).iTimeOut = 0
                 io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
                 io_single(0).iErrno = 0
@@ -85,7 +83,24 @@ Public Class frmMain
                 meError = meIDS.meIOSingle(io_single(0),
                                            1,
                                            meIDS.ME_IO_SINGLE_NO_FLAGS)
-                Console.WriteLine("ErrorCode: " + meError.ToString)
+                'Console.WriteLine("ErrorCode: " + meError.ToString)
+                Console.WriteLine("1----->Value: " + io_single(0).iValue.ToString)
+
+                ConfigureDSubdeviceForOutput(dsubdeviceList(0))
+
+                io_single(0).iDevice = dsubdeviceList(0).deviceIndex
+                io_single(0).iSubdevice = dsubdeviceList(0).subdevIndex
+                io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
+                io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+                io_single(0).iValue = 1
+                io_single(0).iTimeOut = 0
+                io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
+                io_single(0).iErrno = 0
+
+                meError = meIDS.meIOSingle(io_single(0),
+                                           1,
+                                           meIDS.ME_IO_SINGLE_NO_FLAGS)
+                'Console.WriteLine("ErrorCode: " + meError.ToString)
 
             End If
         End If
@@ -101,29 +116,51 @@ Public Class frmMain
         Dim Volt = 7
 
         Motor.Add({Volt, Volt})
-        Motor.Add({Volt / 2, Volt})
+        'Motor.Add({Volt / 4 * 3, Volt})
+        'Motor.Add({Volt / 2, Volt})
+        'Motor.Add({Volt / 4, Volt})
         Motor.Add({0, Volt})
-        Motor.Add({-Volt / 2, Volt})
+        'Motor.Add({-Volt / 4 * 3, Volt})
+        'Motor.Add({-Volt / 2, Volt})
+        'Motor.Add({-Volt / 4 * 3, Volt})
+
 
         Motor.Add({-Volt, Volt})
-        Motor.Add({-Volt, Volt / 2})
+        'Motor.Add({-Volt, Volt / 4 * 3})
+        'Motor.Add({-Volt, Volt / 2}) '
+        'Motor.Add({-Volt, Volt / 4})
         Motor.Add({-Volt, 0})
-        Motor.Add({-Volt, -Volt / 2})
+        'Motor.Add({-Volt, -Volt / 4})
+        'Motor.Add({-Volt, -Volt / 2})
+        'Motor.Add({-Volt, -Volt / 4 * 3})
+
 
         Motor.Add({-Volt, -Volt})
-        Motor.Add({-Volt / 2, -Volt})
+        'Motor.Add({-Volt / 4 * 3, -Volt})
+        'Motor.Add({-Volt / 2, -Volt})
+        'Motor.Add({-Volt / 4, -Volt})
         Motor.Add({0, -Volt})
-        Motor.Add({Volt / 2, -Volt})
+        'Motor.Add({Volt / 4, -Volt})
+        'Motor.Add({Volt / 2, -Volt})
+        'Motor.Add({Volt / 4 * 3, -Volt})
 
         Motor.Add({Volt, -Volt})
-        Motor.Add({Volt, -Volt / 2})
+        'Motor.Add({Volt, -Volt / 4 * 3})
+        'Motor.Add({Volt, -Volt / 2})
+        'Motor.Add({Volt, -Volt / 4})
         Motor.Add({Volt, 0})
-        Motor.Add({Volt, Volt / 2})
+        'Motor.Add({Volt, Volt / 4})
+        'Motor.Add({Volt, Volt / 2})
+        'Motor.Add({Volt, Volt / 4 * 3})
+
+
+
+
 
         Dim Steps = 1000
         Dim maxSteps = Steps
 
-        Dim wait_b = 300000
+        Dim wait_b = 1000000
         Dim wait_a = 0
         Dim dir = 1
 
