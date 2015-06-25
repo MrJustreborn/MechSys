@@ -14,12 +14,12 @@ Public Class MotorController
 
     Private cur_item As Integer
 
-    Private xMotor As List(Of Integer())
-    Private yMotor As List(Of Integer())
+    Private xMotor As List(Of Double())
+    Private yMotor As List(Of Double())
     Private cur_x As Integer
     Private cur_y As Integer
-    Dim VoltX = 8
-    Dim VoltY = 7
+    Dim VoltX = 3.5
+    Dim VoltY = 4.8
 
     'konstruktor als singelton
     Private Sub New()
@@ -31,8 +31,8 @@ Public Class MotorController
         WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
         WriteDigitalValue(dsubdeviceList(0), 0, 0)
-        xMotor = New List(Of Integer())
-        yMotor = New List(Of Integer())
+        xMotor = New List(Of Double())
+        yMotor = New List(Of Double())
 
         Console.WriteLine(subdeviceList.Count)
         Console.WriteLine(dsubdeviceList.Count)
@@ -81,13 +81,46 @@ Public Class MotorController
 
 
         yMotor.Add({VoltY, VoltY})
+        'yMotor.Add({VoltY / 4 * 3, VoltY})
+        yMotor.Add({VoltY / 2, VoltY})
+        'yMotor.Add({VoltY / 4, VoltY})
         yMotor.Add({0, VoltY})
+        'yMotor.Add({-VoltY / 4 * 3, VoltY})
+        yMotor.Add({-VoltY / 2, VoltY})
+        'yMotor.Add({-VoltY / 4 * 3, VoltY})
+
+
         yMotor.Add({-VoltY, VoltY})
+        'yMotor.Add({-VoltY, VoltY / 4 * 3})
+        yMotor.Add({-VoltY, VoltY / 2}) '
+        'yMotor.Add({-VoltY, VoltY / 4})
         yMotor.Add({-VoltY, 0})
+        'yMotor.Add({-VoltY, -VoltY / 4})
+        yMotor.Add({-VoltY, -VoltY / 2})
+        'yMotor.Add({-VoltY, -VoltY / 4 * 3})
+
+
         yMotor.Add({-VoltY, -VoltY})
+        'yMotor.Add({-VoltY / 4 * 3, -VoltY})
+        yMotor.Add({-VoltY / 2, -VoltY})
+        'yMotor.Add({-VoltY / 4, -VoltY})
         yMotor.Add({0, -VoltY})
+        'yMotor.Add({VoltY / 4, -VoltY})
+        yMotor.Add({VoltY / 2, -VoltY})
+        'yMotor.Add({VoltY / 4 * 3, -VoltY})
+
         yMotor.Add({VoltY, -VoltY})
+        'yMotor.Add({VoltY, -VoltY / 4 * 3})
+        yMotor.Add({VoltY, -VoltY / 2})
+        'yMotor.Add({VoltY, -VoltY / 4})
         yMotor.Add({VoltY, 0})
+        'yMotor.Add({VoltY, VoltY / 4})
+        yMotor.Add({VoltY, VoltY / 2})
+        'yMotor.Add({VoltY, VoltY / 4 * 3})
+
+
+
+
 
         cur_item = 0
 
@@ -108,10 +141,8 @@ Public Class MotorController
 
     Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
         Console.WriteLine("reset motor")
-        move(2000, 2000, True)
-        move(2000, -2000, True)
-        move(-2000, 2000, True)
-        move(-2000, -2000, True)
+        move(0, 2000, True)
+        move(0, -2000, True)
 
         Return
         Dim dir = 1
@@ -226,14 +257,14 @@ Public Class MotorController
         If Not x_steps = 0 Then
             xThread.Start()
         Else
-            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) / VoltX)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) / VoltX)
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
         End If
         If Not y_steps = 0 Then
             yThread.Start()
         Else
-            WriteToSubdevice(subdeviceList(0), subdeviceList(2).GetRange(0), xMotor.Item(cur_x)(0) / VoltY)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(3).GetRange(0), xMotor.Item(cur_x)(1) / VoltY)
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
         End If
 
         If Not x_steps = 0 Then
@@ -244,6 +275,7 @@ Public Class MotorController
         If Not y_steps = 0 Then
             yThread.Join()
         End If
+        Thread.Sleep(500)
     End Sub
 
 
@@ -278,6 +310,8 @@ Public Class MotorController
                 cur_x = cur_x Mod xMotor.Count
             End If
         Loop
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
     End Sub
     Private Sub yMove() 'Thread 1
 
@@ -308,27 +342,29 @@ Public Class MotorController
                 cur_y = cur_y Mod yMotor.Count
             End If
         Loop
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
     End Sub
 
 #Region "Waiting"
     'waits...
     Private Sub pause_waitX()
         While running_pause
-            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) / VoltX)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) / VoltX)
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
             xMinWait()
         End While
     End Sub
     Private Sub pause_waitY()
         While running_pause
-            WriteToSubdevice(subdeviceList(0), subdeviceList(2).GetRange(0), xMotor.Item(cur_x)(0) / VoltY)
-            WriteToSubdevice(subdeviceList(1), subdeviceList(3).GetRange(0), xMotor.Item(cur_x)(1) / VoltY)
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
             yMinWait()
         End While
     End Sub
 
-    Private xmw As Integer = 65000
-    Private ymw As Integer = 1000000
+    Private xmw As Integer = 350000
+    Private ymw As Integer = 350000
     Private Sub xMinWait()
         Dim t As Integer = 0
         Do
@@ -526,28 +562,28 @@ Public Class MotorController
     End Sub
     Dim lock As New Object
     Private Sub WriteToSubdevice(aoSubDevice As AoSubdevice, aoRange As AnalogRange, valAnalog As Double)
-        'SyncLock lock
-        Dim meError As Integer
-        Dim valDigital As Integer
-        meError = ConvertPhysicalToDigital(aoSubDevice, aoRange, valAnalog, valDigital)
+        SyncLock lock
+            Dim meError As Integer
+            Dim valDigital As Integer
+            meError = ConvertPhysicalToDigital(aoSubDevice, aoRange, valAnalog, valDigital)
 
-        If (meError = meIDS.ME_ERRNO_SUCCESS) Then
-
-            meError = ConfigureSubdeviceForOutput(aoSubDevice)
             If (meError = meIDS.ME_ERRNO_SUCCESS) Then
-                meError = WriteSingleValue(aoSubDevice, valDigital)
+
+                meError = ConfigureSubdeviceForOutput(aoSubDevice)
                 If (meError = meIDS.ME_ERRNO_SUCCESS) Then
-                    'DisplayValue(aoSubDevice, coBoxChannel.SelectedIndex, valAnalog, valDigital)
-                    'Console.WriteLine("Write: " + aoSubDevice.subdevIndex.ToString + " ->" + valAnalog.ToString)
+                    meError = WriteSingleValue(aoSubDevice, valDigital)
+                    If (meError = meIDS.ME_ERRNO_SUCCESS) Then
+                        'DisplayValue(aoSubDevice, coBoxChannel.SelectedIndex, valAnalog, valDigital)
+                        'Console.WriteLine("Write: " + aoSubDevice.subdevIndex.ToString + " ->" + valAnalog.ToString)
+                    End If
                 End If
+                If (meError <> meIDS.ME_ERRNO_SUCCESS) Then
+                    'displayErrorMessage("meIOSingle - Error: ", meError)
+                End If
+            Else
+                'displayErrorMessage("meUtilityPhysicalToDigital - Error: ", meError)
             End If
-            If (meError <> meIDS.ME_ERRNO_SUCCESS) Then
-                'displayErrorMessage("meIOSingle - Error: ", meError)
-            End If
-        Else
-            'displayErrorMessage("meUtilityPhysicalToDigital - Error: ", meError)
-        End If
-        'End SyncLock
+        End SyncLock
     End Sub
     Private Function ConvertPhysicalToDigital(aoSubDevice As AoSubdevice, aoRange As AnalogRange, valAnalog As Double, ByRef valDigital As Integer) As Integer
         Dim meError As Integer = meIDS.meUtilityPhysicalToDigital(aoRange.physicalMin,

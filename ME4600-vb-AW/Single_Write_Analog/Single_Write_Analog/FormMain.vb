@@ -113,54 +113,57 @@ Public Class frmMain
         WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
         Dim Motor = New List(Of Double())
 
-        Dim Volt = 7
+        Dim Volt = 3
 
         Motor.Add({Volt, Volt})
-        'Motor.Add({Volt / 4 * 3, Volt})
-        'Motor.Add({Volt / 2, Volt})
-        'Motor.Add({Volt / 4, Volt})
+        Motor.Add({Volt / 4 * 3, Volt})
+        Motor.Add({Volt / 2, Volt})
+        Motor.Add({Volt / 4, Volt})
         Motor.Add({0, Volt})
-        'Motor.Add({-Volt / 4 * 3, Volt})
-        'Motor.Add({-Volt / 2, Volt})
-        'Motor.Add({-Volt / 4 * 3, Volt})
+        Motor.Add({-Volt / 4, Volt})
+        Motor.Add({-Volt / 2, Volt})
+        Motor.Add({-Volt / 4 * 3, Volt})
 
 
         Motor.Add({-Volt, Volt})
-        'Motor.Add({-Volt, Volt / 4 * 3})
-        'Motor.Add({-Volt, Volt / 2}) '
-        'Motor.Add({-Volt, Volt / 4})
+        Motor.Add({-Volt, Volt / 4 * 3})
+        Motor.Add({-Volt, Volt / 2}) '
+        Motor.Add({-Volt, Volt / 4})
         Motor.Add({-Volt, 0})
-        'Motor.Add({-Volt, -Volt / 4})
-        'Motor.Add({-Volt, -Volt / 2})
-        'Motor.Add({-Volt, -Volt / 4 * 3})
+        Motor.Add({-Volt, -Volt / 4})
+        Motor.Add({-Volt, -Volt / 2})
+        Motor.Add({-Volt, -Volt / 4 * 3})
 
 
         Motor.Add({-Volt, -Volt})
-        'Motor.Add({-Volt / 4 * 3, -Volt})
-        'Motor.Add({-Volt / 2, -Volt})
-        'Motor.Add({-Volt / 4, -Volt})
+        Motor.Add({-Volt / 4 * 3, -Volt})
+        Motor.Add({-Volt / 2, -Volt})
+        Motor.Add({-Volt / 4, -Volt})
         Motor.Add({0, -Volt})
-        'Motor.Add({Volt / 4, -Volt})
-        'Motor.Add({Volt / 2, -Volt})
-        'Motor.Add({Volt / 4 * 3, -Volt})
+        Motor.Add({Volt / 4, -Volt})
+        Motor.Add({Volt / 2, -Volt})
+        Motor.Add({Volt / 4 * 3, -Volt})
 
         Motor.Add({Volt, -Volt})
-        'Motor.Add({Volt, -Volt / 4 * 3})
-        'Motor.Add({Volt, -Volt / 2})
-        'Motor.Add({Volt, -Volt / 4})
+        Motor.Add({Volt, -Volt / 4 * 3})
+        Motor.Add({Volt, -Volt / 2})
+        Motor.Add({Volt, -Volt / 4})
         Motor.Add({Volt, 0})
-        'Motor.Add({Volt, Volt / 4})
-        'Motor.Add({Volt, Volt / 2})
-        'Motor.Add({Volt, Volt / 4 * 3})
+        Motor.Add({Volt, Volt / 4})
+        Motor.Add({Volt, Volt / 2})
+        Motor.Add({Volt, Volt / 4 * 3})
 
 
 
 
 
-        Dim Steps = 1000
+
+
+
+        Dim Steps = 5000
         Dim maxSteps = Steps
 
-        Dim wait_b = 1000000
+        Dim wait_b = 585000
         Dim wait_a = 0
         Dim dir = 1
 
