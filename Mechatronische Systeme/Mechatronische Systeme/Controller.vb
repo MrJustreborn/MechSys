@@ -125,7 +125,7 @@
         Dim factor = 10
         Dim p_last As Point
         Dim p_start As New Point(0, 0)
-        Me.main_form.setFilepath(filepath)
+        
         Me.parse(filepath)
        
         For Each item In Me.list
@@ -248,8 +248,6 @@
         Me.moCon.setDatas(Me.list)
         Me.moCon.start()
     End Sub
-
-
 End Class
 
 
