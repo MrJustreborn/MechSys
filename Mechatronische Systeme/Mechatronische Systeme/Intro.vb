@@ -22,7 +22,7 @@ Public Class Intro
     ' gesetzt
     Private Sub intro_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Timer1.Start()
-        timeLeft = 5
+        timeLeft = 0
        
 
     End Sub

@@ -6,7 +6,2606 @@ MechatronischeSysteme
 </name>
 </assembly>
 <members>
-<member name="P:Mechatronische_Systeme.My.Resources.Resources.ResourceManager">
+<member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iDevice">
+	<summary>
+    Index of the device to be accessed.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iSubdevice">
+	<summary>
+    Index of the sub-device to be accessed.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iChannel">
+	<summary>
+    Channel index resp. index of the group
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iDir">
+	<summary>
+    Direction of the single operation
+ </summary>
+	<remarks>
+ ME_DIR_INPUT, ME_DIR_OUTPUT, ME_DIR_SET_OFFSET
+ </remarks>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iValue">
+	<summary>
+ Read resp. output a 32 bit digital value. ME_DIR_INPUT, ME_DIR_OUTPUT, ME_DIR_SET_OFFSET
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iTimeOut">
+	<summary>
+ Time-out value in milliseconds. If no external trigger is being used or no time-out value is used, pass 0
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iFlags">
+	<summary>
+ Extended settings depending on the operation
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iErrno">
+	<summary>
+ Error code returned by the particular entry
+ </summary>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t">
+	<summary>
+ Contains the parameters to read a single value from 
+ or to write a single value to a subdevice.
+ Used with function meIOSingle()
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t.iChannel">
+	<summary>
+ Channel index. Depending on sub-device this can be analog inputs or outputs as well as a group of digital I/Os
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t.iStreamConfig">
+	<summary>
+ Index of analog input or analog output range
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t.iRef">
+	<summary>
+ Defines the ground reference for analog inputs and outputs, ME_REF_NONE, ME_REF_AI_GROUND, ME_REF_AI_DIFFERENTIAL, ME_REF_AO_GROUND, ME_REF_AO_DIFFERENTIAL
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t.iFlags">
+	<summary>
+ Extended settings, if no extended options available, use ME_IO_STREAM_CONFIG_TYPE_NO_FLAGS
+ </summary>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t">
+	<summary>
+ Channel-list for analog and digital (bit pattern output) streaming operations
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStartTrigType">
+	<summary>
+ defines the trigger type for start of the whole operation (ME_TRIG_TYPE_SW, ME_TRIG_TYPE_EXT_ANALOG, ME_TRIG_TYPE_THRESHOLD...)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStartTrigEdge">
+	<summary>
+ defines the trigger edge for start of a single conversion (ME_TRIG_EDGE_NONE, ME_TRIG_EDGE_RISING, ME_TRIG_EDGE_FALLING...)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStartTrigChan">
+	<summary>
+ choose whether triggering should be done separatly for each channel (standard) or if a channel should be started synchronously with other channels
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStartTicksLow">
+	<summary>
+ Offset time in number of ticks between "start" of the measurement and the first conversion.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStartTicksHigh">
+	<summary>
+ Higher significant part of the offset time (bits 63...32)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStartArgs">
+	<summary>
+ List of Start Arguments (threshold value in [µV], slew rate in [µV/Sample], lower threshold value of the window in [µV])
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStartTrigType">
+	<summary>
+ defines the trigger type for start of a scan (ME_TRIG_TYPE_TIMER, ME_TRIG_TYPE_FOLLOW, ME_TRIG_TYPE_EXT_DIGITAL...)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStartTicksLow">
+	<summary>
+ Time interval in ticks between the start of two consecutive scans
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStartTicksHigh">
+	<summary>
+ Higher significant part of the scan-time (bits 63...32)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStartArgs">
+	<summary>
+ reserved
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iConvStartTrigType">
+	<summary>
+ defines the trigger type for start of a single conversion (ME_TRIG_TYPE_TIMER, ME_TRIG_TYPE_EXT_DIGITAL, ME_TRIG_TYPE_EXT_ANALOG)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iConvStartTicksLow">
+	<summary>
+ Chan interval in number of ticks between two conversions (Sample resp. output rate)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iConvStartTicksHigh">
+	<summary>
+ Higher significant part of the chan interval (bits 63...32)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iConvStartArgs">
+	<summary>
+ reserved
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStopTrigType">
+	<summary>
+ defines the trigger type for ending the scan (ME_TRIG_TYPE_NONE, ME_TRIG_TYPE_COUNT)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStopCount">
+	<summary>
+ Total number of conversions after which the scans will be ended and at the same time the measurement as a whole.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iScanStopArgs">
+	<summary>
+ MEphisto Scope in oscilloscope mode: trigger point in percent between 0%...100%
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStopTrigType">
+	<summary>
+ defines the trigger type for ending the whole operation (ME_TRIG_TYPE_NONE, ME_TRIG_TYPE_COUNT, ME_TRIG_TYPE_FOLLOW)
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStopCount">
+	<summary>
+ Number of scans (channel-list processings) after which the complete operation should be ended
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iAcqStopArgs">
+	<summary>
+ reserved
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t.iFlags">
+	<summary>
+ ME_IO_STREAM_TRIGGER_TYPE_NO_FLAGS (default) (no flags available)
+ </summary>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t">
+	<summary>
+ Defines parameters to start and stop streaming operations.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t.iDevice">
+	<summary>
+ Index of the device to be accessed
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t.iSubdevice">
+	<summary>
+ Index of the sub-device to be accessed
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t.iStartMode">
+	<summary>
+ Blocking or Nonblocking start mode of the streaming operation
+ </summary>
+	<remarks>
+ ME_START_MODE_BLOCKING (waits until the proper trigger signal occurs), ME_START_MODE_NONBLOCKING (Function returns immediately)
+ </remarks>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t.iTimeOut">
+	<summary>
+ Time interval in milliseconds within the first trigger pulse must occur
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t.iFlags">
+	<summary>
+ Extended settings, Start particular subdevice only or several subdevices synchronously
+ </summary>
+	<remarks>
+ ME_IO_STREAM_START_TYPE_NO_FLAGS default setting, ME_IO_STREAM_START_TYPE_TRIG_SYNCHRONOUS for Synchronous start
+ </remarks>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t.iErrno">
+	<summary>
+ If an error occurs, an error code will be set.
+ </summary>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t">
+	<summary>
+ StartList, defines parameters for the start of streaming operations
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t.iDevice">
+	<summary>
+ Index of the device to be accessed.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t.iSubdevice">
+	<summary>
+ Index of the sub-device to be accessed.
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t.iStopMode">
+	<summary>
+ Stop mode of the streaming operation
+ </summary>
+	<remarks>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STOP_MODE_IMMEDIATE"/>: Streaming operation is stopped at once. 
+ In case of an analog output 0V is attached to the pin.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STOP_MODE_LAST_VALUE"/>: Output sub-device: operation is stopped on the last entry 
+ in the DA-FIFO which is a defined value.
+ Input sub-device: operation is stopped on the last entry from the channel-list.
+ </remarks>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t.iFlags">
+	<summary>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_STOP_TYPE_NO_FLAGS"/>: Default settings.
+ </summary>
+	<remarks>
+ Output sub-device: all buffers are cleared.
+ Input sub-device: Hardware buffer is cleared. No synchronization at all. 
+ In mode <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STOP_MODE_IMMEDIATE"/> some data can be lost.
+ </remarks>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t.iErrno">
+	<summary>
+ If an error occurs, an error code will be set.
+ </summary>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t">
+	<summary>
+ StopList, defines end of input/output streaming operations
+ </summary>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meErrorCB_t">
+	<summary>
+ Delegate type to be used for <see cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorSetUserProc(Mechatronische_Systeme.Module1.meIDS.meErrorCB_t)"/>.
+ </summary>
+	<param name="functionName">
+ String with the name of the faulty function where the error was detected.
+ </param>
+	<param name="errorCode">
+ The error code.
+ </param>
+	<returns>
+ No error possible. Return "0".
+ </returns>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t">
+	<summary>
+ Delegate type to be used for <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamSetCallbacks(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t@,System.IntPtr,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t,System.IntPtr,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t,System.IntPtr,System.Int32)"/>.
+ </summary>
+	<param name="device">
+ Index of the device
+ </param>
+	<param name="subdevice">
+ Index of the interrupt sub-device.
+ </param>
+	<param name="count">
+ Input sub-device: number of values, which can be read
+ Output sub-device: Free memory in the output buffer.
+ </param>
+	<param name="context">
+ User-defined pointer.
+ </param>
+	<param name="errorCode">
+ If an error occurs an error code will be returned.
+ </param>
+	<returns>
+ Return the errorCode if the operation should stop when an error occured, otherwise return "0"
+ </returns>
+</member><member name="T:Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t">
+	<summary>
+ Delegate type to be used for <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)"/>.
+ </summary>
+	<param name="device">
+ Index of the device
+ </param>
+	<param name="subdevice">
+ Index of the interrupt sub-device.
+ </param>
+	<param name="channel">
+ Index of the interrupt channel within the sub-device
+ </param>
+	<param name="irqCount">
+ Number of interrupts from the specified channel since starting.
+ </param>
+	<param name="value">
+ Parameter returns the interrupt status.
+ </param>
+	<param name="context">
+ User-defined pointer.
+ </param>
+	<param name="errorCode">
+ Error code: see error reported by <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqWait(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32,System.Int32)"/>.
+ </param>
+	<returns>
+ Return the errorCode if the operation should stop when an error occured, otherwise return "0"
+ </returns>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meOpen(System.Int32)">
+	<summary>
+ Initializes the function library.
+ </summary>
+	<param name="flags">Use <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_OPEN_NO_FLAGS"/>.</param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_OPEN"/>: ME-iDS can not be properly opened. Usually driver is not loaded.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported.
+ </returns>
+	<remarks>
+ Before the ME-iDS driver functions can be used this function must be called.
+ Otherwise the function calls will fail.
+ In case of an error <see cref="M:Mechatronische_Systeme.Module1.meIDS.meClose(System.Int32)"/> doesn't have to be called.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meClose(System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meClose(System.Int32)">
+	<summary>
+ This function closes the connection to the function library.
+ </summary>
+	<param name="flags">
+ Use <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_CLOSE_NO_FLAGS"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_CLOSE"/>: ME-iDS can not be properly closed.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported.
+ </returns>
+	<remarks>
+ Call this function to release resources and to disconnect from the ME-iDS driver.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meOpen(System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meLockDriver(System.Int32,System.Int32)">
+	<summary>
+ Locks or unlocks the entire ME-iDS driver system.
+ </summary>
+	<param name="lockMode">
+ The possible values are <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_SET"/>, <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_RELEASE"/>, <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_CHECK"/>.
+ </param>
+	<param name="flags">
+ Use <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_DRIVER_NO_FLAGS"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: resource is locked by other application/task.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_USED"/>: resource is currently in use therefore lock can not be set.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: passed flags are not supported.
+ </returns>
+	<remarks>
+ If another thread wants access to the driver system an error message is returned.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meLockDevice(System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meLockSubdevice(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meLockDevice(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Locks or unlocks a ME-iDS device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="lockMode">
+ The possible values are <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_SET"/>, <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_RELEASE"/>, <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_CHECK"/>.
+ </param>
+	<param name="flags">
+ Use <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_DEVICE_NO_FLAGS"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: resource is locked by other application/task.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_USED"/>: resource is currently in use therefore lock can not be set.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: passed flags are not supported.
+ </returns>
+	<remarks>
+ If another thread wants to access to a locked device an error message is returned.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meLockDriver(System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meLockSubdevice(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meLockSubdevice(System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Locks or unlocks a sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="lockMode">
+ The possible values are <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_SET"/>, <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_RELEASE"/>, <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_CHECK"/>.
+ </param>
+	<param name="flags">
+ Use <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_LOCK_SUBDEVICE_NO_FLAGS"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: resource is locked by other application/task.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_USED"/>: resource is currently in use therefore lock can not be set.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: passed flags are not supported.
+ </returns>
+	<remarks>
+ If another thread wants to access to a locked sub-device an error message is returned.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meLockDevice(System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meLockDriver(System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetLast(System.Int32@,System.Int32)">
+	<summary>
+ Returns the last error code.
+ </summary>
+	<param name="errorCode">
+ Variable that receives the error code.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_NO_FLAGS"/>: Default setting.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_CLEAR_FLAGS"/>: Do not report this error again.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetLastMessage(System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetMessage(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetLastMessage(System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Returns the last error caused by an API function.
+ </summary>
+	<param name="buffer">
+ Buffer to hold the error description text.
+ </param>
+	<param name="count">
+ Buffer size in bytes for the error description text. Use the constant <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERROR_MSG_MAX_COUNT"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ERROR_MSG_COUNT"/>: reserved buffer is too small for description. 
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetMessage(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetMessage(System.Int32,System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Converts an error code returned from an API function to plain text.
+ </summary>
+	<param name="errorCode">
+ The error code from the API function.
+ </param>
+	<param name="msg">
+ Buffer to hold the error description text.
+ </param>
+	<param name="count">
+ Buffer size in bytes for the error description text. Use the constant ME_ERROR_MSG_MAX_COUNT.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ERROR_NUMBER"/>: provided error code is not valid in ME-iDS.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ERROR_MSG_COUNT"/>: reserved buffer is too small for description.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetLastMessage(System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meErrorSetDefaultProc(System.Int32)">
+	<summary>
+ Installs a predefined global error logging routine for the entire ME-iDS.
+ </summary>
+	<param name="switch">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SWITCH_ENABLE"/>Installing the predefined error routine for global error logging.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SWITCH_DISABLE"/>Uninstall the predefined error routine.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SWITCH"/>: passed action code is not supported.
+ </returns>
+	<remarks>
+ This global error routine is automatically called if any function call returns an error. 
+ Only one global error routine can be installed.
+ The following infos are returned:
+ -Name of the function causing the error
+ -Short error description
+ -Error code
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorSetUserProc(Mechatronische_Systeme.Module1.meIDS.meErrorCB_t)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meErrorSetUserProc(Mechatronische_Systeme.Module1.meIDS.meErrorCB_t)">
+	<summary>
+ Installs a global user-defined error logging routine for the ME-iDS.
+ </summary>
+	<param name="errorProc">
+ Delegate to the user-defined error logging routine.
+ See <see cref="T:Mechatronische_Systeme.Module1.meIDS.meErrorCB_t"/>
+	</param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ </returns>
+	<remarks>
+ This function is automatically called if any function call returns an error.
+ Passing a NULL will uninstall a previously installed error routine.
+ The following infos are returned:
+ -Name of the function causing the error
+ -Error code
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorSetDefaultProc(System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meErrorGetMessage(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)">
+	<summary>
+ Installs a callback function which waits for an interrupt in the background.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="callback">
+ Delegate to the user-defined callback function.
+ See <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t"/>
+	</param>
+	<param name="callbackContext">
+ User-defined pointer passed to the callback function.
+ Can be used to pass a reference of the own instance through the callback routine
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_SET_CALLBACK_NO_FLAGS"/>: No flags in use.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: sub-device is protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_START_THREAD"/>: creating callback thread failed. (Linux only)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_THREAD_RUNNING"/>: callback thread is already running. (Windows only)
+ </returns>
+	<remarks>
+ To deinstall/cancel the callback function (all registered instances) 
+ for the selected sub-device call meIOIrqSetCallback() and pass null in 
+ <paramref name="callback"/>.
+ </remarks>
+	<example>
+ See also (<a href="http://msdn.microsoft.com/en-gb/magazine/cc301501.aspx">Call Unmanaged DLLs from C#, Killing Processes Cleanly</a>).
+ <code>
+ // the form contains a TextBox to display the values given by the callback function
+ public partial class Form1 : Form
+ {
+     meIDS.meIOIrqCB_t IrqCallback = new meIDS.meIOIrqCB_t(meIOIrqCB);   'create a delegate for Callback function
+     GCHandle objectHandle = new GCHandle();                             'global variable 
+    
+     private void MyStartIrqFunction(int deviceIndex, int subdeviceIndex)
+     {
+         objectHandle = GCHandle.Alloc(this);
+         
+         int meError = meIDS.meIOIrqSetCallback(deviceIndex,             'Device index
+                                                subdeviceIndex,          'Subdevice index
+                                                IrqCallback,             'Callback routine
+                                                (IntPtr)objectHandle,    'Callback context, GCHandle used to wrap instance of Form 
+                                                meIDS.ME_IO_IRQ_SET_CALLBACK_NO_FLAGS); 'No flags in use
+
+         if (meError == meIDS.ME_ERRNO_SUCCESS)
+         {
+             //callback function is armed, meIDS.meIOIrqStart() may be called
+             meError = meIDS.meIOIrqStart(deviceIndex,                   'Device index
+                                          subdeviceIndex,                'Subdevice index
+                                          ...
+                                         );
+             ...
+         }
+     }
+
+     private static int meIOIrqCB(int idxDevice, int idxSubdevice, int idxChannel,
+                                         int irqCount, int value, IntPtr pContext, int errorCode)
+     {
+         if (errorCode == meIDS.ME_ERRNO_SUCCESS)
+         {
+             GCHandle objectHandle = GCHandle.FromIntPtr(pContext);          'get objectHandle of our instance
+             Form1 frm = (Form1)objectHandle.Target;
+             frm.DisplayValues(idxDevice, idxSubdevice, idxChannel, irqCount, value, pContext, errorCode);  'display values in textBox1
+         }
+         return (0);
+     }
+     
+     // This delegate enables asynchronous calls for setting the text in a textBox1
+     private delegate void DisplayValuesDelegate(int idxDevice, int idxSubdevice, int idxChannel,
+                                    int irqCount, int value, IntPtr context, int errorCode);
+ 
+     // This method demonstrates a pattern for making thread-safe calls on a Windows Forms control.
+     private void DisplayValues(int idxDevice, int idxSubdevice, int idxChannel,
+                                    int irqCount, int value, IntPtr context, int errorCode)
+     {
+         // InvokeRequired compares the thread ID of the calling thread to the thread ID of the creating thread.
+         // If these threads are different, it returns true.
+         if (textBox1.InvokeRequired)
+         {
+             //The calling thread is different from the thread that created the TextBox.
+             //The method creates a SetTextCallback and calls itself asynchronously using the Invoke method.
+             DisplayValuesDelegate dispDelegate = new DisplayValuesDelegate(DisplayValues);
+             this.Invoke(dispDelegate, new object[] {idxDevice,  idxSubdevice, idxChannel, irqCount, value, context, errorCode});
+         }
+         else
+         {
+             //The calling thread is the same as the thread that created the TextBox
+             //The Text property is set directly.
+             textBox1.AppendText("Device index: " + idxDevice.ToString()
+                        + ",  Subdevice index: " + idxSubdevice.ToString()
+                        + String.Format(",  Value hex: 0x{0:X}", value)      'display value in hexadecimal
+                        + ",  dec: " + value.ToString()                      'display value in decimal
+                        + Environment.NewLine);
+         }
+     }
+     
+     private void MyStopIrqFunction(int deviceIndex, int subdeviceIndex)
+     {
+         //disable generating IRQs
+         meIDS.meIOIrqStop(deviceIndex, 
+                           subdevIndex, 
+                           0, 
+                           meIDS.ME_IO_IRQ_STOP_NO_FLAGS);
+                           
+         //Don't forget to call Free for objectHandle
+         if (objectHandle.IsAllocated)                   
+         {
+             objectHandle.Free();                        ' do this when callback cannot be called anymore
+         }
+     }
+ }
+ </code>
+	</example>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqWait(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStop(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Starts the interrupt handler for the given interrupt sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="channel">
+ Index of the interrupt channel within the selected sub-device.
+ </param>
+	<param name="irqSource">
+ Selection of interrupt source
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_SOURCE_DIO_LINE"/>: Interrupt source is a dedicated external interrupt input.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_SOURCE_DIO_PATTERN"/>: Operation mode "Bit Pattern Match". 
+ When the current bit pattern at the digital port matches the reference bit pattern to be passed in <paramref name="irqArg"/> an interrupt is triggered.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_SOURCE_DIO_MASK"/>: Operation mode "Bit Pattern Change". 
+ On change of at least one bit, masked as "sensitive" an interrupt is triggered.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_SOURCE_DIO_OVER_TEMP"/>: On overheating of the driver circuit an interrupt is triggered.
+ </param>
+	<param name="irqEdge">
+ Selection of the edge on which an interrupt should be triggered.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_EDGE_NOT_USED"/>: Choosing an edge is not supported
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_EDGE_RISING"/>: Interrupt on rising edge
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_EDGE_FALLING"/>: Interrupt on falling edge
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IRQ_EDGE_ANY"/>: Interrupt on rising or falling edge
+ </param>
+	<param name="irqArg">
+ Argument to configure the modes "Bit Pattern Match" and "Bit Pattern Change"
+ In other cases pass the value "0" here.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_NO_FLAGS"/>: No flags in use. Default settings will be used.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_DIO_BIT"/>: The reference bit pattern is one bit wide.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_DIO_BYTE"/>: The reference bit pattern is one byte wide (8 bit).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_DIO_WORD"/>: The reference bit pattern is one word wide (16 bit).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_DIO_DWORD"/>: The reference bit pattern is one double-word wide (32 bit).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_PATTERN_FILTERING"/>: (for "Bit Pattern Match" only): Enables filtering of the result.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_START_EXTENDED_STATUS"/>: (for "Bit Pattern Change" only): Set extended IRQ status format as default.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_IRQ_SOURCE"/>: wrong mode or not supported by sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_IRQ_EDGE"/>: set edge not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_IRQ_ARG"/>: wrong configuration argument / argument not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: sub-device is protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_START_THREAD"/>: creating callback thread failed. (Linux only)
+ </returns>
+	<remarks>
+ On demand an user-defined callback function can be installed by the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)"/>() which is then called on each interrupt.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqWait(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStop(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStop(System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Stops a previously started interrupt handler
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="channel">
+ Index of the interrupt channel within the selected sub-device.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_STOP_NO_FLAGS"/>: No flags in use. Default settings will be used.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: sub-device is protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqWait(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqWait(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32,System.Int32)">
+	<summary>
+ Waits as long as an interrupt occurs.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="channel">
+ Index of the interrupt channel within the selected sub-device.
+ </param>
+	<param name="irqCount">
+ Returns the number of interrupts from the specified channel since starting.
+ </param>
+	<param name="value">
+ Returns the interrupt status. "Simple format": One status bit per IRQ line. "Extended format": Two status bits per IRQ line.
+ </param>
+	<param name="timeout">
+ Time-out value in milliseconds. If 0 is passed the function will wait indefinitely.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_WAIT_NO_FLAGS"/>: No flags in use. Default settings will be used.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_WAIT_NORMAL_STATUS"/>: Use "simple format" for interrupt status, see <paramref name="value"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_IRQ_WAIT_EXTENDED_STATUS"/>: Use "extended format" for interrupt status, see <paramref name="value"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: sub-device is protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_CANCELLED"/>: Sub-device was reset.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SIGNAL"/>: Driver was unloaded.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PREVIOUS_CONFIG"/>: Sub-device wrongly configured.
+ </returns>
+	<remarks>
+ This function is completely independent from <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>. 
+ In multi-threading applications there is no need for synchronization. 
+ meIOIrqWait() can be called before or after <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/> and waits for the first interrupt event. 
+ If an interrupt occurs before meIOIrqWait() is called the function returns immediately and reports it.
+ You must decide whether you want to install a callback function by <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)"/>. 
+ before calling the function <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqSetCallback(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOIrqCB_t,System.IntPtr,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOIrqStop(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOResetDevice(System.Int32,System.Int32)">
+	<summary>
+ The device will be reset.
+ </summary>
+	<param name="device">
+ Index of the device to be reset.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_RESET_DEVICE_NO_FLAGS"/>: no flags available
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: device or some of sub-devices are protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ </returns>
+	<remarks>
+ All currently executed operations of the specific device are cancelled:
+ - All hardware actions are stopped
+ - Hardware is set to default (idle) state
+ - Internal states are cleared
+ - Buffers are flushed (emptied)
+ - Interrupt counters are set to zero
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOResetSubdevice(System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOResetSubdevice(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ The sub-device will be reset.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be reset.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_RESET_SUBDEVICE_NO_FLAGS"/>: no flags available 
+ verfügbar.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: device or some of sub-devices are protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ </returns>
+	<remarks>
+ All currently executed operations of the specific sub-device are cancelled:
+ - All hardware actions are stopped
+ - Hardware is set to default (idle) state
+ - Internal states are cleared
+ - Buffers are flushed (emptied)
+ - Interrupt counters are set to zero
+ </remarks>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleConfig(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Prepares a sub-device for a "single operation".
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="channel">
+ Index of the channel within the selected sub-device.
+ </param>
+	<param name="singleConfig">
+ Configuration of measurement ranges, digital ports and counters.
+ </param>
+	<param name="reference">
+ Depending on the subdevice type it can be a ground reference, 
+ the clock source of the counters or <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_NONE"/> 
+ for standard digital I/O and frequency I/O. 
+ </param>
+	<param name="trigChan">
+ Trigger channel, if supported by the sub-device.
+ </param>
+	<param name="trigType">
+ Trigger type for starting of input/output
+ </param>
+	<param name="trigEdge">
+ Choose the appropriate trigger edge
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS"/>: No flags used. Default settings.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_CONFIG_DIO_BIT"/>: Digital input/output operation by bit.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_CONFIG_DIO_BYTE"/>: Digital input/output operation by byte (8 bit).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_CONFIG_DIO_WORD"/>: Digital input/output operation by word (16 bit).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_CONFIG_DIO_DWORD"/>: Digital input/output operation by double-word (32 bit).
+ for the channel passed in parameter <paramref name="channel"/> and all channels beyond.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: device or some of sub-devices are protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_REF"/>: parameter <paramref name="reference"/> is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TRIG_CHAN"/>: parameter <paramref name="trigChan"/> is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TRIG_TYPE"/>: parameter <paramref name="trigType"/> is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TRIG_EDGE"/>: parameter <paramref name="trigEdge"/> is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SINGLE_CONFIG"/>: parameter <paramref name="singleConfig"/> is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported.
+ </returns>
+	<remarks>
+ Basically the operation starts after calling the function <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/> 
+ corresponding to the trigger conditions described here.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)">
+	<summary>
+ Read/write operations can be processed.
+ </summary>
+	<param name="singleList">
+ Reference to a list of type <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t"/>.
+ </param>
+	<param name="count">
+ Number of entries in <paramref name="singleList"/>.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_NO_FLAGS"/> No extended options. Default settings. 
+ Execution is stopped on first error.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: device or some of sub-devices are protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_TIMEOUT"/>: timeout condition occurred.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PREVIOUS_CONFIG"/>: sub-device was not configured for required operation.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUBDEVICE_BUSY"/>: sub-device is performing other operation.
+ </returns>
+	<remarks>
+ If for one or more list entries an external trigger source has been selected, 
+ the function waits until the appropriate trigger signal occurs. 
+ I. e. if operation 1 with external trigger is executed in blocking mode, 
+ operation 2 waits until the external trigger pulse of operation 1 occurs.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleConfig(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleTicksToTime(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Double@,System.Int32)">
+	<summary>
+ Converts the number of ticks into the desired time, e. g. period [s] for e. g. frequency measurement.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="timer">
+ Ticks will be calculated in dependency of the sub-device type and the 
+ timer specified here.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_FIO_TOTAL"/>: The period is converted into seconds.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_FIO_FIRST_PHASE"/>: The duration of the first phase of the period is converted into seconds.
+ </param>
+	<param name="ticksLow">
+ The number of ticks (lower significant part, bits 31...0) from parameter 
+ value of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/> are passed here.
+ </param>
+	<param name="ticksHigh">
+ The number of ticks (higher significant part, bits 63...32) from parameter 
+ value of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/> are passed here. This 
+ parameter is resevered for future enhancements.
+ </param>
+	<param name="time">
+ Pointer to a double value, which returns the calculated time in seconds, e. g. period [s].
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_TICKS_TO_TIME_NO_FLAGS"/>: (default)
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TIMER"/>: not supported timer ID.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported
+ </returns>
+	<remarks>
+ The conversion and the allowed value range depend on each sub-device and 
+ their properties. If hardware limits are exceeded, always the limit values are returned. 
+ If you need the dimensions frequency and duty-cycle you can calculate 
+ them easily by the return values from <paramref name="time"/>. It applies: 
+ Frequency [Hz] = 1/period [s] 
+ Duty-cycle [%] = ("Duration of the first phase of the period" [s] / period [s]) * 100
+ </remarks>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleTimeToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)">
+	<summary>
+ Converts a given time period [s] into the number of "ticks" to be passed to the 
+ timer in the function meIOSingleConfig.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="timer">
+ Ticks will be calculated in dependency of the sub-device type and the 
+ timer specified here. The values <paramref name="ticksLow"/> and <paramref name="ticksHigh"/> 
+ can be passed to the parameter value of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_FIO_TOTAL"/>: The period is converted into ticks. 
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_FIO_FIRST_PHASE"/>: The duration of the first phase of the period is converted into ticks.
+ </param>
+	<param name="time">
+ (in) Pointer to a double value, passing the asked time in seconds, e. g. the period [s] 
+ to be converted into ticks. If you pass invalid values a corresponding error code will be returned.
+ (out) If the asked time cannot be realized exactly by the hardware the 
+ value next lower to it will be returned here. The corresponding ticks are 
+ returned in the parameters <paramref name="ticksLow"/> and <paramref name="ticksHigh"/>.
+ </param>
+	<param name="ticksLow">
+ Pointer to an integer value, which contains the lower significant 32 bits 
+ (31...0) of the calculated ticks. To be passed to the parameter 
+ value of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/>. 
+ </param>
+	<param name="ticksHigh">
+ Pointer to an integer value, which contains the higher significant 32 bits 
+ (63...32) of the calculated ticks. This parameter is resevered for future enhancements.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SINGLE_TIME_TO_TICKS_NO_FLAGS"/>: (default)
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TIMER"/>: not supported timer ID.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported
+ </returns>
+	<remarks>
+ The conversion and the allowed value range depend on each sub-device and 
+ their properties. If hardware limits are exceeded, an error message is returned.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingle(Mechatronische_Systeme.Module1.meIDS.meIOSingle_t@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleTicksToTime(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Double@,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOSetChannelOffset(System.Int32,System.Int32,System.Int32,System.Int32,System.Double@,System.Int32)">
+	<summary>
+ The anlog input ranges can be adjusted.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="channel">
+ Index of the channel whose offset should be adjusted.
+ </param>
+	<param name="range">
+ Index of the measurement range to be used for the measurement.
+ </param>
+	<param name="offset">
+ (in) Reference to a double value, passing the asked offset
+ (out) If the asked offset value cannot be realized exactly 
+ by the hardware the currently adjusted value will be returned.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_SET_CHANNEL_OFFSET_NO_FLAGS"/>: No flags used. Default settings.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: device or some of sub-devices are protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberRanges(System.Int32,System.Int32,System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeByMinMax(System.Int32,System.Int32,System.Int32,System.Double@,System.Double@,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)">
+	<summary>
+ Configures the hardware for a timer-controlled streaming operation.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="configList">
+ Reference to a list of type <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t"/>.
+ </param>
+	<param name="count">
+ Number of entries in <paramref name="configList"/>.
+ </param>
+	<param name="trigger">
+ Pointer to a structure of type <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>. 
+ </param>
+	<param name="fifoIrqThreshold">
+ Number of values to be read or written (reloaded) in one package.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_CONFIG_NO_FLAGS"/>: Flag for continuous mode (default setting).
+ MEphisto Scope: analog acquisition
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_CONFIG_BIT_PATTERN"/>: Bit pattern output and FIFO redirection. 
+ MEphisto Scope: Digital acquisition.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_CONFIG_WRAPAROUND"/>: Flag for wraparound mode (periodical output).
+ Disables software buffer. Used only in combination with ME_IO_STREAM_CONFIG_WRAPAROUND flag.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_CONFIG_SAMPLE_AND_HOLD"/>: Enables "Sample Hold" feature.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CHANNEL"/>: no channel available on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LOCKED"/>: device or some of sub-devices are protected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_REF"/>: parameter <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t"/>.iRef is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ACQ_START_TRIG_CHAN"/>: parameter <paramref name="meIOStreamConfig_t"/>.iAcqStartTrigChan is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ACQ_START_TRIG_EDGE"/>: parameter <paramref name="meIOStreamConfig_t"/>.iAcqStartTrigEdge is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_STREAM_CONFIG"/>: parameter <paramref name="meIOStreamConfig_t"/>.iStreamConfig is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_TIMEOUT"/>: timeout condition occurred.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PREVIOUS_CONFIG"/>: sub-device was not configured for required operation.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUBDEVICE_BUSY"/>: sub-device is performing other operation.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FIFO_IRQ_THRESHOLD"/>: parameter <paramref name="iFifoIrqThreshold"/> is not valid (too big).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CONFIG_LIST_COUNT"/>: Wrong iCount of configuration list.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ACQ_START_TRIG_TYPE"/>: parameter <paramref name="meIOStreamConfig_t"/>.iAcqStartTrigType is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ACQ_START_ARG"/>: interval <paramref name="meIOStreamConfig_t"/>.iAcqStartTicks is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SCAN_START_ARG"/>: interval <paramref name="meIOStreamConfig_t"/>.iScanStartTicks is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CONV_START_ARG"/>: interval <paramref name="meIOStreamConfig_t"/>.iConvStartTicks is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ACQ_STOP_TRIG_TYPE"/>: parameter <paramref name="meIOStreamConfig_t"/>.iConvStartTrigType is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SCAN_STOP_TRIG_TYPE"/>: parameter <paramref name="meIOStreamConfig_t"/>.iConvStartTrigType is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_ACQ_STOP_ARG"/>: parameter <paramref name="meIOStreamConfig_t"/>.iAcqStopCount is not correct.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SCAN_STOP_ARG"/>: parameter <paramref name="meIOStreamConfig_t"/>.iScanStopCount is not correct
+ </returns>
+	<remarks>
+ For periodic bit pattern output and for periodic DEMUX operation 
+ the constant ME_IO_STREAM_CONFIG_WRAPAROUND must be ORed 
+ with the constant ME_IO_STREAM_CONFIG_ BIT_PATTERN.
+ For analog and digital (bit pattern output) streaming operations 
+ a channel-list must be created, which contains an entry for 
+ each channel (channel index, measurement range...) of type meIOStreamConfig_t.
+ Additionally a trigger structure (meIOStreamTrigger_t) is required, 
+ which defines numerous settings like start/stop conditions, timer settings, 
+ trigger sources and trigger edges valid for the whole operation.
+ The operation is always started by the function meIOStreamStart() 
+ either at once (software start) or in accordance with the start 
+ conditions defined in the function meIOStreamConfig(). 
+ Stop the operation either according to the stop conditions 
+ defined in the trigger structure or by calling the function meIOStreamStop().
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamFrequencyToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamFrequencyToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart(Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop(Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamRead(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)">
+	<summary>
+ Reads values from the data buffer during a timer-controlled acquisition.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="readMode">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_READ_MODE_BLOCKING"/>: (BLOCKING mode) The function waits until the number of 
+ measurement values specified in parameter <paramref name="count"/> has been acquired.
+ Important: Call can block for ever!
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_READ_MODE_NONBLOCKING"/>: (NONBLOCKING mode) The function returns immediately 
+ either with the number of measurement values available when calling 
+ the function or with the number specified in <paramref name="count"/>. 
+ Each time the lower value is valid.
+ </param>
+	<param name="values">
+ Reference to a data buffer to be filled up.
+ </param>
+	<param name="count">
+ (in) Size of the data buffer to be read in number of measurement values.
+ (out) The pointer returns the number of values actually read from the data buffer.
+ If in BLOCKING mode the acquisition has been cancelled, the return value can also be less than the value passed.
+ BLOCKING mode:
+ Number of values to be read – as a rule a multiple of the channel-list length, 
+ but this is not necessary (see also meUtilityExtractValues() on page 169).
+ NONBLOCKING mode:
+ Number of values to be read – if you want to read a multiple of channel-list 
+ length use the constant ME_IO_STREAM_ READ_FRAMES in the parameter <paramref name="flags"/>.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_READ_NO_FLAGS"/>: Default settings.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_READ_FRAMES"/>: Reading a multiple of channel-list length in NONBLOCKING mode.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_VALUE_COUNT"/>: <paramref name="count"/> is lower than zero.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_READ_MODE"/>: not supported read mode detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUBDEVICE_NOT_RUNNING"/>: buffer is empty and sub-device is not running a streaming operation.
+ </returns>
+	<remarks>
+ The user has to allocate a data buffer, to which the measurement values are written to. 
+ Using the execution mode BLOCKING the function meIOStreamRead() returns when the last 
+ value has been read. In NONBLOCKING mode the function returns at once 
+ with the available measurement values. For reading the data a callback function can also be used.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStatus(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamSetCallbacks(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t@,System.IntPtr,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t,System.IntPtr,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t,System.IntPtr,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysical(System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Double,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityExtractValues(System.Int32,System.Int32@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,System.Int32@,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamWrite(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)">
+	<summary>
+ Writes data to a buffer for timer-controlled analog resp. digital output.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="writeMode">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_WRITE_MODE_BLOCKING"/>: The function waits until the number of values specified 
+ in parameter <paramref name="count"/> can be written to the internal buffer.
+ Important: Call can block for ever!
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_WRITE_MODE_NONBLOCKING"/>: With this option the function writes as many values 
+ to the internal buffer as there is space at the moment the function was called 
+ (max. number specified in <paramref name="count"/>).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_WRITE_MODE_PRELOAD"/>: Pre-loading the data buffer for the first time. 
+ Data will be written directly to the hardware buffer. 
+ If there are more data as there is space in the FIFO the rest is stored in an internal buffer.
+ Note: This is non-blocking writing.
+ </param>
+	<param name="values">
+ Pointer to a data buffer (data stream) with the values resp. bit patterns to be output. 
+ Use the function <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPhysicalToDigital(System.Double,System.Double,System.Int32,System.Double,System.Int32@)"/> for easy conversion of physical 
+ values (e. g. voltage) into digital values.
+ </param>
+	<param name="count">
+ (in): Number of values to be loaded into the data buffer.
+ (out): The pointer returns the number of values which could be written into the data buffer actually. 
+ The number will never be greater, but can also be less, 
+ if there is less memory for the number of values passed.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_WRITE_NO_FLAGS"/>: Default settings – no flags available
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_VALUE_COUNT"/>: <paramref name="count"/> is lower than zero.
+ Note: When <paramref name="count"/> is set to zero ME_ERRNO_SUCCESS is returned.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_WRITE_MODE"/>: not supported write mode detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PREVIOUS_CONFIG"/>: device is configured to work in single mode.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUBDEVICE_NOT_RUNNING"/>: The internal hardware state machine is stopped but 
+ logical status show that should be working. No data in FIFO but software buffer is not empty
+ </returns>
+	<remarks>
+ For the values to be output allocate a data buffer of defined size for each sub-device to be used.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamRead(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPhysicalToDigital(System.Double,System.Double,System.Int32,System.Double,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamSetCallbacks(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t@,System.IntPtr,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t,System.IntPtr,Mechatronische_Systeme.Module1.meIDS.meIOStreamCB_t,System.IntPtr,System.Int32)">
+	<summary>
+ Installs different callback functions that wait for an event on a streaming sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="startCB">
+ Delegate to an user-defined function. This function is called when streaming operation starts. 
+ If the function exits with a return value different than <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/> 
+ streaming is instantly stopped, <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop(Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t@,System.Int32,System.Int32)"/> is executed.
+ </param>
+	<param name="startCBContext">
+ User-defined pointer passed to start callback function. 
+ This parameter is optional. If you don't want to use this functionality pass NULL.
+  </param>
+	<param name="newValuesCB">
+ Pointer to an user-defined function. This function is called when the buffer status is changing. 
+ If the function exits with a return value different than <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/> 
+ streaming is instantly stopped, <seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop(Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t@,System.Int32,System.Int32)"/> is executed.
+ </param>
+	<param name="newValuesCBContext">
+ User-defined pointer passed to new values callback function. This parameter is optional. 
+ If you don't want to use this functionality pass NULL
+ </param>
+	<param name="endCB">
+ Pointer to an user-defined function. This function is called when streaming operation stops.
+ </param>
+	<param name="endCBContext">
+ User-defined pointer passed to stop callback function. This parameter is optional. 
+ If you don't want to use this functionality pass NULL.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_SET_CALLBACKS_NO_FLAGS"/>: (no flags available)
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ </returns>
+	<remarks>
+ To deinstall/cancel all registered callback instances for the selected sub-device call 
+ meIOStreamSetCallbacks() with all callback pointers 
+ (<paramref name="startCB"/>, <paramref name="newValuesCB"/> and <paramref name="endCB"/>) set to NULL.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart(Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop(Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart(Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t@,System.Int32,System.Int32)">
+	<summary>
+ Starts streaming operations.
+ </summary>
+	<param name="startList">
+ Pointer to a list of type meIOStreamStart_t, by which one or more streaming operations can be started. 
+ The start is done immediately after calling the function corresponding to the start conditions. 
+ If for one or more list entries the <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t"/>.iStartMode
+ </param>
+	<param name="count">
+ Number of meIOStreamStart_t entries in <paramref name="startList"/>.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_START_NO_FLAGS"/>: Default settings. Execute list up to the first error. 
+ Returned value corresponds with the first non-zero <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t"/>.iErrno field.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_START_NONBLOCKING"/>: (Linux only) Execute whole start list. 
+ When this flag is set execution is processed although an error occured for some entries. 
+ The function returns ME_ERRNO_SUCCESS when no global error was detected. 
+ <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t"/>.iErrno fields have to be checked.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of the passed flags are not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TIMEOUT"/>: timeout lower than 0.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_START_MODE"/>: not supported start mode detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PREVIOUS_CONFIG"/>: sub-device is not configured correctly to proceed streaming operation.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_ERROR"/>: previous operation ended with an error. Reset has to be called to clear this state.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_LACK_OF_RESOURCES"/>: (output only) operation can not be proceed. Buffers are empty. (Linux only)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_TIMEOUT"/>: Operation didn't start on time.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_START_THREAD"/>: creating callback thread failed. (Windows only)
+ </returns>
+	<remarks>
+ Returning of the function depends on the <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t"/>.iStartMode
+ (BLOCKING or NONBLOCKING) and trigger conditions defined in the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </remarks>
+	<seealso cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop(Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t@,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOResetDevice(System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStatus(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)">
+	<summary>
+ Checks the status of streaming operation.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="wait">
+ Behaviour of return of this function:
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_WAIT_NONE"/>: Check current status. 
+ Function returns the current state of operation immediately in parameter <paramref name="status"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_WAIT_IDLE"/>: In case of an output operation the function waits until all values have been output. 
+ The function returns with <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_IDLE"/> in parameter <paramref name="status"/>.
+ Important: Call can block for ever!
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_WAIT_BUSY"/>: (Linux only)
+ The function blocks while the status is <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_BUSY"/>
+ Important: Call can block for ever!
+ </param>
+	<param name="status">
+ Pointer which returns the current state of operation of the specified sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_IDLE"/>: Streaming operation has finished.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_BUSY"/>: Streaming operation is still running.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_ERROR"/>: Error occured, e. g. data stream was interrupted.
+ </param>
+	<param name="count">
+ Input sub-device: Number of values which can be read
+ Output sub-device: Free memory in the output buffer (in number of values)
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_STATUS_NO_FLAGS"/>: Default settings – no flags available
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: unsupported flag detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_WAIT"/>: not supported wait mode detected.
+ </returns>
+	<remarks>
+ Depending on input or output operation this function is used to check whether 
+ all measurement values have been acquired or whether an output operation is still running.
+ With the parameter <paramref name="wait"/> you can control, whether the function 
+ should return the current state at once, or whether you want to wait 
+ until the input resp. output operation has been ended.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamRead(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamWrite(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop(Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t@,System.Int32,System.Int32)">
+	<summary>
+ An "infinite" operation can be cancelled at once or stopped in a defined way.
+ </summary>
+	<param name="stopList">
+ Pointer to a list of type <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t"/> to end one or several input/output operations. 
+ Stopping is done in accordance to parameter <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t"/>.iStopMode.
+ </param>
+	<param name="count">
+ Number of <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t"/> entries in <paramref name="stopList"/>.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_STOP_NO_FLAGS"/>: Default settings. 
+ Execute list up to the first error. 
+ Returned value corresponds with the first non-zero <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t"/>.iErrno field.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_STREAM_STOP_NONBLOCKING"/>: (Linux only)
+ Execute whole stop list one by one. When this flag is set execution is processed 
+ although an error occured for some entries. The function returns ME_SUCCESS 
+ when no global error was detected. <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t"/>.iErrno fields have to be checked.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: unsupported flag detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_STOP_MODE"/>: not supported stop mode detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PREVIOUS_CONFIG"/>: sub-device is not configured correctly to proceed streaming operation.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_STATUS_ERROR"/>: previous operation ended with an error. Reset has to be called to clear this state.
+ </returns>
+	<remarks>
+ With meIOStreamStop you have the possibility to stop an output operation by the last entry 
+ in the FIFO which is a known value.
+ If in the parameters iAcqStopCount resp. iScanStopCount of the function meIOStreamConfig() 
+ stop conditions have been defined, calling the function meIOStreamStop() is not necessary.
+ Configuration of the sub-device remains preserved (channel-list, timer...) 
+ so that a restart with the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart(Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t@,System.Int32,System.Int32)"/> is possible without new configuration.
+ In opposite to this using the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOResetDevice(System.Int32,System.Int32)"/> deletes the whole configuration of the device.
+ </remarks>
+	<seealso cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamStop_t"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOResetDevice(System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamStart(Mechatronische_Systeme.Module1.meIDS.meIOStreamStart_t@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamFrequencyToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)">
+	<summary>
+ Converts a given frequency [Hz] into the number of "ticks"
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="timer">
+ Ticks will be calculated in dependency of the sub-device to which the specified timer belongs to. 
+ The values <paramref name="ticksLow"/> and <paramref name="ticksHigh"/> are passed 
+ in the trigger structure of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_ACQ_START"/>: <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iAcqStartTicks 
+ should be calculated for passing to the parameter of the same name. 
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_SCAN_START"/>: <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iScanStartTicks 
+ should be calculated for passing to the parameter of the same name.  
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_CONV_START"/>: <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iConvStartTicks 
+ should be calculated for passing to the parameter of the same name. 
+ </param>
+	<param name="frequency">
+ Pointer to a double value, passing the asked frequency [Hz] to be converted into ticks.
+ If you pass „0“ the maximum frequency will be returned.
+ If the asked frequency cannot be realized exactly by the hardware the frequency next higher 
+ to it will be returned as an approximation. 
+ The corresponding ticks are returned in the parameters <paramref name="ticksLow"/> and <paramref name="ticksHigh"/>.
+ </param>
+	<param name="ticksLow">
+ Pointer to an integer value, which contains the lower significant 32 bits (31...0) of the calculated ticks. 
+ Will be passed to the appropriate parameter startTicksLow of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </param>
+	<param name="ticksHigh">
+ Pointer to an integer value, which contains the higher significant 32 bits (63...32) of the calculated ticks. 
+ Will be passed to the appropriate parameter startTicksHigh of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_FREQUENCY_TO_TICKS_NO_FLAGS"/>: (default) MEphisto Scope: data-logging mode
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_FREQUENCY_TO_TICKS_MEPHISTO_SCOPE_OSCILLOSCOPE"/>: MEphisto Scope: oscilloscope mode
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TIMER"/>: not supported timer ID.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported.
+ </returns>
+	<remarks>
+ The conversion and the allowed value range depend on each sub-device and their timers. 
+ If hardware limits are exceeded, always the limit values are returned.
+ Tip: Passing "0" in parameter <paramref name="frequency"/> of this function returns the maximum frequency allowed. 
+ In dependency of parameter <paramref name="timer"/> of this function the return values of 
+ <paramref name="ticksLow"/> and <paramref name="ticksHigh"/> can be passed to the corresponding parameters 
+ <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iAcqStartTicks, <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iConvStartTicks 
+ and <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iScanStartTicks in the trigger structure of function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamTimeToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+	<seealso cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamTimeToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)">
+	<summary>
+ Converts a given time period [s] into the number of "ticks".
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="timer">
+ Ticks will be calculated in dependency of the sub-device to which the specified timer belongs to. 
+ The values <paramref name="ticksLow"/> and <paramref name="ticksHigh"/> are passed 
+ in the trigger structure of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_ACQ_START"/>: <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iAcqStartTicks 
+ should be calculated for passing to the parameter of the same name. 
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_SCAN_START"/>: <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iScanStartTicks 
+ should be calculated for passing to the parameter of the same name.  
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TIMER_CONV_START"/>: <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iConvStartTicks 
+ should be calculated for passing to the parameter of the same name. 
+ </param>
+	<param name="time">
+ (in): Pointer to a double value, passing the asked period [s] to be converted into ticks. 
+ If you pass "0" the minimum period will be returned.
+ (out): If the asked period cannot be realized exactly by the hardware the 
+ period next lower to it will be returned as an approximation. The corresponding ticks 
+ are returned in the parameters <paramref name="ticksLow"/> and <paramref name="ticksHigh"/>.
+ </param>
+	<param name="ticksLow">
+ Pointer to an integer value, which contains the lower significant 32 bits (31...0) of the calculated ticks. 
+ Will be passed to the appropriate parameter startTicksLow of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </param>
+	<param name="ticksHigh">
+ Pointer to an integer value, which contains the higher significant 32 bits (63...32) of the calculated ticks. 
+ Will be passed to the appropriate parameter startTicksHigh of the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </param>
+	<param name="flags">
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_TIME_TO_TICKS_NO_FLAGS"/>: (default) MEphisto Scope: data-logging mode
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_IO_TIME_TO_TICKS_MEPHISTO_SCOPE_OSCILLOSCOPE"/>: MEphisto Scope: oscilloscope mode
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_TIMER"/>: not supported timer ID.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: some of passed flags are not supported.
+ </returns>
+	<remarks>
+ The conversion and the allowed value range depend on each sub-device and their timers. 
+ If hardware limits are exceeded, always the limit values are returned. 
+ Tip: Passing "0" in parameter <paramref name="time"/> of this function returns the 
+ minimum frequency allowed. In dependency of parameter <paramref name="timer"/> of 
+ this function the return values of <paramref name="ticksLow"/> and <paramref name="ticksHigh"/> 
+ can be passed to the corresponding parameters <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iAcqStartTicks, 
+ <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iConvStartTicks and <see cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>.iScanStartTicks 
+ in the trigger structure of function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamFrequencyToTicks(System.Int32,System.Int32,System.Int32,System.Double@,System.Int32@,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+	<seealso cref="T:Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryDescriptionDevice(System.Int32,System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Determines the device description.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="description">
+ Buffer to hold the device description.
+ </param>
+	<param name="count">
+ Buffer size in bytes for device description. 
+ Recommended: <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_DEVICE_DESCRIPTION_MAX_COUNT"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_USER_BUFFER_SIZE"/>: count smaller than 1.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryInfoDevice(System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNameDevice(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberDevices(System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryInfoDevice(System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+	<summary>
+ Determines detailed information of the device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="vendorId">
+ Pointer returns vendor ID of the device.
+ 0x1402 for Meilhaus PCI boards, 0x1B04 for USB devices like e. g. ME-1 (ME-Synapse USB).
+ </param>
+	<param name="deviceId">
+ Pointer returns the device ID.
+ </param>
+	<param name="serialNo">
+ Pointer returns the serial number of the device.
+ </param>
+	<param name="busType">
+ Pointer returns the bus type by which the device is connected with the PC (PCI/cPCI, USB).
+ </param>
+	<param name="busNo">
+ PCI only: Pointer returns the PCI bus number, if several PCI buses are available in your system (if one bus it is always "0")
+ </param>
+	<param name="slot">
+ PCI only: Slot number of the board to be accessed.
+ </param>
+	<param name="funcNo">
+ PCI: Function number.
+ </param>
+	<param name="plugged">
+ Pointer indicates whether a device is physically available.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_PLUGGED_IN"/>: Device physically available.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_PLUGGED_OUT"/>: Device registered with the ME-iDC (ME-Config-Tool) but not connected with the PC.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_PLUGGED_INVALID"/>: invalid return value
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ </returns>
+	<remarks>
+ This is a PCI orientated function and some parameters have no meaning for 
+ ME-Synapse USB or ME-Synapse LAN.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryDescriptionDevice(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNameDevice(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberDevices(System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryNameDevice(System.Int32,System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Determines the device name.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="name">
+ Buffer for the device name.
+ </param>
+	<param name="count">
+ Buffer size in bytes for device name. Recommended: <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_DEVICE_NAME_MAX_COUNT"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_USER_BUFFER_SIZE"/>: count smaller than 1.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryInfoDevice(System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryDescriptionDevice(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberDevices(System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNameDeviceDriver(System.Int32,System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryNameDeviceDriver(System.Int32,System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Determines the name of the device specific driver module.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="name">
+ Pointer to a buffer for the driver module.
+ </param>
+	<param name="count">
+ Buffer size in bytes for the driver module. 
+ Recommended: <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_DEVICE_DRIVER_NAME_MAX_COUNT"/>.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_USER_BUFFER_SIZE"/>: count smaller than 1.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionDeviceDriver(System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionMainDriver(System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionLibrary(System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberDevices(System.Int32@)">
+	<summary>
+ Determines the number of devices recognized by the ME-iDS.
+ </summary>
+	<param name="count">
+ Contains the number of recognized devices after the function returned.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<remarks>
+ Not all devices have to be physically present.
+ This can be tested with the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryInfoDevice(System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)"/>.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryInfoDevice(System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberSubdevices(System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberChannels(System.Int32,System.Int32,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberSubdevices(System.Int32,System.Int32@)">
+	<summary>
+ Determines the number of sub-devices on a queried device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="count">
+ Number of sub-devices on the device.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberDevices(System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberChannels(System.Int32,System.Int32,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberChannels(System.Int32,System.Int32,System.Int32@)">
+	<summary>
+ Determines the number of channels of a sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="count">
+ Returns the number of channels of the specified sub-device.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberDevices(System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberSubdevices(System.Int32,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberRanges(System.Int32,System.Int32,System.Int32,System.Int32@)">
+	<summary>
+ Determines the number of ranges which support the specified measurement range(s).
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="unit">
+ Restrict the query to the specified measurement range(s).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_ANY"/>: Query for all ranges
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_VOLT"/>: Query only for voltage ranges
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_AMPERE"/>: Query only for current ranges
+ </param>
+	<param name="count">
+ Returns the number of ranges which support the specified measurement range(s).
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_SUPPORTED"/>: function is not supported by sub-device.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeByMinMax(System.Int32,System.Int32,System.Int32,System.Double@,System.Double@,System.Int32@,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeByMinMax(System.Int32,System.Int32,System.Int32,System.Double@,System.Double@,System.Int32@,System.Int32@)">
+	<summary>
+ Determines the appropriate measurement range by given limits
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="unit">
+ Restrict the query to the specified measurement range(s).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_ANY"/>: Query for all ranges
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_VOLT"/>: Query only for voltage ranges
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_AMPERE"/>: Query only for current ranges
+ </param>
+	<param name="min">
+ (in) Passing the lower limit of the searched range.
+ (out) Returns the lower limit for the range determined.
+ </param>
+	<param name="max">
+ (in) Passing the upper limit of the searched range. 
+ (out) Returns the upper limit for the range determined.
+ </param>
+	<param name="maxData">
+ Returns the maximum resolution for the range determined (e. g. 65535 (0xFFFF) for 16 bit resolution).
+ </param>
+	<param name="rangeIndex">
+ The index of the best fitting measurement range is returned. 
+ Always the smallest range is chosen, which includes the range limits searched for.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_UNIT"/>: unit's type not supported on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MIN_MAX"/>: lower limit is higher than upper.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NO_RANGE"/>: fitted range not found.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberRanges(System.Int32,System.Int32,System.Int32,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)">
+	<summary>
+ Determines details of the specified measurement range.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device that is queried.
+ </param>
+	<param name="range">
+ Index of measurement range that is queried.
+ </param>
+	<param name="unit">
+ Pointer, which returns the physical unit of the specified measurement range.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_INVALID"/>: Invalid return value
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_VOLT"/>: Voltage range
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_UNIT_AMPERE"/>: Current range
+ </param>
+	<param name="min">
+ Reference to the lower limit of the requested range. 
+ It applies to the physical unit specified in parameter <paramref name="unit"/>.
+ </param>
+	<param name="max">
+ Reference to the upper limit of the requested range.
+ It applies to the physical unit specified in parameter <paramref name="unit"/>.
+ </param>
+	<param name="maxData">
+ Returns the maximum resolution of the measurement range (e. g. for 16 bit resolution the value 65535 (0xFFFF) is returned).
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryNumberRanges(System.Int32,System.Int32,System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeByMinMax(System.Int32,System.Int32,System.Int32,System.Double@,System.Double@,System.Int32@,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceByType(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32@)">
+	<summary>
+ Determines the index of the first available sub-device which matches the features searching for.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="startSubdevice">
+ Index of the sub-device the query starts with.
+ </param>
+	<param name="type">
+ Type of the sub-device searched for:
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_AI"/> Analog acquisition
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_AO"/>: Analog output
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_DIO"/>: Digital input/output (bi-directional)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_DO"/>: Digital output
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_DI"/>: Digital input
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_FIO"/>: Frequency input/output (bi-directional)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_FO"/>: Frequency output
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_FI"/>: Frequency input
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_CTR"/>: Counter
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_EXT_IRQ"/>: External interrupt
+ </param>
+	<param name="subType">
+ The capabilities of the sub-device searched for can be specified more detailed if necessary:
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_ANY"/>: Sub-type doesn't matter.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_SINGLE"/>: Acquisition resp. output of a single value.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_STREAMING"/>: Continuous acquisition resp. output by using special hardware capabilities (e. g. FIFOs).
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_CTR_8254"/>: Sub-device with a counter of type 8254
+ </param>
+	<param name="subdevice">
+ Reference to the index of the first matching sub-device.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NO_MORE_SUBDEVICE_TYPE"/>: Matching sub-device not found.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceType(System.Int32,System.Int32,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceCaps(System.Int32,System.Int32,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceType(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+	<summary>
+ Determines the type and subtype of the specified sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device that is queried.
+ </param>
+	<param name="type">
+ Reference to the sub-device type:
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_AO"/>: Analog output
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_AI"/> Analog input
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_DIO"/>: Digital input/output (bi-directional)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_DO"/>: Digital output
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_DI"/>: Digital input
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_FIO"/>: Frequency input/output (bi-directional)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_FO"/>: Frequency output
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_FI"/>: Frequency input
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_CTR"/>: Counter
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_TYPE_EXT_IRQ"/>: External interrupt
+ </param>
+	<param name="subType">
+ Returns the subtype of the sub-device:
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_SINGLE"/>: Sub-device is able to acquire resp. output single values.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_STREAMING"/>: The sub-device can acquire values continuously resp. output a data stream.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_SUBTYPE_CTR_8254"/>: Sub-device with a counter of type 8254
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryInfoDevice(System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceByType(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceCaps(System.Int32,System.Int32,System.Int32@)">
+	<summary>
+ Determines the special capabilities of a sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device that is queried.
+ </param>
+	<param name="caps">
+ Reference to a bit-coded integer value which returns the special capabilities of the specified sub-device.
+ If several capabilities apply, the values are ORed bitwise.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceCapsArgs(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceType(System.Int32,System.Int32,System.Int32@,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQuerySubdeviceCapsArgs(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32)">
+	<summary>
+ Determines detailed information of a specific capability of a sub-device.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device that is queried.
+ </param>
+	<param name="cap">
+ The capability to be queried.
+ </param>
+	<param name="args">
+ Reference to an array of type integer, which returns the queried values.
+ </param>
+	<param name="count">
+ Number of values in parameter <paramref name="args"/>.  
+ As a rule "1", if the returned values fit into an integer.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CAP"/>: Passed code is invalid or not supported on sub-device.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_CAP_ARG_COUNT"/>: Parameter <paramref name="count"/> doesn't fit for queried capability code.
+ </returns>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionLibrary(System.Int32@)">
+	<summary>
+ Determines the version number of the library.
+ </summary>
+	<param name="version">
+ Reference to the version number of the library.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<remarks>
+ Can be called before calling <see cref="M:Mechatronische_Systeme.Module1.meIDS.meOpen(System.Int32)"/>.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionDeviceDriver(System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionMainDriver(System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionMainDriver(System.Int32@)">
+	<summary>
+ Determines the version number of the main driver.
+ </summary>
+	<param name="version">
+ Reference to the version number of the main driver.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<remarks>
+ The two higher significant bytes (main version, sub version) must be the same one as the 
+ version number of the device specific driver module. <see cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionDeviceDriver(System.Int32,System.Int32@)"/>
+ The lower significant bytes (build number) can differ.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionDeviceDriver(System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionLibrary(System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionDeviceDriver(System.Int32,System.Int32@)">
+	<summary>
+ Determines the version number of the device specific driver module.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="version">
+ Reference to the version number of the main driver.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ </returns>
+	<remarks>
+ The version number must be the same one as the version number of the main driver. 
+  <see cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionMainDriver(System.Int32@)"/>
+	</remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionLibrary(System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryVersionMainDriver(System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityExtractValues(System.Int32,System.Int32@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,System.Int32@,System.Int32@)">
+	<summary>
+ Extracts the values of the specified channel from an array of values taking the channel-list into account.
+ </summary>
+	<param name="channel">
+ Channel index whose values should be extracted.
+ </param>
+	<param name="dataBuffer">
+ Reference to the data buffer allocated for the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamRead(System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32)"/>.
+ </param>
+	<param name="dataCount">
+ Number of measurement values in data buffer <paramref name="dataBuffer"/>.
+ </param>
+	<param name="configList">
+ Pointer to the channel-list, which was passed to the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>.
+ </param>
+	<param name="configListCount">
+ Number of channel-list entries in <paramref name="configList"/>.
+ </param>
+	<param name="chanBuffer">
+ Pointer to an array with the extracted values of the specified channel.
+ </param>
+	<param name="chanBufferCount">
+ (in) Passing the size of the array <paramref name="chanBuffer"/> in number of values.
+ (out) The function returns the number values actually written to <paramref name="chanBuffer"/>.
+ Feld <paramref name="chanBuffer"/> channBuffer kopiert.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<remarks>
+ To extract the channels for several channels the function must be called separately. 
+ Note: If channel is not on list the function returns ME_ERRNO_SUCCESS 
+ and <paramref name="chanBufferCount"/> is set to "0".
+ </remarks>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysical(System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Double,System.Double@)">
+	<summary>
+ Conversion of the standardized digital values into the appropriate physical unit.
+ </summary>
+	<param name="min">
+ The lower limit of the range e. g. -10[V].
+ </param>
+	<param name="max">
+ The upper limit of the range e. g. +10[V].
+ </param>
+	<param name="maxData">
+ The maximum resolution of the range e. g. 65536 at 16 bit resolution.
+ </param>
+	<param name="data">
+ Digital value (0...65535) to be converted.
+ </param>
+	<param name="moduleType">
+ Support for ME-MultiSig module.
+ If for the current calculation no plug-on module must be taken into account,
+ pass the constant: <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_MODULE_TYPE_MULTISIG_NONE"/>  
+ No plug-on module used (standard)
+ </param>
+	<param name="refValue">
+ For a RTD module or a thermo-couple module. Otherwise use: ME_VALUE_NOT_USED.
+ </param>
+	<param name="physical">
+ Result in the corresponding physical unit [V], [A], [°C].
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_VALUE_OUT_OF_RANGE"/>: passed value is lower than "0" or bigger than <paramref name="maxData"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MIN_MAX"/>: passed <paramref name="maxData"/> is not valid.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MODULE_TYPE"/>: passed module type is not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<remarks>
+ If you read data from an input sub-device in streaming mode, you should 
+ apply the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityExtractValues(System.Int32,System.Int32@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,System.Int32@,System.Int32@)"/> to the array of values before 
+ calling this function. Only by that way it is guarenteed, that different gain 
+ factors and the usage of different plug-on modules in combination with the 
+ ME-MultiSig system can be taken into account when calculating.
+ If you want to apply the function to a whole array of values we recommend 
+ the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysicalV(System.Double,System.Double,System.Int32,System.Int32@,System.Int32,System.Int32,System.Double,System.Double@)"/>.
+ The parameters <paramref name="min"/> and <paramref name="max"/> must correspond with the limits of 
+ the measurement range choosen in the functions <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleConfig(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/> 
+ resp. <see cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>. 
+ The parameters <paramref name="min"/>, <paramref name="max"/> and <paramref name="physical"/> must be given 
+ always in the same decimal power of the respective base unit (e. g. either "mV" or "V"). 
+ The physical unit is not relevant for calculation.
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityExtractValues(System.Int32,System.Int32@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,System.Int32@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysicalV(System.Double,System.Double,System.Int32,System.Int32@,System.Int32,System.Int32,System.Double,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleConfig(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysicalV(System.Double,System.Double,System.Int32,System.Int32@,System.Int32,System.Int32,System.Double,System.Double@)">
+	<summary>
+ Conversion of a whole array of standardized digital values into the appropriate physical unit.
+ </summary>
+	<param name="min">
+ The lower limit of the range.
+ </param>
+	<param name="max">
+ The upper limit of the range.
+ </param>
+	<param name="maxData">
+ The maximum resolution of the range.
+ </param>
+	<param name="dataBuffer">
+ Pointer to an array of digital values to be converted.
+ </param>
+	<param name="dataCount">
+ Number of values in the array.
+ </param>
+	<param name="moduleType">
+ Support for ME-MultiSig module.
+ If for the current calculation no plug-on module must be taken into account,
+ pass the constant: <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_MODULE_TYPE_MULTISIG_NONE"/>  
+ No plug-on module used (standard)
+ </param>
+	<param name="refValue">
+ For a RTD module or a thermo-couple module. Otherwise use: ME_VALUE_NOT_USED.
+ </param>
+	<param name="physicalBuffer">
+ Pointer to an array for the results in the appropriate physical unit [V], 
+ [A], [°C]. Has to be able to store <paramref name="dataCount"/> values.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_VALUE_OUT_OF_RANGE"/>: passed value is lower than "0" or bigger than <paramref name="maxData"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MIN_MAX"/>: passed <paramref name="maxData"/> is not valid.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MODULE_TYPE"/>: passed module type is not supported.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysical(System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Double,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOSingleConfig(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig(System.Int32,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamConfig_t@,System.Int32,Mechatronische_Systeme.Module1.meIDS.meIOStreamTrigger_t@,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPhysicalToDigital(System.Double,System.Double,System.Int32,System.Double,System.Int32@)">
+	<summary>
+ Conversion of values to be output in standardized digital values which are appropriate for the converter.
+ </summary>
+	<param name="min">
+ The lower limit of the range, e. g. -10[V].
+ </param>
+	<param name="max">
+ The upper limit of the range, e. g. +9.999695[V].
+ </param>
+	<param name="maxData">
+ The maximum resolution of the range, e. g. 65536 at 16 bit resolution.
+ </param>
+	<param name="physical">
+ Voltage or current value to be converted, e. g. +0.75[V].
+ </param>
+	<param name="data">
+ Result as a digital value to be output.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_VALUE_OUT_OF_RANGE"/>: passed value is lower than <paramref name="min"/> or bigger than <paramref name="max"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MIN_MAX"/>: passed <paramref name="maxData"/> is not valid.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointer is NULL.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPhysicalToDigitalV(System.Double,System.Double,System.Int32,System.Double@,System.Int32,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityDigitalToPhysical(System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Double,System.Double@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPhysicalToDigitalV(System.Double,System.Double,System.Int32,System.Double@,System.Int32,System.Int32@)">
+	<summary>
+ Conversion of a whole array of values to be output in standardized digital values.
+ </summary>
+	<param name="min">
+ The lower limit of the range, e. g. -10[V].
+ </param>
+	<param name="max">
+ The upper limit of the range, e. g. +9.999695[V].
+ </param>
+	<param name="maxData">
+ The maximum resolution of the range, e. g. 65536 at 16 bit resolution.
+ </param>
+	<param name="physicalBuffer">
+ Pointer to an array with the voltage or current values to be converted.
+ </param>
+	<param name="physicalCount">
+ Number of values in the array.
+ </param>
+	<param name="dataBuffer">
+ Pointer to an array with the digital values to be output. Has to be able to store <paramref name="physicalCount"/> values.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_VALUE_OUT_OF_RANGE"/>: passed value is lower than <paramref name="min"/> or bigger than <paramref name="max"/>.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_MIN_MAX"/>: passed <paramref name="maxData"/> is not valid.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_POINTER"/>: passed pointers are NULL.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meQueryRangeInfo(System.Int32,System.Int32,System.Int32,System.Int32@,System.Double@,System.Double@,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPhysicalToDigital(System.Double,System.Double,System.Int32,System.Double,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ configures the counter device 8254 for the operation mode "pulse width modulation" and starts the operation.
+ </summary>
+	<param name="device">
+ Index of the device to be accessed.
+ </param>
+	<param name="subdevice1">
+ Index of the sub-device counter 0 (used as prescaler).
+ </param>
+	<param name="subdevice2">
+ Index of the sub-device counter 1.
+ </param>
+	<param name="subdevice3">
+ Index of the sub-device counter 2.
+ </param>
+	<param name="reference">
+ Defines the clock source for counter 0 (CLK_0)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_CTR_INTERNAL_1MHZ"/>: Clock source is the internal 1 MHz crystal oszillator.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_CTR_INTERNAL_10MHZ"/>: Clock source is the internal 10 MHz crystal oszillator.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_CTR_EXTERNAL"/>: Clock source is an external oszillator.
+ </param>
+	<param name="prescaler">
+ Value for the prescaler (counter 0) in the range 2...65535.
+ </param>
+	<param name="dutyCycle">
+ TDuty cycle of the output signal from 1% –99% adjustable in steps of 1%.
+ </param>
+	<param name="flags">
+ Flag for extended options:
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_PWM_START_NO_FLAGS"/>: default settings
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_PWM_START_CONNECT_INTERNAL"/>: If supported by hardware (e. g. ME-1400 series), 
+ connect OUT_1 with GATE_2 internally. This reduces the number of external connections.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_FLAGS"/>: not supported flag detected.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_REF"/>: used signal source not available.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DUTY_CYCLE"/>: value outside of supported range.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_SUPPORTED"/>: used sub-device is not a counter or internal connection can not be done
+ </returns>
+	<remarks>
+ A further usage of the counters 0...2 is not possible in this operation mode. 
+ The signal is available at OUT_2 of the specified counter device. 
+ Depending on device type the base clock (max. 10 MHz) must be provided externally 
+ or (if supported by the hardware) an on-board crystal oszillator can be used. 
+ Counter 0 is used as a prescaler. The frequency of the output signal is max. 50 kHz
+ and can be calculated as follows:
+ <code>fOut_2 = baseClock / prescaler * 100;  //with prescaler = 2Exp(16-1)</code>
+ The duty cycle can be set between 1...99% in steps of 1%
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStop(System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMRestart(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMRestart(System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Restarts a PWM operation stopped by the function meUtilityPWMStop()
+ </summary>
+	<param name="device">
+ Index of the device to be accessed
+ </param>
+	<param name="subdevice1">
+ Index of the sub-device counter 0 used as prescaler
+ </param>
+	<param name="reference">
+ Defines the clock source for counter 0 (CLK_0)
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_CTR_INTERNAL_1MHZ"/>: Clock source is the internal 1 MHz crystal oszillator.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_CTR_INTERNAL_10MHZ"/>: Clock source is the internal 10 MHz crystal oszillator.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_REF_CTR_EXTERNAL"/>: Clock source is an external oszillator.
+ </param>
+	<param name="prescaler">
+ Value for the prescaler (counter 0) in the range 2...65535.
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_REF"/>: used signal source not available.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_SUPPORTED"/>: used sub-device is no counter.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStop(System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStop(System.Int32,System.Int32)">
+	<summary>
+ Stops a PWM operation started by the function <see cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	</summary>
+	<param name="device">
+ Index of the device to be accessed
+ </param>
+	<param name="subdevice1">
+ Index of the sub-device counter 0 used as prescaler
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_OPEN"/>: ME-iDS is not properly open.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_DEVICE"/>: no device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_INVALID_SUBDEVICE"/>: on requested device no sub-device mapped to requested index.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_NOT_SUPPORTED"/>: used sub-device is no counter.
+ </returns>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMStart(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.meUtilityPWMRestart(System.Int32,System.Int32,System.Int32,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntA(System.String,System.Int32@)">
+	<summary>
+ Read an integer value from the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as ANSI-string
+ </param>
+	<param name="propertyValue">
+ Variable that receives the integer value
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertyGetIntA is the ANSI character version of mePropertyGetIntW
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntW(System.String,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntA(System.String,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntW(System.String,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntW(System.String,System.Int32@)">
+	<summary>
+ Read an integer value from the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as UTF-16 Unicode-string
+ </param>
+	<param name="propertyValue">
+ Variable that receives the integer value
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertyGetIntW is the wide character version of mePropertyGetIntA
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntA(System.String,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntA(System.String,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntW(System.String,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleA(System.String,System.Double@)">
+	<summary>
+ Read a double value from the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as ANSI-string
+ </param>
+	<param name="propertyValue">
+ Variable that receives the double value
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertyGetDoubleA is the ANSI character version of mePropertyGetDoubleW
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleW(System.String,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleA(System.String,System.Double)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleW(System.String,System.Double)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleW(System.String,System.Double@)">
+	<summary>
+ Read a double value from the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as UTF-16 Unicode-string
+ </param>
+	<param name="propertyValue">
+ Variable that receives the double value
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertyGetDoubleW is the wide character version of mePropertyGetDoubleA
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleA(System.String,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleA(System.String,System.Double)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleW(System.String,System.Double)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringA(System.String,System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Read a string value from the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as ANSI-string
+ </param>
+	<param name="propertyValue">
+ Variable that receives the ANSI-string value
+ </param>
+	<param name="count">
+ Buffer length in characters including the terminating null character
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PROPERTY_BUFFER_TOO_SMALL"/>: the buffer is not large enough to hold the string
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertyGetStringA is the ANSI character version of mePropertyGetStringW
+ The required buffer length can be determined with the property attribute "Length" 
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringW(System.String,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringA(System.String,System.String)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringW(System.String,System.String)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringW(System.String,System.Text.StringBuilder,System.Int32)">
+	<summary>
+ Read a string value from the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as UTF-16 Unicode-string
+ </param>
+	<param name="propertyValue">
+ Variable that receives the UTF-16 Unicode-string value
+ </param>
+	<param name="count">
+ Buffer length in characters, not bytes, including the terminating null character
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ <see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_PROPERTY_BUFFER_TOO_SMALL"/>: the buffer is not large enough to hold the string
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ The required buffer length can be determined with the property attribute "Length" 
+ mePropertyGetStringW is the wide character version of mePropertyGetStringA
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringA(System.String,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringA(System.String,System.String)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringW(System.String,System.String)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntA(System.String,System.Int32)">
+	<summary>
+ Set an integer value of the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as ANSI-string
+ </param>
+	<param name="propertyValue">
+ The integer value to be set
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertySetIntA is the ANSI character version of mePropertySetIntW
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntW(System.String,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntA(System.String,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntW(System.String,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntW(System.String,System.Int32)">
+	<summary>
+ Set an integer value of the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as UTF-16 Unicode-string
+ </param>
+	<param name="propertyValue">
+ The integer value to be set
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertySetIntW is the wide character version of mePropertySetIntA
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetIntA(System.String,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntA(System.String,System.Int32@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetIntW(System.String,System.Int32@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleA(System.String,System.Double)">
+	<summary>
+ Set a double value of the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as ANSI-string
+ </param>
+	<param name="propertyValue">
+ The double value to be set
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertySetIntA is the ANSI character version of mePropertySetDoubleW
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleW(System.String,System.Double)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleA(System.String,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleW(System.String,System.Double@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleW(System.String,System.Double)">
+	<summary>
+ Set a double value of the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as UTF-16 Unicode-string
+ </param>
+	<param name="propertyValue">
+ The double value to be set
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertySetDoubleW is the wide character version of mePropertySetDoubleA
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetDoubleA(System.String,System.Double)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleA(System.String,System.Double@)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetDoubleW(System.String,System.Double@)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringA(System.String,System.String)">
+	<summary>
+ Set a string value of the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as ANSI-string
+ </param>
+	<param name="propertyValue">
+ The ANSI-string value to be set
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertySetStringA is the ANSI character version of mePropertyGetStringW
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringW(System.String,System.String)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringA(System.String,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringW(System.String,System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringW(System.String,System.String)">
+	<summary>
+ Set a string value of the given property
+ </summary>
+	<param name="propertyPath">
+ Property path as UTF-16 Unicode-string
+ </param>
+	<param name="propertyValue">
+ The UTF-16 Unicode-string value to be set
+ </param>
+	<returns>
+		<see cref="F:Mechatronische_Systeme.Module1.meIDS.ME_ERRNO_SUCCESS"/>: the function returned successfully.
+ The return value is an error code if there is a failure.
+ </returns>
+	<remarks>
+ mePropertySetStringW is the wide character version of mePropertySetStringA
+ </remarks>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringA(System.String,System.String)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringA(System.String,System.Text.StringBuilder,System.Int32)"/>
+	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringW(System.String,System.Text.StringBuilder,System.Int32)"/>
+</member><member name="M:Mechatronische_Systeme.meIDSTools_VB.meIDSTools.meIDSToolsWaveGen(System.Int32,System.Int32,System.Int32,System.Int32,System.Double,System.Double,System.Double@)">
+	<summary>
+ Creates the waveform using a number of data points less than the size of the internal FIFO on the sub-device.
+ </summary>
+	<param name="device">
+ Index of the AO streaming device which will be used to output the waveform.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="unit">
+ Type of signal which will be output.
+ Use one of the constants ME_UNIT_VOLT, ME_UNIT_AMPERE, ME_UNIT_HZ from meIDS.vb
+ </param>
+	<param name="shape">
+ Shape of the waveform to be output
+ </param>
+	<param name="amplitude">
+ The amplitude in the units of the parameter 'unit' of the signal produced
+ </param>
+	<param name="offset">
+ The offset in the units of the parameter 'unit' of the signal produced
+ </param>
+	<param name="frequency">
+ Contains the frequency in Hz of the signal produced.
+ </param>
+	<returns>
+ Returns one of the standard ME-iDS error codes or one of the error codes defined in this module
+ </returns>
+	<remarks>
+ The routine uses as much of the internal FIFO as possible in order to produce a signal as smooth as possible.
+ </remarks>
+</member><member name="T:Mechatronische_Systeme.meIDSTools_VB.meIDSTools">
+	<summary>
+ Defines all constants and methods to use the meIDSTools library
+ </summary>
+</member><member name="P:Mechatronische_Systeme.My.Resources.Resources.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>

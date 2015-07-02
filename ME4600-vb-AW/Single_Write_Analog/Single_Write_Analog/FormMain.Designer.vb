@@ -25,6 +25,7 @@ Partial Class frmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.btnAbout = New System.Windows.Forms.Button()
         Me.groupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TrackBar_WaitTime = New System.Windows.Forms.TrackBar()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.trackbarVal = New System.Windows.Forms.TrackBar()
@@ -42,10 +43,9 @@ Partial Class frmMain
         Me.label3 = New System.Windows.Forms.Label()
         Me.textBoxInfo = New System.Windows.Forms.TextBox()
         Me.btnClose = New System.Windows.Forms.Button()
-        Me.TrackBar_WaitTime = New System.Windows.Forms.TrackBar()
         Me.groupBox1.SuspendLayout()
-        CType(Me.trackbarVal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrackBar_WaitTime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.trackbarVal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAbout
@@ -83,14 +83,22 @@ Partial Class frmMain
         Me.groupBox1.TabStop = False
         Me.groupBox1.Text = " AO Subdevices "
         '
+        'TrackBar_WaitTime
+        '
+        Me.TrackBar_WaitTime.Location = New System.Drawing.Point(228, 109)
+        Me.TrackBar_WaitTime.Maximum = 1000
+        Me.TrackBar_WaitTime.Name = "TrackBar_WaitTime"
+        Me.TrackBar_WaitTime.Size = New System.Drawing.Size(211, 45)
+        Me.TrackBar_WaitTime.TabIndex = 16
+        '
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(445, 111)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(80, 17)
+        Me.CheckBox1.Size = New System.Drawing.Size(64, 17)
         Me.CheckBox1.TabIndex = 15
-        Me.CheckBox1.Text = "2Threads? "
+        Me.CheckBox1.Text = "Digital? "
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Button1
@@ -251,14 +259,6 @@ Partial Class frmMain
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
-        'TrackBar_WaitTime
-        '
-        Me.TrackBar_WaitTime.Location = New System.Drawing.Point(228, 109)
-        Me.TrackBar_WaitTime.Maximum = 1000
-        Me.TrackBar_WaitTime.Name = "TrackBar_WaitTime"
-        Me.TrackBar_WaitTime.Size = New System.Drawing.Size(211, 45)
-        Me.TrackBar_WaitTime.TabIndex = 16
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -277,8 +277,8 @@ Partial Class frmMain
         Me.Text = "ME-iDS - Single Write Analog"
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
-        CType(Me.trackbarVal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TrackBar_WaitTime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.trackbarVal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

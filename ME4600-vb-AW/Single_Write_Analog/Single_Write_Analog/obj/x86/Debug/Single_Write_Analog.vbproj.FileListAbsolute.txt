@@ -38,3 +38,6 @@ E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Si
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.frmMain.resources
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.Resources.resources
 E:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.vbproj.GenerateResource.Cache
+F:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.exe
+F:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.xml
+F:\MechSys\ME4600-vb-AW\Single_Write_Analog\Single_Write_Analog\obj\x86\Debug\Single_Write_Analog.pdb

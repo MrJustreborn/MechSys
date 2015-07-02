@@ -78,3 +78,27 @@ C:\Users\HeimPC\Desktop\MechSys_2\Mechatronische Systeme\Mechatronische Systeme\
 C:\Users\HeimPC\Desktop\MechSys_2\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.exe
 C:\Users\HeimPC\Desktop\MechSys_2\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.pdb
 C:\Users\HeimPC\Desktop\MechSys_2\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.xml
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.xml
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Intro.resources
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.MainView.resources
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Resources.resources
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Settings.resources
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.DrawingView.resources
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.vbproj.GenerateResource.Cache
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.exe
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.pdb
+E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.xml
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.xml
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.exe
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.pdb
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.xml
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Intro.resources
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.MainView.resources
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Resources.resources
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Settings.resources
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.DrawingView.resources
+F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.vbproj.GenerateResource.Cache

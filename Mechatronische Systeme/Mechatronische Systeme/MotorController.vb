@@ -1,38 +1,113 @@
 ﻿Imports System.Threading
+Imports System.Text
 
 Public Class MotorController
     Private Shared instance As MotorController
-    Private datasCM As List(Of Integer())
+    Private datasMM As List(Of Integer())
     Private datasSteps As List(Of Integer())
     Private max_steps_x As Integer
     Private max_steps_y As Integer
-    Private max_x As Integer 'die cm des blattes warscheinlich A4
-    Private max_y As Integer
-    Private steps_per_cm_x As Integer
-    Private steps_per_cm_y As Integer
+    Private max_x As Integer = 2000 'die mm des blattes warscheinlich A4
+    Private max_y As Integer = 2000
+    Private steps_per_mm_x As Integer = 5
+    Private steps_per_mm_y As Integer = 5
 
     Private cur_item As Integer
 
-    Private xMotor As List(Of Integer())
-    Private yMotor As List(Of Integer())
+    Private xMotor As List(Of Double())
+    Private yMotor As List(Of Double())
     Private cur_x As Integer
     Private cur_y As Integer
+    Dim VoltX = 1.5
+    Dim VoltY = 4.8
 
     'konstruktor als singelton
     Private Sub New()
-        xMotor = New List(Of Integer())
-        yMotor = New List(Of Integer())
+        Console.WriteLine("new moCon")
+        datasSteps = New List(Of Integer())
+        OpenMEiDSDriver()
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
+        WriteDigitalValue(dsubdeviceList(0), 0, 0)
+        xMotor = New List(Of Double())
+        yMotor = New List(Of Double())
 
-        xMotor.Add({5, 5})
-        xMotor.Add({5, -5})
-        xMotor.Add({-5, -5})
-        xMotor.Add({-5, 5})
+        Console.WriteLine(subdeviceList.Count)
+        Console.WriteLine(dsubdeviceList.Count)
+        Console.WriteLine(disubdeviceList.Count)
 
-        yMotor.Add({5, 5})
-        yMotor.Add({5, -5})
-        yMotor.Add({-5, -5})
-        yMotor.Add({-5, 5})
+        xMotor.Add({VoltX, VoltX / 2})
+        xMotor.Add({VoltX, 0})
+        xMotor.Add({VoltX, -VoltX / 2})
+        xMotor.Add({VoltX, -VoltX})
+
+        xMotor.Add({VoltX / 2, -VoltX})
+        xMotor.Add({0, -VoltX})
+        xMotor.Add({-VoltX / 2, -VoltX})
+        xMotor.Add({-VoltX, -VoltX})
+
+        xMotor.Add({-VoltX, -VoltX / 2})
+        xMotor.Add({-VoltX, 0})
+        xMotor.Add({-VoltX, VoltX / 2})
+        xMotor.Add({-VoltX, VoltX})
+
+        xMotor.Add({-VoltX / 2, VoltX})
+        xMotor.Add({0, VoltX})
+        xMotor.Add({VoltX / 2, VoltX})
+        xMotor.Add({VoltX, VoltX})
+
+
+        yMotor.Add({VoltY, VoltY})
+        'yMotor.Add({VoltY / 4 * 3, VoltY})
+        'yMotor.Add({VoltY / 2, VoltY})
+        'yMotor.Add({VoltY / 4, VoltY})
+        yMotor.Add({0, VoltY})
+        'yMotor.Add({-VoltY / 4 * 3, VoltY})
+        'yMotor.Add({-VoltY / 2, VoltY})
+        'yMotor.Add({-VoltY / 4 * 3, VoltY})
+
+
+        yMotor.Add({-VoltY, VoltY})
+        'yMotor.Add({-VoltY, VoltY / 4 * 3})
+        'yMotor.Add({-VoltY, VoltY / 2}) '
+        'yMotor.Add({-VoltY, VoltY / 4})
+        yMotor.Add({-VoltY, 0})
+        'yMotor.Add({-VoltY, -VoltY / 4})
+        'yMotor.Add({-VoltY, -VoltY / 2})
+        'yMotor.Add({-VoltY, -VoltY / 4 * 3})
+
+
+        yMotor.Add({-VoltY, -VoltY})
+        'yMotor.Add({-VoltY / 4 * 3, -VoltY})
+        'yMotor.Add({-VoltY / 2, -VoltY})
+        'yMotor.Add({-VoltY / 4, -VoltY})
+        yMotor.Add({0, -VoltY})
+        'yMotor.Add({VoltY / 4, -VoltY})
+        'yMotor.Add({VoltY / 2, -VoltY})
+        'yMotor.Add({VoltY / 4 * 3, -VoltY})
+
+        yMotor.Add({VoltY, -VoltY})
+        'yMotor.Add({VoltY, -VoltY / 4 * 3})
+        'yMotor.Add({VoltY, -VoltY / 2})
+        'yMotor.Add({VoltY, -VoltY / 4})
+        yMotor.Add({VoltY, 0})
+        'yMotor.Add({VoltY, VoltY / 4})
+        'yMotor.Add({VoltY, VoltY / 2})
+        'yMotor.Add({VoltY, VoltY / 4 * 3})
+
+
+
+
+
         cur_item = 0
+
+        reset()
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
     End Sub
     Public Shared ReadOnly Property getInstance() As MotorController
         Get
@@ -44,11 +119,63 @@ Public Class MotorController
     End Property
 
     Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
+        Console.WriteLine("reset motor")
+
+        move(-2000, 0, False)
+        move(4000, 0, False)
+        move(-2000, 0, False)
+
+
+        'move(-200, 0, False)
+        'move(-200, -2000, False)
+        'move(200, 0, False)
+        'move(200, 0, False)
+        ' move(-200, 500, False)
+        'move(-200, 500, False)
+        'move(400, 1000, False)
+        Return
+        Dim dir = 1
+        move(0, 0, True)
+        Do Until GetDigitalValue(disubdeviceList(0), 1) = 1
+            xMinWait()
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
+
+            cur_x += dir
+            If dir < 0 Then
+                If cur_x <= 0 Then
+                    cur_x = xMotor.Count - 1
+                End If
+            Else
+                cur_x = cur_x Mod xMotor.Count
+            End If
+            max_steps_x += 1
+        Loop
+
+        max_steps_x = 0
+        dir = -1
+        Do Until GetDigitalValue(disubdeviceList(0), 0) = 1
+            xMinWait()
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
+
+            cur_x += dir
+            If dir < 0 Then
+                If cur_x <= 0 Then
+                    cur_x = xMotor.Count - 1
+                End If
+            Else
+                cur_x = cur_x Mod xMotor.Count
+            End If
+            max_steps_x += 1
+        Loop
+        Console.WriteLine("Steps_x: " + max_steps_x.ToString)
+        steps_per_mm_x = max_steps_x / max_x
     End Sub
 
-    Public Sub setDatas(datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
+    Public Sub setDatas(ByVal datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
         'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
-        Me.datasCM = datas
+        Me.datasMM = datas
         Me.calDatas()
     End Sub
     Private Sub calDatas()
@@ -57,13 +184,14 @@ Public Class MotorController
         Dim yStep As Integer
         pos = 0
         Do
-            xStep = Me.datasCM.Item(pos)(1) * steps_per_cm_x
-            yStep = Me.datasCM.Item(pos)(2) * steps_per_cm_y
-            Me.datasSteps.Add({Me.datasCM.Item(pos)(0), xStep, yStep})
+            xStep = Me.datasMM.Item(pos)(1) * steps_per_mm_x
+            yStep = Me.datasMM.Item(pos)(2) * steps_per_mm_y
+            Me.datasSteps.Add({Me.datasMM.Item(pos)(0), xStep, yStep})
             pos += 1
-        Loop Until pos = Me.datasCM.Count
+        Loop Until pos = Me.datasMM.Count
     End Sub
 
+#Region "Schnittstelle für die Ansteuerung"
     Private running As Boolean = False
     Private running_pause As Boolean = False
     Private main_thread As Thread
@@ -86,9 +214,6 @@ Public Class MotorController
 
     Private Sub main()
         While running And drawNext()
-            While running_pause
-                Thread.Sleep(1)
-            End While
         End While
     End Sub
 
@@ -97,57 +222,600 @@ Public Class MotorController
         cur_item += 1
         Return Not (cur_item = Me.datasSteps.Count)
     End Function
+#End Region
 
-
+    Private xSteps As Single
+    Private xSpeed As Single
+    Private ySteps As Integer
+    Private ySpeed As Integer
+    Private xThread As Thread ' = New Thread(AddressOf xMove)
+    Private yThread As Thread ' = New Thread(AddressOf yMove)
     Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
+        'Console.WriteLine("x: " + x_steps.ToString + "|y: " + y_steps.ToString + "|" + status.ToString)
         'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
-    End Sub
-    'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
-    Private Sub xMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 0
+        WriteDigitalValue(dsubdeviceList(0), status, 0)
+        xThread = New Thread(AddressOf xMove)
+        xThread.IsBackground = True
+        yThread = New Thread(AddressOf yMove)
+        yThread.IsBackground = True
 
-        Dim dir = steps/steps
-        Do Until steps = 0
-            steps -= dir
-            'wait
+        xSteps = x_steps
+        ySteps = y_steps
+        'xSpeed = Math.Abs(x_steps / y_steps)
+        'ySpeed = Math.Abs(y_steps / x_steps)
+
+        If Not x_steps = 0 Then
+            xThread.Start()
+        Else
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+        End If
+        If Not y_steps = 0 Then
+            yThread.Start()
+        Else
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
+        End If
+
+        If Not x_steps = 0 Then
+            'Console.WriteLine("for join x")
+            xThread.Join()
+            'Console.WriteLine("after join x")
+        End If
+        If Not y_steps = 0 Then
+            yThread.Join()
+        End If
+        Thread.Sleep(500)
+    End Sub
+
+
+    'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
+    Private Sub xMove() 'Thread 0
+
+        Dim dir = 1
+        If xSteps < 0 Then
+            dir = -1
+        End If
+
+        Do Until xSteps = 0
+            xSteps -= dir
+            xMinWait()
+            'xWait()
+            'pause_waitX()
 
 
             'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
             'xMotor.Item(cur_x)(1) 'ausgang 2 motorx
+            'WriteSingleValue(subdeviceList(0), xMotor.Item(cur_x)(0)) 'ausgang 1 motorx
+            'WriteSingleValue(subdeviceList(1), xMotor.Item(cur_x)(1)) 'ausgang 2 motorx
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
 
             cur_x += dir
-            cur_x = cur_x Mod xMotor.Count
+            If dir < 0 Then
+                If cur_x <= 0 Then
+                    cur_x = xMotor.Count - 1
+                End If
+            Else
+                cur_x = cur_x Mod xMotor.Count
+            End If
         Loop
+        WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
     End Sub
-    Private Sub yMove(ByVal steps As Integer, ByVal speed As Integer) 'Thread 1
+    Private Sub yMove() 'Thread 1
 
-        Dim dir = steps/steps
-        Do Until steps = 0
-            steps -= dir
-            'wait
+        Dim dir = 1
+        If ySteps < 0 Then
+            dir = -1
+        End If
+        Do Until ySteps = 0
+            ySteps -= dir
+            yMinWait()
+            'yWait()
+            'pause_waitY()
 
 
             'yMotor.Item(cur_y)(0) 'ausgang 3 motory
             'yMotor.Item(cur_y)(1) 'ausgang 4 motory
+            'WriteSingleValue(subdeviceList(2), xMotor.Item(cur_y)(0)) 'ausgang 3 motorx
+            'WriteSingleValue(subdeviceList(3), xMotor.Item(cur_y)(1)) 'ausgang 4 motorx
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), yMotor.Item(cur_y)(0))
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), yMotor.Item(cur_y)(1))
 
             cur_y += dir
-            cur_y = cur_y Mod yMotor.Count
+            If dir < 0 Then
+                If cur_y <= 0 Then
+                    cur_y = yMotor.Count - 1
+                End If
+            Else
+                cur_y = cur_y Mod yMotor.Count
+            End If
         Loop
+        WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+        WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
     End Sub
 
+#Region "Waiting"
+    'waits...
+    Private Sub pause_waitX()
+        While running_pause
+            WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
+            xMinWait()
+        End While
+    End Sub
+    Private Sub pause_waitY()
+        While running_pause
+            WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), 0)
+            WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), 0)
+            yMinWait()
+        End While
+    End Sub
 
-    Private xmw As Integer = 3500000
-    Private ymw As Integer = 3500000
+    Private xmw As Integer = 2000000
+    Private ymw As Integer = 650000
     Private Sub xMinWait()
         Dim t As Integer = 0
-        '  Loop 
-        't += 1
-        'Until t >= xmw
+        Do
+            t += 1
+        Loop Until t >= xmw
     End Sub
     Private Sub yMinWait()
         Dim t As Integer = 0
-        ' Loop
-        't+=1
-        'Until t>=ymw
+        Do
+            t += 1
+        Loop Until t >= ymw
+    End Sub
+    Private Sub xWait()
+        Dim t As Integer = 0
+        Do
+            t += 1
+        Loop Until t >= xmw * xSpeed
+    End Sub
+    Private Sub yWait()
+        Dim t As Integer = 0
+        Do
+            t += 1
+        Loop Until t >= ymw * ySpeed
+    End Sub
+#End Region
+
+#Region "MEiDSFunctions"
+    'Hardware
+    Private openErrSuccess As Integer = Constants.ME_IDS_NOTOPENED
+    Private lineNumber As Integer
+    Private subdeviceList As New List(Of AoSubdevice)
+    Private dsubdeviceList As New List(Of DoSubdevice)
+    Private disubdeviceList As New List(Of DiSubdevice)
+    Private Sub OpenMEiDSDriver()
+        Try
+            'textBoxInfo.AppendText("Opening Maindriver..." & Environment.NewLine)
+            openErrSuccess = meIDS.meOpen(meIDS.ME_OPEN_NO_FLAGS)
+
+            If openErrSuccess = meIDS.ME_ERRNO_SUCCESS Then
+                'DisplayVersionLibrary()
+                'DisplayVersionMainDriver()
+
+                'textBoxInfo.AppendText(Environment.NewLine)
+
+                Dim numDevices As Integer
+                meIDS.meQueryNumberDevices(numDevices)
+                'textBoxInfo.AppendText("Number of devices found: " & numDevices.ToString() & Environment.NewLine)
+                GetAoSubdevices(numDevices)
+            Else
+                'displayErrorMessage("meOpen - Error: ", openErrSuccess)
+            End If
+        Catch ex As DllNotFoundException
+            'textBoxInfo.AppendText("The ME-iDS is not properly installed." & Environment.NewLine)
+            'textBoxInfo.AppendText(ex.Message & Environment.NewLine)
+        End Try
+    End Sub
+    Private Sub CloseMEiDSDriver()
+        If openErrSuccess = meIDS.ME_ERRNO_SUCCESS Then
+            meIDS.meClose(meIDS.ME_CLOSE_NO_FLAGS)
+            openErrSuccess = Constants.ME_IDS_NOTOPENED
+            'btnSingleWrite.Enabled = False
+            'btnResetSubdev.Enabled = False
+            subdeviceList.Clear()
+            'coBoxSubDevs.Items.Clear()
+            'coBoxChannel.Items.Clear()
+            'coBoxRange.Items.Clear()
+        End If
+    End Sub
+    Private Sub GetAoSubdevices(numDevices As Integer)
+        Dim idxDevice As Integer
+
+        If openErrSuccess = meIDS.ME_ERRNO_SUCCESS AndAlso numDevices > 0 Then
+            'textBoxInfo.AppendText("Retrieving subdevices of type ME_TYPE_AO (Analog output)..." & Environment.NewLine)
+            subdeviceList.Clear()
+            'coBoxSubDevs.Items.Clear()
+            For idxDevice = 0 To numDevices - 1
+                Dim meError As Integer
+                Dim plugged As Integer
+
+                meError = GetDevicePlugged(idxDevice, plugged)
+                If meError = meIDS.ME_ERRNO_SUCCESS AndAlso plugged = meIDS.ME_PLUGGED_IN Then
+                    GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_AO)
+                    GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DO)
+                    GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DI)
+                Else
+                    'textBoxInfo.AppendText("Device " & idxDevice.ToString() & " not plugged in" & Environment.NewLine)
+                End If
+            Next
+
+        End If
+        'DisplaySubdevices()
+    End Sub
+    Private Sub GetSubdevicesByType(idxDevice As Integer, subdeviceType As Integer)
+        Dim meError As Integer
+        Dim numSubdevices As Integer
+        Dim idxMatchedSubdevice As Integer
+
+        meError = meIDS.meQueryNumberSubdevices(idxDevice, numSubdevices)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim deviceName = New StringBuilder(meIDS.ME_DEVICE_NAME_MAX_COUNT)
+            meIDS.meQueryNameDevice(idxDevice, deviceName, meIDS.ME_DEVICE_NAME_MAX_COUNT)
+            Dim idxSubdevice As Integer = 0
+            While idxSubdevice < numSubdevices
+                meError = meIDS.meQuerySubdeviceByType(idxDevice, _
+                                                 idxSubdevice, _
+                                                 subdeviceType, _
+                                                 meIDS.ME_SUBTYPE_ANY, _
+                                                 idxMatchedSubdevice)
+
+                If meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_AO Then
+                    meError = AddAoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
+                    idxSubdevice = idxMatchedSubdevice + 1
+                ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DO Then
+                    meError = AddDoSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
+                    idxSubdevice = idxMatchedSubdevice + 1
+                ElseIf meError = meIDS.ME_ERRNO_SUCCESS And subdeviceType = meIDS.ME_TYPE_DI Then
+                    meError = AddDiSubdevice(deviceName.ToString(), idxDevice, idxMatchedSubdevice, subdeviceType)
+                    idxSubdevice = idxMatchedSubdevice + 1
+                Else
+                    Exit While
+                End If
+            End While
+        End If
+    End Sub
+    Private Function AddAoSubdevice(deviceName As String, ByVal idxDevice As Integer, ByVal idxSubdevice As Integer, ByVal subdeviceType As Integer) As Integer
+        Dim meError As Integer
+        Dim numOfChannels As Integer
+
+        meIDS.meQueryNumberChannels(idxDevice, idxSubdevice, numOfChannels)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim aoSubdev As AoSubdevice = New AoSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
+            subdeviceList.Add(aoSubdev)
+            AddAnalogRanges(aoSubdev)
+
+            'coBoxSubDevs.Items.Add(deviceName.ToString _
+            '                      & ",  Device " & idxDevice.ToString() _
+            '                      & ",  Subdevice " & idxSubdevice.ToString() _
+            '                      & ",  Type: " & GetSubDevTypeName(subdeviceType) _
+            '                      & ",  Channels: " & numOfChannels.ToString() _
+            '                      & ",  Ranges: " & aoSubdev.GetRangeCount().ToString())
+        End If
+        Return meError
+    End Function
+    Private Function AddDoSubdevice(deviceName As String, ByVal idxDevice As Integer, ByVal idxSubdevice As Integer, ByVal subdeviceType As Integer) As Integer
+        Dim meError As Integer
+        Dim numOfChannels As Integer
+
+        meIDS.meQueryNumberChannels(idxDevice, idxSubdevice, numOfChannels)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim doSubdev As DoSubdevice = New DoSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
+            dsubdeviceList.Add(doSubdev)
+        End If
+        Return meError
+    End Function
+    Private Function AddDiSubdevice(ByVal deviceName As String, ByVal idxDevice As Integer, ByVal idxSubdevice As Integer, ByVal subdeviceType As Integer) As Integer
+        Dim meError As Integer
+        Dim numOfChannels As Integer
+
+        meIDS.meQueryNumberChannels(idxDevice, idxSubdevice, numOfChannels)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            Dim diSubdev As DiSubdevice = New DiSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
+            disubdeviceList.Add(diSubdev)
+        End If
+        Return meError
+    End Function
+    Private Sub AddAnalogRanges(aoSubdev As AoSubdevice)
+        Dim idxRange As Integer
+        Dim numOfRanges As Integer
+        meIDS.meQueryNumberRanges(aoSubdev.deviceIndex, _
+                                      aoSubdev.subdevIndex, _
+                                      meIDS.ME_UNIT_ANY, _
+                                      numOfRanges)
+        idxRange = 0
+        While (idxRange < numOfRanges)
+            AddAnalogRange(aoSubdev, idxRange)
+            idxRange = idxRange + 1
+        End While
+    End Sub
+    Private Sub AddAnalogRange(aoSubdev As AoSubdevice, idxRange As Integer)
+        Dim meError As Integer
+        Dim unit As Integer
+        Dim physMin As Double
+        Dim physMax As Double
+        Dim digitalMax As Integer
+        meError = meIDS.meQueryRangeInfo(aoSubdev.deviceIndex, _
+                                   aoSubdev.subdevIndex, _
+                                   idxRange, _
+                                   unit, _
+                                   physMin, _
+                                   physMax, _
+                                   digitalMax)
+        If meError = meIDS.ME_ERRNO_SUCCESS Then
+            aoSubdev.AddRange(unit, digitalMax, physMin, physMax)
+        End If
+    End Sub
+    Dim lock As New Object
+    Private Sub WriteToSubdevice(aoSubDevice As AoSubdevice, aoRange As AnalogRange, valAnalog As Double)
+        'SyncLock lock
+        Dim meError As Integer
+        Dim valDigital As Integer
+        meError = ConvertPhysicalToDigital(aoSubDevice, aoRange, valAnalog, valDigital)
+
+        If (meError = meIDS.ME_ERRNO_SUCCESS) Then
+
+            meError = ConfigureSubdeviceForOutput(aoSubDevice)
+            If (meError = meIDS.ME_ERRNO_SUCCESS) Then
+                meError = WriteSingleValue(aoSubDevice, valDigital)
+                If (meError = meIDS.ME_ERRNO_SUCCESS) Then
+                    'DisplayValue(aoSubDevice, coBoxChannel.SelectedIndex, valAnalog, valDigital)
+                    'Console.WriteLine("Write: " + aoSubDevice.subdevIndex.ToString + " ->" + valAnalog.ToString)
+                End If
+            End If
+            If (meError <> meIDS.ME_ERRNO_SUCCESS) Then
+                'displayErrorMessage("meIOSingle - Error: ", meError)
+            End If
+        Else
+            'displayErrorMessage("meUtilityPhysicalToDigital - Error: ", meError)
+        End If
+        'End SyncLock
+    End Sub
+    Private Function ConvertPhysicalToDigital(aoSubDevice As AoSubdevice, aoRange As AnalogRange, valAnalog As Double, ByRef valDigital As Integer) As Integer
+        Dim meError As Integer = meIDS.meUtilityPhysicalToDigital(aoRange.physicalMin,
+                                                aoRange.physicalMax,
+                                                aoRange.digitalMax,
+                                                valAnalog,
+                                                valDigital)
+        Return meError
+    End Function
+    Private Function ConfigureSubdeviceForOutput(ByVal aoSubDevice As AoSubdevice) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(aoSubDevice.deviceIndex,
+                                      aoSubDevice.subdevIndex,
+                                      0,
+                                      0,
+                                      meIDS.ME_REF_AO_GROUND,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        Return meError
+    End Function
+    Private Function ConfigureDSubdeviceForOutput(ByVal doSubDevice As DoSubdevice, ByVal channel As Integer) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(doSubDevice.deviceIndex,
+                                      doSubDevice.subdevIndex,
+                                      channel,
+                                      meIDS.ME_SINGLE_CONFIG_DIO_OUTPUT,
+                                      meIDS.ME_REF_NONE,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        Return meError
+    End Function
+    Private Function ConfigureDiSubdeviceForOutput(ByVal diSubDevice As DiSubdevice, ByVal channel As Integer) As Integer
+        Dim meError As Integer = meIDS.meIOSingleConfig(diSubDevice.deviceIndex,
+                                      diSubDevice.subdevIndex,
+                                      channel,
+                                      meIDS.ME_SINGLE_CONFIG_DIO_INPUT,
+                                      meIDS.ME_REF_NONE,
+                                      meIDS.ME_TRIG_CHAN_DEFAULT,
+                                      meIDS.ME_TRIG_TYPE_SW,
+                                      meIDS.ME_VALUE_NOT_USED,
+                                      meIDS.ME_IO_SINGLE_CONFIG_NO_FLAGS)
+        'Console.WriteLine("Error-Cofnig: " + meError.ToString)
+        Return meError
+    End Function
+    Private Function WriteSingleValue(ByVal aoSubDevice As AoSubdevice, ByVal valDigital As Integer) As Integer
+        Dim io_single(1) As meIDS.meIOSingle_t
+
+        io_single(0).iDevice = aoSubDevice.deviceIndex
+        io_single(0).iSubdevice = aoSubDevice.subdevIndex
+        io_single(0).iChannel = 0 'coBoxChannel.SelectedIndex
+        io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+        io_single(0).iValue = valDigital
+        io_single(0).iTimeOut = 0
+        io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_NO_FLAGS
+        io_single(0).iErrno = 0
+
+        Dim meError As Integer = meIDS.meIOSingle(io_single(0),
+                                   1,
+                                   meIDS.ME_IO_SINGLE_NO_FLAGS)
+        Return meError
+    End Function
+    Private Function WriteDigitalValue(ByVal doSubDevice As DoSubdevice, ByVal valDigital As Integer, ByVal channel As Integer) As Integer
+        ConfigureDSubdeviceForOutput(doSubDevice, channel)
+        Dim io_single(1) As meIDS.meIOSingle_t
+
+        io_single(0).iDevice = doSubDevice.deviceIndex
+        io_single(0).iSubdevice = doSubDevice.subdevIndex
+        io_single(0).iChannel = channel
+        io_single(0).iDir = meIDS.ME_DIR_OUTPUT
+        io_single(0).iValue = valDigital
+        io_single(0).iTimeOut = 0
+        io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
+        io_single(0).iErrno = 0
+
+        Dim meError As Integer = meIDS.meIOSingle(io_single(0),
+                                   1,
+                                   meIDS.ME_IO_SINGLE_NO_FLAGS)
+        Return meError
+    End Function
+    Private Function GetDigitalValue(ByVal diSubDevice As DiSubdevice, ByVal channel As Integer) As Integer
+        ConfigureDiSubdeviceForOutput(diSubDevice, channel)
+        Dim io_single(1) As meIDS.meIOSingle_t
+
+        io_single(0).iDevice = diSubDevice.deviceIndex
+        io_single(0).iSubdevice = diSubDevice.subdevIndex
+        io_single(0).iChannel = channel
+        io_single(0).iDir = meIDS.ME_DIR_INPUT
+        io_single(0).iValue = 0
+        io_single(0).iTimeOut = 0
+        io_single(0).iFlags = meIDS.ME_IO_SINGLE_TYPE_DIO_BIT
+        io_single(0).iErrno = 0
+
+        Dim meError As Integer = meIDS.meIOSingle(io_single(0),
+                                   1,
+                                   meIDS.ME_IO_SINGLE_NO_FLAGS)
+        'Console.WriteLine(io_single(0).iValue)
+        Return io_single(0).iValue
+    End Function
+    Private Function GetDevicePlugged(ByVal idxDevice As Integer, ByRef plugged As Integer) As Integer
+
+        Dim meError As Integer
+        Dim vendorId As Integer
+        Dim deviceId As Integer
+        Dim serialNo As Integer
+        Dim busType As Integer
+        Dim busNo As Integer
+        Dim devNo As Integer
+        Dim funcNo As Integer
+
+        meError = meIDS.meQueryInfoDevice(idxDevice, _
+                                    vendorId, _
+                                    deviceId, _
+                                    serialNo, _
+                                    busType, _
+                                    busNo, _
+                                    devNo, _
+                                    funcNo, _
+                                    plugged)
+        Return meError
+    End Function
+#End Region
+
+End Class
+
+Public Class DoSubdevice
+    Public deviceName As String
+    Public deviceIndex As Integer
+    Public subdevIndex As Integer
+    Public numOfChannels As Integer
+
+    Sub New(DevName As String, DeviceIdx As Integer, SubdevIdx As Integer, NumChannels As Integer)
+        deviceName = DevName
+        deviceIndex = DeviceIdx
+        subdevIndex = SubdevIdx
+        numOfChannels = NumChannels
+    End Sub
+End Class
+
+Public Class DiSubdevice
+    Public deviceName As String
+    Public deviceIndex As Integer
+    Public subdevIndex As Integer
+    Public numOfChannels As Integer
+
+    Sub New(ByVal DevName As String, ByVal DeviceIdx As Integer, ByVal SubdevIdx As Integer, ByVal NumChannels As Integer)
+        deviceName = DevName
+        deviceIndex = DeviceIdx
+        subdevIndex = SubdevIdx
+        numOfChannels = NumChannels
+    End Sub
+End Class
+
+Public Class AoSubdevice
+    Public deviceName As String
+    Public deviceIndex As Integer
+    Public subdevIndex As Integer
+    Public numOfChannels As Integer
+    Private analogRanges As New List(Of AnalogRange)
+
+    Sub New(DevName As String, DeviceIdx As Integer, SubdevIdx As Integer, NumChannels As Integer)
+        deviceName = DevName
+        deviceIndex = DeviceIdx
+        subdevIndex = SubdevIdx
+        numOfChannels = NumChannels
     End Sub
 
+    Public Sub AddRange(RangeUnit As Integer, DigitalMax As Integer, PhysicalMin As Double, PhysicalMax As Double)
+        Dim aoRange As AnalogRange = New AnalogRange(RangeUnit, DigitalMax, PhysicalMin, PhysicalMax)
+        analogRanges.Add(aoRange)
+    End Sub
+
+    Public Function GetRange(index As Integer) As AnalogRange
+        Return analogRanges(index)
+    End Function
+
+    Public Function GetRangeCount() As Integer
+        Return analogRanges.Count()
+    End Function
+End Class
+
+Public Class AnalogRange
+    Public rangeUnit As Integer
+    Public digitalMax As Integer
+    Public physicalMin As Double
+    Public physicalMax As Double
+    Public displayRange As String
+    Public displayUnit As String
+
+    Sub New(Unit As Integer, DigitMax As Integer, PhysMin As Double, PhysMax As Double)
+        rangeUnit = Unit
+        digitalMax = DigitMax
+        physicalMin = PhysMin
+        physicalMax = PhysMax
+        SetRangeUnitTexts()
+    End Sub
+
+    Private Sub SetRangeUnitTexts()
+        Dim sbRange As New StringBuilder
+        Dim tmp As String = ""
+        Dim tmpValMin As Double = Math.Abs(physicalMin)
+        Dim tmpValMax As Double = Math.Abs(physicalMax)
+
+        If (rangeUnit = meIDS.ME_UNIT_VOLT) Then
+            displayUnit = "Volt"
+            tmp = "V"
+        ElseIf (rangeUnit = meIDS.ME_UNIT_AMPERE) Then
+            displayUnit = "Ampere"
+            tmp = "A"
+        End If
+
+        If (tmpValMin = 0) Then
+            sbRange.Append("0")
+        ElseIf (tmpValMin < 0.001) Then
+            sbRange.Append(String.Format("{0:0.00}", physicalMin * 1000000))
+            sbRange.Append("µ")
+        ElseIf (tmpValMin < 1) Then
+            sbRange.Append(String.Format("{0:0.00}", physicalMin * 1000))
+            sbRange.Append("m")
+        Else
+            sbRange.Append(String.Format("{0:0.00}", Math.Round(physicalMin, 2)))
+        End If
+        sbRange.Append(tmp)
+
+        If (tmpValMax = 0) Then
+            sbRange.Append("...0")
+        ElseIf (tmpValMax < 0.001) Then
+            sbRange.Append(String.Format("...{0:0.00}", physicalMax * 1000000))
+            sbRange.Append("µ")
+        ElseIf (tmpValMax < 1) Then
+            sbRange.Append(String.Format("...{0:0.00}", physicalMax * 1000))
+            sbRange.Append("m")
+        Else
+            sbRange.Append(String.Format("...{0:0.00}", Math.Round(physicalMax, 2)))
+        End If
+        sbRange.Append(tmp)
+
+        displayRange = sbRange.ToString()
+    End Sub
+End Class
+
+Class Constants
+    Public Shared ReadOnly ME_IDS_NOTOPENED As Integer = -1
 End Class
