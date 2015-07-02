@@ -6,7 +6,60 @@ MechatronischeSysteme
 </name>
 </assembly>
 <members>
-<member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iDevice">
+<member name="P:Mechatronische_Systeme.My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:Mechatronische_Systeme.My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="P:Mechatronische_Systeme.My.Resources.Resources.not_aus_3">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="T:Mechatronische_Systeme.My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="M:Mechatronische_Systeme.meIDSTools_VB.meIDSTools.meIDSToolsWaveGen(System.Int32,System.Int32,System.Int32,System.Int32,System.Double,System.Double,System.Double@)">
+	<summary>
+ Creates the waveform using a number of data points less than the size of the internal FIFO on the sub-device.
+ </summary>
+	<param name="device">
+ Index of the AO streaming device which will be used to output the waveform.
+ </param>
+	<param name="subdevice">
+ Index of the sub-device to be accessed.
+ </param>
+	<param name="unit">
+ Type of signal which will be output.
+ Use one of the constants ME_UNIT_VOLT, ME_UNIT_AMPERE, ME_UNIT_HZ from meIDS.vb
+ </param>
+	<param name="shape">
+ Shape of the waveform to be output
+ </param>
+	<param name="amplitude">
+ The amplitude in the units of the parameter 'unit' of the signal produced
+ </param>
+	<param name="offset">
+ The offset in the units of the parameter 'unit' of the signal produced
+ </param>
+	<param name="frequency">
+ Contains the frequency in Hz of the signal produced.
+ </param>
+	<returns>
+ Returns one of the standard ME-iDS error codes or one of the error codes defined in this module
+ </returns>
+	<remarks>
+ The routine uses as much of the internal FIFO as possible in order to produce a signal as smooth as possible.
+ </remarks>
+</member><member name="T:Mechatronische_Systeme.meIDSTools_VB.meIDSTools">
+	<summary>
+ Defines all constants and methods to use the meIDSTools library
+ </summary>
+</member><member name="F:Mechatronische_Systeme.Module1.meIDS.meIOSingle_t.iDevice">
 	<summary>
     Index of the device to be accessed.
  </summary>
@@ -2569,59 +2622,6 @@ MechatronischeSysteme
 	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertySetStringA(System.String,System.String)"/>
 	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringA(System.String,System.Text.StringBuilder,System.Int32)"/>
 	<seealso cref="M:Mechatronische_Systeme.Module1.meIDS.mePropertyGetStringW(System.String,System.Text.StringBuilder,System.Int32)"/>
-</member><member name="M:Mechatronische_Systeme.meIDSTools_VB.meIDSTools.meIDSToolsWaveGen(System.Int32,System.Int32,System.Int32,System.Int32,System.Double,System.Double,System.Double@)">
-	<summary>
- Creates the waveform using a number of data points less than the size of the internal FIFO on the sub-device.
- </summary>
-	<param name="device">
- Index of the AO streaming device which will be used to output the waveform.
- </param>
-	<param name="subdevice">
- Index of the sub-device to be accessed.
- </param>
-	<param name="unit">
- Type of signal which will be output.
- Use one of the constants ME_UNIT_VOLT, ME_UNIT_AMPERE, ME_UNIT_HZ from meIDS.vb
- </param>
-	<param name="shape">
- Shape of the waveform to be output
- </param>
-	<param name="amplitude">
- The amplitude in the units of the parameter 'unit' of the signal produced
- </param>
-	<param name="offset">
- The offset in the units of the parameter 'unit' of the signal produced
- </param>
-	<param name="frequency">
- Contains the frequency in Hz of the signal produced.
- </param>
-	<returns>
- Returns one of the standard ME-iDS error codes or one of the error codes defined in this module
- </returns>
-	<remarks>
- The routine uses as much of the internal FIFO as possible in order to produce a signal as smooth as possible.
- </remarks>
-</member><member name="T:Mechatronische_Systeme.meIDSTools_VB.meIDSTools">
-	<summary>
- Defines all constants and methods to use the meIDSTools library
- </summary>
-</member><member name="P:Mechatronische_Systeme.My.Resources.Resources.ResourceManager">
-	<summary>
-  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
-</summary>
-</member><member name="P:Mechatronische_Systeme.My.Resources.Resources.Culture">
-	<summary>
-  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
-  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
-</summary>
-</member><member name="P:Mechatronische_Systeme.My.Resources.Resources.not_aus_3">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="T:Mechatronische_Systeme.My.Resources.Resources">
-	<summary>
-  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
-</summary>
 </member>
 </members>
 </doc>

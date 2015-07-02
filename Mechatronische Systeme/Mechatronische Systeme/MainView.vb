@@ -5,13 +5,13 @@
     Private plotterPause As Boolean = True
 
     'Bei Aufruf dieser Funktion wird zunaechst ein Dialogfenster angezeigt, bei dem der Benutzer die Druckerdatei auswaehlen 
-    'kann; ist dies geschehen, so wird zunaechst der ausgewaehlte Pfad der Variablen "filepath" zugewiesen, sowie 
-    'im Controller die "showPreview" Funktion aufgerufen, die dazu führt,
+    'kann; ist dies geschehen, so wird im Controller die "showPreview" Funktion aufgerufen, die dazu führt,
     'dass in der Preview des Hauptfensters eine Druckvorschau angezeigt wird
     Private Sub DruckerdateiLadenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItm_1.Click
         If (Opn_filepath.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
             Me.Refresh()
-            Me.setFilepath(Opn_filepath.FileName)
+            filepath = Opn_filepath.FileName
+            Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: " + filepath
             Me.con.showPreview(filepath)
         End If
     End Sub
@@ -114,9 +114,8 @@
         moCon.setDatas(datas)
     End Sub
 
-    'Diese Funktion setzt den Pfad der Druckdatei, als auch den Text des Labels "Lbl_filepath", der das Verzeichnis angibt
+    'Diese Funktion setzt den Pfad der Druckdatei
     Public Sub setFilepath(ByVal filepath As String)
-        Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: " + filepath
         Me.filepath = filepath
     End Sub
    
@@ -124,11 +123,10 @@
     'hierbei wird im Controller die Methode "stop_plotter" aufgerufen und somit der Druckvorgang 
     ' sofort beendet
     Private Sub Btn_stop_Click(sender As Object, e As EventArgs) Handles Btn_stop.Click
-        Me.switch_disable_buttons()
         Me.con.stop_plotter()
     End Sub
 
-    Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
+    Private Sub BeendenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
     End Sub
 End Class

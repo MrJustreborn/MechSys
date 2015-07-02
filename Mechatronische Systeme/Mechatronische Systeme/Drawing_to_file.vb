@@ -68,7 +68,7 @@ Public Class Drawing_to_file
     Private Sub write_drawed_circle(ByVal middle As Point, ByVal swapAngle As Integer)
         Dim txt As String
         Me.fileWriter = My.Computer.FileSystem.OpenTextFileWriter(Me._path, True)
-        txt = "CS " + (middle.X * 10).ToString + ", " + (middle.Y * 10).ToString + ", " + (swapAngle * 10 * -1).ToString
+        txt = "CS " + (middle.X * 10).ToString + ", " + (middle.Y * 10).ToString + ", " + (swapAngle * 10).ToString
         Me.fileWriter.WriteLine(txt)
         Me.fileWriter.Close()
     End Sub
