@@ -52,8 +52,14 @@
 
         radius = Math.Sqrt(Math.Pow(Math.Abs(x - cur_x), 2) + Math.Pow(Math.Abs(y - cur_y), 2))
 
+        Dim x2 = cur_x 'x + radius
+        Dim y2 = cur_y 'y
+
         Dim offset As Single
-        offset = (Math.Atan((cur_y - y) / (cur_x - x)))
+        offset = Math.Atan((cur_x - x) / (cur_y - y)) + Math.PI '(Math.Atan((cur_y - y) / (cur_x - x)))
+        Dim a2 = (radius * radius) + (radius * radius) - (2 * radius * radius)
+        'offset = Math.Acos()
+        Console.WriteLine(radius)
 
         beta = (phi2 / phi2) / tune
         Dim pi As Single
@@ -61,15 +67,21 @@
 
         beta = ((2 * pi) / 360) * beta 'grad in rad convertieren
         phi2 = ((2 * pi) / 360) * phi2 'grad in rad convertieren
-        new_x = (Math.Sin(beta - offset) * radius) + x
-        new_y = (Math.Cos(beta - offset) * radius) + y
-        Me.addPA(new_x, new_y, Not status)
+
+        'new_x = (Math.Sin(offset) * radius) + x
+        'new_y = (Math.Cos(offset) * radius) + y
+        'Me.addPA(new_x, new_y, Not status)
         Do
             new_x = (Math.Sin(beta - offset) * radius) + x
             new_y = (Math.Cos(beta - offset) * radius) + y
             Me.addPA(new_x, new_y, status)
-            beta += 0.05 'beta
-        Loop Until beta > phi2
+            beta += 1
+        Loop Until beta >= phi2
+
+        new_x = (Math.Sin(phi2 - offset) * radius) + x
+        new_y = (Math.Cos(phi2 - offset) * radius) + y
+        Me.addPA(new_x, new_y, status)
+        'Me.addPA(x2, y2, status)
     End Sub
 
     Public Function getDatas() As List(Of Integer())
