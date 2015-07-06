@@ -45,7 +45,7 @@
     End Sub
 
     'Diese Funnktion ist zustaendig, um die Button "Btn_pause", sowie "Btn_start" abwechselnd zu aktivieren/deaktivieren
-    Private Sub switch_disable_buttons()
+    Public Sub switch_disable_buttons()
         Me.Btn_pause.Enabled = Not (Me.Btn_pause.Enabled)
         Me.Btn_start.Enabled = Not (Me.Btn_start.Enabled)
     End Sub
@@ -125,12 +125,13 @@
     ' Zeitpunkt wieder durch Aufruf der Funktion "switch_disable_button" möglich
     Private Sub Btn_stop_Click(sender As Object, e As EventArgs) Handles Btn_stop.Click
         Me.con.stop_plotter()
-        Me.switch_disable_buttons()
     End Sub
 
+    'Durch diese Funktion wird das "MainView" Formular geschlossen und die Anwendung beeendet
     Private Sub BeendenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
         Application.Exit()
     End Sub
 
+  
 End Class

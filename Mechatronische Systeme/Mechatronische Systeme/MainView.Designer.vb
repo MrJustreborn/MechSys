@@ -196,6 +196,7 @@ Partial Class MainView
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(614, 482)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Btn_pause)
         Me.Controls.Add(Me.Group_2)
         Me.Controls.Add(Me.Group_1)

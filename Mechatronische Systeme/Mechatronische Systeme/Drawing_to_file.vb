@@ -68,7 +68,7 @@ Public Class Drawing_to_file
     Private Sub write_drawed_circle(ByVal middle As Point, ByVal swapAngle As Integer)
         Dim txt As String
         Me.fileWriter = My.Computer.FileSystem.OpenTextFileWriter(Me._path, True)
-        txt = "CS " + (middle.X * 10).ToString + ", " + (middle.Y * 10).ToString + ", " + (swapAngle * 10).ToString
+        txt = "CS " + (middle.X * 10).ToString + ", " + ((260 - middle.Y) * 10).ToString + ", " + (-swapAngle * 10).ToString
         Me.fileWriter.WriteLine(txt)
         Me.fileWriter.Close()
     End Sub
@@ -78,7 +78,7 @@ Public Class Drawing_to_file
     Private Sub write_drawed_line(ByVal point As Point)
         Dim txt As String
         Me.fileWriter = My.Computer.FileSystem.OpenTextFileWriter(Me._path, True)
-        txt = "PA " + (point.X * 10).ToString + ", " + (point.Y * 10).ToString
+        txt = "PA " + (point.X * 10).ToString + ", " + ((260 - point.Y) * 10).ToString
         Me.fileWriter.WriteLine(txt)
         Me.fileWriter.Close()
     End Sub
@@ -92,7 +92,7 @@ Public Class Drawing_to_file
             Me.fileWriter = My.Computer.FileSystem.OpenTextFileWriter(Me._path, True)
             txt = "PU"
             Me.fileWriter.WriteLine(txt)
-            txt = "PA " + (point.X * 10).ToString + ", " + (point.Y * 10).ToString
+            txt = "PA " + (point.X * 10).ToString + ", " + ((260 - point.Y) * 10).ToString
             Me.fileWriter.WriteLine(txt)
             txt = "PD"
             Me.fileWriter.WriteLine(txt)

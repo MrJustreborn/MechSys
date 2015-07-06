@@ -91,7 +91,7 @@
     Private Sub Group_1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Group_1.MouseMove
        
         Label1.Text = "X - Achse: " + e.X.ToString
-        Label2.Text = "Y - Achse: " + e.Y.ToString
+        Label2.Text = "Y - Achse: " + (260 - e.Y).ToString
     End Sub
 
     'Beim Laden der Form "Zeichnung" wird diese Funktion aufgerufen; diese initialisiert die Variable con, uebergibt sich selbst dieser 

@@ -8,14 +8,16 @@
     Private calc As Calculator
     Private moCon As MotorController
     Private list As List(Of Integer())
-
+    Private drawing_position As Point
     'Privater Konstruktur, der bei dessen Aufruf die einzelnen Variablen initialisiert 
     Private Sub New()
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
         Me.drawing_file = Drawing_to_file.getInstance
-        '  Me.moCon = MotorController.getInstance
+        Me.moCon = MotorController.getInstance
+        Me.moCon.setController(Me)
         Me.calc = Calculator.getInstance
+        Me.drawing_position = New Point(0, 0)
     End Sub
 
     ' Da es sich hier bei dieser Klasse um ein "Singleton - Pattern" handelt, besitzt diese auch keinen
@@ -58,11 +60,11 @@
     End Sub
 
     'Diese Funktion dient dem Laden der Einstellungen, die in der Form "Settings" angezeigt werden;
-    'dazu werden die entsprechenden Funktionen "getX_motor","getY_motor","get_tuning" im Objekt "settings" aufgerufen
-    'die Werte den Variablen "x_motor","y_motor","tuning" zwischengespeichert und zum Abschluß in der 
+    'dazu wird die entsprechende Funktion ,"get_tuning" im Objekt "settings" aufgerufen
+    'und der Wert in der Variablen "tuning" zwischengespeichert; zum Abschluß in der 
     'uebergebenen Form "form" gesetzt
     Public Sub load_settings(ByVal form As Settings)
-        Dim x_motor, y_motor, tuning As String
+        Dim tuning As String
        
         tuning = Me.settings.get_tuning()
        
@@ -70,7 +72,7 @@
     End Sub
 
     'Diese Funktion dient dem Abspeichern der Einstellungen, die in der Form "Settings" getaetigt wurden; hierzu werden
-    'die entsprechenden Funktionen "writeX_motor","writeY_motor","write_tuning" im Objekt "settings" aufgerufen
+    'die entsprechende Funktion "write_tuning" im Objekt "settings" aufgerufen
     Public Sub save_settings(ByVal tuning As Integer)
         Me.settings.write_tuning(tuning)
     End Sub
@@ -102,10 +104,17 @@
     End Sub
 
     'Diese Funktion, dient dem Einzeichnen der Linien in der Zeichenbene "live_print" der Form "MainView" waehrend des Druckvorgangs
-    Public Sub line_live_print(ByVal p_old As Point, ByVal p_new As Point)
-        If Not IsNothing(Me.main_form) Then
-            Me.main_form.draw_live_print(p_old, p_new)
+    'dazu wird zunaechst ueberprueft, ob der uebergebene Wert "status_pen" dem Wert "1" entspricht - strich der Stift ist nicht angehoben
+    'ist dies der Fall, so wird in der "MainView" anhand der der beiden Punkte "drawing_position" sowie dem neuen Endpunkt, 
+    'der sich durch Addition von "drawing_position" und der entsprechenden Deltawerte "delta_x" + "delta_y" ergibt, eine Linie in der Zeichenebene "live_print" eingezeichnet;
+    'die neue Position des Plotters wird in der Variablen "drawing_position" durch dessen Addition mit den Deltawerten abgespeichert
+    Public Sub line_live_print(ByVal delta_x As Integer, ByVal delta_y As Integer, ByVal status_pen As Integer)
+        Dim factor As Integer = 10
+        If status_pen And Not IsNothing(Me.main_form) Then
+            Me.main_form.draw_live_print(Me.drawing_position, New Point((Me.drawing_position.X + delta_x) / factor, (Me.drawing_position.Y + delta_y) / factor))
         End If
+        Me.drawing_position.X += delta_x
+        Me.drawing_position.Y += delta_y
     End Sub
 
     'Funktion die der Wertzuweisung der Progressbar "Progress" dient;
@@ -121,21 +130,22 @@
         Dim factor = 10
         Dim p_last As Point
         Dim p_start As New Point(0, 0)
-        
+
         Me.parse(filepath)
-       
+
         For Each item In Me.list
             p_last.X = p_start.X + item(1)
             p_last.Y = p_start.Y + item(2)
+
 
             If (item(0) = 0) Then
                 Dim p_temp_st As Point = p_start
                 Dim p_temp_last As Point = p_last
 
                 p_temp_st.X /= factor
-                p_temp_st.Y /= factor
+                p_temp_st.Y = (2600 - p_temp_st.Y) / factor
                 p_temp_last.X /= factor
-                p_temp_last.Y /= factor
+                p_temp_last.Y = (2600 - p_temp_last.Y) / factor
                 Me.line_preview(p_temp_st, p_temp_last)
             End If
             p_start = p_last
@@ -162,7 +172,7 @@
     Private Sub showDrawing(ByVal filepath As String)
         Dim factor = 10
         Dim p_last As Point
-        
+
         Dim p_start As New Point(0, 0)
 
         Me.parse(filepath)
@@ -176,9 +186,9 @@
                     Dim p_temp_last As Point = p_last
 
                     p_temp_st.X /= factor
-                    p_temp_st.Y /= factor
+                    p_temp_st.Y = (2600 - p_temp_st.Y) / factor
                     p_temp_last.X /= factor
-                    p_temp_last.Y /= factor
+                    p_temp_last.Y = (2600 - p_temp_last.Y) / factor
                     Me.line_drawing(p_temp_st, p_temp_last)
                 End If
                 p_start = p_last
@@ -186,7 +196,7 @@
         Else
             Me.drawing_form.Btn_back_Enabled()
         End If
-        
+
     End Sub
 
     'Diese Funktion wird fuer die Zureckfunktion in der Form "Zeichnung" verwendet; sie fuehrt dazu die Daten fuer die Zeichnung
@@ -221,6 +231,11 @@
     ' Zeichnet einen Kreis in der DrawingView 
     Private Sub drawCircle_drawingView(ByVal rect As Rectangle, ByVal startAngle As Single, ByVal swapAngle As Single)
         Me.drawing_form.draw_circle(rect, startAngle, swapAngle)
+    End Sub
+
+    '
+    Public Sub plotter_finished()
+        Me.main_form.switch_disable_buttons()
     End Sub
 
     'Bricht den Druckvorgang durch Aufruf der Funktion "break" im Motorcontroller "moCon" ab

@@ -21,8 +21,13 @@ Public Class MotorController
     Dim VoltX = 1
     Dim VoltY = 1
 
+    Private con As Controller
+    Public Sub setController(ByRef con As Controller)
+        Me.con = con
+    End Sub
     'konstruktor als singelton
     Private Sub New()
+        Control.CheckForIllegalCrossThreadCalls = False
         Console.WriteLine("new moCon")
         datasSteps = New List(Of Integer())
         OpenMEiDSDriver()
@@ -126,17 +131,20 @@ Public Class MotorController
         'move(Math.Round(500 * steps_per_mm_x), 0, False)
         'move(-Math.Round(500 * steps_per_mm_x), 0, False)
 
-        move(0, Math.Round(100 * steps_per_mm_y), False)
-        move(Math.Round(600 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
+        move(0, Math.Round(500 * steps_per_mm_y), False)
+        'move(0, Math.Round(500 * steps_per_mm_y), False)
 
         'move(0, Math.Round(100 * steps_per_mm_y), False)
-        move(-Math.Round(600 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
+        'move(Math.Round(600 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
 
-        ' move(0, Math.Round(100 * steps_per_mm_y), False)
-        move(Math.Round(300 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
+        ''move(0, math.round(100 * steps_per_mm_y), false)
+        'move(-Math.Round(600 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
 
-        ' move(0, Math.Round(100 * steps_per_mm_y), False)
-        move(-Math.Round(600 * steps_per_mm_x), Math.Round(300 * steps_per_mm_y), False)
+        '' move(0, math.round(100 * steps_per_mm_y), false)
+        'move(Math.Round(300 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
+
+        '' move(0, math.round(100 * steps_per_mm_y), false)
+        'move(-Math.Round(600 * steps_per_mm_x), Math.Round(300 * steps_per_mm_y), False)
 
         Return
         Dim dir = 1
@@ -219,7 +227,11 @@ Public Class MotorController
 
     Private Sub main()
         While running And drawNext()
+            con.progress(cur_item / Me.datasSteps.Count * 100)
+            'con.line_live_print(New Point(Me.datasMM(cur_item)(1), Me.datasMM(cur_item)(2)))
+            Console.WriteLine(cur_item / Me.datasSteps.Count * 100)
         End While
+        con.plotter_finished()
     End Sub
 
     Private Function drawNext() As Boolean 'solange Bool=true, hat noch ein datensatz im Array und kann weiter zeichnen
@@ -253,50 +265,50 @@ Public Class MotorController
         yThread = New Thread(AddressOf yMove)
         yThread.IsBackground = True
 
-        Dim yDir = 1
-        If y_steps < 0 Then
-            yDir = -1
-        End If
-        If Not yDir = yLastDir Then
-            y_steps = y_steps + (1.5 * steps_per_mm_y) 'umkehrspiel y
-        End If
-        yLastDir = yDir
+        'Dim yDir = 1
+        'If y_steps < 0 Then
+        '    yDir = -1
+        'End If
+        'If Not yDir = yLastDir Then
+        '    y_steps = y_steps + (1.5 * steps_per_mm_y) 'umkehrspiel y
+        'End If
+        'yLastDir = yDir
 
-        Dim xDir = 1
-        If x_steps < 0 Then
-            xDir = -1
-        End If
-        If Not xDir = xLastDir Then
-            x_steps = x_steps + (1 * steps_per_mm_x) 'umkehrspiel x
-        End If
-        xLastDir = xDir
+        'Dim xDir = 1
+        'If x_steps < 0 Then
+        '    xDir = -1
+        'End If
+        'If Not xDir = xLastDir Then
+        '    x_steps = x_steps + (1 * steps_per_mm_x) 'umkehrspiel x
+        'End If
+        'xLastDir = xDir
 
         ySteps = y_steps
         xSteps = x_steps
 
-        If y_steps < 0 Then
-            ySteps = y_steps * 0.8695 'scalierungsfaktor zur fehlerkorrektur y
-        Else
-            ySteps = y_steps
-        End If
-        If x_steps < 0 Then
-            xSteps = x_steps * 0.9442 'scalierungsfaktor zur fehlerkorrektur x
-        Else
-            xSteps = x_steps
-        End If
-        
+        'If y_steps < 0 Then
+        '    ySteps = y_steps * 0.8695 'scalierungsfaktor zur fehlerkorrektur y
+        'Else
+        '    ySteps = y_steps
+        'End If
+        'If x_steps < 0 Then
+        '    xSteps = x_steps * 0.9442 'scalierungsfaktor zur fehlerkorrektur x
+        'Else
+        '    xSteps = x_steps
+        'End If
+
         xw = xmw
         yw = ymw
-        If Not xmm = 0 And Not ymm = 0 Then
-            Dim v As Double = Math.Abs(ymm / xmm)
-            If v < 1 Then
-                v += 1
-                xw = Math.Round(xmw * 6.9)
-                yw = Math.Round(v * ymw * 1.15)
-            Else
-                xw = Math.Round(v * xmw * 6.9)
-            End If
-        End If
+        'If Not xmm = 0 And Not ymm = 0 Then
+        '    Dim v As Double = Math.Abs(ymm / xmm)
+        '    If v < 1 Then
+        '        v += 1
+        '        xw = Math.Round(xmw * 6.9)
+        '        yw = Math.Round(v * ymw * 1.15)
+        '    Else
+        '        xw = Math.Round(v * xmw * 6.9)
+        '    End If
+        'End If
 
         If Not x_steps = 0 Then
             xThread.Start()
@@ -328,7 +340,7 @@ Public Class MotorController
     End Function
 
     Private Function yVolt(ByVal wait As Integer) As Double
-        Return 543.95 * Math.Pow(wait, -0.333)
+        Return 803.45 * Math.Pow(wait, -0.359)
     End Function
 
     'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
