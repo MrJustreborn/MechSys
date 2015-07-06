@@ -82,30 +82,11 @@ Public Class Save_read_settings
 
     End Sub
 
-    ' Gibt den Wert "x_motor" aus der Datei zurueck, dazu wird die Funktion "ReadValue" aufgerufen
-    Public Function getX_motor() As String
-        Return ReadValue("settings", "x_motor")
-    End Function
-
-    ' Gibt den Wert "y_motor" aus der Datei zurueck, dazu wird die Funktion "ReadValue" aufgerufen
-    Public Function getY_motor() As String
-        Return ReadValue("settings", "y_motor")
-    End Function
-
     ' Gibt den Wert "tuning" aus der Datei zurueck, dazu wird die Funktion "ReadValue" aufgerufen
     Public Function get_tuning() As String
         Return ReadValue("settings", "tuning")
     End Function
 
-    'Schreibt den uebergebenen String "x_motor" in die Datei; dazu wird die Funktion "WriteValue" aufgerufen 
-    Public Sub writeX_motor(ByVal x_motor As String)
-        WriteValue("settings", "x_motor", x_motor)
-    End Sub
-
-    'Schreibt den uebergebenen String "y_motor" in die Datei; dazu wird die Funktion "WriteValue" aufgerufen 
-    Public Sub writeY_motor(ByVal y_motor As String)
-        WriteValue("settings", "y_motor", y_motor)
-    End Sub
 
     'Schreibt den uebergebenen String "tuning" in die Datei; dazu wird die Funktion "WriteValue" aufgerufen 
     Public Sub write_tuning(ByVal tuning As String)

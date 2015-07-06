@@ -38,9 +38,8 @@ Partial Class Settings
         Me.Lbl_1.AutoSize = True
         Me.Lbl_1.Location = New System.Drawing.Point(12, 35)
         Me.Lbl_1.Name = "Lbl_1"
-        Me.Lbl_1.Size = New System.Drawing.Size(147, 13)
+        Me.Lbl_1.Size = New System.Drawing.Size(0, 13)
         Me.Lbl_1.TabIndex = 0
-        Me.Lbl_1.Text = "Schritte - Feintuning X - Motor"
         '
         'Btn_save
         '
@@ -70,9 +69,8 @@ Partial Class Settings
         Me.Lbl_2.AutoSize = True
         Me.Lbl_2.Location = New System.Drawing.Point(12, 79)
         Me.Lbl_2.Name = "Lbl_2"
-        Me.Lbl_2.Size = New System.Drawing.Size(147, 13)
+        Me.Lbl_2.Size = New System.Drawing.Size(0, 13)
         Me.Lbl_2.TabIndex = 4
-        Me.Lbl_2.Text = "Schritte - Feintuning Y - Motor"
         '
         'Btn_cancel
         '

@@ -14,7 +14,7 @@
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
         Me.drawing_file = Drawing_to_file.getInstance
-        Me.moCon = MotorController.getInstance
+        '  Me.moCon = MotorController.getInstance
         Me.calc = Calculator.getInstance
     End Sub
 
@@ -50,7 +50,7 @@
         path = Me.getPath()
         Me.parse(path)
         If (Me.list.Count > 0) Then
-            'Me.start_plotter()
+            Me.start_plotter()
         Else
             MsgBox("Der Printvorgang kann nicht gestartet werden, da Sie nichts gezeichnet haben")
         End If
@@ -63,19 +63,15 @@
     'uebergebenen Form "form" gesetzt
     Public Sub load_settings(ByVal form As Settings)
         Dim x_motor, y_motor, tuning As String
-        x_motor = Me.settings.getX_motor()
-        y_motor = Me.settings.getY_motor()
+       
         tuning = Me.settings.get_tuning()
-        form.setTxt_1(x_motor)
-        form.setTxt_2(y_motor)
+       
         form.setScrollBar(tuning)
     End Sub
 
     'Diese Funktion dient dem Abspeichern der Einstellungen, die in der Form "Settings" getaetigt wurden; hierzu werden
     'die entsprechenden Funktionen "writeX_motor","writeY_motor","write_tuning" im Objekt "settings" aufgerufen
-    Public Sub save_settings(ByVal x_motor As String, ByVal y_motor As String, ByVal tuning As Integer)
-        Me.settings.writeX_motor(x_motor)
-        Me.settings.writeY_motor(y_motor)
+    Public Sub save_settings(ByVal tuning As Integer)
         Me.settings.write_tuning(tuning)
     End Sub
 

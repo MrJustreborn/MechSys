@@ -70,6 +70,7 @@ Partial Class DrawingView
         Me.Btn_back.Name = "Btn_back"
         Me.Btn_back.Size = New System.Drawing.Size(36, 29)
         Me.Btn_back.TabIndex = 3
+        Me.tip1.SetToolTip(Me.Btn_back, "Zurück")
         Me.Btn_back.UseVisualStyleBackColor = True
         '
         'Btn_line

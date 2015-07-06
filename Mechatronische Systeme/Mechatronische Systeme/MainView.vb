@@ -1,7 +1,7 @@
 ﻿Public Class MainView
     Private filepath As String
     Private con As Controller
-    Private moCon As MotorController
+    ' Private moCon As MotorController
     Private plotterPause As Boolean = True
 
     'Bei Aufruf dieser Funktion wird zunaechst ein Dialogfenster angezeigt, bei dem der Benutzer die Druckerdatei auswaehlen 
@@ -111,7 +111,7 @@
 
     'Diese Funktion setzt die Daten fuer den MotorController 
     Private Sub set_plotter_data(datas As List(Of Integer()))
-        moCon.setDatas(datas)
+        '  moCon.setDatas(datas)
     End Sub
 
     'Diese Funktion setzt den Pfad der Druckdatei
@@ -121,12 +121,16 @@
    
     'Bei Klick auf dem Button "Btn_stop" wird diese Methode aufgerufen 
     'hierbei wird im Controller die Methode "stop_plotter" aufgerufen und somit der Druckvorgang 
-    ' sofort beendet
+    ' sofort beendet - ein erneutes Einleiten des Druckvorgangs mit Hilfe des "Start" Buttons ist ab diesen
+    ' Zeitpunkt wieder durch Aufruf der Funktion "switch_disable_button" möglich
     Private Sub Btn_stop_Click(sender As Object, e As EventArgs) Handles Btn_stop.Click
         Me.con.stop_plotter()
+        Me.switch_disable_buttons()
     End Sub
 
     Private Sub BeendenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
+        Application.Exit()
     End Sub
+
 End Class

@@ -46,7 +46,7 @@
     ' Meldung ausgegeben; der Rueckgabewert (Boolean) gibt den Erfolg dieser Ueberpruefung zurueck
     Private Function save() As Boolean
         If IsNumeric(Me.TxtBox_1.Text) And IsNumeric(Me.TxtBox_2.Text) Then
-            con.save_settings(Me.TxtBox_1.Text, Me.TxtBox_2.Text, Me.Scroll_1.Value)
+            con.save_settings(Me.Scroll_1.Value)
             Return True
         Else
             MsgBox("Einer Ihrer Eingaben ist keine Zahl")
