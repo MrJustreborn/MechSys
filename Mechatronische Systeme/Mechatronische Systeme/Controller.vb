@@ -110,8 +110,8 @@
     'die neue Position des Plotters wird in der Variablen "drawing_position" durch dessen Addition mit den Deltawerten abgespeichert
     Public Sub line_live_print(ByVal delta_x As Integer, ByVal delta_y As Integer, ByVal status_pen As Integer)
         Dim factor As Integer = 10
-        If status_pen And Not IsNothing(Me.main_form) Then
-            Me.main_form.draw_live_print(Me.drawing_position, New Point((Me.drawing_position.X + delta_x) / factor, (Me.drawing_position.Y + delta_y) / factor))
+        If Not status_pen And Not IsNothing(Me.main_form) Then
+            Me.main_form.draw_live_print(Me.drawing_position, New Point((Me.drawing_position.X + delta_x) / factor, (2600 - Me.drawing_position.Y + delta_y) / factor))
         End If
         Me.drawing_position.X += delta_x
         Me.drawing_position.Y += delta_y
@@ -236,6 +236,8 @@
     '
     Public Sub plotter_finished()
         Me.main_form.switch_disable_buttons()
+        Me.main_form.enable_ToolStripItm()
+        Me.main_form.stop_timer()
     End Sub
 
     'Bricht den Druckvorgang durch Aufruf der Funktion "break" im Motorcontroller "moCon" ab

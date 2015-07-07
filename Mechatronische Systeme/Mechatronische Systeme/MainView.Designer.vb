@@ -22,6 +22,7 @@ Partial Class MainView
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainView))
         Me.Btn_start = New System.Windows.Forms.Button()
         Me.Lbl_progress = New System.Windows.Forms.Label()
@@ -41,6 +42,8 @@ Partial Class MainView
         Me.Group_2 = New System.Windows.Forms.GroupBox()
         Me.Btn_pause = New System.Windows.Forms.Button()
         Me.Btn_stop = New System.Windows.Forms.Button()
+        Me.time_print = New System.Windows.Forms.Timer(Me.components)
+        Me.lbl_time = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -191,12 +194,27 @@ Partial Class MainView
         Me.Btn_stop.TabIndex = 1
         Me.Btn_stop.UseVisualStyleBackColor = True
         '
+        'time_print
+        '
+        Me.time_print.Interval = 1000
+        '
+        'lbl_time
+        '
+        Me.lbl_time.AutoSize = True
+        Me.lbl_time.ForeColor = System.Drawing.Color.Black
+        Me.lbl_time.Location = New System.Drawing.Point(380, 377)
+        Me.lbl_time.Name = "lbl_time"
+        Me.lbl_time.Size = New System.Drawing.Size(31, 13)
+        Me.lbl_time.TabIndex = 13
+        Me.lbl_time.Text = "Zeit: "
+        '
         'MainView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(614, 482)
         Me.ControlBox = False
+        Me.Controls.Add(Me.lbl_time)
         Me.Controls.Add(Me.Btn_pause)
         Me.Controls.Add(Me.Group_2)
         Me.Controls.Add(Me.Group_1)
@@ -237,5 +255,7 @@ Partial Class MainView
     Friend WithEvents Btn_pause As System.Windows.Forms.Button
     Friend WithEvents KonstruierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KonstuierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents time_print As System.Windows.Forms.Timer
+    Friend WithEvents lbl_time As System.Windows.Forms.Label
 
 End Class
