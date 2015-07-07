@@ -1,8 +1,11 @@
 ﻿
 
 Public Class Intro
-    Private Sub Intro_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim con_motor As MotorController
+
+    Private Sub intro_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+
         MainView.Show()
-        'Me.Close()
+        Me.Hide()
     End Sub
 End Class

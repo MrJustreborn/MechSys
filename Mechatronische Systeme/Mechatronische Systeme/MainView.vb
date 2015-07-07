@@ -3,7 +3,7 @@
     Private con As Controller
     ' Private moCon As MotorController
     Private plotterPause As Boolean = True
-
+    Private counter As Integer = 0
     'Bei Aufruf dieser Funktion wird zunaechst ein Dialogfenster angezeigt, bei dem der Benutzer die Druckerdatei auswaehlen 
     'kann; ist dies geschehen, so wird im Controller die "showPreview" Funktion aufgerufen, die dazu führt,
     'dass in der Preview des Hauptfensters eine Druckvorschau angezeigt wird
@@ -19,7 +19,10 @@
     'Durch Betaetigung des Buttons "Btn_start" wird diese Funktion aufgerufen;
     'Diese ruft die Funktion "start_plotter" auf und startet somit den Drucker
     Private Sub Btn_start_Click(sender As System.Object, e As System.EventArgs) Handles Btn_start.Click
+        Me.Progress_1.Value = 0
+        Me.counter = 0
         Me.start_plotter()
+        Me.time_print.Start()
     End Sub
 
     'Diese Funktion startet den Druckvorgang des Druckers; dazu wird zunaechst ueberprueft, ob eine 
@@ -57,7 +60,7 @@
     End Sub
 
     'Diese Funktion aktiviert die beiden Buttons "ToolStripMenuItem_1", sowie "ToolStripMenuItem_2"
-    Private Sub enable_ToolStripItm()
+    Public Sub enable_ToolStripItm()
         Me.ToolStripMenuItm_1.Enabled = True
         Me.ToolStripMenuItm_2.Enabled = True
     End Sub
@@ -78,10 +81,12 @@
     Private Sub Btn_pause_Click(sender As System.Object, e As System.EventArgs) Handles Btn_pause.Click
         If (Me.plotterPause) Then
             Me.con.pause_plotter()
+            Me.stop_timer()
             Me.Btn_pause.Text = "Fortfahren"
         Else
             Me.con.unpause_plotter()
             Me.Btn_pause.Text = "Pause"
+            Me.time_print.Start()
         End If
         Me.plotterPause = Not Me.plotterPause
     End Sub
@@ -91,7 +96,7 @@
     'zusaetzlich wird der Wert im Label "lbl_progress" angezeigt 
     Public Sub Progress(ByVal value As Integer)
         If (Progress_1.Value < 101) Then
-            Me.Progress_1.Value += value
+            Me.Progress_1.Value = value
             Me.Lbl_progress.Text = "Fortschritt: " + Me.Progress_1.Value.ToString + "%"
         End If
 
@@ -134,4 +139,13 @@
     End Sub
 
   
+    Private Sub time_print_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles time_print.Tick
+        Me.lbl_time.Text = "Zeit: " + counter.ToString
+        counter += 1
+    End Sub
+
+    Public Sub stop_timer()
+        Me.time_print.Stop()
+    End Sub
+    
 End Class

@@ -102,3 +102,15 @@ F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatron
 F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Settings.resources
 F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.DrawingView.resources
 F:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.vbproj.GenerateResource.Cache
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.xml
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.exe
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.pdb
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\bin\Debug\Mechatronische Systeme.xml
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Intro.resources
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.MainView.resources
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Resources.resources
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Settings.resources
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.DrawingView.resources
+E:\MechSys\MechSys-master\MechSys-master\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.vbproj.GenerateResource.Cache
