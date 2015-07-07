@@ -76,9 +76,13 @@
             new_y = (Math.Cos(beta - offset) * radius) + y
             Me.addPA(new_x, new_y, status)
 <<<<<<< HEAD
+<<<<<<< HEAD
             beta += 0.1
 =======
             beta += 1
+>>>>>>> origin
+=======
+            beta += 0.1
 >>>>>>> origin
         Loop Until beta >= phi2
 
