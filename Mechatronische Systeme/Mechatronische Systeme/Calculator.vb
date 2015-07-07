@@ -75,15 +75,15 @@
             new_x = (Math.Sin(beta - offset) * radius) + x
             new_y = (Math.Cos(beta - offset) * radius) + y
             Me.addPA(new_x, new_y, status)
-<<<<<<< HEAD
-<<<<<<< HEAD
-            beta += 0.1
-=======
-            beta += 1
->>>>>>> origin
-=======
-            beta += 0.1
->>>>>>> origin
+            '<<<<<<< HEAD
+            '<<<<<<< HEAD
+            '            beta += 0.1
+            '=======
+            '            beta += 1
+            '>>>>>>> origin
+            '=======
+            '            beta += 0.1
+            '>>>>>>> origin
         Loop Until beta >= phi2
 
         new_x = (Math.Sin(phi2 - offset) * radius) + x

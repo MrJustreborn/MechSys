@@ -10,15 +10,7 @@ Public Class MotorController
     'Private max_x As Integer = 2000 'die mm des blattes warscheinlich A4
     'Private max_y As Integer = 2000
     Private steps_per_mm_x As Double = 2.85
-<<<<<<< HEAD
-<<<<<<< HEAD
     Private steps_per_mm_y As Double = 2.36 '2.36
-=======
-    Private steps_per_mm_y As Double = 2.36
->>>>>>> origin
-=======
-    Private steps_per_mm_y As Double = 2.36 '2.36
->>>>>>> origin
 
     Private cur_item As Integer
 
@@ -108,10 +100,6 @@ Public Class MotorController
         move(-10, 0, False)
         move(0, -10, False)
         move(0, 10, False)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin
         Thread.Sleep(250)
         'Dim a = 0
         'Dim b = 100
@@ -126,11 +114,6 @@ Public Class MotorController
         'Thread.Sleep(1000)
         'move(Math.Round(100 * steps_per_mm_x), 0, False)
         'move(0, -Math.Round(500 * steps_per_mm_y), False)
-<<<<<<< HEAD
-=======
->>>>>>> origin
-=======
->>>>>>> origin
 
         'move(-Math.Round(500 * steps_per_mm_x), Math.Round(500 * steps_per_mm_y), False)
         'move(-Math.Round(500 * steps_per_mm_x), -Math.Round(500 * steps_per_mm_y), False)
@@ -165,8 +148,6 @@ Public Class MotorController
         'move(0, Math.Round(100 * steps_per_mm_y), False)
         'move(-Math.Round(600 * steps_per_mm_x), Math.Round(300 * steps_per_mm_y), False)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         'move(0, Math.Round(100 * steps_per_mm_y), False)
         'move(Math.Round(500 * steps_per_mm_x), 0, False)
         'move(0, Math.Round(100 * steps_per_mm_y), False)
@@ -176,24 +157,6 @@ Public Class MotorController
         'move(0, Math.Round(100 * steps_per_mm_y), False)
         'move(-Math.Round(500 * steps_per_mm_x), 0, False)
         'move(0, Math.Round(100 * steps_per_mm_y), False)
-=======
-        'move(0, -Math.Round(100 * steps_per_mm_y), False)
-=======
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
->>>>>>> origin
-        'move(Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(-Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(-Math.Round(500 * steps_per_mm_x), 0, False)
-<<<<<<< HEAD
-        'move(0, -Math.Round(100 * steps_per_mm_y), False)
->>>>>>> origin
-=======
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
->>>>>>> origin
 
         Return
         Dim dir = 1
@@ -276,18 +239,8 @@ Public Class MotorController
 
     Private Sub main()
         While running And drawNext()
-<<<<<<< HEAD
-<<<<<<< HEAD
             con.progress(Math.Floor(cur_item / Me.datasSteps.Count * 100))
             'con.line_live_print(Me.datasMM(cur_item - 1)(1), Me.datasMM(cur_item - 1)(2), Me.datasMM(cur_item - 1)(0))
-=======
-            'con.progress(Math.Floor(cur_item / Me.datasSteps.Count * 100))
-            'con.line_live_print(New Point(Me.datasMM(cur_item)(1), Me.datasMM(cur_item)(2)))
->>>>>>> origin
-=======
-            con.progress(Math.Floor(cur_item / Me.datasSteps.Count * 100))
-            'con.line_live_print(Me.datasMM(cur_item - 1)(1), Me.datasMM(cur_item - 1)(2), Me.datasMM(cur_item - 1)(0))
->>>>>>> origin
             'Console.WriteLine(cur_item / Me.datasSteps.Count * 100)
         End While
         con.progress(Math.Floor(cur_item / Me.datasSteps.Count * 100))
@@ -334,15 +287,7 @@ Public Class MotorController
         End If
         If Not yDir = yLastDir Then
             y_steps = y_steps + (1.2 * steps_per_mm_y) 'umkehrspiel y 1.2
-<<<<<<< HEAD
-<<<<<<< HEAD
             yWait()
-=======
-            Console.WriteLine("umkehr y")
->>>>>>> origin
-=======
-            yWait()
->>>>>>> origin
         End If
         yLastDir = yDir
 
@@ -351,17 +296,8 @@ Public Class MotorController
             xDir = -1
         End If
         If Not xDir = xLastDir Then
-<<<<<<< HEAD
-<<<<<<< HEAD
             x_steps = x_steps '+ (2 * steps_per_mm_x) 'umkehrspiel x
             xWait()
-=======
-            x_steps = x_steps + (2 * steps_per_mm_x) 'umkehrspiel x
->>>>>>> origin
-=======
-            x_steps = x_steps '+ (2 * steps_per_mm_x) 'umkehrspiel x
-            xWait()
->>>>>>> origin
         End If
         xLastDir = xDir
 
@@ -369,28 +305,12 @@ Public Class MotorController
         xSteps = x_steps
 
         If y_steps < 0 Then
-<<<<<<< HEAD
-<<<<<<< HEAD
             ySteps = y_steps '* 0.88 ' 0.88 '215 'scalierungsfaktor zur fehlerkorrektur y
-=======
-            ySteps = y_steps * 0.88 '215 'scalierungsfaktor zur fehlerkorrektur y
->>>>>>> origin
-=======
-            ySteps = y_steps '* 0.88 ' 0.88 '215 'scalierungsfaktor zur fehlerkorrektur y
->>>>>>> origin
         Else
             ySteps = y_steps
         End If
         If x_steps < 0 Then
-<<<<<<< HEAD
-<<<<<<< HEAD
             xSteps = x_steps '* 0.9442 'scalierungsfaktor zur fehlerkorrektur x
-=======
-            xSteps = x_steps * 0.9442 'scalierungsfaktor zur fehlerkorrektur x
->>>>>>> origin
-=======
-            xSteps = x_steps '* 0.9442 'scalierungsfaktor zur fehlerkorrektur x
->>>>>>> origin
         Else
             xSteps = x_steps
         End If
@@ -436,8 +356,6 @@ Public Class MotorController
             End If
             'If y_steps > 0 Then
             '    If x_steps < 0 Then
-<<<<<<< HEAD
-<<<<<<< HEAD
             '        xw = xw '+ Math.Round(0.09 * xmw) 'rechts oben
             '    Else
             '        xw = xw '+ Math.Round(0.04 * xmw) 'links oben
@@ -445,22 +363,6 @@ Public Class MotorController
             'Else
             '    If x_steps > 0 Then
             '        yw = yw '+ Math.Round(0.04 * ymw) 'rechts unten
-=======
-            '        xw = xw + Math.Round(0.09 * xmw) 'rechts oben
-=======
-            '        xw = xw '+ Math.Round(0.09 * xmw) 'rechts oben
->>>>>>> origin
-            '    Else
-            '        xw = xw '+ Math.Round(0.04 * xmw) 'links oben
-            '    End If
-            'Else
-            '    If x_steps > 0 Then
-<<<<<<< HEAD
-            '        yw = yw + Math.Round(0.04 * ymw) 'rechts unten
->>>>>>> origin
-=======
-            '        yw = yw '+ Math.Round(0.04 * ymw) 'rechts unten
->>>>>>> origin
             '    Else
             '        yw = yw + Math.Round(0.04 * ymw) 'links unten
             '    End If

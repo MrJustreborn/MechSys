@@ -8,16 +8,16 @@
     Private calc As Calculator
     Private moCon As MotorController
     Private list As List(Of Integer())
-    Private drawing_position As Point
+    Private p_start_live_print As Point
     'Privater Konstruktur, der bei dessen Aufruf die einzelnen Variablen initialisiert 
     Private Sub New()
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
         Me.drawing_file = Drawing_to_file.getInstance
-        Me.moCon = MotorController.getInstance
-        Me.moCon.setController(Me)
-        Me.calc = Calculator.getInstance
-        Me.drawing_position = New Point(0, 0)
+        ' Me.moCon = MotorController.getInstance
+        'Me.moCon.setController(Me)
+        ' Me.calc = Calculator.getInstance
+        Me.p_start_live_print = New Point(0, 0)
     End Sub
 
     ' Da es sich hier bei dieser Klasse um ein "Singleton - Pattern" handelt, besitzt diese auch keinen
@@ -109,12 +109,25 @@
     'der sich durch Addition von "drawing_position" und der entsprechenden Deltawerte "delta_x" + "delta_y" ergibt, eine Linie in der Zeichenebene "live_print" eingezeichnet;
     'die neue Position des Plotters wird in der Variablen "drawing_position" durch dessen Addition mit den Deltawerten abgespeichert
     Public Sub line_live_print(ByVal delta_x As Integer, ByVal delta_y As Integer, ByVal status_pen As Integer)
-        Dim factor As Integer = 10
-        If Not status_pen And Not IsNothing(Me.main_form) Then
-            Me.main_form.draw_live_print(Me.drawing_position, New Point((Me.drawing_position.X + delta_x) / factor, (2600 - Me.drawing_position.Y + delta_y) / factor))
+        Dim factor = 10
+        Dim p_last As Point
+
+        p_last.X = p_start_live_print.X + delta_x
+        p_last.Y = p_start_live_print.Y + delta_y
+
+        If (status_pen = 0) Then
+            Dim p_temp_st As Point = p_start_live_print
+            Dim p_temp_last As Point = p_last
+
+            p_temp_st.X /= factor
+            p_temp_st.Y = (2600 - p_temp_st.Y) / factor
+            p_temp_last.X /= factor
+            p_temp_last.Y = (2600 - p_temp_last.Y) / factor
+            Me.main_form.draw_live_print(p_temp_st, p_temp_last)
         End If
-        Me.drawing_position.X += delta_x
-        Me.drawing_position.Y += delta_y
+        p_start_live_print = p_last
+
+
     End Sub
 
     'Funktion die der Wertzuweisung der Progressbar "Progress" dient;
@@ -134,9 +147,10 @@
         Me.parse(filepath)
 
         For Each item In Me.list
+            
+
             p_last.X = p_start.X + item(1)
             p_last.Y = p_start.Y + item(2)
-
 
             If (item(0) = 0) Then
                 Dim p_temp_st As Point = p_start
@@ -233,7 +247,10 @@
         Me.drawing_form.draw_circle(rect, startAngle, swapAngle)
     End Sub
 
-    '
+    'Wenn der Druckvorgang abgeschlossen ist, wird vom MotorController diese Funktion aufgerufen;
+    'sie sorgt darfür, dass in der MainView der Menueeintrag "Datei laden" wieder verfügbar ist, der Druckvorgang
+    'wieder erneut gestartet werden kann (Start - Button ist wieder verwendbar in der MainView), sowie der Timer 
+    'der die Zeit für den Druckvorgang angehalten wird
     Public Sub plotter_finished()
         Me.main_form.switch_disable_buttons()
         Me.main_form.enable_ToolStripItm()

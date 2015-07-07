@@ -75,12 +75,6 @@
     <Compile Include="Calculator.vb" />
     <Compile Include="Controller.vb" />
     <Compile Include="Drawing_to_file.vb" />
-    <Compile Include="Intro.Designer.vb">
-      <DependentUpon>Intro.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Intro.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MainView.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -122,9 +116,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Intro.resx">
-      <DependentUpon>Intro.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.vb</DependentUpon>
     </EmbeddedResource>

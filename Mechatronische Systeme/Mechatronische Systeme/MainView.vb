@@ -138,7 +138,6 @@
         Application.Exit()
     End Sub
 
-  
     Private Sub time_print_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles time_print.Tick
         Me.lbl_time.Text = "Zeit: " + counter.ToString
         counter += 1
