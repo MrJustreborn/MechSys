@@ -14,10 +14,10 @@
         Me.settings = Save_read_settings.getInstance
         Me.parser = parser.getInstance()
         Me.drawing_file = Drawing_to_file.getInstance
-        ' Me.moCon = MotorController.getInstance
-        'Me.moCon.setController(Me)
-        ' Me.calc = Calculator.getInstance
-        Me.p_start_live_print = New Point(0, 0)
+        Me.moCon = MotorController.getInstance
+        Me.moCon.setController(Me)
+        Me.calc = Calculator.getInstance
+
     End Sub
 
     ' Da es sich hier bei dieser Klasse um ein "Singleton - Pattern" handelt, besitzt diese auch keinen
@@ -52,6 +52,7 @@
         path = Me.getPath()
         Me.parse(path)
         If (Me.list.Count > 0) Then
+            Me.moCon.setDatas(Me.list)
             Me.start_plotter()
         Else
             MsgBox("Der Printvorgang kann nicht gestartet werden, da Sie nichts gezeichnet haben")
@@ -119,9 +120,9 @@
             Dim p_temp_st As Point = p_start_live_print
             Dim p_temp_last As Point = p_last
 
-            p_temp_st.X /= factor
+            p_temp_st.X = (2420 - p_temp_st.X) / factor
             p_temp_st.Y = (2600 - p_temp_st.Y) / factor
-            p_temp_last.X /= factor
+            p_temp_last.X = (2420 - p_temp_last.X) / factor
             p_temp_last.Y = (2600 - p_temp_last.Y) / factor
             Me.main_form.draw_live_print(p_temp_st, p_temp_last)
         End If
@@ -136,7 +137,9 @@
             Me.main_form.Progress(x)
         End If
     End Sub
+    Public Sub showPreview()
 
+    End Sub
 
     'Diese Funktion ermoeglicht es, die Druckdatei zu parsen ("parse"),sowie in die Form "MainView" zu laden;
     Public Sub showPreview(ByVal filepath As String)
@@ -156,9 +159,9 @@
                 Dim p_temp_st As Point = p_start
                 Dim p_temp_last As Point = p_last
 
-                p_temp_st.X /= factor
+                p_temp_st.X = (2420 - p_temp_st.X) / factor
                 p_temp_st.Y = (2600 - p_temp_st.Y) / factor
-                p_temp_last.X /= factor
+                p_temp_last.X = (2420 - p_temp_last.X) / factor
                 p_temp_last.Y = (2600 - p_temp_last.Y) / factor
                 Me.line_preview(p_temp_st, p_temp_last)
             End If
@@ -222,6 +225,7 @@
 
     'Gibt den aktuellen Pfad zurueck, unter dem die Zeichnung in der Form "Zeichnung" abgelegt ist
     Public Function getPath() As String
+
         Return Me.drawing_file.getPath()
     End Function
 
@@ -234,7 +238,12 @@
 
         rect = Me.calc.calcRectangle(middle, point)
         startAngle = Me.calc.calc_startAngle(middle.X, point.X)
-        If (middle.Y < point.Y) Then
+        If (middle.Y > point.Y) Then
+
+            startAngle += 180
+
+        End If
+        If (middle.X < point.X) Then
             startAngle += 180
         End If
         Me.drawing_file.save_drawing_steps(middle, point, swapAngle)
@@ -257,6 +266,10 @@
         Me.main_form.stop_timer()
     End Sub
 
+    Public Sub switch_Buttons_MainView()
+        Me.main_form.switch_disable_buttons()
+    End Sub
+
     'Bricht den Druckvorgang durch Aufruf der Funktion "break" im Motorcontroller "moCon" ab
     Public Sub stop_plotter()
         Me.moCon.break()
@@ -276,7 +289,12 @@
     'und der Druckvorgang durch Aufruf der Funktion "start" im MotorController "moCon" gestartet
     Public Sub start_plotter()
         Me.moCon.setDatas(Me.list)
+        Me.p_start_live_print = New Point(0, 0)
         Me.moCon.start()
+    End Sub
+
+    Public Sub set_path_mainView()
+        Me.main_form.setFilepath(Me.getPath())
     End Sub
 End Class
 

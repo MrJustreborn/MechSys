@@ -147,7 +147,7 @@
             Me.show_MsgBox_for_swapAngle()
         Else
             angle = Val(angle_string)
-            angle = angle * -1
+            angle = angle
         End If
         Return angle
     End Function
@@ -156,10 +156,15 @@
     'erstellte Zeichnung in die MainView zuladen("refreshPreview" + "showPreview"), sowie den Druckvorgang zu starten ("start_printing");
     'der Abschluss bildet das Schließen der Form "Zeichnung" ("Hide")
     Private Sub Btn_import_Click(sender As Object, e As EventArgs) Handles Btn_import.Click
-        Me.con.start_printing_from_drawingView()
         Me.con.refreshPreview()
-        Me.con.showPreview(Me.con.getPath())
+        Me.con.set_path_mainView()
+        Dim path As String
+        path = Me.con.getPath()
         Me.Hide()
+        Me.con.showPreview(path)
+        'Me.con.switch_Buttons_MainView()
+        ' Me.con.start_printing_from_drawingView()
+
     End Sub
 
 

@@ -31,10 +31,11 @@
     ' so wird eine entsprechende Meldung ausgegeben
     Public Sub start_plotter()
         If Not (filepath Is Nothing) Then
-
+            Me.
             disable_ToolStripItm()
             switch_disable_buttons()
             Me.con.start_plotter()
+            Me.Group_2.Refresh()
 
         Else
             MsgBox("Wählen Sie bitte zuerst eine Datei aus, bevor Sie das Drucken anfangen wollen!")
@@ -83,10 +84,12 @@
             Me.con.pause_plotter()
             Me.stop_timer()
             Me.Btn_pause.Text = "Fortfahren"
+            Me.Btn_stop.Enabled = False
         Else
             Me.con.unpause_plotter()
             Me.Btn_pause.Text = "Pause"
             Me.time_print.Start()
+            Me.Btn_stop.Enabled = True
         End If
         Me.plotterPause = Not Me.plotterPause
     End Sub
@@ -116,7 +119,7 @@
 
     'Diese Funktion setzt die Daten fuer den MotorController 
     Private Sub set_plotter_data(datas As List(Of Integer()))
-        '  moCon.setDatas(datas)
+        ' moCon.setDatas(datas)
     End Sub
 
     'Diese Funktion setzt den Pfad der Druckdatei

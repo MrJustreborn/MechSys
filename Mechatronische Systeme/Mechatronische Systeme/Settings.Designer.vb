@@ -67,10 +67,14 @@ Partial Class Settings
         '
         'Scroll_1
         '
+        Me.Scroll_1.LargeChange = 1
         Me.Scroll_1.Location = New System.Drawing.Point(15, 31)
+        Me.Scroll_1.Maximum = 10
+        Me.Scroll_1.Minimum = 1
         Me.Scroll_1.Name = "Scroll_1"
         Me.Scroll_1.Size = New System.Drawing.Size(206, 22)
         Me.Scroll_1.TabIndex = 6
+        Me.Scroll_1.Value = 1
         '
         'Lbl_3
         '
