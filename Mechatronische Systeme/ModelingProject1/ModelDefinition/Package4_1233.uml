@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="52000d2c-1506-4c7d-9d6a-02404a8b2861"
   name="Generic"
@@ -109,6 +109,146 @@
                     <classMoniker
                       Id="43f3b799-2f6a-405b-b03c-6160d410c0fc"
                       LastKnownName="WeakReference"
+                      LastKnownLocation="Package1_1233.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="2244a573-3992-4c75-abd5-9a137e20f633"
+                      LastKnownLocation="Package4_1233.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3d30d204-3c3e-4e93-b793-750e618be7ab"
+        name="List"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <signatures>
+          <templateBinding
+            Id="d663f660-28c7-42d3-8ca1-9499bd67d646">
+            <redefinableTemplateSignatureMoniker
+              Id="24df8f94-98c3-4aef-ac83-513349bfcfbc"
+              LastKnownLocation="Package4_1233.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="034afd33-6a9d-4c4d-8e37-58f838cf25c4">
+                  <actuals>
+                    <classMoniker
+                      Id="2e1d82d7-19ad-417d-95e9-b02cd93f1463"
+                      LastKnownName="DiSubdevice"
+                      LastKnownLocation="Package_1233.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="2244a573-3992-4c75-abd5-9a137e20f633"
+                      LastKnownLocation="Package4_1233.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8ec93141-ed43-4a89-a1f6-c1457689d9f7"
+        name="List"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <signatures>
+          <templateBinding
+            Id="c67742bd-9b13-4f09-b854-636d4e447d53">
+            <redefinableTemplateSignatureMoniker
+              Id="24df8f94-98c3-4aef-ac83-513349bfcfbc"
+              LastKnownLocation="Package4_1233.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="fc9416ad-c368-492e-9e5f-ece1c21e09af">
+                  <actuals>
+                    <classMoniker
+                      Id="ab8f2cc2-a04f-44c1-ae6b-09e6e7b7e71d"
+                      LastKnownName="DoSubdevice"
+                      LastKnownLocation="Package_1233.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="2244a573-3992-4c75-abd5-9a137e20f633"
+                      LastKnownLocation="Package4_1233.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ad69c7f7-d24a-4697-a7a8-ed8bca6ea760"
+        name="List"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <signatures>
+          <templateBinding
+            Id="08c90992-ec5c-4adf-98c5-c5647f7c46f5">
+            <redefinableTemplateSignatureMoniker
+              Id="24df8f94-98c3-4aef-ac83-513349bfcfbc"
+              LastKnownLocation="Package4_1233.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="6c0f7b4c-0d01-4fc7-a01d-aae1646c21ca">
+                  <actuals>
+                    <classMoniker
+                      Id="11586fa9-2660-47d3-a11b-728c97e37d6c"
+                      LastKnownName="AoSubdevice"
+                      LastKnownLocation="Package_1233.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="2244a573-3992-4c75-abd5-9a137e20f633"
+                      LastKnownLocation="Package4_1233.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a6b2994b-2675-4ace-8071-b02ebe4e29b1"
+        name="List"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <signatures>
+          <templateBinding
+            Id="93e30c8d-746c-405f-82a5-f6144f906b69">
+            <redefinableTemplateSignatureMoniker
+              Id="24df8f94-98c3-4aef-ac83-513349bfcfbc"
+              LastKnownLocation="Package4_1233.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="a79164f8-8858-4e4d-a7e3-074355b4fee3">
+                  <actuals>
+                    <classMoniker
+                      Id="9db0908d-f95d-4581-bd47-670a4b141a56"
+                      LastKnownName="Double"
                       LastKnownLocation="Package1_1233.uml" />
                   </actuals>
                   <formal>
