@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Codegenerierungs-/Texttransformationsprotokoll">
+  <MessageClass Name="Message" Label="Meldung" Option="Informationsmeldungen anzeigen" />
+  <MessageClass Name="Warning" Label="Warnung" Option="Warnungen anzeigen" />
+  <MessageClass Name="Error" Label="Fehler" Option="Fehler anzeigen" />
+  <MessageClass Name="Property" Label="Eigenschaft" Option="Metadaten anzeigen" />
+  <MessageClass Name="Diagnostic" Label="Meldung" Option="Diagnosemeldungen anzeigen" />
+  <Message Timestamp="2015-07-08T23:10:57" Importance="High" Text="Reverse Engineering gestartet." />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: '8a2e5d24-74af-442a-bd95-a85c807ad23b' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'Boolean' -  (PrimitiveType)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme' -  (Package)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Medium" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator' -  (Class)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addCS' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addCS::phi' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addCS::status' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addCS::x' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addCS::y' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addPA' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addPA::status' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addPA::x' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::addPA::y' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_radius_circle' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_radius_circle::delta_x' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_radius_circle::delta_y' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngle' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngle::middle' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngle::p_start' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngleCS' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngleCS::m_x' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngleCS::p_x' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngleCS::r' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calc_startAngleCS::y' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calcRectangle' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calcRectangle::middle' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::calcRectangle::point' -  (Parameter)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::cur_x' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::cur_y' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::datas' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::getDatas' -  (Operation)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::getInstance' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::instance' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::radius_circle' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Calculator::settings' -  (Property)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::Mechatronische_Systeme::Save_read_settings' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::System' -  (Package)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::System::Collections' -  (Package)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::System::Collections::Generic::List' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::System::Drawing' -  (Package)" />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject2::System::Drawing::Point' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="High" Text="Vollständiges Reverse Engineering für (1) Type(n)." />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="High" Text="Reverse Engineering für (3) Type(n) teilweise durchgeführt. Diese Typen waren nicht in der ursprünglichen Auswahl enthalten, sodass kein Reverse Engineering für deren vollständige Definitionen durchgeführt wurde. Stattdessen wurde bei diesem oberflächlichen Vorgang lediglich sichergestellt, dass diese Typen im UML-Modell vorhanden sind, da diese erforderlich sind, um andere Elemente vollständig zu beschreiben." />
+  <Message Timestamp="2015-07-08T23:10:59" Importance="High" Text="Der Reverse Engineering-Vorgang wurde mit (0) Fehler(n) und (0) Warnung(en) abgeschlossen." />
+</Log>

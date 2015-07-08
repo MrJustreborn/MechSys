@@ -41,7 +41,10 @@
 
     'Diese Funktion dient dem Loeschen der "preview" in der Form "MainView"
     Public Sub refreshPreview()
-        Me.main_form.Refresh()
+        If Not IsNothing(Me.main_form) Then
+            Me.main_form.Refresh()
+        End If
+
     End Sub
 
     'Diese Funktion ermoeglicht den Druckvorgang aus der Form "Zeichnung" heraus zu starten; hierfuer muss jedoch 
@@ -66,9 +69,7 @@
     'uebergebenen Form "form" gesetzt
     Public Sub load_settings(ByVal form As Settings)
         Dim tuning As String
-       
         tuning = Me.settings.get_tuning()
-       
         form.setScrollBar(tuning)
     End Sub
 
@@ -137,9 +138,7 @@
             Me.main_form.Progress(x)
         End If
     End Sub
-    Public Sub showPreview()
-
-    End Sub
+    
 
     'Diese Funktion ermoeglicht es, die Druckdatei zu parsen ("parse"),sowie in die Form "MainView" zu laden;
     Public Sub showPreview(ByVal filepath As String)
@@ -172,6 +171,7 @@
     'Funktion, zum Loeschen der temporaeren Datei, welche in der Form "Zeichnung" fuer die Sicherung der zeichnerisch 
     'getaetigten Schritte dient;
     Public Sub delete_drawing_file()
+
         Me.drawing_file.delete_file()
     End Sub
 
@@ -202,9 +202,9 @@
                     Dim p_temp_st As Point = p_start
                     Dim p_temp_last As Point = p_last
 
-                    p_temp_st.X /= factor
+                    p_temp_st.X = (2420 - p_temp_st.X) / factor
                     p_temp_st.Y = (2600 - p_temp_st.Y) / factor
-                    p_temp_last.X /= factor
+                    p_temp_last.X = (2420 - p_temp_last.X) / factor
                     p_temp_last.Y = (2600 - p_temp_last.Y) / factor
                     Me.line_drawing(p_temp_st, p_temp_last)
                 End If
@@ -237,17 +237,11 @@
         Dim startAngle As Single
 
         rect = Me.calc.calcRectangle(middle, point)
-        startAngle = Me.calc.calc_startAngle(middle.X, point.X)
-        If (middle.Y > point.Y) Then
+        startAngle = Me.calc.calc_startAngle(middle, point)   'ehemals .X
 
-            startAngle += 180
 
-        End If
-        If (middle.X < point.X) Then
-            startAngle += 180
-        End If
         Me.drawing_file.save_drawing_steps(middle, point, swapAngle)
-        Me.drawCircle_drawingView(rect, startAngle, swapAngle)
+        Me.drawCircle_drawingView(rect, startAngle, -1 * swapAngle)
 
     End Sub
 
@@ -293,6 +287,7 @@
         Me.moCon.start()
     End Sub
 
+    'Diese Funktion setzt den Datei in der MainView
     Public Sub set_path_mainView()
         Me.main_form.setFilepath(Me.getPath())
     End Sub

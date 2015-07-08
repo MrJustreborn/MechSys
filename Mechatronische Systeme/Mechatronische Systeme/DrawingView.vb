@@ -42,6 +42,7 @@
 
     'Diese Funktion ist fuer das Zeichnen von Linien zustaendig; dazu wird die Funktion "DrawLine" verwendet
     Public Sub draw_line(ByVal p_start As Point, ByVal p_end As Point)
+
         Me.Group_1.CreateGraphics.DrawLine(Pens.White, p_start.X, p_start.Y, p_end.X, p_end.Y)
     End Sub
 
@@ -55,7 +56,7 @@
             If (Me.first_point_selected_line) Then
                 Me.Lbl_order.Text = "Klicken Sie zum Zeichnen auf die Linie bzw. den Viertelkreis"
                 Me.draw_line(p_start, New Point(e.X, e.Y))
-                Me.con.save_drawing_steps(p_start, New Point(e.X, e.Y))
+                Me.con.save_drawing_steps(New Point(242 - p_start.X, p_start.Y), New Point(242 - e.X, e.Y))
                 Me.Btn_back_Enabled()
                 p_end.X = e.X
                 p_end.Y = e.Y
@@ -74,13 +75,13 @@
                 Dim swapAngle As Integer = Me.show_MsgBox_for_swapAngle()
                 Me.Lbl_order.Text = "Klicken Sie zum Zeichnen auf die Linie bzw. den Viertelkreis"
                 Me.Btn_back_Enabled()
-                Me.con.draw_circle_drawingView(New Point(e.X, e.Y), p_start, swapAngle)
+                Me.con.draw_circle_drawingView(New Point(e.X, 260 - e.Y), p_start, swapAngle)
                 Me.first_point_selected_circle = False
             Else
                 Me.Lbl_order.Text = "Markieren Sie nun den Mittelpunkt auf der Zeichenebene"
                 Me.first_point_selected_circle = True
                 Me.first_point_selected_line = False
-                p_start = New Point(e.X, e.Y)
+                p_start = New Point(e.X, 260 - e.Y)
 
             End If
         End If
@@ -95,11 +96,11 @@
     End Sub
 
     'Beim Laden der Form "Zeichnung" wird diese Funktion aufgerufen; diese initialisiert die Variable con, uebergibt sich selbst dieser 
-    'Variablen und veranlasst die temporaere Datei im Speicher zu loeschen
+    'Variablen 
     Private Sub Zeichnung_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.con = Controller.getInstance
         Me.con.set_DrawingView(Me)
-        Me.con.delete_drawing_file()
+
     End Sub
 
     
@@ -113,8 +114,10 @@
             filepath = SaveFileDialog.FileName
             Me.con.save_drawing_to_file(filepath)
             Me.con.refreshPreview()
+            Me.con.set_path_mainView()
             Me.con.showPreview(filepath)
             Me.Hide()
+            Me.con.start_plotter()
         End If
 
     End Sub
@@ -130,7 +133,7 @@
 
     'Bei Aufruf dieser Funktion wird ein Kreis mittels der uebergebenen Parameter gezeichnet
     Public Sub draw_circle(ByVal rect As Rectangle, ByVal startAngle As Single, ByVal swapAngle As Single)
-        Me.Group_1.CreateGraphics.DrawArc(Pens.White, rect, -1 * startAngle, swapAngle)
+        Me.Group_1.CreateGraphics.DrawArc(Pens.White, rect, startAngle, swapAngle)
     End Sub
 
     'Fuer das Zeichnen eines Kreises wird neben dem Start- und Mittelpunkt auch der Winkel des Kreis benoetigt; dazu wird in dieser

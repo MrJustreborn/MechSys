@@ -79,11 +79,10 @@
         Else
             'offset = calc_startAngleCS(cur_x, x, radius, y)
         End If
-        Console.WriteLine(radius)
-        Console.WriteLine(offset)
+       
 
         resolution = (phi2 / phi2) / (radius / 100) / tune
-        Console.WriteLine(resolution)
+
         Dim pi As Single
         pi = Math.PI
 
@@ -135,7 +134,7 @@
     Public Function calcRectangle(ByVal middle As Point, ByVal point As Point) As Rectangle
 
         Me.calc_radius_circle(point.X - middle.X, point.Y - middle.Y)
-        Return New Rectangle(middle.X - Me.radius_circle, middle.Y - Me.radius_circle, Me.radius_circle * 2, Me.radius_circle * 2)
+        Return New Rectangle(middle.X - Me.radius_circle, 260 - middle.Y - Me.radius_circle, Me.radius_circle * 2, Me.radius_circle * 2)
     End Function
 
     'Berechnung des Radius für den Kreis in der DrawingView 
@@ -144,17 +143,8 @@
     End Sub
 
     'Berechnung des Winkels, ab dem der Kreis gezeichnet werden soll
-    Public Function calc_startAngle(ByVal m_x As Integer, ByVal p_x As Integer) As Single
-        
-
-        Dim calculation As Double
-        calculation = Math.Acos((p_x - m_x) / (Me.radius_circle)) * (180 / Math.PI)
-
-        Return 180 - calculation
+    Public Function calc_startAngle(ByVal middle As Point, ByVal p_start As Point) As Single  'As Integer
+        Return (Math.Atan2((middle.Y - p_start.Y), (p_start.X - middle.X)) / (Math.PI / 180))
     End Function
-
-
-
-
 
 End Class

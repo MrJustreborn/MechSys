@@ -68,7 +68,7 @@ Public Class Drawing_to_file
     Private Sub write_drawed_circle(ByVal middle As Point, ByVal swapAngle As Integer)
         Dim txt As String
         Me.fileWriter = My.Computer.FileSystem.OpenTextFileWriter(Me._path, True)
-        txt = "CS " + (middle.X * 10).ToString + ", " + ((260 - middle.Y) * 10).ToString + ", " + (-swapAngle * 10).ToString
+        txt = "CS " + (middle.X * 10).ToString + ", " + ((260 - middle.Y) * 10).ToString + ", " + (swapAngle * 10).ToString
         Me.fileWriter.WriteLine(txt)
         Me.fileWriter.Close()
     End Sub
@@ -114,9 +114,11 @@ Public Class Drawing_to_file
     'Bei Aufruf dieser Funktion wird eine Kopie der temporaeren Datei "temp" erstellt und die Kopie im
     'uebergebenen Pfad abgelegt; die temporaere Datei wird zum Abschluß geloescht
     Public Sub save_file_to_path(ByVal filename As String)
+
         If File.Exists(Me._path) Then
             File.Copy(Me._path, filename, True)
             Me.delete_file()
+            Me._path = filename
         End If
     End Sub
 

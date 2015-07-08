@@ -10,8 +10,8 @@
     Private Sub DruckerdateiLadenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItm_1.Click
         If (Opn_filepath.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
             Me.Refresh()
-            filepath = Opn_filepath.FileName
-            Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: " + filepath
+            Me.setFilepath(Opn_filepath.FileName)
+
             Me.con.showPreview(filepath)
         End If
     End Sub
@@ -114,6 +114,7 @@
 
     'Bei Aufruf dieser Funktion wird die Form "DrawingView" geladen und angezeigt
     Private Sub KonstuierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KonstuierenToolStripMenuItem.Click
+        Me.con.delete_drawing_file()
         DrawingView.Show()
     End Sub
 
@@ -125,6 +126,7 @@
     'Diese Funktion setzt den Pfad der Druckdatei
     Public Sub setFilepath(ByVal filepath As String)
         Me.filepath = filepath
+        Lbl_filepath.Text = "Pfad der ausgewählten Druckerdatei: " + filepath
     End Sub
    
     'Bei Klick auf dem Button "Btn_stop" wird diese Methode aufgerufen 
@@ -141,13 +143,17 @@
         Application.Exit()
     End Sub
 
+    'Setzt das Label "lbl_time" jeweils nach einer Sekunde
     Private Sub time_print_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles time_print.Tick
         Me.lbl_time.Text = "Zeit: " + counter.ToString
         counter += 1
     End Sub
 
+    'Stoppt den Timer 
     Public Sub stop_timer()
         Me.time_print.Stop()
     End Sub
-    
+
+   
+   
 End Class
