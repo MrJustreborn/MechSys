@@ -199,7 +199,7 @@ Public Class MotorController
         Loop
         Console.WriteLine("Steps_x: " + max_steps_x.ToString)
         'steps_per_mm_x = max_steps_x / max_x
-        move(Math.Round(398 * steps_per_mm_x), Math.Round(170 * steps_per_mm_y), True)
+        move(Math.Round(405 * steps_per_mm_x), Math.Round(170 * steps_per_mm_y), True)
         move(0, 0, False)
         WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
         WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), 0)
@@ -283,16 +283,9 @@ Public Class MotorController
         Dim xmm = x_steps / steps_per_mm_x
         Dim ymm = y_steps / steps_per_mm_y
 
-        'xmw = 90000 * 4.5
-        'ymw = 900000
-
-        'If y_steps > 0 Then
-        '    xmw = 90000 * 8.35
-        'End If
-
         WriteDigitalValue(dsubdeviceList(0), status, 0)
         If Not status = lastStatus Then
-            Thread.Sleep(500)
+            Thread.Sleep(100)
         End If
         lastStatus = status
 
@@ -308,7 +301,7 @@ Public Class MotorController
             yDir = -1
         End If
         If Not yDir = yLastDir Then
-            y_steps = y_steps - (4 * steps_per_mm_y) 'umkehrspiel y 1.2
+            y_steps = y_steps + (3.5 * steps_per_mm_y) 'umkehrspiel y 1.2
             yWait()
         End If
         yLastDir = yDir
@@ -326,48 +319,8 @@ Public Class MotorController
         ySteps = y_steps
         xSteps = x_steps
 
-        If y_steps < 0 Then
-            ySteps = y_steps '* 0.88 ' 0.88 '215 'scalierungsfaktor zur fehlerkorrektur y
-        Else
-            ySteps = y_steps
-        End If
-        If x_steps < 0 Then
-            xSteps = x_steps '* 0.9442 'scalierungsfaktor zur fehlerkorrektur x
-        Else
-            xSteps = x_steps
-        End If
-
         xw = xmw
         yw = ymw
-        'If Not xmm = 0 And Not ymm = 0 Then
-        '    Dim v As Double = Math.Abs(ymm / xmm)
-        '    If v < 1 Then
-        '        v += 1
-        '        xw = Math.Round(xmw * 6.9)
-        '        yw = Math.Round(v * ymw * 1.15)
-        '    Else
-        '        xw = Math.Round(v * xmw * 6.9)
-        '    End If
-        'End If
-        'If Not xmm = 0 And Not ymm = 0 Then
-        '    Dim v As Double = Math.Abs(ymm / xmm)
-        '    Console.WriteLine(ymm)
-        '    Console.WriteLine(xmm)
-        '    Console.WriteLine(v)
-        '    If v < 1 Then
-        '        v += 1
-        '        yw = Math.Round(v * ymw)
-        '    Else
-        '        xw = Math.Round(v * xmw)
-        '    End If
-        '    If y_steps > 0 Then
-        '        If x_steps > 0 Then
-        '            xw = xw + Math.Round(0.189 * xmw) 'links unten
-        '        Else
-        '            xw = xw + Math.Round(0.195 * xmw) 'rechts unten
-        '        End If
-        '    End If
-        'End If
         If Not xmm = 0 And Not ymm = 0 Then
             Dim v As Double = Math.Abs(ymm / xmm)
             If v < 1 Then
@@ -376,19 +329,6 @@ Public Class MotorController
             Else
                 xw = Math.Round(v * xmw)
             End If
-            'If y_steps > 0 Then
-            '    If x_steps < 0 Then
-            '        xw = xw '+ Math.Round(0.09 * xmw) 'rechts oben
-            '    Else
-            '        xw = xw '+ Math.Round(0.04 * xmw) 'links oben
-            '    End If
-            'Else
-            '    If x_steps > 0 Then
-            '        yw = yw '+ Math.Round(0.04 * ymw) 'rechts unten
-            '    Else
-            '        yw = yw + Math.Round(0.04 * ymw) 'links unten
-            '    End If
-            'End If
         End If
 
         If Not x_steps = 0 Then
@@ -413,7 +353,7 @@ Public Class MotorController
         If x_steps < 100 Or y_steps < 100 Then
             Thread.Sleep(10)
         End If
-        Thread.Sleep(10)
+        Thread.Sleep(1)
     End Sub
 
     Private Function xVolt(ByVal wait As Integer) As Double
