@@ -4,12 +4,11 @@
     Private cur_x As Integer
     Private cur_y As Integer
     Private radius_circle As Integer 'Radius für den gezeichneten Kreis in der Drawing View 
-
-
+    Private settings As Save_read_settings
 
     Private Sub New()
         datas = New List(Of Integer())
-
+        Me.settings = Save_read_settings.getInstance()
     End Sub
 
     Public Shared ReadOnly Property getInstance() As Calculator
@@ -43,11 +42,12 @@
         'schleife teilstücke ausrechnen und addPA aufrufen
         Dim radius As Integer
         Dim beta As Double
+        Dim resolution As Double
         Dim phi2 As Double
         Dim new_x As Integer 'new_x und new_y sind die neuen endpunkte jeweils
         Dim new_y As Integer
         Dim tune As Integer 'tuningwert für die feinere Auflösung des Kreises -> GUI
-        tune = 1
+        tune = Me.settings.get_tuning()
         phi2 = phi / 10
 
         radius = Math.Sqrt(Math.Pow(Math.Abs(x - cur_x), 2) + Math.Pow(Math.Abs(y - cur_y), 2))
@@ -56,41 +56,67 @@
         Dim y2 = cur_y 'y
 
         Dim offset As Single
-        offset = Math.Atan((cur_x - x) / (cur_y - y)) + Math.PI '(Math.Atan((cur_y - y) / (cur_x - x)))
-        Dim a2 = (radius * radius) + (radius * radius) - (2 * radius * radius)
-        'offset = Math.Acos()
-        Console.WriteLine(radius)
+        offset = Math.Atan((cur_x - x) / (cur_y - y)) '+ Math.PI / 2 '(Math.Atan((cur_y - y) / (cur_x - x)))
+        If y > cur_y And x < cur_x Then
+            offset = Math.PI / 2 - Math.Atan((cur_y - y) / (cur_x - x)) '+ Math.PI
+        End If
+        If y > cur_y And x > cur_x Then
+            offset = Math.PI / 2 - Math.Atan((cur_x - x) / (cur_y - y)) '+ Math.PI
+        End If
+        If y < cur_y And x > cur_x Then
+            offset = Math.Atan((cur_y - y) / (cur_x - x)) '+ Math.PI
+        End If
+        If y < cur_y And x < cur_x Then
+            offset = Math.Atan((cur_x - x) / (cur_y - y)) '+ Math.PI
+        End If
 
-        beta = (phi2 / phi2) / tune
+
+
+
+        Dim a2 = (radius * radius) + (radius * radius) - (2 * radius * radius)
+        If x > cur_x Then
+            'offset = calc_startAngleCS(x, cur_x, radius, y)
+        Else
+            'offset = calc_startAngleCS(cur_x, x, radius, y)
+        End If
+        Console.WriteLine(radius)
+        Console.WriteLine(offset)
+
+        resolution = (phi2 / phi2) / (radius / 100) / tune
+        Console.WriteLine(resolution)
         Dim pi As Single
         pi = Math.PI
 
         beta = ((2 * pi) / 360) * beta 'grad in rad convertieren
         phi2 = ((2 * pi) / 360) * phi2 'grad in rad convertieren
+        'offset = ((2 * pi) / 360) * offset 'grad in rad convertieren
 
         'new_x = (Math.Sin(offset) * radius) + x
         'new_y = (Math.Cos(offset) * radius) + y
         'Me.addPA(new_x, new_y, Not status)
         Do
-            new_x = (Math.Sin(beta - offset) * radius) + x
-            new_y = (Math.Cos(beta - offset) * radius) + y
+            new_x = (Math.Sin(beta + offset) * radius) + x
+            new_y = (Math.Cos(beta + offset) * radius) + y
             Me.addPA(new_x, new_y, status)
-            '<<<<<<< HEAD
-            '<<<<<<< HEAD
-            '            beta += 0.1
-            '=======
-            '            beta += 1
-            '>>>>>>> origin
-            '=======
-            '            beta += 0.1
-            '>>>>>>> origin
-        Loop Until beta >= phi2
+            beta += resolution
+        Loop Until beta > phi2
 
-        new_x = (Math.Sin(phi2 - offset) * radius) + x
-        new_y = (Math.Cos(phi2 - offset) * radius) + y
+        new_x = (Math.Sin(phi2 + offset) * radius) + x
+        new_y = (Math.Cos(phi2 + offset) * radius) + y
         Me.addPA(new_x, new_y, status)
         'Me.addPA(x2, y2, status)
     End Sub
+
+    Public Function calc_startAngleCS(ByVal m_x As Integer, ByVal p_x As Integer, ByVal r As Integer, ByVal y As Integer) As Single
+        Dim calculation As Double
+        If y < cur_y Then
+            calculation = Math.Acos((p_x - m_x) / r) ' * (180 / Math.PI)
+            Return calculation
+        Else
+            calculation = Math.Acos((p_x - m_x) / r) '* (180 / Math.PI)
+            Return calculation
+        End If
+    End Function
 
     Public Function getDatas() As List(Of Integer())
         Dim result As List(Of Integer())
@@ -119,9 +145,12 @@
 
     'Berechnung des Winkels, ab dem der Kreis gezeichnet werden soll
     Public Function calc_startAngle(ByVal m_x As Integer, ByVal p_x As Integer) As Single
+        
+
         Dim calculation As Double
         calculation = Math.Acos((p_x - m_x) / (Me.radius_circle)) * (180 / Math.PI)
-        Return 360 - calculation
+
+        Return 180 - calculation
     End Function
 
 

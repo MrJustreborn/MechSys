@@ -80,7 +80,6 @@ C:\Users\HeimPC\Desktop\MechSys_2\Mechatronische Systeme\Mechatronische Systeme\
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.exe
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.xml
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische Systeme.pdb
-E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Intro.resources
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.MainView.resources
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Resources.resources
 E:\MechSys\Mechatronische Systeme\Mechatronische Systeme\obj\x86\Debug\Mechatronische_Systeme.Settings.resources
