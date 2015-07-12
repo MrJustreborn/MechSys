@@ -5,10 +5,6 @@ Public Class MotorController
     Private Shared instance As MotorController
     Private datasMM As List(Of Integer())
     Private datasSteps As List(Of Integer())
-    Private max_steps_x As Integer
-    'Private max_steps_y As Integer
-    'Private max_x As Integer = 2000 'die mm des blattes warscheinlich A4
-    'Private max_y As Integer = 2000
     Private steps_per_mm_x As Double = 2.85
     Private steps_per_mm_y As Double = 2.36 '2.36
 
@@ -99,88 +95,11 @@ Public Class MotorController
 
     Private Sub reset() 'reset Motoren, zähle die steps für einmal komplett ausfahren
         Console.WriteLine("reset motor")
-        ' move(300, 0, False)
-        'move(-10, 0, False)
-        'move(0, -10, False)
-        'move(0, 10, False)
-        Thread.Sleep(250)
-        'Dim a = 0
-        'Dim b = 100
-        'Do
-        '    'move(100, 0, False)
-        '    move(-100, 0, False)
-        '    a += 1
-        'Loop Until a >= b
-
-
-        'move(0, Math.Round(500 * steps_per_mm_y), False)
-        'Thread.Sleep(1000)
-        'move(Math.Round(100 * steps_per_mm_x), 0, False)
-        'move(0, -Math.Round(500 * steps_per_mm_y), False)
-
-        'move(-Math.Round(500 * steps_per_mm_x), Math.Round(500 * steps_per_mm_y), False)
-        'move(-Math.Round(500 * steps_per_mm_x), -Math.Round(500 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), -Math.Round(500 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), Math.Round(500 * steps_per_mm_y), False)
-
-        'move(-Math.Round(500 * steps_per_mm_x), -Math.Round(500 * steps_per_mm_y), False)
-        'move(-Math.Round(500 * steps_per_mm_x), Math.Round(500 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), Math.Round(500 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), -Math.Round(500 * steps_per_mm_y), False)
-
-        'move(Math.Round(1000 * steps_per_mm_x), 0, False)
-        'move(0, -Math.Round(1000 * steps_per_mm_y), False)
-        'move(-Math.Round(2000 * steps_per_mm_x), Math.Round(1000 * steps_per_mm_y), False)
-
-        'move(0, -Math.Round(500 * steps_per_mm_y), True)
-        'move(Math.Round(1000 * steps_per_mm_x), -Math.Round(1000 * steps_per_mm_y), False)
-        'move(-Math.Round(1000 * steps_per_mm_x), 0, True)
-        'move(Math.Round(1000 * steps_per_mm_x), Math.Round(1000 * steps_per_mm_y), False)
-        'move(-Math.Round(1000 * steps_per_mm_x), Math.Round(500 * steps_per_mm_y), True)
-        'move(0, 0, False)
-
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(Math.Round(600 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
-
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(-Math.Round(600 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
-
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(Math.Round(300 * steps_per_mm_x), Math.Round(600 * steps_per_mm_y), False)
-
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(-Math.Round(600 * steps_per_mm_x), Math.Round(300 * steps_per_mm_y), False)
-
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(-Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-        'move(-Math.Round(500 * steps_per_mm_x), 0, False)
-        'move(0, Math.Round(100 * steps_per_mm_y), False)
-
-        'Return
+        
         Dim dir = 1
-        move(0, 0, True)
-        'Do Until GetDigitalValue(disubdeviceList(0), 0) = 1
-        '    xWait()
-        '    WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0))
-        '    WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1))
+        move(0, 0, True) 'Hebe den Stift an
 
-        '    cur_x += dir
-        '    If dir < 0 Then
-        '        If cur_x <= 0 Then
-        '            cur_x = xMotor.Count - 1
-        '        End If
-        '    Else
-        '        cur_x = cur_x Mod xMotor.Count
-        '    End If
-        '    max_steps_x += 1
-        'Loop
 
-        max_steps_x = 0
         dir = -1
         Do Until GetDigitalValue(disubdeviceList(0), 1) = 1
             xWait()
@@ -195,10 +114,9 @@ Public Class MotorController
             Else
                 cur_x = cur_x Mod xMotor.Count
             End If
-            max_steps_x += 1
+
         Loop
-        Console.WriteLine("Steps_x: " + max_steps_x.ToString)
-        'steps_per_mm_x = max_steps_x / max_x
+
         move(Math.Round(405 * steps_per_mm_x), Math.Round(170 * steps_per_mm_y), True)
         move(0, 0, False)
         WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), 0)
@@ -208,7 +126,7 @@ Public Class MotorController
     End Sub
 
     Public Sub setDatas(ByVal datas As List(Of Integer())) ' bekommt das Daten-Array mit den Linien und Stift zuständen
-        'berechnet anhand der koordinaten des Arrays dir anzahl der Steps und konvertiert somit die cm in steps für die motorsteuerung
+        'berechnet anhand der koordinaten des Arrays die anzahl der Steps und konvertiert somit die mm in steps für die motorsteuerung
         Me.datasMM = datas
         Me.calDatas()
         cur_item = 0
@@ -249,17 +167,15 @@ Public Class MotorController
     Private Sub main()
         cur_item = 0
         While running And drawNext()
-            'Console.WriteLine(cur_item)
             con.progress(Math.Floor(cur_item / Me.datasSteps.Count * 100))
             con.line_live_print(Me.datasMM(cur_item - 1)(1), Me.datasMM(cur_item - 1)(2), Me.datasMM(cur_item - 1)(0))
-            'Console.WriteLine(cur_item / Me.datasSteps.Count * 100)
         End While
         con.line_live_print(Me.datasMM(cur_item - 1)(1), Me.datasMM(cur_item - 1)(2), Me.datasMM(cur_item - 1)(0))
         con.progress(Math.Floor(cur_item / Me.datasSteps.Count * 100))
         con.plotter_finished()
         Console.WriteLine("finished")
         con.progress(0)
-        move(0, 2000, True)
+        move(0, 2000, True) 'Fährt das Blatt etwas raus
         reset()
     End Sub
 
@@ -278,7 +194,6 @@ Public Class MotorController
     Private xThread As Thread ' = New Thread(AddressOf xMove)
     Private yThread As Thread ' = New Thread(AddressOf yMove)
     Private Sub move(ByVal x_steps As Integer, ByVal y_steps As Integer, ByVal status As Boolean)
-        'Console.WriteLine("x: " + x_steps.ToString + "|y: " + y_steps.ToString + "|" + status.ToString)
         'bewegt den Stift in x,y richtig mit den angegebenen Steps so, dass die Motoren unterschiedlich schnell laufen damit die Endposition gleichzeitig erreicht wird
         Dim xmm = x_steps / steps_per_mm_x
         Dim ymm = y_steps / steps_per_mm_y
@@ -321,7 +236,7 @@ Public Class MotorController
 
         xw = xmw
         yw = ymw
-        If Not xmm = 0 And Not ymm = 0 Then
+        If Not xmm = 0 And Not ymm = 0 Then 'Verhältnis der beiden Motoren wird anhand der wartezeit angepasst
             Dim v As Double = Math.Abs(ymm / xmm)
             If v < 1 Then
                 v = Math.Abs(xmm / ymm)
@@ -364,7 +279,6 @@ Public Class MotorController
         Return 503.45 * Math.Pow(wait, -0.359)
     End Function
 
-    'muss ich noch anders schreiben, weil ein thread keine parameter bekommen kann...
     Private Sub xMove() 'Thread 0
         Dim dir = 1
         If xSteps < 0 Then
@@ -376,11 +290,6 @@ Public Class MotorController
             xWait()
             pause_waitX()
 
-
-            'xMotor.Item(cur_x)(0) 'ausgang 1 motorx
-            'xMotor.Item(cur_x)(1) 'ausgang 2 motorx
-            'WriteSingleValue(subdeviceList(0), xMotor.Item(cur_x)(0)) 'ausgang 1 motorx
-            'WriteSingleValue(subdeviceList(1), xMotor.Item(cur_x)(1)) 'ausgang 2 motorx
             WriteToSubdevice(subdeviceList(0), subdeviceList(0).GetRange(0), xMotor.Item(cur_x)(0) * xVolt(xw))
             WriteToSubdevice(subdeviceList(1), subdeviceList(1).GetRange(0), xMotor.Item(cur_x)(1) * xVolt(xw))
 
@@ -407,11 +316,6 @@ Public Class MotorController
             yWait()
             pause_waitY()
 
-
-            'yMotor.Item(cur_y)(0) 'ausgang 3 motory
-            'yMotor.Item(cur_y)(1) 'ausgang 4 motory
-            'WriteSingleValue(subdeviceList(2), xMotor.Item(cur_y)(0)) 'ausgang 3 motorx
-            'WriteSingleValue(subdeviceList(3), xMotor.Item(cur_y)(1)) 'ausgang 4 motorx
             WriteToSubdevice(subdeviceList(2), subdeviceList(2).GetRange(0), yMotor.Item(cur_y)(0) * yVolt(yw))
             WriteToSubdevice(subdeviceList(3), subdeviceList(3).GetRange(0), yMotor.Item(cur_y)(1) * yVolt(yw))
 
@@ -461,18 +365,6 @@ Public Class MotorController
             t += 1
         Loop Until t >= yw
     End Sub
-    'Private Sub xWait()
-    'Dim t As Integer = 0
-    '   Do
-    '      t += 1
-    ' Loop Until t >= xmw * xSpeed
-    'End Sub
-    'Private Sub yWait()
-    'Dim t As Integer = 0
-    '   Do
-    '      t += 1
-    ' Loop Until t >= ymw * ySpeed
-    'End Sub
 #End Region
 
 #Region "MEiDSFunctions"
@@ -484,46 +376,29 @@ Public Class MotorController
     Private disubdeviceList As New List(Of DiSubdevice)
     Private Sub OpenMEiDSDriver()
         Try
-            'textBoxInfo.AppendText("Opening Maindriver..." & Environment.NewLine)
             openErrSuccess = meIDS.meOpen(meIDS.ME_OPEN_NO_FLAGS)
 
             If openErrSuccess = meIDS.ME_ERRNO_SUCCESS Then
-                'DisplayVersionLibrary()
-                'DisplayVersionMainDriver()
-
-                'textBoxInfo.AppendText(Environment.NewLine)
-
                 Dim numDevices As Integer
                 meIDS.meQueryNumberDevices(numDevices)
-                'textBoxInfo.AppendText("Number of devices found: " & numDevices.ToString() & Environment.NewLine)
                 GetAoSubdevices(numDevices)
             Else
-                'displayErrorMessage("meOpen - Error: ", openErrSuccess)
             End If
         Catch ex As DllNotFoundException
-            'textBoxInfo.AppendText("The ME-iDS is not properly installed." & Environment.NewLine)
-            'textBoxInfo.AppendText(ex.Message & Environment.NewLine)
         End Try
     End Sub
     Private Sub CloseMEiDSDriver()
         If openErrSuccess = meIDS.ME_ERRNO_SUCCESS Then
             meIDS.meClose(meIDS.ME_CLOSE_NO_FLAGS)
             openErrSuccess = Constants.ME_IDS_NOTOPENED
-            'btnSingleWrite.Enabled = False
-            'btnResetSubdev.Enabled = False
             subdeviceList.Clear()
-            'coBoxSubDevs.Items.Clear()
-            'coBoxChannel.Items.Clear()
-            'coBoxRange.Items.Clear()
         End If
     End Sub
     Private Sub GetAoSubdevices(ByVal numDevices As Integer)
         Dim idxDevice As Integer
 
         If openErrSuccess = meIDS.ME_ERRNO_SUCCESS AndAlso numDevices > 0 Then
-            'textBoxInfo.AppendText("Retrieving subdevices of type ME_TYPE_AO (Analog output)..." & Environment.NewLine)
             subdeviceList.Clear()
-            'coBoxSubDevs.Items.Clear()
             For idxDevice = 0 To numDevices - 1
                 Dim meError As Integer
                 Dim plugged As Integer
@@ -534,12 +409,10 @@ Public Class MotorController
                     GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DO)
                     GetSubdevicesByType(idxDevice, meIDS.ME_TYPE_DI)
                 Else
-                    'textBoxInfo.AppendText("Device " & idxDevice.ToString() & " not plugged in" & Environment.NewLine)
                 End If
             Next
 
         End If
-        'DisplaySubdevices()
     End Sub
     Private Sub GetSubdevicesByType(ByVal idxDevice As Integer, ByVal subdeviceType As Integer)
         Dim meError As Integer
@@ -582,13 +455,6 @@ Public Class MotorController
             Dim aoSubdev As AoSubdevice = New AoSubdevice(deviceName.ToString, idxDevice, idxSubdevice, numOfChannels)
             subdeviceList.Add(aoSubdev)
             AddAnalogRanges(aoSubdev)
-
-            'coBoxSubDevs.Items.Add(deviceName.ToString _
-            '                      & ",  Device " & idxDevice.ToString() _
-            '                      & ",  Subdevice " & idxSubdevice.ToString() _
-            '                      & ",  Type: " & GetSubDevTypeName(subdeviceType) _
-            '                      & ",  Channels: " & numOfChannels.ToString() _
-            '                      & ",  Ranges: " & aoSubdev.GetRangeCount().ToString())
         End If
         Return meError
     End Function
@@ -794,6 +660,7 @@ Public Class MotorController
 
 End Class
 
+'Containerklassen
 Public Class DoSubdevice
     Public deviceName As String
     Public deviceIndex As Integer
