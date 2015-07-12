@@ -19,7 +19,7 @@
             Return instance
         End Get
     End Property
-
+    'Fügt eine neue Lini hinzu
     Public Sub addPA(ByVal x As Integer, ByVal y As Integer, ByVal status As Boolean)
         Dim arr(2) As Integer
 
@@ -36,10 +36,8 @@
         cur_y = y
 
     End Sub
-
+    'Fügt einen neuen Kreis hinzu
     Public Sub addCS(ByVal x As Integer, ByVal y As Integer, ByVal phi As Integer, ByVal status As Boolean)
-
-        'schleife teilstücke ausrechnen und addPA aufrufen
         Dim radius As Integer
         Dim beta As Double
         Dim resolution As Double
@@ -70,17 +68,6 @@
             offset = Math.Atan((cur_x - x) / (cur_y - y)) '+ Math.PI
         End If
 
-
-
-
-        Dim a2 = (radius * radius) + (radius * radius) - (2 * radius * radius)
-        If x > cur_x Then
-            'offset = calc_startAngleCS(x, cur_x, radius, y)
-        Else
-            'offset = calc_startAngleCS(cur_x, x, radius, y)
-        End If
-       
-
         resolution = (phi2 / phi2) / (radius / 100) / tune
 
         Dim pi As Single
@@ -88,12 +75,8 @@
 
         beta = ((2 * pi) / 360) * beta 'grad in rad convertieren
         phi2 = ((2 * pi) / 360) * phi2 'grad in rad convertieren
-        'offset = ((2 * pi) / 360) * offset 'grad in rad convertieren
-
-        'new_x = (Math.Sin(offset) * radius) + x
-        'new_y = (Math.Cos(offset) * radius) + y
-        'Me.addPA(new_x, new_y, Not status)
-        Do
+        
+        Do  'Fügt die einzelnen Teillinien des Kreises hinzu
             new_x = (Math.Sin(beta + offset) * radius) + x
             new_y = (Math.Cos(beta + offset) * radius) + y
             Me.addPA(new_x, new_y, status)
@@ -103,7 +86,7 @@
         new_x = (Math.Sin(phi2 + offset) * radius) + x
         new_y = (Math.Cos(phi2 + offset) * radius) + y
         Me.addPA(new_x, new_y, status)
-        'Me.addPA(x2, y2, status)
+
     End Sub
 
     Public Function calc_startAngleCS(ByVal m_x As Integer, ByVal p_x As Integer, ByVal r As Integer, ByVal y As Integer) As Single
